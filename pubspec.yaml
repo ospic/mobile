@@ -34,6 +34,7 @@ dependencies:
    cookie_jar: ^1.0.0
    progress_dialog: ^1.2.1
    cupertino_icons: ^1.0.0
+   responsive_builder: ^0.3.0
 
 dev_dependencies:
    flutter_test:
