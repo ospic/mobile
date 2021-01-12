@@ -32,6 +32,8 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         channel: 'beta'
+    - name: Upgrade dependencies
+      run: flutter pub upgrade
     - name: Install dependencies
       run: flutter pub get
     - name: Checkout to Beta channel
