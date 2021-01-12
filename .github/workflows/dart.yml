@@ -49,6 +49,7 @@ jobs:
     #- name: Split the APKs per ABI
     #  run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
     - name: Build Web
+      run: flutter create .
       run: flutter build web
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@3.5.6
