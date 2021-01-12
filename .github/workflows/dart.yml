@@ -46,8 +46,8 @@ jobs:
       run: flutter clean
     #- name: Build app bundle
     #  run: flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
-    #- name: Split the APKs per ABI
-    #  run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+    - name: Split the APKs per ABI
+      run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
     - name: Enable Web
       run: flutter create .
     - name: Build Web
