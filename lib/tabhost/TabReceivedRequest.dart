@@ -2,6 +2,7 @@ import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/notification_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mobile/model/user.dart';
 import 'package:mobile/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,13 +18,13 @@ class TabReceivedRequest extends StatelessWidget{
   
 }
 
-FutureBuilder<Response<BuiltList<NotificationModel>>> _buildBody(BuildContext context) {
-  return FutureBuilder<Response<BuiltList<NotificationModel>>>(
+FutureBuilder<Response<BuiltList<User>>> _buildBody(BuildContext context) {
+  return FutureBuilder<Response<BuiltList<User>>>(
     future: Provider.of<PostApiService>(context).getAllNotifications(),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
-        final BuiltList<NotificationModel> notifications = snapshot.data.body;
-        return _buildNotifications(context, notifications);
+        final BuiltList<User> users = snapshot.data.body;
+        return _buildNotifications(context, users);
       } else {
         return Center(
           child: CircularProgressIndicator(),
@@ -34,9 +35,9 @@ FutureBuilder<Response<BuiltList<NotificationModel>>> _buildBody(BuildContext co
 }
 
 
-ListView _buildNotifications(BuildContext context, BuiltList<NotificationModel> notifications) {
+ListView _buildNotifications(BuildContext context, BuiltList<User> users) {
   return ListView.builder(
-      itemCount: notifications.length,
+      itemCount: users.length,
       scrollDirection: Axis.vertical,
       padding: EdgeInsets.all(8.0),
       physics: const AlwaysScrollableScrollPhysics(),
@@ -52,8 +53,8 @@ ListView _buildNotifications(BuildContext context, BuiltList<NotificationModel> 
                     'group_widget',
                     mDataDate: '$index/3/19',
                     mDataInfo: '20$index',
-                    mTitle: "Notification $index",
-                    subTitle: notifications[index].description,
+                    mTitle: users[index].username,
+                    subTitle: users[index].email,
                   ),
                 ));
       });
