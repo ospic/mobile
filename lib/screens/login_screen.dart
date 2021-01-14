@@ -115,8 +115,6 @@ class _State extends State<LoginScreen> {
                                       iconData: MdiIcons.abjadArabic,
                                       title: 'Login',
                                       tapCallback: () async {
-                                        //print(nameController.text);
-                                        //print(passwordController.text);
                                         var newPost = AuthPost().rebuild((b) =>
                                             b
                                               ..username =
@@ -124,18 +122,15 @@ class _State extends State<LoginScreen> {
                                               ..password = passwordController
                                                   .text
                                                   .toString());
+
                                         if (_formKey.currentState.validate()) {
                                           pr = new ProgressDialog(context,
                                               type: ProgressDialogType.Normal,
                                               isDismissible: true,
                                               showLogs: false);
-                                          pr.update(
-                                            progress: 50.0,
-                                            message: "Please wait...",
-                                            progressWidget: Container(
+                                          pr.update(progress: 50.0, message: "Please wait...", progressWidget: Container(
                                                 padding: EdgeInsets.all(8.0),
-                                                child:
-                                                    CircularProgressIndicator()),
+                                                child: CircularProgressIndicator()),
                                             maxProgress: 100.0,
                                             progressTextStyle: TextStyle(
                                                 color: Colors.black,
@@ -147,25 +142,20 @@ class _State extends State<LoginScreen> {
                                                 fontWeight: FontWeight.w600),
                                           );
                                           pr.show();
-                                          final response =
-                                              await Session.apiAuthPost(
-                                                  serializers
-                                                      .serialize(newPost));
+                                          final response = await Session.apiAuthPost(serializers.serialize(newPost));
                                           AuthResponse authResponse =
                                               serializers.deserializeWith(
                                                   AuthResponse.serializer,
                                                   jsonDecode(response));
                                           print(authResponse.toString());
                                           if (authResponse
-                                              .base64EncodedAuthenticationKey
-                                              .isNotEmpty) {
+                                              .accessToken.isNotEmpty) {
                                             var sharepref =
                                                 new SharedPreference();
                                             await sharepref.setStringToSF(
                                                 enumKey.BASE_64_EncodedAuthenticationKey
                                                     .toString(),
-                                                authResponse
-                                                    .base64EncodedAuthenticationKey);
+                                                authResponse.accessToken);
                                             await sharepref
                                                 .setBooleanToSF(
                                                     enumKey.IS_LOGGED_IN

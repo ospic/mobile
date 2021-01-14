@@ -17,28 +17,144 @@ class _$BuiltPostSerializer implements StructuredSerializer<BuiltPost> {
   @override
   Iterable<Object> serialize(Serializers serializers, BuiltPost object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
-      'groupAcct',
-      serializers.serialize(object.groupAcct,
-          specifiedType: const FullType(String)),
-      'groupName',
-      serializers.serialize(object.groupName,
-          specifiedType: const FullType(String)),
-      'groupType',
-      serializers.serialize(object.groupType,
-          specifiedType: const FullType(String)),
-      'totalMembers',
-      serializers.serialize(object.totalMembers,
-          specifiedType: const FullType(int)),
-      'sharePrice',
-      serializers.serialize(object.sharePrice,
-          specifiedType: const FullType(int)),
-    ];
-    if (object.groupId != null) {
+    final result = <Object>[];
+    if (object.id != null) {
       result
-        ..add('groupId')
-        ..add(serializers.serialize(object.groupId,
+        ..add('id')
+        ..add(serializers.serialize(object.id,
             specifiedType: const FullType(int)));
+    }
+    if (object.createdDate != null) {
+      result
+        ..add('createdDate')
+        ..add(serializers.serialize(object.createdDate,
+            specifiedType: const FullType(String)));
+    }
+    if (object.createdBy != null) {
+      result
+        ..add('createdBy')
+        ..add(serializers.serialize(object.createdBy,
+            specifiedType: const FullType(String)));
+    }
+    if (object.lastModifiedDate != null) {
+      result
+        ..add('lastModifiedDate')
+        ..add(serializers.serialize(object.lastModifiedDate,
+            specifiedType: const FullType(String)));
+    }
+    if (object.lastModifiedBy != null) {
+      result
+        ..add('lastModifiedBy')
+        ..add(serializers.serialize(object.lastModifiedBy,
+            specifiedType: const FullType(String)));
+    }
+    if (object.name != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(object.name,
+            specifiedType: const FullType(String)));
+    }
+    if (object.guardianName != null) {
+      result
+        ..add('guardianName')
+        ..add(serializers.serialize(object.guardianName,
+            specifiedType: const FullType(String)));
+    }
+    if (object.phone != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(object.phone,
+            specifiedType: const FullType(String)));
+    }
+    if (object.address != null) {
+      result
+        ..add('address')
+        ..add(serializers.serialize(object.address,
+            specifiedType: const FullType(String)));
+    }
+    if (object.emailAddress != null) {
+      result
+        ..add('emailAddress')
+        ..add(serializers.serialize(object.emailAddress,
+            specifiedType: const FullType(String)));
+    }
+    if (object.height != null) {
+      result
+        ..add('height')
+        ..add(serializers.serialize(object.height,
+            specifiedType: const FullType(String)));
+    }
+    if (object.weight != null) {
+      result
+        ..add('weight')
+        ..add(serializers.serialize(object.weight,
+            specifiedType: const FullType(String)));
+    }
+    if (object.bloodPressure != null) {
+      result
+        ..add('bloodPressure')
+        ..add(serializers.serialize(object.bloodPressure,
+            specifiedType: const FullType(String)));
+    }
+    if (object.age != null) {
+      result
+        ..add('age')
+        ..add(serializers.serialize(object.age,
+            specifiedType: const FullType(int)));
+    }
+    if (object.isAdmitted != null) {
+      result
+        ..add('isAdmitted')
+        ..add(serializers.serialize(object.isAdmitted,
+            specifiedType: const FullType(bool)));
+    }
+    if (object.patientPhoto != null) {
+      result
+        ..add('patientPhoto')
+        ..add(serializers.serialize(object.patientPhoto,
+            specifiedType: const FullType(String)));
+    }
+    if (object.bloodGroup != null) {
+      result
+        ..add('bloodGroup')
+        ..add(serializers.serialize(object.bloodGroup,
+            specifiedType: const FullType(String)));
+    }
+    if (object.note != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(object.note,
+            specifiedType: const FullType(String)));
+    }
+    if (object.symptoms != null) {
+      result
+        ..add('symptoms')
+        ..add(serializers.serialize(object.symptoms,
+            specifiedType: const FullType(String)));
+    }
+    if (object.marriageStatus != null) {
+      result
+        ..add('marriageStatus')
+        ..add(serializers.serialize(object.marriageStatus,
+            specifiedType: const FullType(String)));
+    }
+    if (object.gender != null) {
+      result
+        ..add('gender')
+        ..add(serializers.serialize(object.gender,
+            specifiedType: const FullType(String)));
+    }
+    if (object.isActive != null) {
+      result
+        ..add('isActive')
+        ..add(serializers.serialize(object.isActive,
+            specifiedType: const FullType(bool)));
+    }
+    if (object.contactsInformation != null) {
+      result
+        ..add('contactsInformation')
+        ..add(serializers.serialize(object.contactsInformation,
+            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -54,29 +170,97 @@ class _$BuiltPostSerializer implements StructuredSerializer<BuiltPost> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'groupId':
-          result.groupId = serializers.deserialize(value,
+        case 'id':
+          result.id = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
-        case 'groupAcct':
-          result.groupAcct = serializers.deserialize(value,
+        case 'createdDate':
+          result.createdDate = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'groupName':
-          result.groupName = serializers.deserialize(value,
+        case 'createdBy':
+          result.createdBy = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'groupType':
-          result.groupType = serializers.deserialize(value,
+        case 'lastModifiedDate':
+          result.lastModifiedDate = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'totalMembers':
-          result.totalMembers = serializers.deserialize(value,
+        case 'lastModifiedBy':
+          result.lastModifiedBy = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'guardianName':
+          result.guardianName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'address':
+          result.address = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'emailAddress':
+          result.emailAddress = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'height':
+          result.height = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'weight':
+          result.weight = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'bloodPressure':
+          result.bloodPressure = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'age':
+          result.age = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
-        case 'sharePrice':
-          result.sharePrice = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+        case 'isAdmitted':
+          result.isAdmitted = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
+        case 'patientPhoto':
+          result.patientPhoto = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'bloodGroup':
+          result.bloodGroup = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'symptoms':
+          result.symptoms = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'marriageStatus':
+          result.marriageStatus = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'gender':
+          result.gender = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'isActive':
+          result.isActive = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
+        case 'contactsInformation':
+          result.contactsInformation = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -87,45 +271,80 @@ class _$BuiltPostSerializer implements StructuredSerializer<BuiltPost> {
 
 class _$BuiltPost extends BuiltPost {
   @override
-  final int groupId;
+  final int id;
   @override
-  final String groupAcct;
+  final String createdDate;
   @override
-  final String groupName;
+  final String createdBy;
   @override
-  final String groupType;
+  final String lastModifiedDate;
   @override
-  final int totalMembers;
+  final String lastModifiedBy;
   @override
-  final int sharePrice;
+  final String name;
+  @override
+  final String guardianName;
+  @override
+  final String phone;
+  @override
+  final String address;
+  @override
+  final String emailAddress;
+  @override
+  final String height;
+  @override
+  final String weight;
+  @override
+  final String bloodPressure;
+  @override
+  final int age;
+  @override
+  final bool isAdmitted;
+  @override
+  final String patientPhoto;
+  @override
+  final String bloodGroup;
+  @override
+  final String note;
+  @override
+  final String symptoms;
+  @override
+  final String marriageStatus;
+  @override
+  final String gender;
+  @override
+  final bool isActive;
+  @override
+  final String contactsInformation;
 
   factory _$BuiltPost([void Function(BuiltPostBuilder) updates]) =>
       (new BuiltPostBuilder()..update(updates)).build();
 
   _$BuiltPost._(
-      {this.groupId,
-      this.groupAcct,
-      this.groupName,
-      this.groupType,
-      this.totalMembers,
-      this.sharePrice})
-      : super._() {
-    if (groupAcct == null) {
-      throw new BuiltValueNullFieldError('BuiltPost', 'groupAcct');
-    }
-    if (groupName == null) {
-      throw new BuiltValueNullFieldError('BuiltPost', 'groupName');
-    }
-    if (groupType == null) {
-      throw new BuiltValueNullFieldError('BuiltPost', 'groupType');
-    }
-    if (totalMembers == null) {
-      throw new BuiltValueNullFieldError('BuiltPost', 'totalMembers');
-    }
-    if (sharePrice == null) {
-      throw new BuiltValueNullFieldError('BuiltPost', 'sharePrice');
-    }
-  }
+      {this.id,
+      this.createdDate,
+      this.createdBy,
+      this.lastModifiedDate,
+      this.lastModifiedBy,
+      this.name,
+      this.guardianName,
+      this.phone,
+      this.address,
+      this.emailAddress,
+      this.height,
+      this.weight,
+      this.bloodPressure,
+      this.age,
+      this.isAdmitted,
+      this.patientPhoto,
+      this.bloodGroup,
+      this.note,
+      this.symptoms,
+      this.marriageStatus,
+      this.gender,
+      this.isActive,
+      this.contactsInformation})
+      : super._();
 
   @override
   BuiltPost rebuild(void Function(BuiltPostBuilder) updates) =>
@@ -138,12 +357,29 @@ class _$BuiltPost extends BuiltPost {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is BuiltPost &&
-        groupId == other.groupId &&
-        groupAcct == other.groupAcct &&
-        groupName == other.groupName &&
-        groupType == other.groupType &&
-        totalMembers == other.totalMembers &&
-        sharePrice == other.sharePrice;
+        id == other.id &&
+        createdDate == other.createdDate &&
+        createdBy == other.createdBy &&
+        lastModifiedDate == other.lastModifiedDate &&
+        lastModifiedBy == other.lastModifiedBy &&
+        name == other.name &&
+        guardianName == other.guardianName &&
+        phone == other.phone &&
+        address == other.address &&
+        emailAddress == other.emailAddress &&
+        height == other.height &&
+        weight == other.weight &&
+        bloodPressure == other.bloodPressure &&
+        age == other.age &&
+        isAdmitted == other.isAdmitted &&
+        patientPhoto == other.patientPhoto &&
+        bloodGroup == other.bloodGroup &&
+        note == other.note &&
+        symptoms == other.symptoms &&
+        marriageStatus == other.marriageStatus &&
+        gender == other.gender &&
+        isActive == other.isActive &&
+        contactsInformation == other.contactsInformation;
   }
 
   @override
@@ -151,22 +387,69 @@ class _$BuiltPost extends BuiltPost {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, groupId.hashCode), groupAcct.hashCode),
-                    groupName.hashCode),
-                groupType.hashCode),
-            totalMembers.hashCode),
-        sharePrice.hashCode));
+                $jc(
+                    $jc(
+                        $jc(
+                            $jc(
+                                $jc(
+                                    $jc(
+                                        $jc(
+                                            $jc(
+                                                $jc(
+                                                    $jc(
+                                                        $jc(
+                                                            $jc(
+                                                                $jc(
+                                                                    $jc(
+                                                                        $jc(
+                                                                            $jc($jc($jc($jc($jc(0, id.hashCode), createdDate.hashCode), createdBy.hashCode), lastModifiedDate.hashCode),
+                                                                                lastModifiedBy.hashCode),
+                                                                            name.hashCode),
+                                                                        guardianName.hashCode),
+                                                                    phone.hashCode),
+                                                                address.hashCode),
+                                                            emailAddress.hashCode),
+                                                        height.hashCode),
+                                                    weight.hashCode),
+                                                bloodPressure.hashCode),
+                                            age.hashCode),
+                                        isAdmitted.hashCode),
+                                    patientPhoto.hashCode),
+                                bloodGroup.hashCode),
+                            note.hashCode),
+                        symptoms.hashCode),
+                    marriageStatus.hashCode),
+                gender.hashCode),
+            isActive.hashCode),
+        contactsInformation.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('BuiltPost')
-          ..add('groupId', groupId)
-          ..add('groupAcct', groupAcct)
-          ..add('groupName', groupName)
-          ..add('groupType', groupType)
-          ..add('totalMembers', totalMembers)
-          ..add('sharePrice', sharePrice))
+          ..add('id', id)
+          ..add('createdDate', createdDate)
+          ..add('createdBy', createdBy)
+          ..add('lastModifiedDate', lastModifiedDate)
+          ..add('lastModifiedBy', lastModifiedBy)
+          ..add('name', name)
+          ..add('guardianName', guardianName)
+          ..add('phone', phone)
+          ..add('address', address)
+          ..add('emailAddress', emailAddress)
+          ..add('height', height)
+          ..add('weight', weight)
+          ..add('bloodPressure', bloodPressure)
+          ..add('age', age)
+          ..add('isAdmitted', isAdmitted)
+          ..add('patientPhoto', patientPhoto)
+          ..add('bloodGroup', bloodGroup)
+          ..add('note', note)
+          ..add('symptoms', symptoms)
+          ..add('marriageStatus', marriageStatus)
+          ..add('gender', gender)
+          ..add('isActive', isActive)
+          ..add('contactsInformation', contactsInformation))
         .toString();
   }
 }
@@ -174,40 +457,130 @@ class _$BuiltPost extends BuiltPost {
 class BuiltPostBuilder implements Builder<BuiltPost, BuiltPostBuilder> {
   _$BuiltPost _$v;
 
-  int _groupId;
-  int get groupId => _$this._groupId;
-  set groupId(int groupId) => _$this._groupId = groupId;
+  int _id;
+  int get id => _$this._id;
+  set id(int id) => _$this._id = id;
 
-  String _groupAcct;
-  String get groupAcct => _$this._groupAcct;
-  set groupAcct(String groupAcct) => _$this._groupAcct = groupAcct;
+  String _createdDate;
+  String get createdDate => _$this._createdDate;
+  set createdDate(String createdDate) => _$this._createdDate = createdDate;
 
-  String _groupName;
-  String get groupName => _$this._groupName;
-  set groupName(String groupName) => _$this._groupName = groupName;
+  String _createdBy;
+  String get createdBy => _$this._createdBy;
+  set createdBy(String createdBy) => _$this._createdBy = createdBy;
 
-  String _groupType;
-  String get groupType => _$this._groupType;
-  set groupType(String groupType) => _$this._groupType = groupType;
+  String _lastModifiedDate;
+  String get lastModifiedDate => _$this._lastModifiedDate;
+  set lastModifiedDate(String lastModifiedDate) =>
+      _$this._lastModifiedDate = lastModifiedDate;
 
-  int _totalMembers;
-  int get totalMembers => _$this._totalMembers;
-  set totalMembers(int totalMembers) => _$this._totalMembers = totalMembers;
+  String _lastModifiedBy;
+  String get lastModifiedBy => _$this._lastModifiedBy;
+  set lastModifiedBy(String lastModifiedBy) =>
+      _$this._lastModifiedBy = lastModifiedBy;
 
-  int _sharePrice;
-  int get sharePrice => _$this._sharePrice;
-  set sharePrice(int sharePrice) => _$this._sharePrice = sharePrice;
+  String _name;
+  String get name => _$this._name;
+  set name(String name) => _$this._name = name;
+
+  String _guardianName;
+  String get guardianName => _$this._guardianName;
+  set guardianName(String guardianName) => _$this._guardianName = guardianName;
+
+  String _phone;
+  String get phone => _$this._phone;
+  set phone(String phone) => _$this._phone = phone;
+
+  String _address;
+  String get address => _$this._address;
+  set address(String address) => _$this._address = address;
+
+  String _emailAddress;
+  String get emailAddress => _$this._emailAddress;
+  set emailAddress(String emailAddress) => _$this._emailAddress = emailAddress;
+
+  String _height;
+  String get height => _$this._height;
+  set height(String height) => _$this._height = height;
+
+  String _weight;
+  String get weight => _$this._weight;
+  set weight(String weight) => _$this._weight = weight;
+
+  String _bloodPressure;
+  String get bloodPressure => _$this._bloodPressure;
+  set bloodPressure(String bloodPressure) =>
+      _$this._bloodPressure = bloodPressure;
+
+  int _age;
+  int get age => _$this._age;
+  set age(int age) => _$this._age = age;
+
+  bool _isAdmitted;
+  bool get isAdmitted => _$this._isAdmitted;
+  set isAdmitted(bool isAdmitted) => _$this._isAdmitted = isAdmitted;
+
+  String _patientPhoto;
+  String get patientPhoto => _$this._patientPhoto;
+  set patientPhoto(String patientPhoto) => _$this._patientPhoto = patientPhoto;
+
+  String _bloodGroup;
+  String get bloodGroup => _$this._bloodGroup;
+  set bloodGroup(String bloodGroup) => _$this._bloodGroup = bloodGroup;
+
+  String _note;
+  String get note => _$this._note;
+  set note(String note) => _$this._note = note;
+
+  String _symptoms;
+  String get symptoms => _$this._symptoms;
+  set symptoms(String symptoms) => _$this._symptoms = symptoms;
+
+  String _marriageStatus;
+  String get marriageStatus => _$this._marriageStatus;
+  set marriageStatus(String marriageStatus) =>
+      _$this._marriageStatus = marriageStatus;
+
+  String _gender;
+  String get gender => _$this._gender;
+  set gender(String gender) => _$this._gender = gender;
+
+  bool _isActive;
+  bool get isActive => _$this._isActive;
+  set isActive(bool isActive) => _$this._isActive = isActive;
+
+  String _contactsInformation;
+  String get contactsInformation => _$this._contactsInformation;
+  set contactsInformation(String contactsInformation) =>
+      _$this._contactsInformation = contactsInformation;
 
   BuiltPostBuilder();
 
   BuiltPostBuilder get _$this {
     if (_$v != null) {
-      _groupId = _$v.groupId;
-      _groupAcct = _$v.groupAcct;
-      _groupName = _$v.groupName;
-      _groupType = _$v.groupType;
-      _totalMembers = _$v.totalMembers;
-      _sharePrice = _$v.sharePrice;
+      _id = _$v.id;
+      _createdDate = _$v.createdDate;
+      _createdBy = _$v.createdBy;
+      _lastModifiedDate = _$v.lastModifiedDate;
+      _lastModifiedBy = _$v.lastModifiedBy;
+      _name = _$v.name;
+      _guardianName = _$v.guardianName;
+      _phone = _$v.phone;
+      _address = _$v.address;
+      _emailAddress = _$v.emailAddress;
+      _height = _$v.height;
+      _weight = _$v.weight;
+      _bloodPressure = _$v.bloodPressure;
+      _age = _$v.age;
+      _isAdmitted = _$v.isAdmitted;
+      _patientPhoto = _$v.patientPhoto;
+      _bloodGroup = _$v.bloodGroup;
+      _note = _$v.note;
+      _symptoms = _$v.symptoms;
+      _marriageStatus = _$v.marriageStatus;
+      _gender = _$v.gender;
+      _isActive = _$v.isActive;
+      _contactsInformation = _$v.contactsInformation;
       _$v = null;
     }
     return this;
@@ -230,12 +603,29 @@ class BuiltPostBuilder implements Builder<BuiltPost, BuiltPostBuilder> {
   _$BuiltPost build() {
     final _$result = _$v ??
         new _$BuiltPost._(
-            groupId: groupId,
-            groupAcct: groupAcct,
-            groupName: groupName,
-            groupType: groupType,
-            totalMembers: totalMembers,
-            sharePrice: sharePrice);
+            id: id,
+            createdDate: createdDate,
+            createdBy: createdBy,
+            lastModifiedDate: lastModifiedDate,
+            lastModifiedBy: lastModifiedBy,
+            name: name,
+            guardianName: guardianName,
+            phone: phone,
+            address: address,
+            emailAddress: emailAddress,
+            height: height,
+            weight: weight,
+            bloodPressure: bloodPressure,
+            age: age,
+            isAdmitted: isAdmitted,
+            patientPhoto: patientPhoto,
+            bloodGroup: bloodGroup,
+            note: note,
+            symptoms: symptoms,
+            marriageStatus: marriageStatus,
+            gender: gender,
+            isActive: isActive,
+            contactsInformation: contactsInformation);
     replace(_$result);
     return _$result;
   }

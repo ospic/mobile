@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:built_collection/built_collection.dart';
+import 'dart:developer';
 
 class TabGroups extends StatelessWidget {
   @override
@@ -44,8 +45,10 @@ FutureBuilder<Response<BuiltList<BuiltPost>>> _buildBody(BuildContext context) {
   return FutureBuilder<Response<BuiltList<BuiltPost>>>(
     future: Provider.of<PostApiService>(context).getPosts(),
     builder: (context, snapshot) {
+
       if (snapshot.connectionState == ConnectionState.done) {
-        final BuiltList<BuiltPost> posts = snapshot.data.body;
+        log(snapshot.data.toString());
+        final BuiltList<BuiltPost> posts = snapshot.data == null ? null : snapshot.data.body;
         return _buildPosts(context, posts);
       } else {
         return Center(
@@ -76,8 +79,8 @@ ListView _buildPosts(BuildContext context, BuiltList<BuiltPost> posts) {
                 'group_widget',
                 mDataDate: 'March $index 2019',
                 mDataInfo: '20$index',
-                mTitle: posts[index].groupName,
-                subTitle: posts[index].totalMembers,
+                mTitle: posts[index].name,
+                subTitle: posts[index].age,
                 tapCallback:() =>
                  Navigator.push(context,MaterialPageRoute(builder: (context) =>ScreenSingleGroup( posts[index]))
               ),

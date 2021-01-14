@@ -17,14 +17,14 @@ class _$PostApiService extends PostApiService {
 
   @override
   Future<Response<BuiltList<BuiltPost>>> getPosts() {
-    final $url = '/service-response/group-list';
+    final $url = '/patients/';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<BuiltList<BuiltPost>, BuiltPost>($request);
   }
 
   @override
   Future<Response<BuiltList<NotificationModel>>> getAllNotifications() {
-    final $url = '/service-response/notifications';
+    final $url = '/users';
     final $request = Request('GET', $url, client.baseUrl);
     return client
         .send<BuiltList<NotificationModel>, NotificationModel>($request);
@@ -47,7 +47,7 @@ class _$PostApiService extends PostApiService {
 
   @override
   Future<Response> postForLogin(dynamic body) {
-    final $url = '/authentication';
+    final $url = '/auth/signin';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<dynamic, dynamic>($request);

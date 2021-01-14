@@ -131,8 +131,8 @@ class _NewGroupState extends State<ScreenNewGroup> {
                                 final authPost = BuiltPost(
                                   (b) => b
                                     // id is null - it gets assigned in the backend
-                                    ..groupName = 'New Title'
-                                    ..groupAcct = 'New body',
+                                    ..name = 'New Title'
+                                    ..age = 23,
                                 );
                                 if (_formKey.currentState.validate()) {
                                   // Process data.
