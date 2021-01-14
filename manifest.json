@@ -1,7 +1,7 @@
 {
     "name": "mobile",
     "short_name": "mobile",
-    "start_url": "./",
+    "start_url": "/mobile",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
