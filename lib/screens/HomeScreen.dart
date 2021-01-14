@@ -1,0 +1,107 @@
+import 'package:mobile/screens/ScreenAbout.dart';
+import 'package:mobile/screens/index.dart';
+import 'package:mobile/utils/colors.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:hidden_drawer_menu/hidden_drawer/hidden_drawer_menu.dart';
+import 'package:hidden_drawer_menu/menu/item_hidden_menu.dart';
+import 'package:hidden_drawer_menu/hidden_drawer/screen_hidden_drawer.dart';
+
+class HomeScreen extends StatefulWidget {
+  HomeScreen({Key key}) : super(key: key);
+  @override
+  _HomeScreenState createState() => new _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<ScreenHiddenDrawer> itens = new List();
+
+  @override
+  void initState() {
+    itens.add(new ScreenHiddenDrawer(
+        new ItemHiddenMenu(
+          name: "Home",
+          colorLineSelected: green1,
+          baseStyle: TextStyle(
+            color: Colors.white,
+          ),
+          selectedStyle: TextStyle(color: green1, fontSize: 25.0),
+        ),
+        Container(color: Colors.teal, child: ScreenTabs())));
+
+    itens.add(new ScreenHiddenDrawer(
+        new ItemHiddenMenu(
+          name: "About Us",
+          colorLineSelected: green1,
+          baseStyle: TextStyle(
+            color: Colors.white,
+          ),
+          selectedStyle: TextStyle(color: green1, fontSize: 25.0),
+        ),
+        Container(
+          color: Colors.orange,
+          child: Center(child: ScreenAbout()),
+        )));
+    itens.add(new ScreenHiddenDrawer(
+        new ItemHiddenMenu(
+          name: "Contact Us",
+          colorLineSelected: green1,
+          baseStyle: TextStyle(
+            color: Colors.white,
+          ),
+          selectedStyle: TextStyle(color: green1, fontSize: 25.0),
+        ),
+        Container(
+          color: Colors.orange,
+          child: Center(child: ContactsScreen()),
+        )));
+    itens.add(new ScreenHiddenDrawer(
+        new ItemHiddenMenu(
+          name: "Help",
+          colorLineSelected: green1,
+          baseStyle: TextStyle(
+            color: Colors.white,
+          ),
+          selectedStyle: TextStyle(color: green1, fontSize: 25.0),
+        ),
+        Container(
+          color: Colors.orange,
+          child: Center(child: HelpScreen()),
+        )));
+    itens.add(new ScreenHiddenDrawer(
+        new ItemHiddenMenu(
+          name: "About this App",
+          colorLineSelected: green1,
+          baseStyle: TextStyle(
+            color: Colors.white,
+          ),
+          selectedStyle: TextStyle(color: green1, fontSize: 25.0),
+        ),
+        Container(
+          color: Colors.orange,
+          child: Center(child: ThisAppScreen()),
+        )));
+
+    super.initState();
+  }
+
+  void onTabTapped(int index) {
+    setState(() {
+      if (index == 0) {
+        Scaffold.of(context).openDrawer(); // This is what I've tried
+      } else {}
+    });
+  }
+
+  final String heading = "EG-SAVINGS";
+  @override
+  Widget build(BuildContext context) {
+    return HiddenDrawerMenu(
+      initPositionSelected: 0,
+      screens: itens,
+      backgroundColorMenu: blue,
+      slidePercent: 60.0,
+      backgroundColorAppBar: green1.withOpacity(0.9),
+    );
+  }
+}
