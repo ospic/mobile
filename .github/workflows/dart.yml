@@ -48,8 +48,8 @@ jobs:
         run: flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
       - name: Build app-bundle
         run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
-      - name: Enable Web
-        run: flutter create ./
+      #- name: Enable Web
+      #  run: flutter create ./
       - name: Build Web
         run: flutter build web
       - name: Deploy to GitHub Pages
