@@ -1,5 +1,5 @@
-name: mobile
-description: A new Flutter project.
+name: opus_web
+description: Opus web application
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -21,27 +21,18 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-   flutter:
+  flutter:
     sdk: flutter
-   material_design_icons_flutter: ^3.4.4995
-   connectivity: ^2.0.2
-   hidden_drawer_menu: ^1.1.2
-   chopper: ^3.0.6
-   provider: ^4.0.4
-   built_value: ^6.7.0
-   shared_preferences: ^0.5.6+3
-   http: ^0.12.0+4
-   cookie_jar: ^1.0.0
-   progress_dialog: ^1.2.1
-   cupertino_icons: ^1.0.0
-   responsive_builder: ^0.3.0
+  responsive_builder: ^0.2.0+2
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^0.1.3
 
 dev_dependencies:
-   flutter_test:
+  flutter_test:
     sdk: flutter
-   chopper_generator: ^3.0.3
-   built_value_generator: ^6.7.0
-   build_runner: 
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -56,7 +47,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/
+     - assets/logo.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -70,13 +61,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  # fonts:
   fonts:
-     - family: Calibri
-       fonts:
-         - asset: fonts/Calibri-Regular.ttf
-         - asset: fonts/Calibri-Light.ttf
-           style: normal
-  #   - family: Trajan Pro
+    - family: Open Sans
+      fonts:
+        - asset: assets/fonts/OpenSans-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/OpenSans-Regular.ttf
+          weight: 400
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf

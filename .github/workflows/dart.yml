@@ -2,20 +2,13 @@ name: Flutter Builds
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
-    branches: [opened, labeled, master]
-  issues:
-    types: [opened, labeled]
-  #pull_request:
-  # types: [opened, labeled]
-  
+    branches: [ master ]
 
 env:
-  flutter_version: "1.22.5"
+  flutter_version: "1.12.13+hotfix.5"
   java_version: "12.x"
-  GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-  MY_GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 
 jobs:
   build:
@@ -32,8 +25,6 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         channel: 'beta'
-    - name: Upgrade dependencies
-      run: flutter pub upgrade
     - name: Install dependencies
       run: flutter pub get
     - name: Checkout to Beta channel
@@ -44,51 +35,16 @@ jobs:
       run: flutter config --enable-web
     - name: Run Clean to reduce app sizes
       run: flutter clean
-    #- name: Build apk
-    #  run: flutter build apk #--target-platform android-arm,android-arm64,android-x64 --split-per-abi
-    #- name: Build app-bundle
-    #  run: flutter build appbundle #--target-platform android-arm,android-arm64,android-x64
-    - name: Enable Web
-      run: flutter create .
+    - name: Build app bundle
+      run: flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
+    - name: Split the APKs per ABI
+      run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
     - name: Build Web
       run: flutter build web
     - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@3.7.1
+      uses: JamesIves/github-pages-deploy-action@3.5.6
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
         BRANCH: gh-pages # The branch the action should deploy to.
         FOLDER: build/web # The folder the action should deploy.
   
-
-  assign_one_project:
-    runs-on: ubuntu-latest
-    name: Assign to Projects
-    steps:
-      - name: Assign NEW issues and NEW pull requests to CHILD project
-        uses: srggrs/assign-one-project-github-action@1.2.0
-        if: github.event.action == 'opened'
-        with:
-          project: "https://github.com/ospic/mobile/projects/1"
-
-      - name: Assign issues and pull requests with `enhancement` label to CHILD project
-        uses: srggrs/assign-one-project-github-action@1.2.0
-        if: |
-          contains(github.event.issue.labels.*.name, 'enhancement') ||
-          contains(github.event.pull_request.labels.*.name, 'enhancement')
-        with:
-          project: "https://github.com/ospic/mobile/projects/1"
-          column_name: "To do"
-      - name: Assign NEW issues and NEW pull requests to HEADER project
-        uses: srggrs/assign-one-project-github-action@1.2.0
-        if: github.event.action == 'opened'
-        with:
-          project: "https://github.com/orgs/ospic/projects/1"
-
-      - name: Assign issues and pull requests with `enhancement` label to HEADER project
-        uses: srggrs/assign-one-project-github-action@1.2.0
-        if: |
-          contains(github.event.issue.labels.*.name, 'enhancement') ||
-          contains(github.event.pull_request.labels.*.name, 'enhancement')
-        with:
-          project: "https://github.com/orgs/ospic/projects/1"
-          column_name: "To do"

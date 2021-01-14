@@ -1,6 +1,6 @@
-# mobile
+# Opus Web App ![Flutter Builds](https://github.com/elirehema/opusweb/workflows/Flutter%20Builds/badge.svg)
 
-A new Flutter project.
+Opus web application
 
 ## Getting Started
 
