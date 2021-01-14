@@ -16,18 +16,17 @@ class _$PostApiService extends PostApiService {
   final definitionType = PostApiService;
 
   @override
-  Future<Response<BuiltList<BuiltPost>>> getPosts() {
+  Future<Response<BuiltList<BuiltPost>>> getPatients() {
     final $url = '/patients/';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<BuiltList<BuiltPost>, BuiltPost>($request);
   }
 
   @override
-  Future<Response<BuiltList<NotificationModel>>> getAllNotifications() {
-    final $url = '/users';
+  Future<Response<BuiltList<User>>> getAllNotifications() {
+    final $url = '/auth/users';
     final $request = Request('GET', $url, client.baseUrl);
-    return client
-        .send<BuiltList<NotificationModel>, NotificationModel>($request);
+    return client.send<BuiltList<User>, User>($request);
   }
 
   @override

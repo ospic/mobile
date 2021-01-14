@@ -11,6 +11,18 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AuthResponse.serializer)
       ..add(AuthRole.serializer)
       ..add(BuiltPost.serializer)
+      ..add(Privilege.serializer)
+      ..add(Role.serializer)
+      ..add(User.serializer)
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Privilege)]),
+          () => new ListBuilder<Privilege>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Role)]),
+          () => new ListBuilder<Role>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

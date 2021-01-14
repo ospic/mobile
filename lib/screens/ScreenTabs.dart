@@ -57,10 +57,10 @@ class _HomeScreenState extends State<ScreenTabs> {
                   unselectedLabelColor: green2,
                   tabs: [
                     Tab(
-                      text: "Groups",
+                      text: "Patients",
                     ),
                     Tab(
-                      text: 'Requests',
+                      text: 'Services',
                     ),
                     Tab(
                       text: 'Sent',
