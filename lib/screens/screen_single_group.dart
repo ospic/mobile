@@ -12,7 +12,7 @@ class ScreenSingleGroup extends StatelessWidget {
     //final isLandscape = mediaQuery.orientation == Orientation.landscape;
     final PreferredSizeWidget appBar = Utils.isAndroidPlatform()
         ? AppBar(
-          title: Text(postId.groupName, style: TextStyle(fontFamily: 'Batmfa'),),
+          title: Text(postId.name, style: TextStyle(fontFamily: 'Batmfa'),),
             backgroundColor: green1,
             actions: <Widget>[
               IconButton(
@@ -23,7 +23,7 @@ class ScreenSingleGroup extends StatelessWidget {
           )
         : CupertinoNavigationBar(
           backgroundColor: green1,
-            middle: Text('Group no.' + postId.groupId.toString(),style: TextStyle(fontFamily: 'Batmfa'),
+            middle: Text('Group no.' + postId.id.toString(),style: TextStyle(fontFamily: 'Batmfa'),
             ),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
@@ -48,27 +48,27 @@ Padding pageBody(BuiltPost post) {
       children: <Widget>[
         ListTile(
           title: Text('Group Name:'),
-          subtitle: Text(post.groupName),
+          subtitle: Text(post.name),
         ),
         ListTile(
-          title: Text('Total Members'),
-          subtitle: Text(post.totalMembers.toString()),
+          title: Text('Age'),
+          subtitle: Text(post.age.toString()),
         ),
         ListTile(
-          title: Text('Share Price'),
-          subtitle: Text(post.sharePrice.toString()),
+          title: Text('Guardian'),
+          subtitle: Text(post.guardianName.toString()),
         ),
         ListTile(
-          title: Text('Group Type'),
-          subtitle: Text(post.groupType),
+          title: Text('Blood group'),
+          subtitle: Text(post.bloodGroup),
         ),
         ListTile(
-          title: Text('Group Account'),
-          subtitle: Text(post.groupAcct),
+          title: Text('BP'),
+          subtitle: Text(post.bloodPressure),
         ),
         ListTile(
           title: Text('Group Id'),
-          subtitle: Text(post.groupId.toString()),
+          subtitle: Text(post.id.toString()),
         )
       ],
     ),

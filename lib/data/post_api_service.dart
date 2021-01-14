@@ -8,15 +8,14 @@ import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/notification_model.dart';
 import 'package:mobile/utils/sharedpreference.dart';
 import 'package:http/io_client.dart' as http;
-
 part 'post_api_service.chopper.dart';
 
 @ChopperApi()
 abstract class PostApiService extends ChopperService {
-  @Get(path: '/service-response/group-list')
+  @Get(path: '/patients/')
   Future<Response<BuiltList<BuiltPost>>> getPosts();
 
-   @Get(path: '/service-response/notifications')
+   @Get(path: '/users')
   Future<Response<BuiltList<NotificationModel>>> getAllNotifications();
 
   @Get(path: '/{id}')
@@ -25,7 +24,7 @@ abstract class PostApiService extends ChopperService {
   @Post()
   Future<Response<BuiltPost>> postPost(@Body() BuiltPost body);
 
-  @Post(path: '/authentication')
+  @Post(path: '/auth/signin')
   Future<Response> postForLogin(@Body() dynamic body);
 
   static PostApiService create() {
@@ -34,7 +33,7 @@ abstract class PostApiService extends ChopperService {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final client = ChopperClient(
-      baseUrl: 'http://ospicapi.herokuapp.com/api',
+      baseUrl: 'https://ospicapi.herokuapp.com/api',
       services: [_$PostApiService()],
       client: http.IOClient(ioc),
       converter: BuiltValueConverter(),
@@ -42,6 +41,7 @@ abstract class PostApiService extends ChopperService {
         _addQuery,
         HeadersInterceptor({'Cache-control': 'no-cache', }),
         HeadersInterceptor({'Content-Type': 'application/json'}),
+        HeadersInterceptor({'Accept': '*/*'}),
         HttpLoggingInterceptor()
       ],
     );
@@ -54,11 +54,11 @@ Future<Request> _addQuery(Request req) async {
   SharedPreference sharedPref = new SharedPreference();
    String n = await sharedPref.getStringValuesSF(enumKey.BASE_64_EncodedAuthenticationKey.toString());
   final params = Map<String, dynamic>.from(req.parameters);
-  params['tenantIdentifier'] = 'default';
-  params['msisdn'] = '255754710521';
+  //params['tenantIdentifier'] = 'default';
+  //params['msisdn'] = '255754710521';
 
   final header = new Map<String, String>.from(req.parameters);
-  header['Authorization'] = 'Basic $n';
+  header['Authorization'] = 'Bearer $n';
   return req.copyWith(parameters: params, headers: header);
 }
 

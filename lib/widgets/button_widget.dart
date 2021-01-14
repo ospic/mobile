@@ -24,8 +24,7 @@ class ResponsiveButton extends StatefulWidget {
 class _ResponsiveButtonWidgetState extends State<ResponsiveButton> {
   @override
   Widget build(BuildContext context) {
-    return Utils.isAndroidPlatform()
-        ? RaisedButton(
+    return Utils.isAndroidPlatform() ? RaisedButton(
             onPressed: widget.tapCallback,
             child: Text(' ${widget.title}'),
             color: green1,

@@ -25,11 +25,11 @@ class Session {
   }
 
   static Future<String> apiAuthPost( dynamic data) async {
-    HttpClientRequest request = await client.postUrl(_baseUri('/authentication'));
-    _setHeadersCookies(request, _getFullUrl('/authentication'));
+    HttpClientRequest request = await client.postUrl(_baseUri('/auth/signin'));
+    _setHeadersCookies(request, _getFullUrl('/auth/signin'));
     request.add(utf8.encode(json.encode(data)));
     HttpClientResponse response = await request.close();
-    _updateCookies(response, _getFullUrl('/authentication'));
+    _updateCookies(response, _getFullUrl('/auth/signin'));
     
 
     return await response.transform(utf8.decoder).join();
@@ -37,7 +37,6 @@ class Session {
 
   static void _setHeadersCookies(HttpClientRequest request, String url) {
     request.headers.set('content-type', 'application/json');
-    request.headers.set('Authorization', 'Basic bWlmb3M6cGFzc3dvcmQ=');
     request.cookies.addAll(cj.loadForRequest(Uri.parse(url)));
   }
 
@@ -46,13 +45,13 @@ class Session {
   }
 
   static Uri _baseUri(String urlEndPoint){
-    var baseUrl = 'http://ospicapi.herokuapp.com/api';
+    var baseUrl = 'https://ospicapi.herokuapp.com/api';
     String fullUrl = baseUrl + urlEndPoint;
-    return Uri.parse(fullUrl).replace(queryParameters: queryParameters);
+    return Uri.parse(fullUrl);//.replace(queryParameters: queryParameters);
   }
   
   static String _getFullUrl(String  urlEndPoint){
-    var baseUrl = 'http://ospicapi.herokuapp.com/api';
+    var baseUrl = 'https://ospicapi.herokuapp.com/api';
     return baseUrl + urlEndPoint;
   }
 
