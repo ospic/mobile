@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:opus_web/views/index.dart';
+import 'package:mobile/views/index.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'OpusWeb',
+        title: 'Ospic Mobile',
         theme: ThemeData(
             primarySwatch: Colors.lightBlue,
             visualDensity: VisualDensity.adaptivePlatformDensity,

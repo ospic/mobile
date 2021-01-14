@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:opus_web/nav_drawer/navigation_drawer.dart';
-import 'package:opus_web/views/home_content_desktop.dart';
-import 'package:opus_web/widgets/centered_view/center_view.dart';
-import 'package:opus_web/widgets/navigation_bar/navigation_bar.dart';
+import 'package:mobile/nav_drawer/navigation_drawer.dart';
+import 'package:mobile/views/home_content_desktop.dart';
+import 'package:mobile/widgets/centered_view/center_view.dart';
+import 'package:mobile/widgets/navigation_bar/navigation_bar.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class HomeView extends StatelessWidget {
@@ -33,25 +33,4 @@ class HomeView extends StatelessWidget {
     );
   }
 
-/*
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: CenteredView(
-        child: Column(
-          children: [
-            NavigationBar(),
-            Expanded(
-              child: ScreenTypeLayout(
-                mobile: HomeContentDesktop(),
-                desktop: HomeContentDesktop(),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-*/
 }

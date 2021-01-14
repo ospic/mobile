@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:opus_web/constants/app_colors.dart';
+import 'package:mobile/constants/app_colors.dart';
 
 class CallToActionTabletDesktop extends StatelessWidget {
   final String title;

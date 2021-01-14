@@ -1,4 +1,4 @@
-package com.opus.opus_web
+package com.opus.mobile
 
 import io.flutter.embedding.android.FlutterActivity
 

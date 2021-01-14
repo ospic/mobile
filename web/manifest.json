@@ -1,6 +1,6 @@
 {
-    "name": "opus_web",
-    "short_name": "opus_web",
+    "name": "mobile",
+    "short_name": "mobile",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

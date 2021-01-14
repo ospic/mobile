@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:opus_web/widgets/navigation_bar/navbar_log.dart';
+import 'package:mobile/widgets/navigation_bar/navbar_log.dart';
 
 class NavigationBarMobile extends StatelessWidget {
   const NavigationBarMobile({Key key}) : super(key: key);
