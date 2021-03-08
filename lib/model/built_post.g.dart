@@ -150,6 +150,12 @@ class _$BuiltPostSerializer implements StructuredSerializer<BuiltPost> {
         ..add(serializers.serialize(object.isActive,
             specifiedType: const FullType(bool)));
     }
+    if (object.hasSelfServiceUserAccount != null) {
+      result
+        ..add('hasSelfServiceUserAccount')
+        ..add(serializers.serialize(object.hasSelfServiceUserAccount,
+            specifiedType: const FullType(bool)));
+    }
     if (object.contactsInformation != null) {
       result
         ..add('contactsInformation')
@@ -258,6 +264,10 @@ class _$BuiltPostSerializer implements StructuredSerializer<BuiltPost> {
           result.isActive = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool;
           break;
+        case 'hasSelfServiceUserAccount':
+          result.hasSelfServiceUserAccount = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
         case 'contactsInformation':
           result.contactsInformation = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
@@ -315,6 +325,8 @@ class _$BuiltPost extends BuiltPost {
   @override
   final bool isActive;
   @override
+  final bool hasSelfServiceUserAccount;
+  @override
   final String contactsInformation;
 
   factory _$BuiltPost([void Function(BuiltPostBuilder) updates]) =>
@@ -343,6 +355,7 @@ class _$BuiltPost extends BuiltPost {
       this.marriageStatus,
       this.gender,
       this.isActive,
+      this.hasSelfServiceUserAccount,
       this.contactsInformation})
       : super._();
 
@@ -379,6 +392,7 @@ class _$BuiltPost extends BuiltPost {
         marriageStatus == other.marriageStatus &&
         gender == other.gender &&
         isActive == other.isActive &&
+        hasSelfServiceUserAccount == other.hasSelfServiceUserAccount &&
         contactsInformation == other.contactsInformation;
   }
 
@@ -402,25 +416,25 @@ class _$BuiltPost extends BuiltPost {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc($jc($jc($jc(0, id.hashCode), createdDate.hashCode), createdBy.hashCode), lastModifiedDate.hashCode),
-                                                                                lastModifiedBy.hashCode),
-                                                                            name.hashCode),
-                                                                        guardianName.hashCode),
-                                                                    phone.hashCode),
-                                                                address.hashCode),
-                                                            emailAddress.hashCode),
-                                                        height.hashCode),
-                                                    weight.hashCode),
-                                                bloodPressure.hashCode),
-                                            age.hashCode),
-                                        isAdmitted.hashCode),
-                                    patientPhoto.hashCode),
-                                bloodGroup.hashCode),
-                            note.hashCode),
-                        symptoms.hashCode),
-                    marriageStatus.hashCode),
-                gender.hashCode),
-            isActive.hashCode),
+                                                                            $jc($jc($jc($jc($jc($jc(0, id.hashCode), createdDate.hashCode), createdBy.hashCode), lastModifiedDate.hashCode), lastModifiedBy.hashCode),
+                                                                                name.hashCode),
+                                                                            guardianName.hashCode),
+                                                                        phone.hashCode),
+                                                                    address.hashCode),
+                                                                emailAddress.hashCode),
+                                                            height.hashCode),
+                                                        weight.hashCode),
+                                                    bloodPressure.hashCode),
+                                                age.hashCode),
+                                            isAdmitted.hashCode),
+                                        patientPhoto.hashCode),
+                                    bloodGroup.hashCode),
+                                note.hashCode),
+                            symptoms.hashCode),
+                        marriageStatus.hashCode),
+                    gender.hashCode),
+                isActive.hashCode),
+            hasSelfServiceUserAccount.hashCode),
         contactsInformation.hashCode));
   }
 
@@ -449,6 +463,7 @@ class _$BuiltPost extends BuiltPost {
           ..add('marriageStatus', marriageStatus)
           ..add('gender', gender)
           ..add('isActive', isActive)
+          ..add('hasSelfServiceUserAccount', hasSelfServiceUserAccount)
           ..add('contactsInformation', contactsInformation))
         .toString();
   }
@@ -549,6 +564,11 @@ class BuiltPostBuilder implements Builder<BuiltPost, BuiltPostBuilder> {
   bool get isActive => _$this._isActive;
   set isActive(bool isActive) => _$this._isActive = isActive;
 
+  bool _hasSelfServiceUserAccount;
+  bool get hasSelfServiceUserAccount => _$this._hasSelfServiceUserAccount;
+  set hasSelfServiceUserAccount(bool hasSelfServiceUserAccount) =>
+      _$this._hasSelfServiceUserAccount = hasSelfServiceUserAccount;
+
   String _contactsInformation;
   String get contactsInformation => _$this._contactsInformation;
   set contactsInformation(String contactsInformation) =>
@@ -580,6 +600,7 @@ class BuiltPostBuilder implements Builder<BuiltPost, BuiltPostBuilder> {
       _marriageStatus = _$v.marriageStatus;
       _gender = _$v.gender;
       _isActive = _$v.isActive;
+      _hasSelfServiceUserAccount = _$v.hasSelfServiceUserAccount;
       _contactsInformation = _$v.contactsInformation;
       _$v = null;
     }
@@ -625,6 +646,7 @@ class BuiltPostBuilder implements Builder<BuiltPost, BuiltPostBuilder> {
             marriageStatus: marriageStatus,
             gender: gender,
             isActive: isActive,
+            hasSelfServiceUserAccount: hasSelfServiceUserAccount,
             contactsInformation: contactsInformation);
     replace(_$result);
     return _$result;
