@@ -150,9 +150,8 @@ class _State extends State<LoginScreen> {
                                           print(authResponse.toString());
                                           
                                           //Commented for testing
-                                           if (authResponse?.accessToken?.isEmpty ?? true) {
-                                            var sharepref =
-                                                new SharedPreference();
+                                           if (authResponse?.accessToken?.isNotEmpty ?? true ) {
+                                            var sharepref = new SharedPreference();
                                             await sharepref.setStringToSF(
                                                 enumKey.BASE_64_EncodedAuthenticationKey
                                                     .toString(),
