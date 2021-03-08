@@ -25,11 +25,11 @@ class Session {
   }
 
   static Future<String> apiAuthPost( dynamic data) async {
-    HttpClientRequest request = await client.postUrl(_baseUri('/auth/signin'));
-    _setHeadersCookies(request, _getFullUrl('/auth/signin'));
+    HttpClientRequest request = await client.postUrl(_baseUri('/login'));
+    _setHeadersCookies(request, _getFullUrl('/login'));
     request.add(utf8.encode(json.encode(data)));
     HttpClientResponse response = await request.close();
-    _updateCookies(response, _getFullUrl('/auth/signin'));
+    _updateCookies(response, _getFullUrl('/login'));
     
 
     return await response.transform(utf8.decoder).join();
@@ -45,7 +45,7 @@ class Session {
   }
 
   static Uri _baseUri(String urlEndPoint){
-    var baseUrl = 'https://ospicapi.herokuapp.com/api';
+    var baseUrl = 'http://192.168.43.227:8080/api/self';
     String fullUrl = baseUrl + urlEndPoint;
     return Uri.parse(fullUrl);//.replace(queryParameters: queryParameters);
   }
