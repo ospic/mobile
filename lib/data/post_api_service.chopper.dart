@@ -24,7 +24,7 @@ class _$PostApiService extends PostApiService {
 
   @override
   Future<Response<BuiltList<User>>> getAllNotifications() {
-    final $url = '/auth/users';
+    final $url = '/users';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<BuiltList<User>, User>($request);
   }
@@ -46,7 +46,7 @@ class _$PostApiService extends PostApiService {
 
   @override
   Future<Response> postForLogin(dynamic body) {
-    final $url = '/auth/signin';
+    final $url = '/login';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<dynamic, dynamic>($request);

@@ -19,32 +19,25 @@ class _$AuthResponseSerializer implements StructuredSerializer<AuthResponse> {
   Iterable<Object> serialize(Serializers serializers, AuthResponse object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'username',
-      serializers.serialize(object.username,
-          specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
-      'accessToken',
-      serializers.serialize(object.accessToken,
-          specifiedType: const FullType(String)),
-      'tokenType',
-      serializers.serialize(object.tokenType,
-          specifiedType: const FullType(String)),
       'email',
       serializers.serialize(object.email,
           specifiedType: const FullType(String)),
+      'accessToken',
+      serializers.serialize(object.accessToken,
+          specifiedType: const FullType(String)),
     ];
+    if (object.username != null) {
+      result
+        ..add('username')
+        ..add(serializers.serialize(object.username,
+            specifiedType: const FullType(String)));
+    }
     if (object.permissions != null) {
       result
         ..add('permissions')
         ..add(serializers.serialize(object.permissions,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
-    }
-    if (object.roles != null) {
-      result
-        ..add('roles')
-        ..add(serializers.serialize(object.roles,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
@@ -62,34 +55,24 @@ class _$AuthResponseSerializer implements StructuredSerializer<AuthResponse> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'username':
-          result.username = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
-          break;
-        case 'accessToken':
-          result.accessToken = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-        case 'tokenType':
-          result.tokenType = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
           break;
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'username':
+          result.username = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'accessToken':
+          result.accessToken = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'permissions':
           result.permissions.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(String)]))
-              as BuiltList<dynamic>);
-          break;
-        case 'roles':
-          result.roles.replace(serializers.deserialize(value,
                   specifiedType:
                       const FullType(BuiltList, const [const FullType(String)]))
               as BuiltList<dynamic>);
@@ -103,46 +86,30 @@ class _$AuthResponseSerializer implements StructuredSerializer<AuthResponse> {
 
 class _$AuthResponse extends AuthResponse {
   @override
-  final String username;
-  @override
   final int id;
-  @override
-  final String accessToken;
-  @override
-  final String tokenType;
   @override
   final String email;
   @override
-  final BuiltList<String> permissions;
+  final String username;
   @override
-  final BuiltList<String> roles;
+  final String accessToken;
+  @override
+  final BuiltList<String> permissions;
 
   factory _$AuthResponse([void Function(AuthResponseBuilder) updates]) =>
       (new AuthResponseBuilder()..update(updates)).build();
 
   _$AuthResponse._(
-      {this.username,
-      this.id,
-      this.accessToken,
-      this.tokenType,
-      this.email,
-      this.permissions,
-      this.roles})
+      {this.id, this.email, this.username, this.accessToken, this.permissions})
       : super._() {
-    if (username == null) {
-      throw new BuiltValueNullFieldError('AuthResponse', 'username');
-    }
     if (id == null) {
       throw new BuiltValueNullFieldError('AuthResponse', 'id');
     }
-    if (accessToken == null) {
-      throw new BuiltValueNullFieldError('AuthResponse', 'accessToken');
-    }
-    if (tokenType == null) {
-      throw new BuiltValueNullFieldError('AuthResponse', 'tokenType');
-    }
     if (email == null) {
       throw new BuiltValueNullFieldError('AuthResponse', 'email');
+    }
+    if (accessToken == null) {
+      throw new BuiltValueNullFieldError('AuthResponse', 'accessToken');
     }
   }
 
@@ -157,39 +124,29 @@ class _$AuthResponse extends AuthResponse {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is AuthResponse &&
-        username == other.username &&
         id == other.id &&
-        accessToken == other.accessToken &&
-        tokenType == other.tokenType &&
         email == other.email &&
-        permissions == other.permissions &&
-        roles == other.roles;
+        username == other.username &&
+        accessToken == other.accessToken &&
+        permissions == other.permissions;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc($jc($jc(0, username.hashCode), id.hashCode),
-                        accessToken.hashCode),
-                    tokenType.hashCode),
-                email.hashCode),
-            permissions.hashCode),
-        roles.hashCode));
+        $jc($jc($jc($jc(0, id.hashCode), email.hashCode), username.hashCode),
+            accessToken.hashCode),
+        permissions.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('AuthResponse')
-          ..add('username', username)
           ..add('id', id)
-          ..add('accessToken', accessToken)
-          ..add('tokenType', tokenType)
           ..add('email', email)
-          ..add('permissions', permissions)
-          ..add('roles', roles))
+          ..add('username', username)
+          ..add('accessToken', accessToken)
+          ..add('permissions', permissions))
         .toString();
   }
 }
@@ -198,25 +155,21 @@ class AuthResponseBuilder
     implements Builder<AuthResponse, AuthResponseBuilder> {
   _$AuthResponse _$v;
 
-  String _username;
-  String get username => _$this._username;
-  set username(String username) => _$this._username = username;
-
   int _id;
   int get id => _$this._id;
   set id(int id) => _$this._id = id;
 
-  String _accessToken;
-  String get accessToken => _$this._accessToken;
-  set accessToken(String accessToken) => _$this._accessToken = accessToken;
-
-  String _tokenType;
-  String get tokenType => _$this._tokenType;
-  set tokenType(String tokenType) => _$this._tokenType = tokenType;
-
   String _email;
   String get email => _$this._email;
   set email(String email) => _$this._email = email;
+
+  String _username;
+  String get username => _$this._username;
+  set username(String username) => _$this._username = username;
+
+  String _accessToken;
+  String get accessToken => _$this._accessToken;
+  set accessToken(String accessToken) => _$this._accessToken = accessToken;
 
   ListBuilder<String> _permissions;
   ListBuilder<String> get permissions =>
@@ -224,21 +177,15 @@ class AuthResponseBuilder
   set permissions(ListBuilder<String> permissions) =>
       _$this._permissions = permissions;
 
-  ListBuilder<String> _roles;
-  ListBuilder<String> get roles => _$this._roles ??= new ListBuilder<String>();
-  set roles(ListBuilder<String> roles) => _$this._roles = roles;
-
   AuthResponseBuilder();
 
   AuthResponseBuilder get _$this {
     if (_$v != null) {
-      _username = _$v.username;
       _id = _$v.id;
-      _accessToken = _$v.accessToken;
-      _tokenType = _$v.tokenType;
       _email = _$v.email;
+      _username = _$v.username;
+      _accessToken = _$v.accessToken;
       _permissions = _$v.permissions?.toBuilder();
-      _roles = _$v.roles?.toBuilder();
       _$v = null;
     }
     return this;
@@ -263,20 +210,16 @@ class AuthResponseBuilder
     try {
       _$result = _$v ??
           new _$AuthResponse._(
-              username: username,
               id: id,
-              accessToken: accessToken,
-              tokenType: tokenType,
               email: email,
-              permissions: _permissions?.build(),
-              roles: _roles?.build());
+              username: username,
+              accessToken: accessToken,
+              permissions: _permissions?.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'permissions';
         _permissions?.build();
-        _$failedField = 'roles';
-        _roles?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'AuthResponse', _$failedField, e.toString());

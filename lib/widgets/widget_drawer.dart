@@ -11,7 +11,7 @@ class DrawerWidget extends StatelessWidget {
       padding: EdgeInsets.zero,
       children: <Widget>[
         DrawerHeader(
-          child: Text('EG-SAVINGS',
+          child: Text('Ospic HMS',
               maxLines: 1,
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),

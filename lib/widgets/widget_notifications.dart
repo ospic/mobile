@@ -34,7 +34,7 @@ class _NotificationsWidgetState extends State<Notifications> {
         /*it shows a popup with few options which you can select, for option we
         created enums which we can use with switch statement, in this first switch
         will wait for the user to select the option which it can use with switch cases*/
-        child: new SimpleDialog(
+        builder:(_)=> new SimpleDialog(
           elevation: 0.0,
           title:  ListTile(
                 leading: new CircleAvatar(

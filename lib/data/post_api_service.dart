@@ -16,7 +16,7 @@ abstract class PostApiService extends ChopperService {
   @Get(path: '/patients/')
   Future<Response<BuiltList<BuiltPost>>> getPatients();
 
-   @Get(path: '/auth/users')
+   @Get(path: '/users')
   Future<Response<BuiltList<User>>> getAllNotifications();
 
   @Get(path: '/{id}')
@@ -25,7 +25,7 @@ abstract class PostApiService extends ChopperService {
   @Post()
   Future<Response<BuiltPost>> postPost(@Body() BuiltPost body);
 
-  @Post(path: '/auth/signin')
+  @Post(path: '/login')
   Future<Response> postForLogin(@Body() dynamic body);
 
   static PostApiService create() {
@@ -34,7 +34,7 @@ abstract class PostApiService extends ChopperService {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final client = ChopperClient(
-      baseUrl: 'https://ospicapi.herokuapp.com/api',
+      baseUrl: 'http://192.168.43.227:8080/api/self',
       services: [_$PostApiService()],
       client: http.IOClient(ioc),
       converter: BuiltValueConverter(),
