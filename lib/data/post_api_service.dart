@@ -5,6 +5,7 @@ import 'package:mobile/data/built_value_converter.dart.dart';
 
 import 'package:mobile/model/built_post.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:mobile/model/consultation.dart';
 import 'package:mobile/model/notification_model.dart';
 import 'package:mobile/model/user.dart';
 import 'package:mobile/utils/sharedpreference.dart';
@@ -18,6 +19,9 @@ abstract class PostApiService extends ChopperService {
 
    @Get(path: '/users')
   Future<Response<BuiltList<User>>> getAllNotifications();
+
+  @Get(path: '/consultations')
+  Future<Response<BuiltList<Consultation>>> getUserConsultations();
 
   @Get(path: '/{id}')
   Future<Response<BuiltPost>> getPost(@Path('id') int id);
