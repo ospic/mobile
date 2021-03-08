@@ -20,7 +20,7 @@ abstract class PostApiService extends ChopperService {
    @Get(path: '/users')
   Future<Response<BuiltList<User>>> getAllNotifications();
 
-  @Get(path: '/consultations')
+  @Get(path: '/consultations/')
   Future<Response<BuiltList<Consultation>>> getUserConsultations();
 
   @Get(path: '/{id}')

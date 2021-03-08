@@ -18,36 +18,60 @@ class _$ConsultationSerializer implements StructuredSerializer<Consultation> {
   @override
   Iterable<Object> serialize(Serializers serializers, Consultation object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
-      'fromDate',
-      serializers.serialize(object.fromDate,
-          specifiedType: const FullType(String)),
-      'toDate',
-      serializers.serialize(object.toDate,
-          specifiedType: const FullType(String)),
-      'isActive',
-      serializers.serialize(object.isActive,
-          specifiedType: const FullType(bool)),
-      'isAdmitted',
-      serializers.serialize(object.isAdmitted,
-          specifiedType: const FullType(bool)),
-      'patientId',
-      serializers.serialize(object.patientId,
-          specifiedType: const FullType(int)),
-      'patientName',
-      serializers.serialize(object.patientName,
-          specifiedType: const FullType(String)),
-      'staffId',
-      serializers.serialize(object.staffId, specifiedType: const FullType(int)),
-      'staffName',
-      serializers.serialize(object.staffName,
-          specifiedType: const FullType(String)),
-    ];
+    final result = <Object>[];
     if (object.id != null) {
       result
         ..add('id')
         ..add(serializers.serialize(object.id,
             specifiedType: const FullType(int)));
+    }
+    if (object.fromDate != null) {
+      result
+        ..add('fromDate')
+        ..add(serializers.serialize(object.fromDate,
+            specifiedType: const FullType(String)));
+    }
+    if (object.toDate != null) {
+      result
+        ..add('toDate')
+        ..add(serializers.serialize(object.toDate,
+            specifiedType: const FullType(String)));
+    }
+    if (object.isActive != null) {
+      result
+        ..add('isActive')
+        ..add(serializers.serialize(object.isActive,
+            specifiedType: const FullType(bool)));
+    }
+    if (object.isAdmitted != null) {
+      result
+        ..add('isAdmitted')
+        ..add(serializers.serialize(object.isAdmitted,
+            specifiedType: const FullType(bool)));
+    }
+    if (object.patientId != null) {
+      result
+        ..add('patientId')
+        ..add(serializers.serialize(object.patientId,
+            specifiedType: const FullType(int)));
+    }
+    if (object.patientName != null) {
+      result
+        ..add('patientName')
+        ..add(serializers.serialize(object.patientName,
+            specifiedType: const FullType(String)));
+    }
+    if (object.staffId != null) {
+      result
+        ..add('staffId')
+        ..add(serializers.serialize(object.staffId,
+            specifiedType: const FullType(int)));
+    }
+    if (object.staffName != null) {
+      result
+        ..add('staffName')
+        ..add(serializers.serialize(object.staffName,
+            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -139,32 +163,7 @@ class _$Consultation extends Consultation {
       this.patientName,
       this.staffId,
       this.staffName})
-      : super._() {
-    if (fromDate == null) {
-      throw new BuiltValueNullFieldError('Consultation', 'fromDate');
-    }
-    if (toDate == null) {
-      throw new BuiltValueNullFieldError('Consultation', 'toDate');
-    }
-    if (isActive == null) {
-      throw new BuiltValueNullFieldError('Consultation', 'isActive');
-    }
-    if (isAdmitted == null) {
-      throw new BuiltValueNullFieldError('Consultation', 'isAdmitted');
-    }
-    if (patientId == null) {
-      throw new BuiltValueNullFieldError('Consultation', 'patientId');
-    }
-    if (patientName == null) {
-      throw new BuiltValueNullFieldError('Consultation', 'patientName');
-    }
-    if (staffId == null) {
-      throw new BuiltValueNullFieldError('Consultation', 'staffId');
-    }
-    if (staffName == null) {
-      throw new BuiltValueNullFieldError('Consultation', 'staffName');
-    }
-  }
+      : super._();
 
   @override
   Consultation rebuild(void Function(ConsultationBuilder) updates) =>
