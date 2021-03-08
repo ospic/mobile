@@ -14,7 +14,7 @@ part 'post_api_service.chopper.dart';
 @ChopperApi()
 abstract class PostApiService extends ChopperService {
   @Get(path: '/patients/')
-  Future<Response<BuiltList<BuiltPost>>> getPatients();
+  Future<Response<BuiltPost>> getPatients();
 
    @Get(path: '/users')
   Future<Response<BuiltList<User>>> getAllNotifications();

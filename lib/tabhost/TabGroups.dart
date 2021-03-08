@@ -40,13 +40,13 @@ class TabGroups extends StatelessWidget {
   }
 }
 
-FutureBuilder<Response<BuiltList<BuiltPost>>> _buildBody(BuildContext context) {
-  return FutureBuilder<Response<BuiltList<BuiltPost>>>(
+FutureBuilder<Response<BuiltPost>> _buildBody(BuildContext context) {
+  return FutureBuilder<Response<BuiltPost>>(
     future: Provider.of<PostApiService>(context).getPatients(),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
         log(snapshot.toString());
-        final BuiltList<BuiltPost> posts = snapshot.data.body;
+        final BuiltPost posts = snapshot.data.body;
         return _buildPosts(context, posts);
       } else {
         return Center(
@@ -57,9 +57,9 @@ FutureBuilder<Response<BuiltList<BuiltPost>>> _buildBody(BuildContext context) {
   );
 }
 
-ListView _buildPosts(BuildContext context, BuiltList<BuiltPost> posts) {
+ListView _buildPosts(BuildContext context, BuiltPost posts) {
   return ListView.builder(
-      itemCount: posts.length,
+      itemCount: 1,
       scrollDirection: Axis.vertical,
       padding: EdgeInsets.all(8.0),
       physics: const AlwaysScrollableScrollPhysics(),
@@ -76,15 +76,15 @@ ListView _buildPosts(BuildContext context, BuiltList<BuiltPost> posts) {
                     BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
                 child: Transactions(
                   'group_widget',
-                  mDataDate: posts[index].createdDate,
+                  mDataDate: posts.createdDate,
                   mDataInfo: '20$index',
-                  mTitle: posts[index].name,
-                  subTitle: posts[index].age,
+                  mTitle: posts.name,
+                  subTitle: posts.age,
                   tapCallback: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              ScreenSingleGroup(posts[index]))),
+                              ScreenSingleGroup(posts))),
                 )));
       });
 }

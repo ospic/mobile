@@ -29,6 +29,7 @@ abstract class BuiltPost implements Built<BuiltPost, BuiltPostBuilder> {
   @nullable String get marriageStatus;
   @nullable String get gender;
   @nullable bool get isActive;
+  @nullable bool get hasSelfServiceUserAccount;
   @nullable String get contactsInformation;
 
   BuiltPost._();
