@@ -19,27 +19,34 @@ class _$AuthResponseSerializer implements StructuredSerializer<AuthResponse> {
   Iterable<Object> serialize(Serializers serializers, AuthResponse object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(int)),
-      'email',
-      serializers.serialize(object.email,
-          specifiedType: const FullType(String)),
-      'accessToken',
-      serializers.serialize(object.accessToken,
-          specifiedType: const FullType(String)),
+      'permissions',
+      serializers.serialize(object.permissions,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(String)])),
     ];
+    if (object.id != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(object.id,
+            specifiedType: const FullType(int)));
+    }
+    if (object.email != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(object.email,
+            specifiedType: const FullType(String)));
+    }
     if (object.username != null) {
       result
         ..add('username')
         ..add(serializers.serialize(object.username,
             specifiedType: const FullType(String)));
     }
-    if (object.permissions != null) {
+    if (object.accessToken != null) {
       result
-        ..add('permissions')
-        ..add(serializers.serialize(object.permissions,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
+        ..add('accessToken')
+        ..add(serializers.serialize(object.accessToken,
+            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -102,14 +109,8 @@ class _$AuthResponse extends AuthResponse {
   _$AuthResponse._(
       {this.id, this.email, this.username, this.accessToken, this.permissions})
       : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('AuthResponse', 'id');
-    }
-    if (email == null) {
-      throw new BuiltValueNullFieldError('AuthResponse', 'email');
-    }
-    if (accessToken == null) {
-      throw new BuiltValueNullFieldError('AuthResponse', 'accessToken');
+    if (permissions == null) {
+      throw new BuiltValueNullFieldError('AuthResponse', 'permissions');
     }
   }
 
@@ -214,12 +215,12 @@ class AuthResponseBuilder
               email: email,
               username: username,
               accessToken: accessToken,
-              permissions: _permissions?.build());
+              permissions: permissions.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'permissions';
-        _permissions?.build();
+        permissions.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'AuthResponse', _$failedField, e.toString());

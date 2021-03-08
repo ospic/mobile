@@ -148,8 +148,9 @@ class _State extends State<LoginScreen> {
                                                   AuthResponse.serializer,
                                                   jsonDecode(response));
                                           print(authResponse.toString());
-                                          if (authResponse
-                                              .accessToken.isNotEmpty) {
+                                          
+                                          //Commented for testing
+                                           if (authResponse?.accessToken?.isEmpty ?? true) {
                                             var sharepref =
                                                 new SharedPreference();
                                             await sharepref.setStringToSF(
@@ -165,6 +166,8 @@ class _State extends State<LoginScreen> {
                                             Navigator.pushNamed(
                                                 context, '/home');
                                           }
+                                           Navigator.pushNamed(
+                                                context, '/home');
                                         }
                                       },
                                     ),
