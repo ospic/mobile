@@ -5,15 +5,14 @@ import 'package:built_value/serializer.dart';
 part 'auth_response.g.dart';
 
 abstract class AuthResponse implements Built<AuthResponse, AuthResponseBuilder> {
+  @nullable
   int get id;
+  @nullable
   String get email;
-
   @nullable
   String get username;
-
-  String get accessToken;
-  
   @nullable
+  String get accessToken;
   BuiltList<String> get permissions;
 
 
