@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
+import 'package:mobile/model/consultation.dart';
 import 'package:mobile/model/notification_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobile/model/user.dart';
@@ -18,13 +21,14 @@ class TabReceivedRequest extends StatelessWidget{
   
 }
 
-FutureBuilder<Response<BuiltList<User>>> _buildBody(BuildContext context) {
-  return FutureBuilder<Response<BuiltList<User>>>(
-    future: Provider.of<PostApiService>(context).getAllNotifications(),
+FutureBuilder<Response<BuiltList<Consultation>>> _buildBody(BuildContext context) {
+  return FutureBuilder<Response<BuiltList<Consultation>>>(
+    future: Provider.of<PostApiService>(context).getUserConsultations(),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
-        final BuiltList<User> users = snapshot.data.body;
-        return _buildNotifications(context, users);
+        log(snapshot.toString());
+        final BuiltList<Consultation> consultation = snapshot.data.body;
+        return _buildNotifications(context, consultation);
       } else {
         return Center(
           child: CircularProgressIndicator(),
@@ -35,9 +39,9 @@ FutureBuilder<Response<BuiltList<User>>> _buildBody(BuildContext context) {
 }
 
 
-ListView _buildNotifications(BuildContext context, BuiltList<User> users) {
+ListView _buildNotifications(BuildContext context, BuiltList<Consultation> cs) {
   return ListView.builder(
-      itemCount: users.length,
+      itemCount: cs.length,
       scrollDirection: Axis.vertical,
       padding: EdgeInsets.all(8.0),
       physics: const AlwaysScrollableScrollPhysics(),
@@ -51,10 +55,10 @@ ListView _buildNotifications(BuildContext context, BuiltList<User> users) {
                   elevation: 0.2,
                   child:Notifications(
                     'group_widget',
-                    mDataDate: '$index/3/19',
-                    mDataInfo: '20$index',
-                    mTitle: users[index].username,
-                    subTitle: users[index].email,
+                    mDataDate: cs[index].fromDate,
+                    mDataInfo: cs[index].toDate,
+                    mTitle: cs[index].patientName,
+                    subTitle: cs[index].staffName,
                   ),
                 ));
       });
