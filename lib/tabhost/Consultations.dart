@@ -10,7 +10,7 @@ import 'package:mobile/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:built_collection/built_collection.dart';
-class TabReceivedRequest extends StatelessWidget{
+class Consultations extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
    

@@ -92,7 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  final String heading = "EG-SAVINGS";
   @override
   Widget build(BuildContext context) {
     return HiddenDrawerMenu(

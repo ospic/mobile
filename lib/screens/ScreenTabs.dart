@@ -37,7 +37,6 @@ class _HomeScreenState extends State<ScreenTabs> {
     });
   }
 
-  final String heading = "EG-SAVINGS";
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -57,20 +56,20 @@ class _HomeScreenState extends State<ScreenTabs> {
                   unselectedLabelColor: green2,
                   tabs: [
                     Tab(
-                      text: "Patients",
+                      text: "Consultations",
                     ),
                     Tab(
                       text: 'Services',
                     ),
                     Tab(
-                      text: 'Sent',
+                      text: 'Costs',
                     )
                   ],
                 ),
               ),
               preferredSize: Size.fromHeight(48.0)),
           body: TabBarView(
-            children: [TabGroups(), TabReceivedRequest(), TabSentRequest()],
+            children: [ Consultations(), TabGroups(),TabSentRequest()],
           ),
           
         ),
