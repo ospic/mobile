@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     itens.add(new ScreenHiddenDrawer(
         new ItemHiddenMenu(
-          name: "About Us",
+          name: "Profile",
           colorLineSelected: green1,
           baseStyle: TextStyle(
             color: Colors.white,
