@@ -7,3 +7,4 @@ export 'ScreenTabs.dart';
 export 'ScreenNewGroup.dart';
 export 'screen_single_group.dart';
 export 'login_screen.dart';
+export 'profile.dart';

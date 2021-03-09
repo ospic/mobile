@@ -33,7 +33,7 @@ class TabGroups extends StatelessWidget {
                   },
                 ),
               );
-              Scaffold.of(context).showSnackBar(snackBar);
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
             });
       }),
     );

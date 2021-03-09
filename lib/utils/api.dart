@@ -45,7 +45,7 @@ class Session {
   }
 
   static Uri _baseUri(String urlEndPoint){
-    var baseUrl = 'http://192.168.43.227:8080/api/self';
+    var baseUrl = 'http://192.168.43.11:8080/api/self';
     String fullUrl = baseUrl + urlEndPoint;
     return Uri.parse(fullUrl);//.replace(queryParameters: queryParameters);
   }
