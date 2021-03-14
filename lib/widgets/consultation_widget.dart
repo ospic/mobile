@@ -35,7 +35,7 @@ class _ConsultationWidgetWidgetState extends State<ConsultationWidget> {
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                 child: CircleAvatar(
                   radius: 20,
-                  backgroundColor: Colors.green.shade800,
+                  backgroundColor: widget.cs.isActive ?  Colors.green.shade800: Colors.green[100],
                   child: Text(
                     widget.cs.id.toString(),
                     style: TextStyle(fontWeight: FontWeight.bold),
