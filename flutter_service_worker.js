@@ -22,8 +22,8 @@ const RESOURCES = {
 "version.json": "d75b5ea4d59e2aafe556a5d9ddc482f3",
 "manifest.json": "bbf096d4b21132e3de3a45fec751771a",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"index.html": "442af1554c008c5a2a8cf64c09fbd89e",
-"/": "442af1554c008c5a2a8cf64c09fbd89e"
+"index.html": "e8d4e8540c957b5f9013d5fdd459d478",
+"/": "e8d4e8540c957b5f9013d5fdd459d478"
 };
 
 // The application shell files that are downloaded before a service worker can
