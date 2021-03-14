@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:built_collection/built_collection.dart';
 import 'dart:developer';
 
-class TabGroups extends StatelessWidget {
+class TabBills extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
