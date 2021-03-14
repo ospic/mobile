@@ -6,6 +6,8 @@ import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/sharedpreference.dart';
+
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
   @override
@@ -14,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<ScreenHiddenDrawer> itens = new List();
+  var sharedPreference = new SharedPreference();
 
   @override
   void initState() {
@@ -69,11 +72,15 @@ class _HomeScreenState extends State<HomeScreen> {
         )));
     itens.add(new ScreenHiddenDrawer(
         new ItemHiddenMenu(
-          name: "About this App",
+          name: "Logout",
           colorLineSelected: green1,
           baseStyle: TextStyle(
             color: Colors.white,
           ),
+          onTap: (){
+            this.sharedPreference.clearSF();
+            Navigator.pushNamed(context, '/login');
+          },
           selectedStyle: TextStyle(color: green1, fontSize: 25.0),
         ),
         Container(

@@ -7,7 +7,7 @@ Color colorPrimaryDark = new Color.fromRGBO(69, 83, 74, 1);
 Color colorAccent = new Color.fromRGBO(38, 0, 64, 0.8);
 Color textPrimaryColor = Colors.black87;
 
-Color green1 = new Color.fromRGBO(132, 189, 58, 1);
+Color green1 = new Color.fromRGBO(132, 189, 58, 1.0);
 Color green2 = new Color.fromRGBO(50, 115, 95, 1);
 Color blue = new Color.fromRGBO(12, 43, 61, 1);
 
