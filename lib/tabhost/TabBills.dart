@@ -1,5 +1,6 @@
 import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
+import 'package:mobile/model/bill.dart';
 import 'package:mobile/model/patient.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:mobile/utils/colors.dart';
@@ -14,40 +15,18 @@ class TabBills extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _buildBody(context),
-      floatingActionButton: new Builder(builder: (BuildContext context) {
-        return new FloatingActionButton(
-            tooltip: 'Increment',
-            child: Icon(
-              Icons.add,
-            ),
-            backgroundColor: green1.withOpacity(0.9),
-            onPressed: () {
-              final snackBar = SnackBar(
-                backgroundColor: gray3,
-                content: Text('Create new Group ?'),
-                action: SnackBarAction(
-                  label: 'Yes',
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/addgroup');
-                  },
-                ),
-              );
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            });
-      }),
+      body: _buildBody(context)
     );
   }
 }
-
-FutureBuilder<Response<Patient>> _buildBody(BuildContext context) {
-  return FutureBuilder<Response<Patient>>(
-    future: Provider.of<PostApiService>(context).getPatients(),
+FutureBuilder<Response<BuiltList<Bill>>> _buildBody(BuildContext context) {
+  return FutureBuilder<Response<BuiltList<Bill>>>(
+    future: Provider.of<PostApiService>(context).getBills(),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
         log(snapshot.toString());
-        final Patient posts = snapshot.data.body;
-        return _buildPosts(context, posts);
+        final BuiltList<Bill> bills = snapshot.data.body;
+        return _buildBills(context, bills.reversed.toBuiltList());
       } else {
         return Center(
           child: CircularProgressIndicator(),
@@ -56,10 +35,9 @@ FutureBuilder<Response<Patient>> _buildBody(BuildContext context) {
     },
   );
 }
-
-ListView _buildPosts(BuildContext context, Patient posts) {
+ListView _buildBills(BuildContext context, BuiltList<Bill> bills) {
   return ListView.builder(
-      itemCount: 1,
+      itemCount: bills.length,
       scrollDirection: Axis.vertical,
       padding: EdgeInsets.all(8.0),
       physics: const AlwaysScrollableScrollPhysics(),
@@ -74,17 +52,9 @@ ListView _buildPosts(BuildContext context, Patient posts) {
             child: Container(
                 decoration:
                     BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
-                child: Transactions(
+                child: BillWidget(
                   'group_widget',
-                  mDataDate: posts.createdDate,
-                  mDataInfo: '20$index',
-                  mTitle: posts.name,
-                  subTitle: posts.age,
-                  tapCallback: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              ScreenSingleGroup(posts))),
-                )));
+                  bill: bills[index]
+        )));
       });
 }

@@ -2,9 +2,9 @@ import 'package:mobile/model/patient.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/utils/utils.dart';
-class ScreenSingleGroup extends StatelessWidget {
-  final Patient postId;
-  ScreenSingleGroup(this.postId);
+class BillScreen extends StatelessWidget {
+  final int postId;
+ BillScreen(this.postId);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class ScreenSingleGroup extends StatelessWidget {
     //final isLandscape = mediaQuery.orientation == Orientation.landscape;
     final PreferredSizeWidget appBar = Utils.isAndroidPlatform()
         ? AppBar(
-          title: Text(postId.name, style: TextStyle(fontFamily: 'Batmfa'),),
+          title: Text("postId.name", style: TextStyle(fontFamily: 'Batmfa'),),
             backgroundColor: green1,
             actions: <Widget>[
               IconButton(
@@ -23,7 +23,7 @@ class ScreenSingleGroup extends StatelessWidget {
           )
         : CupertinoNavigationBar(
           backgroundColor: green1,
-            middle: Text('Group no.' + postId.id.toString(),style: TextStyle(fontFamily: 'Batmfa'),
+            middle: Text('Group no.'/** + postId.id.toString()**/,style: TextStyle(fontFamily: 'Batmfa'),
             ),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
@@ -41,12 +41,12 @@ class ScreenSingleGroup extends StatelessWidget {
   }
 }
 
-Padding pageBody(Patient post) {
+Padding pageBody(int post) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Column(
       children: <Widget>[
-        ListTile(
+    /**    ListTile(
           title: Text('Group Name:'),
           subtitle: Text(post.name),
         ),
@@ -70,6 +70,7 @@ Padding pageBody(Patient post) {
           title: Text('Group Id'),
           subtitle: Text(post.id.toString()),
         )
+        **/
       ],
     ),
   );

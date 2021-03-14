@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:chopper/chopper.dart';
 import 'package:mobile/data/built_value_converter.dart.dart';
+import 'package:mobile/model/bill.dart';
 
 import 'package:mobile/model/patient.dart';
 import 'package:built_collection/built_collection.dart';
@@ -22,6 +23,9 @@ abstract class PostApiService extends ChopperService {
 
   @Get(path: '/consultations/')
   Future<Response<BuiltList<Consultation>>> getUserConsultations();
+
+  @Get(path: '/bills')
+  Future<Response<BuiltList<Bill>>> getBills();
 
   @Get(path: '/{id}')
   Future<Response<Patient>> getPost(@Path('id') int id);
