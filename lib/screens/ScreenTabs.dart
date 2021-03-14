@@ -59,7 +59,7 @@ class _HomeScreenState extends State<ScreenTabs> {
                       text: "Consultations",
                     ),
                     Tab(
-                      text: 'Services',
+                      text: 'Bills',
                     ),
                     Tab(
                       text: 'Costs',
@@ -69,7 +69,7 @@ class _HomeScreenState extends State<ScreenTabs> {
               ),
               preferredSize: Size.fromHeight(48.0)),
           body: TabBarView(
-            children: [ Consultations(), TabGroups(),TabSentRequest()],
+            children: [ Consultations(), TabBills(),TabSentRequest()],
           ),
           
         ),
