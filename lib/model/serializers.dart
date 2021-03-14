@@ -8,12 +8,12 @@ import 'package:mobile/model/privilege.dart';
 import 'package:mobile/model/role.dart';
 import 'package:mobile/model/user.dart';
 import 'consultation.dart';
-import 'built_post.dart';
+import 'patient.dart';
 
 part 'serializers.g.dart';
 
 @SerializersFor(const [
-  BuiltPost,
+  Patient,
   AuthPost,
   AuthResponse,
   AuthRole,

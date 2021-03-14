@@ -1,9 +1,9 @@
-import 'package:mobile/model/built_post.dart';
+import 'package:mobile/model/patient.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/utils/utils.dart';
 class ScreenSingleGroup extends StatelessWidget {
-  final BuiltPost postId;
+  final Patient postId;
   ScreenSingleGroup(this.postId);
 
   @override
@@ -41,7 +41,7 @@ class ScreenSingleGroup extends StatelessWidget {
   }
 }
 
-Padding pageBody(BuiltPost post) {
+Padding pageBody(Patient post) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Column(

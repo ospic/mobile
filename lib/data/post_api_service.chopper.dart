@@ -16,10 +16,10 @@ class _$PostApiService extends PostApiService {
   final definitionType = PostApiService;
 
   @override
-  Future<Response<BuiltPost>> getPatients() {
+  Future<Response<Patient>> getPatients() {
     final $url = '/patients/';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<BuiltPost, BuiltPost>($request);
+    return client.send<Patient, Patient>($request);
   }
 
   @override
@@ -37,18 +37,18 @@ class _$PostApiService extends PostApiService {
   }
 
   @override
-  Future<Response<BuiltPost>> getPost(int id) {
+  Future<Response<Patient>> getPost(int id) {
     final $url = '/$id';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<BuiltPost, BuiltPost>($request);
+    return client.send<Patient, Patient>($request);
   }
 
   @override
-  Future<Response<BuiltPost>> postPost(BuiltPost body) {
+  Future<Response<Patient>> postPost(Patient body) {
     final $url = '';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<BuiltPost, BuiltPost>($request);
+    return client.send<Patient, Patient>($request);
   }
 
   @override

@@ -1,5 +1,5 @@
 import 'package:mobile/data/post_api_service.dart';
-import 'package:mobile/model/built_post.dart';
+import 'package:mobile/model/patient.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -128,7 +128,7 @@ class _NewGroupState extends State<ScreenNewGroup> {
                               textColor: Colors.white,
                               child: const Text('Submit'),
                               onPressed: () async {
-                                final authPost = BuiltPost(
+                                final authPost = Patient(
                                   (b) => b
                                     // id is null - it gets assigned in the backend
                                     ..name = 'New Title'

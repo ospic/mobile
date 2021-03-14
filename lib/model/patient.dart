@@ -1,12 +1,13 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:mobile/model/contacts_information.dart';
 
-part 'built_post.g.dart';
+part 'patient.g.dart';
 
-abstract class BuiltPost implements Built<BuiltPost, BuiltPostBuilder> {
+abstract class Patient implements Built<Patient, PatientBuilder> {
   // IDs are set in the back-end.
-  // In a POST request, BuiltPost's ID will be null.
-  // Only BuiltPosts obtained through a GET request will have an ID.
+  // In a POST request, Patient's ID will be null.
+  // Only Patients obtained through a GET request will have an ID.
   @nullable int get id;
   @nullable String get createdDate;
   @nullable String get createdBy;
@@ -30,11 +31,11 @@ abstract class BuiltPost implements Built<BuiltPost, BuiltPostBuilder> {
   @nullable String get gender;
   @nullable bool get isActive;
   @nullable bool get hasSelfServiceUserAccount;
-  @nullable String get contactsInformation;
+  ContactsInformation get contactsInformation;
 
-  BuiltPost._();
+  Patient._();
 
-  factory BuiltPost([updates(BuiltPostBuilder b)]) = _$BuiltPost;
+  factory Patient([updates(PatientBuilder b)]) = _$Patient;
 
-  static Serializer<BuiltPost> get serializer => _$builtPostSerializer;
+  static Serializer<Patient> get serializer => _$patientSerializer;
 }
