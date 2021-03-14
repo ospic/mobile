@@ -8,14 +8,13 @@ class ResponsiveButton extends StatefulWidget {
   final Color textColor;
   final GestureTapCallback tapCallback;
 
-  const ResponsiveButton(String s, {
-      Key key,
+  const ResponsiveButton(String s,
+      {Key key,
       this.iconData,
       @required this.title,
       this.textColor,
-      this.tapCallback
-      
-    }): super(key: key);
+      this.tapCallback})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _ResponsiveButtonWidgetState();
@@ -24,15 +23,19 @@ class ResponsiveButton extends StatefulWidget {
 class _ResponsiveButtonWidgetState extends State<ResponsiveButton> {
   @override
   Widget build(BuildContext context) {
-    return Utils.isAndroidPlatform() ? RaisedButton(
+    return Utils.isAndroidPlatform()
+        ? ElevatedButton(
             onPressed: widget.tapCallback,
             child: Text(' ${widget.title}'),
-            color: green1,
-          ): CupertinoButton(
-            child: Text(widget.title), 
+            style: ElevatedButton.styleFrom(
+              primary: Colors.green,
+              minimumSize: Size(200.0, 40.0)
+            ),
+          )
+        : CupertinoButton(
+            child: Text(widget.title),
             onPressed: widget.tapCallback,
             color: green1,
-            )
-        ;
+          );
   }
 }
