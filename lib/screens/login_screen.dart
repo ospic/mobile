@@ -25,17 +25,12 @@ class _State extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Stack(children: <Widget>[
-      Image.asset(
-        'images/login_background.jpg',
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        fit: BoxFit.cover,
-      ),
+
       Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           resizeToAvoidBottomInset: false,
+
           body: Center(
-              child: Card(
                   child: Padding(
                       padding: EdgeInsets.all(13.0),
                       child: Column(
@@ -49,13 +44,13 @@ class _State extends State<LoginScreen> {
                                     Container(
                                         alignment: Alignment.center,
                                         padding: EdgeInsets.all(10),
-                                        child: Text(
-                                          'Ospic mobile',
-                                          style: TextStyle(
-                                              color: Colors.blue,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 30),
-                                        )),
+                                        child: Center(
+                                        child: Image.asset(
+                                          'images/icon.png',
+                                          height: 60,
+                                          width:  60,
+                                          fit: BoxFit.cover,
+                                        ))),
                                     Container(
                                       padding: EdgeInsets.all(10),
                                       child: TextFormField(
@@ -82,8 +77,8 @@ class _State extends State<LoginScreen> {
                                       ),
                                     ),
                                     Container(
-                                      padding:
-                                          EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                      padding:EdgeInsets.fromLTRB(10, 10, 10, 0),
+                                      margin: const EdgeInsets.only(bottom: 20.0),
                                       child: TextFormField(
                                         obscureText: true,
                                         decoration: new InputDecoration(
@@ -113,7 +108,7 @@ class _State extends State<LoginScreen> {
                                       key: Key('value'),
                                       textColor: Colors.white,
                                       iconData: MdiIcons.abjadArabic,
-                                      title: 'Login',
+                                      title: 'Sign In',
                                       tapCallback: () async {
                                         var newPost = AuthPost().rebuild((b) =>
                                             b
@@ -189,7 +184,7 @@ class _State extends State<LoginScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                           ))
                         ],
-                      )))))
+                      ))))
     ]);
   }
 }
