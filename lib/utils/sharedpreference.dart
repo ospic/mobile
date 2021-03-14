@@ -41,12 +41,12 @@ class SharedPreference {
     return prefs.getBool(key);
    
   }
-  /**
-  getIntValuesSF(String key) async {
-    int intValue = await getSp().getInt(key);
-    return intValue;
-  }
 
+  Future<bool> clearSF() async {
+    prefs = await SharedPreferences.getInstance();
+    return prefs.clear();
+  }
+/**
   getDoubleValuesSF(String key) async {
     double doubleValue = await getSp().getDouble(key);
     return doubleValue;

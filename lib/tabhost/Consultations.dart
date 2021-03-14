@@ -50,16 +50,10 @@ ListView _buildNotifications(BuildContext context, BuiltList<Consultation> cs) {
                 width: null,
                 margin: const EdgeInsets.all(0.0),
                 alignment: Alignment.center,
-                child: Card(
-                  color: Colors.red[200],
-                  elevation: 0.2,
-                  child:Notifications(
+                  child:ConsultationWidget(
                     'group_widget',
-                    mDataDate: cs[index].fromDate,
-                    mDataInfo: cs[index].toDate,
-                    mTitle: cs[index].patientName,
-                    subTitle: cs[index].staffName,
+                    cs: cs[index]
                   ),
-                ));
+                );
       });
 }
