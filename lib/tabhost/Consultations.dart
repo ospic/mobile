@@ -28,7 +28,7 @@ FutureBuilder<Response<BuiltList<Consultation>>> _buildBody(BuildContext context
       if (snapshot.connectionState == ConnectionState.done) {
         log(snapshot.toString());
         final BuiltList<Consultation> consultation = snapshot.data.body;
-        return _buildNotifications(context, consultation);
+        return _buildNotifications(context, consultation.reversed.toBuiltList());
       } else {
         return Center(
           child: CircularProgressIndicator(),

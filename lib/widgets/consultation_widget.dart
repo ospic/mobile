@@ -25,6 +25,7 @@ class _ConsultationWidgetWidgetState extends State<ConsultationWidget> {
   Widget build(BuildContext context) {
     final String consultant = widget.cs.staffName==null? '': 'Consultant name '+widget.cs.staffName;
     return Card(
+      shadowColor: Colors.brown,
         child: Column(children: [
       Container(
           height: 72,
@@ -61,13 +62,12 @@ class _ConsultationWidgetWidgetState extends State<ConsultationWidget> {
             Container(height: 4, color: Color(0xffffffff)),
             Row(children: [
               MaterialButton(
-
                   padding:
                       EdgeInsets.only(left: 0, right: 8, bottom: 0, top: 0),
-                  child: Text('Action 1',
+                  child: Text('View',
                       style: TextStyle(color: Color(0xff9c27b0)))),
               MaterialButton(
-                  child: Text('Action 2',
+                  child: Text('Close',
                       style: TextStyle(color: Color(0xff9c27b0))))
             ])
           ]))
