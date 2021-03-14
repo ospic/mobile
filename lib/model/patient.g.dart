@@ -1,23 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'built_post.dart';
+part of 'patient.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<BuiltPost> _$builtPostSerializer = new _$BuiltPostSerializer();
+Serializer<Patient> _$patientSerializer = new _$PatientSerializer();
 
-class _$BuiltPostSerializer implements StructuredSerializer<BuiltPost> {
+class _$PatientSerializer implements StructuredSerializer<Patient> {
   @override
-  final Iterable<Type> types = const [BuiltPost, _$BuiltPost];
+  final Iterable<Type> types = const [Patient, _$Patient];
   @override
-  final String wireName = 'BuiltPost';
+  final String wireName = 'Patient';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, BuiltPost object,
+  Iterable<Object> serialize(Serializers serializers, Patient object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
+    final result = <Object>[
+      'contactsInformation',
+      serializers.serialize(object.contactsInformation,
+          specifiedType: const FullType(ContactsInformation)),
+    ];
     if (object.id != null) {
       result
         ..add('id')
@@ -156,19 +160,13 @@ class _$BuiltPostSerializer implements StructuredSerializer<BuiltPost> {
         ..add(serializers.serialize(object.hasSelfServiceUserAccount,
             specifiedType: const FullType(bool)));
     }
-    if (object.contactsInformation != null) {
-      result
-        ..add('contactsInformation')
-        ..add(serializers.serialize(object.contactsInformation,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
   @override
-  BuiltPost deserialize(Serializers serializers, Iterable<Object> serialized,
+  Patient deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new BuiltPostBuilder();
+    final result = new PatientBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -269,8 +267,9 @@ class _$BuiltPostSerializer implements StructuredSerializer<BuiltPost> {
               specifiedType: const FullType(bool)) as bool;
           break;
         case 'contactsInformation':
-          result.contactsInformation = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+          result.contactsInformation.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(ContactsInformation))
+              as ContactsInformation);
           break;
       }
     }
@@ -279,7 +278,7 @@ class _$BuiltPostSerializer implements StructuredSerializer<BuiltPost> {
   }
 }
 
-class _$BuiltPost extends BuiltPost {
+class _$Patient extends Patient {
   @override
   final int id;
   @override
@@ -327,12 +326,12 @@ class _$BuiltPost extends BuiltPost {
   @override
   final bool hasSelfServiceUserAccount;
   @override
-  final String contactsInformation;
+  final ContactsInformation contactsInformation;
 
-  factory _$BuiltPost([void Function(BuiltPostBuilder) updates]) =>
-      (new BuiltPostBuilder()..update(updates)).build();
+  factory _$Patient([void Function(PatientBuilder) updates]) =>
+      (new PatientBuilder()..update(updates)).build();
 
-  _$BuiltPost._(
+  _$Patient._(
       {this.id,
       this.createdDate,
       this.createdBy,
@@ -357,19 +356,23 @@ class _$BuiltPost extends BuiltPost {
       this.isActive,
       this.hasSelfServiceUserAccount,
       this.contactsInformation})
-      : super._();
+      : super._() {
+    if (contactsInformation == null) {
+      throw new BuiltValueNullFieldError('Patient', 'contactsInformation');
+    }
+  }
 
   @override
-  BuiltPost rebuild(void Function(BuiltPostBuilder) updates) =>
+  Patient rebuild(void Function(PatientBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  BuiltPostBuilder toBuilder() => new BuiltPostBuilder()..replace(this);
+  PatientBuilder toBuilder() => new PatientBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is BuiltPost &&
+    return other is Patient &&
         id == other.id &&
         createdDate == other.createdDate &&
         createdBy == other.createdBy &&
@@ -440,7 +443,7 @@ class _$BuiltPost extends BuiltPost {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('BuiltPost')
+    return (newBuiltValueToStringHelper('Patient')
           ..add('id', id)
           ..add('createdDate', createdDate)
           ..add('createdBy', createdBy)
@@ -469,8 +472,8 @@ class _$BuiltPost extends BuiltPost {
   }
 }
 
-class BuiltPostBuilder implements Builder<BuiltPost, BuiltPostBuilder> {
-  _$BuiltPost _$v;
+class PatientBuilder implements Builder<Patient, PatientBuilder> {
+  _$Patient _$v;
 
   int _id;
   int get id => _$this._id;
@@ -569,14 +572,15 @@ class BuiltPostBuilder implements Builder<BuiltPost, BuiltPostBuilder> {
   set hasSelfServiceUserAccount(bool hasSelfServiceUserAccount) =>
       _$this._hasSelfServiceUserAccount = hasSelfServiceUserAccount;
 
-  String _contactsInformation;
-  String get contactsInformation => _$this._contactsInformation;
-  set contactsInformation(String contactsInformation) =>
+  ContactsInformationBuilder _contactsInformation;
+  ContactsInformationBuilder get contactsInformation =>
+      _$this._contactsInformation ??= new ContactsInformationBuilder();
+  set contactsInformation(ContactsInformationBuilder contactsInformation) =>
       _$this._contactsInformation = contactsInformation;
 
-  BuiltPostBuilder();
+  PatientBuilder();
 
-  BuiltPostBuilder get _$this {
+  PatientBuilder get _$this {
     if (_$v != null) {
       _id = _$v.id;
       _createdDate = _$v.createdDate;
@@ -601,53 +605,66 @@ class BuiltPostBuilder implements Builder<BuiltPost, BuiltPostBuilder> {
       _gender = _$v.gender;
       _isActive = _$v.isActive;
       _hasSelfServiceUserAccount = _$v.hasSelfServiceUserAccount;
-      _contactsInformation = _$v.contactsInformation;
+      _contactsInformation = _$v.contactsInformation?.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(BuiltPost other) {
+  void replace(Patient other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$BuiltPost;
+    _$v = other as _$Patient;
   }
 
   @override
-  void update(void Function(BuiltPostBuilder) updates) {
+  void update(void Function(PatientBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$BuiltPost build() {
-    final _$result = _$v ??
-        new _$BuiltPost._(
-            id: id,
-            createdDate: createdDate,
-            createdBy: createdBy,
-            lastModifiedDate: lastModifiedDate,
-            lastModifiedBy: lastModifiedBy,
-            name: name,
-            guardianName: guardianName,
-            phone: phone,
-            address: address,
-            emailAddress: emailAddress,
-            height: height,
-            weight: weight,
-            bloodPressure: bloodPressure,
-            age: age,
-            isAdmitted: isAdmitted,
-            patientPhoto: patientPhoto,
-            bloodGroup: bloodGroup,
-            note: note,
-            symptoms: symptoms,
-            marriageStatus: marriageStatus,
-            gender: gender,
-            isActive: isActive,
-            hasSelfServiceUserAccount: hasSelfServiceUserAccount,
-            contactsInformation: contactsInformation);
+  _$Patient build() {
+    _$Patient _$result;
+    try {
+      _$result = _$v ??
+          new _$Patient._(
+              id: id,
+              createdDate: createdDate,
+              createdBy: createdBy,
+              lastModifiedDate: lastModifiedDate,
+              lastModifiedBy: lastModifiedBy,
+              name: name,
+              guardianName: guardianName,
+              phone: phone,
+              address: address,
+              emailAddress: emailAddress,
+              height: height,
+              weight: weight,
+              bloodPressure: bloodPressure,
+              age: age,
+              isAdmitted: isAdmitted,
+              patientPhoto: patientPhoto,
+              bloodGroup: bloodGroup,
+              note: note,
+              symptoms: symptoms,
+              marriageStatus: marriageStatus,
+              gender: gender,
+              isActive: isActive,
+              hasSelfServiceUserAccount: hasSelfServiceUserAccount,
+              contactsInformation: contactsInformation.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'contactsInformation';
+        contactsInformation.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Patient', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

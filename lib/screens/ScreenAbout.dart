@@ -1,6 +1,6 @@
 import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
-import 'package:mobile/model/built_post.dart';
+import 'package:mobile/model/patient.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:mobile/widgets/index.dart';
@@ -40,13 +40,13 @@ class ScreenAbout extends StatelessWidget {
   }
 }
 
-FutureBuilder<Response<BuiltPost>> _buildBody(BuildContext context) {
-  return FutureBuilder<Response<BuiltPost>>(
+FutureBuilder<Response<Patient>> _buildBody(BuildContext context) {
+  return FutureBuilder<Response<Patient>>(
     future: Provider.of<PostApiService>(context).getPatients(),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
         log(snapshot.toString());
-        final BuiltPost posts = snapshot.data.body;
+        final Patient posts = snapshot.data.body;
         return _buildPosts(context, posts);
       } else {
         return Center(
@@ -57,7 +57,7 @@ FutureBuilder<Response<BuiltPost>> _buildBody(BuildContext context) {
   );
 }
 
-Widget _buildPosts(BuildContext context, BuiltPost user) {
+Widget _buildPosts(BuildContext context, Patient user) {
   return ListView(
     children: <Widget>[
 

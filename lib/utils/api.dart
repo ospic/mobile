@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'dart:convert';
 import 'package:cookie_jar/cookie_jar.dart';
-import 'package:mobile/model/built_post.dart';
+import 'package:mobile/model/patient.dart';
 
 var cj = new CookieJar();
 var queryParameters = {
@@ -16,7 +16,7 @@ class Session {
     ..badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
 
-  static Future<List<BuiltPost>> apiGet() async {
+  static Future<List<Patient>> apiGet() async {
     HttpClientRequest request = await client.getUrl(_baseUri('/group-list'));
     _setHeadersCookies(request, _getFullUrl('/group-list'));
     HttpClientResponse response = await request.close();

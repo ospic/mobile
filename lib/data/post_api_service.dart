@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:chopper/chopper.dart';
 import 'package:mobile/data/built_value_converter.dart.dart';
 
-import 'package:mobile/model/built_post.dart';
+import 'package:mobile/model/patient.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/consultation.dart';
 import 'package:mobile/model/notification_model.dart';
@@ -15,7 +15,7 @@ part 'post_api_service.chopper.dart';
 @ChopperApi()
 abstract class PostApiService extends ChopperService {
   @Get(path: '/patients/')
-  Future<Response<BuiltPost>> getPatients();
+  Future<Response<Patient>> getPatients();
 
    @Get(path: '/users')
   Future<Response<BuiltList<User>>> getAllNotifications();
@@ -24,10 +24,10 @@ abstract class PostApiService extends ChopperService {
   Future<Response<BuiltList<Consultation>>> getUserConsultations();
 
   @Get(path: '/{id}')
-  Future<Response<BuiltPost>> getPost(@Path('id') int id);
+  Future<Response<Patient>> getPost(@Path('id') int id);
 
   @Post()
-  Future<Response<BuiltPost>> postPost(@Body() BuiltPost body);
+  Future<Response<Patient>> postPost(@Body() Patient body);
 
   @Post(path: '/login')
   Future<Response> postForLogin(@Body() dynamic body);
