@@ -6,6 +6,146 @@ part of 'contacts_information.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+Serializer<ContactsInformation> _$contactsInformationSerializer =
+    new _$ContactsInformationSerializer();
+
+class _$ContactsInformationSerializer
+    implements StructuredSerializer<ContactsInformation> {
+  @override
+  final Iterable<Type> types = const [
+    ContactsInformation,
+    _$ContactsInformation
+  ];
+  @override
+  final String wireName = 'ContactsInformation';
+
+  @override
+  Iterable<Object> serialize(
+      Serializers serializers, ContactsInformation object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object>[];
+    if (object.id != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(object.id,
+            specifiedType: const FullType(int)));
+    }
+    if (object.isReachable != null) {
+      result
+        ..add('isReachable')
+        ..add(serializers.serialize(object.isReachable,
+            specifiedType: const FullType(bool)));
+    }
+    if (object.email_address != null) {
+      result
+        ..add('email_address')
+        ..add(serializers.serialize(object.email_address,
+            specifiedType: const FullType(String)));
+    }
+    if (object.zipcode != null) {
+      result
+        ..add('zipcode')
+        ..add(serializers.serialize(object.zipcode,
+            specifiedType: const FullType(String)));
+    }
+    if (object.city != null) {
+      result
+        ..add('city')
+        ..add(serializers.serialize(object.city,
+            specifiedType: const FullType(String)));
+    }
+    if (object.state != null) {
+      result
+        ..add('state')
+        ..add(serializers.serialize(object.state,
+            specifiedType: const FullType(String)));
+    }
+    if (object.physical_address != null) {
+      result
+        ..add('physical_address')
+        ..add(serializers.serialize(object.physical_address,
+            specifiedType: const FullType(String)));
+    }
+    if (object.home_phone != null) {
+      result
+        ..add('home_phone')
+        ..add(serializers.serialize(object.home_phone,
+            specifiedType: const FullType(String)));
+    }
+    if (object.work_phone != null) {
+      result
+        ..add('work_phone')
+        ..add(serializers.serialize(object.work_phone,
+            specifiedType: const FullType(String)));
+    }
+    if (object.patient != null) {
+      result
+        ..add('patient')
+        ..add(serializers.serialize(object.patient,
+            specifiedType: const FullType(int)));
+    }
+    return result;
+  }
+
+  @override
+  ContactsInformation deserialize(
+      Serializers serializers, Iterable<Object> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new ContactsInformationBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final dynamic value = iterator.current;
+      switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'isReachable':
+          result.isReachable = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
+        case 'email_address':
+          result.email_address = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'zipcode':
+          result.zipcode = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'city':
+          result.city = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'state':
+          result.state = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'physical_address':
+          result.physical_address = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'home_phone':
+          result.home_phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'work_phone':
+          result.work_phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'patient':
+          result.patient = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$ContactsInformation extends ContactsInformation {
   @override
   final int id;

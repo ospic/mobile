@@ -1,6 +1,7 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
+
 part 'contacts_information.g.dart';
 
 abstract class ContactsInformation implements Built<ContactsInformation, ContactsInformationBuilder> {
@@ -16,7 +17,7 @@ abstract class ContactsInformation implements Built<ContactsInformation, Contact
   @nullable int get patient;
 
   ContactsInformation._();
-
   factory ContactsInformation([updates(ContactsInformationBuilder b)]) = _$ContactsInformation;
+  static Serializer<ContactsInformation> get serializer => _$contactsInformationSerializer;
 
 }
