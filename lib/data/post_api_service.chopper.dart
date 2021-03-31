@@ -37,6 +37,13 @@ class _$PostApiService extends PostApiService {
   }
 
   @override
+  Future<Response<ConsultationPayload>> getUserConsultationById(int id) {
+    final $url = '/consultations/$id';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<ConsultationPayload, ConsultationPayload>($request);
+  }
+
+  @override
   Future<Response<BuiltList<Bill>>> getBills() {
     final $url = '/bills';
     final $request = Request('GET', $url, client.baseUrl);
