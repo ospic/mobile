@@ -31,6 +31,7 @@ abstract class Patient implements Built<Patient, PatientBuilder> {
   @nullable String get gender;
   @nullable bool get isActive;
   @nullable bool get hasSelfServiceUserAccount;
+  @BuiltValueField(wireName: 'contactsInformation')
   ContactsInformation get contactsInformation;
 
   Patient._();
