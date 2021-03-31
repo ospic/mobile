@@ -125,7 +125,7 @@ Widget _buildPosts(BuildContext context, Patient user) {
                   ),
                   ListTile(
                     title: Text("Home address",style: TextStyle(color: Colors.white70, fontWeight: FontWeight.bold)),
-                    subtitle: Text(user.address,style: TextStyle(color: Colors.white70)),
+                    subtitle: Text(user.address + ","+user.contactsInformation.city + " , "+user.contactsInformation.state,style: TextStyle(color: Colors.white70)),
                   ),
 
                   const Divider(
