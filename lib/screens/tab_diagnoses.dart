@@ -9,14 +9,9 @@ import 'package:provider/provider.dart';
 class DiagnosesTab extends StatelessWidget {
   final int consultationId;
   DiagnosesTab(this.consultationId);
-
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          backgroundColor: green1.withOpacity(0.9),
-          title: Text('Consultation No. '+consultationId.toString()),
-        ),
         body: _buildBody(context, consultationId)
     );
   }
