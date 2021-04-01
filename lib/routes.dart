@@ -31,7 +31,6 @@ class MyApp extends StatelessWidget{
       '/help': (BuildContext context) => HelpScreen(),
       '/contacts': (BuildContext context) => ContactsScreen(),
       '/app': (BuildContext context) => ThisAppScreen(),
-      '/addgroup': (BuildContext context)=> ScreenNewGroup(),
       //'/group': (BuildContext context) => ScreenSingleGroup()
     };
 
