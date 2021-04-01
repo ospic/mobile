@@ -25,7 +25,7 @@ FutureBuilder<Response<BuiltList<Diagnosis>>> _buildBody(BuildContext context, i
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
         final BuiltList<Diagnosis> diagnoses = snapshot.data.body;
-        return _buildConsultationWidget(context,  diagnoses);
+        return diagnoses.length > 0 ?   _buildConsultationWidget(context,  diagnoses) : Center(heightFactor: 4.0,child: Text("No diagnoses"));
       } else {
         return Center(
           child: CircularProgressIndicator(),
