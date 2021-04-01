@@ -170,8 +170,11 @@ class _State extends State<LoginScreen> {
                               child: Row(
                             children: <Widget>[
                               Text('Does not have account?'),
-                              FlatButton(
-                                textColor: Colors.blue,
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  primary: Colors.blue,
+                                backgroundColor: Colors.blue,
+                                onSurface: Colors.grey),
                                 child: Text(
                                   'Sign up',
                                   style: TextStyle(fontSize: 20),

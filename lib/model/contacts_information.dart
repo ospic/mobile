@@ -7,13 +7,17 @@ part 'contacts_information.g.dart';
 abstract class ContactsInformation implements Built<ContactsInformation, ContactsInformationBuilder> {
   @nullable int get id;
   @nullable bool get isReachable;
-  @nullable String get email_address;
+  @BuiltValueField(wireName: 'email_address')
+  @nullable String get emailAddress;
   @nullable String get zipcode;
   @nullable String get city;
   @nullable String get state;
-  @nullable String get physical_address;
-  @nullable String get home_phone;
-  @nullable String get work_phone;
+  @BuiltValueField(wireName: 'physical_address')
+  @nullable String get physicalAddress;
+  @BuiltValueField(wireName: 'home_phone')
+  @nullable String get homePhone;
+  @BuiltValueField(wireName: 'work_phone')
+  @nullable String get workPhone;
   @nullable int get patient;
 
   ContactsInformation._();

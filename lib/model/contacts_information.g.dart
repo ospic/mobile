@@ -36,10 +36,10 @@ class _$ContactsInformationSerializer
         ..add(serializers.serialize(object.isReachable,
             specifiedType: const FullType(bool)));
     }
-    if (object.email_address != null) {
+    if (object.emailAddress != null) {
       result
         ..add('email_address')
-        ..add(serializers.serialize(object.email_address,
+        ..add(serializers.serialize(object.emailAddress,
             specifiedType: const FullType(String)));
     }
     if (object.zipcode != null) {
@@ -60,22 +60,22 @@ class _$ContactsInformationSerializer
         ..add(serializers.serialize(object.state,
             specifiedType: const FullType(String)));
     }
-    if (object.physical_address != null) {
+    if (object.physicalAddress != null) {
       result
         ..add('physical_address')
-        ..add(serializers.serialize(object.physical_address,
+        ..add(serializers.serialize(object.physicalAddress,
             specifiedType: const FullType(String)));
     }
-    if (object.home_phone != null) {
+    if (object.homePhone != null) {
       result
         ..add('home_phone')
-        ..add(serializers.serialize(object.home_phone,
+        ..add(serializers.serialize(object.homePhone,
             specifiedType: const FullType(String)));
     }
-    if (object.work_phone != null) {
+    if (object.workPhone != null) {
       result
         ..add('work_phone')
-        ..add(serializers.serialize(object.work_phone,
+        ..add(serializers.serialize(object.workPhone,
             specifiedType: const FullType(String)));
     }
     if (object.patient != null) {
@@ -108,7 +108,7 @@ class _$ContactsInformationSerializer
               specifiedType: const FullType(bool)) as bool;
           break;
         case 'email_address':
-          result.email_address = serializers.deserialize(value,
+          result.emailAddress = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'zipcode':
@@ -124,15 +124,15 @@ class _$ContactsInformationSerializer
               specifiedType: const FullType(String)) as String;
           break;
         case 'physical_address':
-          result.physical_address = serializers.deserialize(value,
+          result.physicalAddress = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'home_phone':
-          result.home_phone = serializers.deserialize(value,
+          result.homePhone = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'work_phone':
-          result.work_phone = serializers.deserialize(value,
+          result.workPhone = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'patient':
@@ -152,7 +152,7 @@ class _$ContactsInformation extends ContactsInformation {
   @override
   final bool isReachable;
   @override
-  final String email_address;
+  final String emailAddress;
   @override
   final String zipcode;
   @override
@@ -160,11 +160,11 @@ class _$ContactsInformation extends ContactsInformation {
   @override
   final String state;
   @override
-  final String physical_address;
+  final String physicalAddress;
   @override
-  final String home_phone;
+  final String homePhone;
   @override
-  final String work_phone;
+  final String workPhone;
   @override
   final int patient;
 
@@ -175,13 +175,13 @@ class _$ContactsInformation extends ContactsInformation {
   _$ContactsInformation._(
       {this.id,
       this.isReachable,
-      this.email_address,
+      this.emailAddress,
       this.zipcode,
       this.city,
       this.state,
-      this.physical_address,
-      this.home_phone,
-      this.work_phone,
+      this.physicalAddress,
+      this.homePhone,
+      this.workPhone,
       this.patient})
       : super._();
 
@@ -200,13 +200,13 @@ class _$ContactsInformation extends ContactsInformation {
     return other is ContactsInformation &&
         id == other.id &&
         isReachable == other.isReachable &&
-        email_address == other.email_address &&
+        emailAddress == other.emailAddress &&
         zipcode == other.zipcode &&
         city == other.city &&
         state == other.state &&
-        physical_address == other.physical_address &&
-        home_phone == other.home_phone &&
-        work_phone == other.work_phone &&
+        physicalAddress == other.physicalAddress &&
+        homePhone == other.homePhone &&
+        workPhone == other.workPhone &&
         patient == other.patient;
   }
 
@@ -222,13 +222,13 @@ class _$ContactsInformation extends ContactsInformation {
                                 $jc(
                                     $jc($jc(0, id.hashCode),
                                         isReachable.hashCode),
-                                    email_address.hashCode),
+                                    emailAddress.hashCode),
                                 zipcode.hashCode),
                             city.hashCode),
                         state.hashCode),
-                    physical_address.hashCode),
-                home_phone.hashCode),
-            work_phone.hashCode),
+                    physicalAddress.hashCode),
+                homePhone.hashCode),
+            workPhone.hashCode),
         patient.hashCode));
   }
 
@@ -237,13 +237,13 @@ class _$ContactsInformation extends ContactsInformation {
     return (newBuiltValueToStringHelper('ContactsInformation')
           ..add('id', id)
           ..add('isReachable', isReachable)
-          ..add('email_address', email_address)
+          ..add('emailAddress', emailAddress)
           ..add('zipcode', zipcode)
           ..add('city', city)
           ..add('state', state)
-          ..add('physical_address', physical_address)
-          ..add('home_phone', home_phone)
-          ..add('work_phone', work_phone)
+          ..add('physicalAddress', physicalAddress)
+          ..add('homePhone', homePhone)
+          ..add('workPhone', workPhone)
           ..add('patient', patient))
         .toString();
   }
@@ -261,10 +261,9 @@ class ContactsInformationBuilder
   bool get isReachable => _$this._isReachable;
   set isReachable(bool isReachable) => _$this._isReachable = isReachable;
 
-  String _email_address;
-  String get email_address => _$this._email_address;
-  set email_address(String email_address) =>
-      _$this._email_address = email_address;
+  String _emailAddress;
+  String get emailAddress => _$this._emailAddress;
+  set emailAddress(String emailAddress) => _$this._emailAddress = emailAddress;
 
   String _zipcode;
   String get zipcode => _$this._zipcode;
@@ -278,18 +277,18 @@ class ContactsInformationBuilder
   String get state => _$this._state;
   set state(String state) => _$this._state = state;
 
-  String _physical_address;
-  String get physical_address => _$this._physical_address;
-  set physical_address(String physical_address) =>
-      _$this._physical_address = physical_address;
+  String _physicalAddress;
+  String get physicalAddress => _$this._physicalAddress;
+  set physicalAddress(String physicalAddress) =>
+      _$this._physicalAddress = physicalAddress;
 
-  String _home_phone;
-  String get home_phone => _$this._home_phone;
-  set home_phone(String home_phone) => _$this._home_phone = home_phone;
+  String _homePhone;
+  String get homePhone => _$this._homePhone;
+  set homePhone(String homePhone) => _$this._homePhone = homePhone;
 
-  String _work_phone;
-  String get work_phone => _$this._work_phone;
-  set work_phone(String work_phone) => _$this._work_phone = work_phone;
+  String _workPhone;
+  String get workPhone => _$this._workPhone;
+  set workPhone(String workPhone) => _$this._workPhone = workPhone;
 
   int _patient;
   int get patient => _$this._patient;
@@ -301,13 +300,13 @@ class ContactsInformationBuilder
     if (_$v != null) {
       _id = _$v.id;
       _isReachable = _$v.isReachable;
-      _email_address = _$v.email_address;
+      _emailAddress = _$v.emailAddress;
       _zipcode = _$v.zipcode;
       _city = _$v.city;
       _state = _$v.state;
-      _physical_address = _$v.physical_address;
-      _home_phone = _$v.home_phone;
-      _work_phone = _$v.work_phone;
+      _physicalAddress = _$v.physicalAddress;
+      _homePhone = _$v.homePhone;
+      _workPhone = _$v.workPhone;
       _patient = _$v.patient;
       _$v = null;
     }
@@ -333,13 +332,13 @@ class ContactsInformationBuilder
         new _$ContactsInformation._(
             id: id,
             isReachable: isReachable,
-            email_address: email_address,
+            emailAddress: emailAddress,
             zipcode: zipcode,
             city: city,
             state: state,
-            physical_address: physical_address,
-            home_phone: home_phone,
-            work_phone: work_phone,
+            physicalAddress: physicalAddress,
+            homePhone: homePhone,
+            workPhone: workPhone,
             patient: patient);
     replace(_$result);
     return _$result;
