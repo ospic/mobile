@@ -1,6 +1,6 @@
 import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
-import 'package:mobile/model/consultation_payload.dart';
+import 'package:mobile/model/index.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -40,7 +40,10 @@ FutureBuilder<Response<ConsultationPayload>> _buildBody(BuildContext context, in
 }
 
 SingleChildScrollView _buildConsultationWidget(BuildContext context, ConsultationPayload consultation){
+  final Staff staff = consultation.staff;
+  final String staffName = staff.fullName == null ? staff.username : staff.fullName;
   return SingleChildScrollView(
+
     child: ConstrainedBox(
       constraints: BoxConstraints(),
       child: Column(
@@ -64,7 +67,7 @@ SingleChildScrollView _buildConsultationWidget(BuildContext context, Consultatio
                   ListTile(
                     dense: true,
                     title: Text('Staff'),
-                    subtitle: Text(consultation.staff.fullName),
+                    subtitle: Text(staffName),
                   ),
 
                 ],
