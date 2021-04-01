@@ -1,6 +1,8 @@
 import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/consultation_payload.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:mobile/model/diagnosis.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +19,13 @@ class DiagnosesTab extends StatelessWidget {
   }
 }
 
-FutureBuilder<Response<ConsultationPayload>> _buildBody(BuildContext context, int id) {
-  return FutureBuilder<Response<ConsultationPayload>>(
-    future: Provider.of<PostApiService>(context).getUserConsultationById(id),
+FutureBuilder<Response<BuiltList<Diagnosis>>> _buildBody(BuildContext context, int id) {
+  return FutureBuilder<Response<BuiltList<Diagnosis>>>(
+    future: Provider.of<PostApiService>(context).getConsultationDiagnoses(id),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
-        final ConsultationPayload consultation = snapshot.data.body;
-        return _buildConsultationWidget(context, consultation);
+        final BuiltList<Diagnosis> diagnoses = snapshot.data.body;
+        return _buildConsultationWidget(context,  diagnoses);
       } else {
         return Center(
           child: CircularProgressIndicator(),
@@ -33,93 +35,26 @@ FutureBuilder<Response<ConsultationPayload>> _buildBody(BuildContext context, in
   );
 }
 
-SingleChildScrollView _buildConsultationWidget(BuildContext context, ConsultationPayload consultation){
+SingleChildScrollView _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> diagnoses){
   return SingleChildScrollView(
     child: ConstrainedBox(
       constraints: BoxConstraints(),
-      child: Column(
-          children:[
-            Card(
-              child: Padding(
-                padding: EdgeInsets.all(10.0),
-                child: new Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    ListTile(
-                      dense: true,
-                      title: Text("From Date"),
-                      subtitle: Text(consultation.fromdate),
-                    ),
-                    ListTile(
-                      dense: true,
-                      title: Text('To date'),
-                      subtitle: Text(consultation.todate),
-                    ),
-                    ListTile(
-                      dense: true,
-                      title: Text('Staff'),
-                      subtitle: Text(consultation.staff.fullName),
-                    ),
-
-                  ],
-                ),
+      child: ListView.builder(
+        itemCount: diagnoses.length,
+        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.all(8.0),
+        physics: ClampingScrollPhysics(),
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return Card(
+              color: Colors.green,
+              elevation: 1,
+              margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 5.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(0.0),
               ),
-            ),
-           ]),
-    ),
-  );
-}
-
-Widget _tabSection(BuildContext context) {
-  return DefaultTabController(
-    length:6,
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Container(
-          child: Material(
-            color: green1.withOpacity(0.9),
-            child: TabBar(
-                indicatorColor: textSecondaryDarkColor,
-                isScrollable: true,
-                tabs: [
-                  Tab(text: "Diagnoses"),
-                  Tab(text: "Services"),
-                  Tab(text: "Medicines"),
-                  Tab(text: "Reports"),
-                  Tab(text: "Costs"),
-                  Tab(text: "Admissions")
-                ]),
-          ),
-        ),
-        Container(
-          //Add this to give height
-          height: MediaQuery
-              .of(context)
-              .size
-              .height,
-          child: TabBarView(children: [
-            Container(
-              child: Text("Home Body"),
-            ),
-            Container(
-              child: Text("Articles Body"),
-            ),
-            Container(
-              child: Text("User Body"),
-            ),
-            Container(
-              child: Text(" Body"),
-            ),
-            Container(
-              child: Text(" Body"),
-            ),
-            Container(
-              child: Text(" Body"),
-            ),
-          ]),
-        ),
-      ],
+              child: Text(diagnoses[index].date));
+        }),
     ),
   );
 }
