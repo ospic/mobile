@@ -1,4 +1,3 @@
-import 'package:built_value/async_serializer.dart';
 import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/bill_payload.dart';
@@ -17,8 +16,6 @@ class BillScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    //final isLandscape = mediaQuery.orientation == Orientation.landscape;
     final PreferredSizeWidget appBar = Utils.isAndroidPlatform()
         ? AppBar(
             title: Text(

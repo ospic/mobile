@@ -56,9 +56,11 @@ class _NotificationsWidgetState extends State<Notifications> {
             Row(
                 children: <Widget>[
                   new SimpleDialogOption(
-                      child: RaisedButton(
-                    color: green1,
-                    textColor: Colors.white,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          textStyle: TextStyle(color: Colors.white),
+                          onPrimary: green1,
+                        ),
                     child: const Text('Accept', style: TextStyle(fontSize: 20)),
                     onPressed: () {
                       //Navigator.pop(context, Answers.YES);
@@ -66,10 +68,12 @@ class _NotificationsWidgetState extends State<Notifications> {
                   )),
                   Spacer(),
                   new SimpleDialogOption(
-                      child: new RaisedButton(
+                      child: new ElevatedButton(
                     child: Text('Decline', style: TextStyle(fontSize: 20.0)),
-                    color: blue,
-                    textColor: Colors.white,
+                   style: ElevatedButton.styleFrom(
+                     onPrimary:  blue,
+                       textStyle:TextStyle(color:  Colors.white)
+                   ),
                     onPressed: () {
                       //Navigator.pop(context, Answers.NO);
                     },

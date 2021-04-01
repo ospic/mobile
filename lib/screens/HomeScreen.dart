@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<ScreenHiddenDrawer> itens = new List();
+  List<ScreenHiddenDrawer> itens = [];
   var sharedPreference = new SharedPreference();
 
   @override

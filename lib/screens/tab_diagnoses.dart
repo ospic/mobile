@@ -1,4 +1,5 @@
 import 'package:chopper/chopper.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/consultation_payload.dart';
 import 'package:built_collection/built_collection.dart';
@@ -36,12 +37,9 @@ FutureBuilder<Response<BuiltList<Diagnosis>>> _buildBody(BuildContext context, i
   );
 }
 
-SingleChildScrollView _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> diagnoses){
+ListView _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> diagnoses){
   final colors = [ Colors.blue, Colors.green, Colors.yellowAccent, Colors.red, Colors.indigo];
-  return SingleChildScrollView(
-    child: ConstrainedBox(
-      constraints: BoxConstraints(),
-      child: ListView.builder(
+  return  ListView.builder(
         itemCount: diagnoses.length,
         scrollDirection: Axis.vertical,
         padding: EdgeInsets.all(8.0),
@@ -54,7 +52,10 @@ SingleChildScrollView _buildConsultationWidget(BuildContext context, BuiltList<D
             alignment: TimelineAlign.start,
             indicatorStyle: IndicatorStyle(
                 width: 15,
+                padding: const EdgeInsets.all(8),
+                iconStyle: IconStyle(iconData: Icons.circle, color: Colors.white),
                 color: colors[index%colors.length]),
+            
             endChild: Container(
               margin: EdgeInsets.only(top: 2.0, bottom: 2.0, left: 1.0),
               padding: EdgeInsets.only(top: 3.0, bottom: 4.0),
@@ -68,7 +69,5 @@ SingleChildScrollView _buildConsultationWidget(BuildContext context, BuiltList<D
               color: gray1,
             ),
           );
-        }),
-    ),
-  );
+        });
 }
