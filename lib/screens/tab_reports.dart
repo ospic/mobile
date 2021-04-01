@@ -1,4 +1,5 @@
 import 'package:chopper/chopper.dart';
+import 'package:file_icon/file_icon.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/index.dart';
@@ -45,29 +46,18 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Report> report
       physics: ClampingScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return TimelineTile(
-          isFirst: index ==0,
-          isLast: index ==(reports.length-1),
-          alignment: TimelineAlign.start,
-          indicatorStyle: IndicatorStyle(
-              width: 15,
-              padding: const EdgeInsets.all(8),
-              iconStyle: IconStyle(iconData: Icons.circle, color: Colors.white),
-              color: colors[index%colors.length]),
-
-          endChild: Container(
+        return  Container(
             margin: EdgeInsets.only(top: 2.0, bottom: 2.0, left: 1.0),
             padding: EdgeInsets.only(top: 3.0, bottom: 4.0),
+          color: gray1,
             constraints: BoxConstraints(
-              minHeight: 90,
+              minHeight: 70,
             ),
             child: ListTile(
-
+              leading: FileIcon(reports[index].name, size: 25.0,),
               title: Text(reports[index].name, style: TextStyle(color: colorAccent, fontWeight: FontWeight.bold)),
               subtitle: Text(reports[index].location),
             ),
-            color: gray1,
-          ),
         );
       });
 }
