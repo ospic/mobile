@@ -76513,17 +76513,17 @@ eC:function(a){return a!==this}}
 Q.BK.prototype={
 am:function(){return new Q.UB(C.n)}}
 Q.UB.prototype={
-F:function(a,b){var s,r,q,p,o,n=this,m=null,l=n.a.c,k=l.d?$.anY():$.Wu()
-k=M.b5(m,K.Yw(k,L.rE(C.JR,$.dT()),20),C.l,m,m,m,m,m,m,new V.ap(0,0,8,0),m,m,m)
-l="Transaction No."+J.aE(l.a)
-l=L.an(l,m,m,m,m,A.aR(m,m,C.B,m,m,m,m,m,m,m,m,m,m,C.a9,m,m,!0,m,m,m,m,m,m,m),m,m)
-s=L.an("Consultation id: \t"+J.aE(n.a.c.f),m,m,m,m,m,m,m)
-r=L.an(C.b.R("Amount:\t"+J.aE(n.a.c.b)+" ",n.a.c.c),m,m,m,m,m,m,m)
-q=L.an(C.b.R("Department: \t",n.a.c.x)+"["+J.aE(n.a.c.r)+"]",m,m,m,m,m,m,m)
-J.aE(n.a.c.z)
-p=n.a
-o=t.c
-return M.jF(C.G,!0,m,new T.ca(C.kX,T.hm(H.b([T.mg(Q.di(m,!1,k,m,T.eV(H.b([s,r,q,L.an("Service:\t"+J.aE(p.c.z),m,m,m,m,m,m,m),L.an(C.b.R("Date:",n.a.c.e),m,m,m,m,A.aR(m,m,C.B,m,m,m,m,m,m,m,m,m,m,C.l5,m,m,!0,m,m,m,m,m,m,m),m,m)],o),C.d2,C.S,C.b0),l),4)],o),C.R,C.S,C.ad,m),m),C.l,m,0,m,m,m,m,C.bf)}}
+F:function(a,b){var s,r,q,p,o,n,m=this,l=null,k=m.a.c,j=k.d?$.anY():$.Wu()
+j=M.b5(l,K.Yw(j,L.rE(C.JR,$.dT()),20),C.l,l,l,l,l,l,l,new V.ap(0,0,8,0),l,l,l)
+k="Transaction No."+J.aE(k.a)
+k=L.an(k,l,l,l,l,A.aR(l,l,C.B,l,l,l,l,l,l,l,l,l,l,C.a9,l,l,!0,l,l,l,l,l,l,l),l,l)
+s=L.an("Consultation id: \t"+J.aE(m.a.c.f),l,l,l,l,l,l,l)
+r=L.an(C.b.R("Amount:\t"+J.aE(m.a.c.b)+" ",m.a.c.c),l,l,l,l,l,l,l)
+q=L.an(C.b.R("Department: \t",m.a.c.x)+"["+J.aE(m.a.c.r)+"]",l,l,l,l,l,l,l)
+p=m.a.c
+o=p.z
+n=t.c
+return M.jF(C.G,!0,l,new T.ca(C.kX,T.hm(H.b([T.mg(Q.di(l,!1,j,l,T.eV(H.b([s,r,q,L.an(o==null?"Medicine:\t"+J.aE(p.ch):"Service:\t"+o,l,l,l,l,l,l,l),L.an(C.b.R("Date:",m.a.c.e),l,l,l,l,A.aR(l,l,C.B,l,l,l,l,l,l,l,l,l,l,C.l5,l,l,!0,l,l,l,l,l,l,l),l,l)],n),C.d2,C.S,C.b0),k),4)],n),C.R,C.S,C.ad,l),l),C.l,l,0,l,l,l,l,C.bf)}}
 B.wE.prototype={
 am:function(){return new B.P3(C.n)}}
 B.P3.prototype={
@@ -82432,8 +82432,8 @@ C.cP=new T.NQ("TypeOpen.FROM_LEFT")
 C.Id=new T.NQ("TypeOpen.FROM_RIGHT")
 C.nL=H.aa("qL")
 C.Ih=H.aa("i0/(i0)")
-C.Ij=H.aa("aZ<0^>/(aZ<0^>)<w,w>")
 C.Ii=H.aa("aZ<0^>/(aZ<0^>)<w>")
+C.Ij=H.aa("aZ<0^>/(aZ<0^>)<w,w>")
 C.Ik=H.aa("aZ<@>/(aZ<@>)")
 C.Il=H.aa("Gr")
 C.Io=H.aa("wG")
