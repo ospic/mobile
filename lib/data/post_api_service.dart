@@ -25,6 +25,9 @@ abstract class PostApiService extends ChopperService {
   @Get(path: '/diagnoses/{id}')
   Future<Response<BuiltList<Diagnosis>>> getConsultationDiagnoses(@Path('id') int id);
 
+  @Get(path: '/{id}/consultation')
+  Future<Response<TransactionResponse>> getConsultationServiceAndCosts(@Path('id') int id);
+
 
   @Get(path: '/bills')
   Future<Response<BuiltList<Bill>>> getBills();
