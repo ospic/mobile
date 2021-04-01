@@ -13,7 +13,7 @@ abstract class ConsultationPayload implements Built<ConsultationPayload, Consult
   @BuiltValueField(wireName: "patient")
   Patient get patient;
   @BuiltValueField(wireName: "staff")
-  Staff get staff;
+  @nullable Staff get staff;
   
   ConsultationPayload._();
 

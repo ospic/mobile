@@ -27,8 +27,6 @@ class _$ConsultationPayloadSerializer
       'patient',
       serializers.serialize(object.patient,
           specifiedType: const FullType(Patient)),
-      'staff',
-      serializers.serialize(object.staff, specifiedType: const FullType(Staff)),
     ];
     if (object.id != null) {
       result
@@ -59,6 +57,12 @@ class _$ConsultationPayloadSerializer
         ..add('isAdmitted')
         ..add(serializers.serialize(object.isAdmitted,
             specifiedType: const FullType(bool)));
+    }
+    if (object.staff != null) {
+      result
+        ..add('staff')
+        ..add(serializers.serialize(object.staff,
+            specifiedType: const FullType(Staff)));
     }
     return result;
   }
@@ -141,9 +145,6 @@ class _$ConsultationPayload extends ConsultationPayload {
       : super._() {
     if (patient == null) {
       throw new BuiltValueNullFieldError('ConsultationPayload', 'patient');
-    }
-    if (staff == null) {
-      throw new BuiltValueNullFieldError('ConsultationPayload', 'staff');
     }
   }
 
@@ -270,14 +271,14 @@ class ConsultationPayloadBuilder
               isActive: isActive,
               isAdmitted: isAdmitted,
               patient: patient.build(),
-              staff: staff.build());
+              staff: _staff?.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'patient';
         patient.build();
         _$failedField = 'staff';
-        staff.build();
+        _staff?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'ConsultationPayload', _$failedField, e.toString());
