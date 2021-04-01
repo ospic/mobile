@@ -41,7 +41,7 @@ FutureBuilder<Response<ConsultationPayload>> _buildBody(BuildContext context, in
 
 SingleChildScrollView _buildConsultationWidget(BuildContext context, ConsultationPayload consultation){
   final Staff staff = consultation.staff;
-  final String staffName = staff.fullName == null ? staff.username : staff.fullName;
+  final String staffName = staff==null? 'Un-assigned': (staff.fullName == null ? staff.username : staff.fullName);
   return SingleChildScrollView(
 
     child: ConstrainedBox(
