@@ -1,4 +1,5 @@
 import 'package:mobile/model/consultation.dart';
+import 'package:mobile/screens/ScreenVieConsultation.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -65,7 +66,12 @@ class _ConsultationWidgetWidgetState extends State<ConsultationWidget> {
                   padding:
                       EdgeInsets.only(left: 0, right: 8, bottom: 0, top: 0),
                   child: Text('View',
-                      style: TextStyle(color: Color(0xff9c27b0)))),
+                      style: TextStyle(color: Color(0xff9c27b0))),
+              onPressed:() => Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                ScreenVieConsultation(widget.cs.id))),),
               MaterialButton(
                   child: Text('Close',
                       style: TextStyle(color: Color(0xff9c27b0))))
