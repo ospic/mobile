@@ -1,15 +1,14 @@
 import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/consultation_payload.dart';
-import 'package:mobile/screens/index.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ScreenVieConsultation extends StatelessWidget {
+class DiagnosesTab extends StatelessWidget {
   final int consultationId;
-  ScreenVieConsultation(this.consultationId);
+  DiagnosesTab(this.consultationId);
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,57 +45,57 @@ SingleChildScrollView _buildConsultationWidget(BuildContext context, Consultatio
       child: Column(
           children:[
             Card(
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: new Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  ListTile(
-                    dense: true,
-                    title: Text("From Date"),
-                    subtitle: Text(consultation.fromdate),
-                  ),
-                  ListTile(
-                    dense: true,
-                    title: Text('To date'),
-                    subtitle: Text(consultation.todate),
-                  ),
-                  ListTile(
-                    dense: true,
-                    title: Text('Staff'),
-                    subtitle: Text(consultation.staff.fullName),
-                  ),
+              child: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: new Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      dense: true,
+                      title: Text("From Date"),
+                      subtitle: Text(consultation.fromdate),
+                    ),
+                    ListTile(
+                      dense: true,
+                      title: Text('To date'),
+                      subtitle: Text(consultation.todate),
+                    ),
+                    ListTile(
+                      dense: true,
+                      title: Text('Staff'),
+                      subtitle: Text(consultation.staff.fullName),
+                    ),
 
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-            _tabSection(context, consultation.id)]),
+           ]),
     ),
   );
 }
 
-Widget _tabSection(BuildContext context, int consultationId) {
+Widget _tabSection(BuildContext context) {
   return DefaultTabController(
     length:6,
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Container(
-         child: Material(
-           color: green1.withOpacity(0.9),
-           child: TabBar(
-               indicatorColor: textSecondaryDarkColor,
-               isScrollable: true,
-               tabs: [
-                 Tab(text: "Diagnoses"),
-                 Tab(text: "Services"),
-                 Tab(text: "Medicines"),
-                 Tab(text: "Reports"),
-                 Tab(text: "Costs"),
-                 Tab(text: "Admissions")
-               ]),
-         ),
+          child: Material(
+            color: green1.withOpacity(0.9),
+            child: TabBar(
+                indicatorColor: textSecondaryDarkColor,
+                isScrollable: true,
+                tabs: [
+                  Tab(text: "Diagnoses"),
+                  Tab(text: "Services"),
+                  Tab(text: "Medicines"),
+                  Tab(text: "Reports"),
+                  Tab(text: "Costs"),
+                  Tab(text: "Admissions")
+                ]),
+          ),
         ),
         Container(
           //Add this to give height
@@ -106,7 +105,7 @@ Widget _tabSection(BuildContext context, int consultationId) {
               .height,
           child: TabBarView(children: [
             Container(
-              child: DiagnosesTab(consultationId),
+              child: Text("Home Body"),
             ),
             Container(
               child: Text("Articles Body"),
