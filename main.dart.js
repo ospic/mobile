@@ -74806,9 +74806,9 @@ V.akq.prototype={
 $2:function(a,b){var s,r,q,p,o,n,m,l,k=null,j=" Body"
 if(b.a===C.bA){s=b.b.b
 r=s.r
-q=r.c
-if(q==null)q=r.b
-p=L.ap("From Date",k,k,k,k,k,k,k)
+if(r==null)q="Un-assigned"
+else{p=r.c
+q=p==null?r.b:p}p=L.ap("From Date",k,k,k,k,k,k,k)
 p=Q.dh(!0,!1,k,k,L.ap(s.b,k,k,k,k,k,k,k),p)
 o=L.ap("To date",k,k,k,k,k,k,k)
 o=Q.dh(!0,!1,k,k,L.ap(s.c,k,k,k,k,k,k,k),o)
@@ -80947,8 +80947,8 @@ C.cM=new T.Nl("TypeOpen.FROM_LEFT")
 C.HL=new T.Nl("TypeOpen.FROM_RIGHT")
 C.HM=H.a9("qs")
 C.HQ=H.a9("hU/(hU)")
-C.HS=H.a9("b0<0^>/(b0<0^>)<v,v>")
 C.HR=H.a9("b0<0^>/(b0<0^>)<v>")
+C.HS=H.a9("b0<0^>/(b0<0^>)<v,v>")
 C.HT=H.a9("b0<@>/(b0<@>)")
 C.HU=H.a9("G2")
 C.HX=H.a9("wl")
