@@ -1,5 +1,5 @@
 import 'package:mobile/data/post_api_service.dart';
-import 'package:mobile/screens/ScreenAbout.dart';
+import 'package:mobile/screens/profile_screen.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget{
   final routes = <String, WidgetBuilder>{
       '/home': (BuildContext context) => HomeScreen(),
       '/login': (BuildContext context) => LoginScreen(),
-      '/about': (BuildContext context) => ScreenAbout(),
+      '/profile': (BuildContext context) => ProfileScreen(),
       '/help': (BuildContext context) => HelpScreen(),
       '/contacts': (BuildContext context) => ContactsScreen(),
       '/app': (BuildContext context) => ThisAppScreen(),

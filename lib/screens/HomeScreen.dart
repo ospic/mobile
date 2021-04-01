@@ -1,6 +1,6 @@
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
 import 'package:hidden_drawer_menu/model/screen_hidden_drawer.dart';
-import 'package:mobile/screens/ScreenAbout.dart';
+import 'package:mobile/screens/profile_screen.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         Container(
           color: Colors.orange,
-          child: Center(child: ScreenAbout()),
+          child: Center(child: ProfileScreen()),
         )));
     itens.add(new ScreenHiddenDrawer(
         new ItemHiddenMenu(
