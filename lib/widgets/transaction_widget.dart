@@ -50,7 +50,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                     Text('Consultation id: \t'+widget.transaction.consultationId.toString() ),
                     Text('Amount:\t'+widget.transaction.amount.toString()+ " "+widget.transaction.currencyCode),
                     Text('Department: \t'+ widget.transaction.departmentName + "["+widget.transaction.departmentId.toString()+"]"),
-                    Text('Service:\t'+(widget.transaction.medicalServiceName.toString() == null?  widget.transaction.medicineName.toString():widget.transaction.medicalServiceName.toString())),
+                    Text((widget.transaction.medicalServiceName == null?  'Medicine:\t'+widget.transaction.medicineName.toString():'Service:\t'+widget.transaction.medicalServiceName.toString())),
                     Text('Date:'+widget.transaction.transactionDate,style: TextStyle(color: textPrimaryColor,  fontWeight: FontWeight.w200)),
                   ],
                 ),
