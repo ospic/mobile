@@ -7,6 +7,7 @@ import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
 class DiagnosesTab extends StatelessWidget {
   final int consultationId;
@@ -36,6 +37,7 @@ FutureBuilder<Response<BuiltList<Diagnosis>>> _buildBody(BuildContext context, i
 }
 
 SingleChildScrollView _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> diagnoses){
+  final colors = [ Colors.blue, Colors.green, Colors.yellowAccent, Colors.red, Colors.indigo];
   return SingleChildScrollView(
     child: ConstrainedBox(
       constraints: BoxConstraints(),
@@ -46,14 +48,26 @@ SingleChildScrollView _buildConsultationWidget(BuildContext context, BuiltList<D
         physics: ClampingScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          return Card(
-              color: Colors.green,
-              elevation: 1,
-              margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 5.0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(0.0),
+          return TimelineTile(
+            isFirst: index ==0,
+            isLast: index ==(diagnoses.length-1),
+            alignment: TimelineAlign.start,
+            indicatorStyle: IndicatorStyle(
+                width: 15,
+                color: colors[index%colors.length]),
+            endChild: Container(
+              margin: EdgeInsets.only(top: 2.0, bottom: 2.0, left: 1.0),
+              padding: EdgeInsets.only(top: 3.0, bottom: 4.0),
+              constraints: BoxConstraints(
+                minHeight: 90,
               ),
-              child: Text(diagnoses[index].date));
+              child: ListTile(
+                title: Text(diagnoses[index].date, style: TextStyle(color: colorAccent, fontWeight: FontWeight.bold)),
+                subtitle: Text(diagnoses[index].symptoms),
+              ),
+              color: gray1,
+            ),
+          );
         }),
     ),
   );
