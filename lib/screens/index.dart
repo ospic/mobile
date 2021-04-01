@@ -9,3 +9,4 @@ export 'screen_bill.dart';
 export 'login_screen.dart';
 export 'profile.dart';
 export 'tab_diagnoses.dart';
+export 'tab_reports.dart';
