@@ -2,6 +2,7 @@ import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/screens/index.dart';
+import 'package:mobile/screens/tab_services_and_costs.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -81,9 +82,10 @@ SingleChildScrollView _buildConsultationWidget(BuildContext context, Consultatio
 
 Widget _tabSection(BuildContext context, int consultationId) {
   return DefaultTabController(
-    length:6,
+    length: 4,
     child: Column(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         Container(
          child: Material(
@@ -93,10 +95,8 @@ Widget _tabSection(BuildContext context, int consultationId) {
                isScrollable: true,
                tabs: [
                  Tab(text: "Diagnoses"),
-                 Tab(text: "Services"),
-                 Tab(text: "Medicines"),
+                 Tab(text: "Services & Costs"),
                  Tab(text: "Reports"),
-                 Tab(text: "Costs"),
                  Tab(text: "Admissions")
                ]),
          ),
@@ -112,7 +112,7 @@ Widget _tabSection(BuildContext context, int consultationId) {
               child: DiagnosesTab(consultationId),
             ),
             Container(
-              child: Text("Articles Body"),
+              child: ServiceAndCostsTab(consultationId),
             ),
             Container(
               child: Text("User Body"),
@@ -120,12 +120,7 @@ Widget _tabSection(BuildContext context, int consultationId) {
             Container(
               child: Text(" Body"),
             ),
-            Container(
-              child: Text(" Body"),
-            ),
-            Container(
-              child: Text(" Body"),
-            ),
+
           ]),
         ),
       ],
