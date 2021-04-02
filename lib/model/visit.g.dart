@@ -29,7 +29,7 @@ class _$VisitSerializer implements StructuredSerializer<Visit> {
     }
     if (object.date != null) {
       result
-        ..add('date')
+        ..add('dateTime')
         ..add(serializers.serialize(object.date,
             specifiedType: const FullType(String)));
     }
@@ -55,7 +55,7 @@ class _$VisitSerializer implements StructuredSerializer<Visit> {
           result.symptoms = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'date':
+        case 'dateTime':
           result.date = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;

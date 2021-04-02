@@ -5,6 +5,7 @@ part 'visit.g.dart';
 abstract class Visit implements Built<Visit, VisitBuilder>{
   int get id;
   @nullable String get symptoms;
+  @BuiltValueField(wireName: 'dateTime')
   @nullable String get date;
 
   Visit._();
