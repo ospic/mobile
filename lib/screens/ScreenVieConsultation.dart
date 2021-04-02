@@ -118,7 +118,7 @@ Widget _tabSection(BuildContext context, int consultationId) {
               child: ReportsTab(consultationId),
             ),
             Container(
-              child: Text(" Body"),
+              child: AdmissionsTab(consultationId),
             ),
 
           ]),
