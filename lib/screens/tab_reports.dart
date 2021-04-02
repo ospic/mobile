@@ -4,6 +4,7 @@ import 'package:mobile/data/post_api_service.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/model/report.dart';
+import 'package:mobile/screens/index.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +58,11 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Report> report
               leading: FileIcon(reports[index].name, size: 25.0,),
               title: Text(reports[index].name, style: TextStyle(color: colorAccent, fontWeight: FontWeight.bold)),
               subtitle: Text(reports[index].location),
+              onTap:() => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          ViewReportScreen(reports[index].id))),
             ),
         );
       });
