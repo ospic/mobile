@@ -46,7 +46,10 @@ SingleChildScrollView _buildReportWidget(BuildContext context, Report report) {
         padding: EdgeInsets.all(2.0),
         child: Center(heightFactor: 2.0, child: Text(report.name)),
       ),
-report.type.startsWith('image/') ? Image.network(report.url): Center(child: Text("Not image"),)
+      report.type.startsWith('image/') ? FadeInImage.assetNetwork(
+        placeholder: 'images/placeholder.gif',
+          image: report.url): Center(heightFactor: 2.0,child:Text('Document view not implemented'))
+
     ]),
   ));
 }
