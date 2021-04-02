@@ -172,12 +172,11 @@ class _State extends State<LoginScreen> {
                               Text('Does not have account?'),
                               TextButton(
                                 style: TextButton.styleFrom(
-                                  primary: Colors.blue,
-                                backgroundColor: Colors.blue,
+                                textStyle: TextStyle(color:   Colors.blue),
                                 onSurface: Colors.grey),
                                 child: Text(
                                   'Sign up',
-                                  style: TextStyle(fontSize: 20),
+                                  style: TextStyle(),
                                 ),
                                 onPressed: () {
                                   //Navigator.pushNamed(context, '/home');
