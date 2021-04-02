@@ -74,7 +74,14 @@ abstract class PostApiService extends ChopperService {
         HeadersInterceptor({'Cache-control': 'no-cache', }),
         HeadersInterceptor({'Content-Type': 'application/json'}),
         HeadersInterceptor({'Accept': '*/*'}),
-        HttpLoggingInterceptor()
+        HttpLoggingInterceptor(),
+        (Response response) async{
+        if(response.statusCode == 401) {
+          SharedPreference sharedPref = new SharedPreference();
+          sharedPref.clearSF();
+        }
+        return response;
+        },
       ],
     );
 

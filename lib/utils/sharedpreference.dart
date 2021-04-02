@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:mobile/utils/navigation_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum enumKey { IS_LOGGED_IN, BASE_64_EncodedAuthenticationKey }
@@ -44,6 +46,7 @@ class SharedPreference {
 
   Future<bool> clearSF() async {
     prefs = await SharedPreferences.getInstance();
+    NavigationService.instance.navigateTo("/login");
     return prefs.clear();
   }
 /**

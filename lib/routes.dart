@@ -3,6 +3,7 @@ import 'package:mobile/screens/profile_screen.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/utils/navigation_service.dart';
 import 'package:provider/provider.dart';
 import 'package:logging/logging.dart';
 
@@ -24,6 +25,7 @@ void _setupLogging(){
 
 
 class MyApp extends StatelessWidget{
+
   final routes = <String, WidgetBuilder>{
       '/home': (BuildContext context) => HomeScreen(),
       '/login': (BuildContext context) => LoginScreen(),
@@ -41,6 +43,7 @@ class MyApp extends StatelessWidget{
       create:(_) => PostApiService.create() ,
       dispose: (_, PostApiService service) => service.client.dispose(),
       child:  MaterialApp(
+        navigatorKey: NavigationService.instance.navigationKey,
       theme: ThemeData(fontFamily: 'Calibri'),
       debugShowCheckedModeBanner: false,
         routes: routes,
