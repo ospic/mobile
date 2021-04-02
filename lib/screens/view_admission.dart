@@ -84,15 +84,8 @@ SingleChildScrollView _buildConsultationWidget(
                         child: Text('Is active ?', style: TextStyle(fontWeight: FontWeight.bold))),
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0,),
-                        child: Icon(
-
-                          admission.isActive
-                              ? MdiIcons.check
-                              : MdiIcons.closeCircleOutline,
-                          color: Colors.indigoAccent,
-                          size:24.0,
-                        )),
+                        EdgeInsets.only(top: 5.0, bottom: 4.0,left: 5.0),
+                        child:Text(admission.isActive.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: admission.isActive? colorPrimary: Colors.red),)),
                   ]),
                   TableRow(children: [
                     Padding(
