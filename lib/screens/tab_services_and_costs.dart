@@ -45,6 +45,8 @@ ListView _buildConsultationWidget(BuildContext context, TransactionResponse resp
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         )),
     DataTable(
+      sortAscending: true,
+      headingRowColor: MaterialStateColor.resolveWith((states) => colorPrimary),
       columns: [
         DataColumn(label: Text(
             'TID',

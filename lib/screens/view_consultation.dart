@@ -49,38 +49,79 @@ SingleChildScrollView _buildConsultationWidget(BuildContext context, Consultatio
       constraints: BoxConstraints(),
       child: Column(
           children:[
-            Card(
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: new Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  ListTile(
-                    dense: true,
-                    title: Text("From Date"),
-                    subtitle: Text(consultation.fromdate),
-                  ),
-                  ListTile(
-                    dense: true,
-                    title: Text('To date'),
-                    subtitle: Text(consultation.todate),
-                  ),
-                  ListTile(
-                    dense: true,
-                    title: Text('Staff'),
-                    subtitle: Text(staffName),
-                  ),
+            Padding(
+              padding: EdgeInsets.all(2.0),
+              child: Table(
+                defaultColumnWidth: FlexColumnWidth(3),
+
+                border: TableBorder.all(
+                    color: gray1, style: BorderStyle.solid, width:0.5 ),
+                children: [
+
+                  TableRow(children: [
+                    Padding(
+                        padding:
+                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text('From Date', style: TextStyle(fontWeight: FontWeight.bold))),
+                    Padding(
+                        padding:
+                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text(consultation.fromdate)),
+                  ]),
+                  TableRow(children: [
+                    Padding(
+                        padding:
+                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text('To Date', style: TextStyle(fontWeight: FontWeight.bold))),
+                    Padding(
+                        padding:
+                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text(consultation.todate)),
+                  ]),
+                  TableRow(children: [
+                    Padding(
+                        padding:
+                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text('Is active ?', style: TextStyle(fontWeight: FontWeight.bold))),
+                    Padding(
+                        padding:
+                        EdgeInsets.only(top: 5.0, bottom: 4.0,left: 5.0),
+                        child:Text(consultation.isActive.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: consultation.isActive? colorPrimary: Colors.red),)),
+                  ]),
+                  TableRow(children: [
+                    Padding(
+                        padding:
+                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text('Is Admitted ?', style: TextStyle(fontWeight: FontWeight.bold))),
+                    Padding(
+                        padding:
+                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text(consultation.isAdmitted.toString(),style: TextStyle(fontWeight: FontWeight.bold, color: consultation.isAdmitted? colorPrimary: Colors.red),)),
+                  ]),
+                  TableRow(children: [
+                    Padding(
+                        padding:
+                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text('Consultant ', style: TextStyle(fontWeight: FontWeight.bold))),
+                    Padding(
+                        padding:
+                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text(staffName)),
+                  ]),
 
                 ],
               ),
             ),
-          ),
+
             _tabSection(context, consultation.id)]),
     ),
   );
 }
 
 Widget _tabSection(BuildContext context, int consultationId) {
+  double width = MediaQuery.of(context).size.width;
+  double tabWidth = width  / 4;
+
   return DefaultTabController(
     length: 4,
     child: Column(
@@ -94,10 +135,10 @@ Widget _tabSection(BuildContext context, int consultationId) {
                indicatorColor: textSecondaryDarkColor,
                isScrollable: true,
                tabs: [
-                 Tab(text: "Diagnoses"),
-                 Tab(text: "Services & Costs"),
-                 Tab(text: "Reports"),
-                 Tab(text: "Admissions")
+                Container(width: tabWidth, child:  Tab(text: "Diagnoses"),),
+                 Container(width: tabWidth, child:Tab(text: "Services & Costs"),),
+                 Container(width: tabWidth, child:Tab(text: "Reports"),),
+                 Container(width: tabWidth, child:Tab(text: "Admissions"))
                ]),
          ),
         ),
