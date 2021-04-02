@@ -11,3 +11,4 @@ export 'profile.dart';
 export 'tab_diagnoses.dart';
 export 'tab_reports.dart';
 export 'tab_admissions.dart';
+export 'view_report.dart';
