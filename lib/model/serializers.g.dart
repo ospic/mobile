@@ -7,6 +7,7 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(Admission.serializer)
       ..add(AuthPost.serializer)
       ..add(AuthResponse.serializer)
       ..add(AuthRole.serializer)
@@ -25,6 +26,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Transaction.serializer)
       ..add(TransactionResponse.serializer)
       ..add(User.serializer)
+      ..add(Visit.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Privilege)]),
           () => new ListBuilder<Privilege>())
