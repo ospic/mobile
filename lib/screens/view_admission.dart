@@ -155,7 +155,7 @@ FutureBuilder<Response<BuiltList<Visit>>> _buildAdmissionVisitsBody(
         final BuiltList<Visit> visits = snapshot.data.body;
         return visits.length > 0
             ? _buildConsultationVisitsWidget(context, visits)
-            : Center(heightFactor: 4.0, child: Text("Never visitation"));
+            : Center(heightFactor: 4.0, child: Text("No visits"));
       } else {
         return Center(
           child: CircularProgressIndicator(),
