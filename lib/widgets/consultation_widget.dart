@@ -1,5 +1,5 @@
 import 'package:mobile/model/consultation.dart';
-import 'package:mobile/screens/ScreenVieConsultation.dart';
+import 'package:mobile/screens/view_consultation.dart';
 import 'package:flutter/material.dart';
 
 class ConsultationWidget extends StatefulWidget {
