@@ -16,3 +16,6 @@ export 'staff.dart';
 export 'transaction.dart';
 export 'transaction_response.dart';
 export 'user.dart';
+export 'report.dart';
+export 'admission.dart';
+export 'visit.dart';
