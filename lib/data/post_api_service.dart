@@ -65,7 +65,7 @@ abstract class PostApiService extends ChopperService {
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
     final client = ChopperClient(
-      baseUrl: 'http://192.168.43.11:8080/api/self',
+      baseUrl: 'https://ospicapi.herokuapp.com/api/self',
       services: [_$PostApiService()],
       client: http.IOClient(ioc),
       converter: BuiltValueConverter(),
