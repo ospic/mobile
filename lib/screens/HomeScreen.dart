@@ -79,13 +79,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           onTap: (){
             this.sharedPreference.clearSF();
-            //Navigator.pushNamed(context, '/login');
           },
           selectedStyle: TextStyle(color: green1, fontSize: 25.0),
         ),
         Container(
           color: Colors.orange,
-          child: Center(child: ThisAppScreen()),
+          child: Center(child: Text("Logged Out")),
         )));
 
     super.initState();

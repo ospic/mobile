@@ -2,7 +2,6 @@ export 'ScreenSplash.dart';
 export 'HomeScreen.dart';
 export 'ScreenHelp.dart';
 export 'ScreenContacts.dart';
-export 'ScreenThisApp.dart';
 export 'ScreenTabs.dart';
 export 'view_consultation.dart';
 export 'view_bill.dart';
