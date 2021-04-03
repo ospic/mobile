@@ -1,5 +1,5 @@
 import 'package:mobile/data/post_api_service.dart';
-import 'package:mobile/screens/profile_screen.dart';
+import 'package:mobile/screens/screen_profile.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
