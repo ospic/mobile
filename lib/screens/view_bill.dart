@@ -252,21 +252,7 @@ ListView _buildBillTransactions(BuildContext context, BuiltList<Transaction> tra
       physics: ClampingScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return  Container(
-            decoration: BoxDecoration( //                    <-- BoxDecoration
-              border: Border(bottom: BorderSide()),
-            ),
-            child:ListTile(
-              tileColor: gray1,
-              dense: true,
-              leading: Icon(MdiIcons.account),
-              trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [Text(transactions[index].amount.toString() +" "+ transactions[index].currencyCode, style: TextStyle(fontWeight: FontWeight.bold),)],
-              ),
-              title:  Text((transactions[index].medicalServiceName == null?  'Medicine:\t'+transactions[index].medicineName.toString():'Service:\t'+transactions[index].medicalServiceName.toString())),
-              subtitle:     Text('Date:'+transactions[index].transactionDate,style: TextStyle(color: textPrimaryColor,  fontWeight: FontWeight.w200)),
-            ));
+        return  TransactionWidget('bill_trxn_widget', transaction: transactions[index]);
 
       },
 

@@ -19,45 +19,20 @@ class _TransactionWidgetState extends State<TransactionWidget> {
   @override
   Widget build(BuildContext context) {
     //var size = MediaQuery.of(context).size;
-    return Material(
-      color: gray1,
-      child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5.0),
-              child: ListTile(
-                dense: true,
-                  selectedTileColor: colorPrimary,
-                  leading: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                     CircleAvatar(
-                        radius: 10,
-                        backgroundColor: widget.transaction.isReversed ? gray1 : colorAccent,
-                        child: new Icon(
-                          MdiIcons.currencySign,
-                          size: 10.0,
-                          color: green1,
-                        ),
-                      ),
-                    ],
-                  ),
-                title: Text(
-                  "Transaction No."+widget.transaction.id.toString() ?? '',
-                  style: TextStyle(color: textPrimaryColor,  fontWeight: FontWeight.bold),
-                ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Text('Consultation id: \t'+widget.transaction.consultationId.toString() ),
-                    Text('Amount:\t'+widget.transaction.amount.toString()+ " "+widget.transaction.currencyCode),
-                    Text('Department: \t'+ widget.transaction.departmentName + "["+widget.transaction.departmentId.toString()+"]"),
-                    Text((widget.transaction.medicalServiceName == null?  'Medicine:\t'+widget.transaction.medicineName.toString():'Service:\t'+widget.transaction.medicalServiceName.toString())),
-                    Text('Date:'+widget.transaction.transactionDate,style: TextStyle(color: textPrimaryColor,  fontWeight: FontWeight.w200)),
-                  ],
-                ),
-                onTap: null
-              ),
+    return  Container(
+        decoration: BoxDecoration( //                    <-- BoxDecoration
+          border: Border(bottom: BorderSide()),
+        ),
+        child:ListTile(
+          tileColor: gray1,
+          dense: true,
+          leading: Icon(MdiIcons.account),
+          trailing: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Text(widget.transaction.amount.toString() +" "+ widget.transaction.currencyCode, style: TextStyle(fontWeight: FontWeight.bold),)],
           ),
-    );
+          title:  Text((widget.transaction.medicalServiceName == null?  'Medicine:\t'+widget.transaction.medicineName.toString():'Service:\t'+widget.transaction.medicalServiceName.toString())),
+          subtitle:     Text('Date:'+widget.transaction.transactionDate,style: TextStyle(color: textPrimaryColor,  fontWeight: FontWeight.w200)),
+        ));
   }
 }
