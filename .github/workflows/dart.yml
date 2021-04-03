@@ -40,16 +40,34 @@ jobs:
       - name: Run Clean to reduce app sizes
         run: flutter clean
       - name: Build apk
-        run: flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --no-tree-shake-icons
+        run: flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --no-tree-shake-icons  --debug
       - name: Build app-bundle
-        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64  --debug
       - name: Enable Web
         run: flutter create ./
       - name: Build Web
         run: flutter build web
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: build/web # The folder the action should deploy.
+          token: ${{ secrets.GITHUBTOKEN }}
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build/web # The folder the action should deploy.
+
+      - name: Deploy apk
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          token: ${{ secrets.GITHUBTOKEN }}
+          branch: master # The branch the action should deploy to.
+          repository-name: ospic/deploys
+          target-folder: mobile/apk
+          folder: build/app/outputs/apk/debug # The folder the action should deploy.
+
+      - name: Deploy appbundle 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          token: ${{ secrets.GITHUBTOKEN }}
+          branch: master # The branch the action should deploy to.
+          repository-name: ospic/deploys
+          target-folder: mobile/appbundle
+          folder: build/app/outputs/bundle/debug # The folder the action should deploy.
