@@ -55,6 +55,8 @@ FutureBuilder<Response<Patient>> _buildBody(BuildContext context) {
 }
 
 Widget _buildPosts(BuildContext context, Patient user) {
+  final String baseUrl = Provider.of<PostApiService>(context).client.baseUrl.replaceAll('/self', '');
+
   return ListView(
     children: <Widget>[
 
@@ -66,7 +68,7 @@ Widget _buildPosts(BuildContext context, Patient user) {
             children: <Widget>[
               CircleAvatar(
                 radius: 50,
-                child: ClipOval(child: Image.network(user.patientPhoto == null ? 'https://picsum.photos/200/300?grayscale':user.patientPhoto, height: 100, width: 100, fit: BoxFit.cover,),),
+                child: ClipOval(child: Image.network(user.patientPhoto == null ? 'https://picsum.photos/200/300?grayscale': baseUrl + user.patientPhoto, height: 100, width: 100, fit: BoxFit.cover,),),
               ),
               Positioned(bottom: 1, right: 1 ,child: Container(
                 height: 40, width: 40,

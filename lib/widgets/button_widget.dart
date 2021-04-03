@@ -1,6 +1,7 @@
 import 'package:mobile/utils/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class ResponsiveButton extends StatefulWidget {
   final String title;
@@ -23,19 +24,13 @@ class ResponsiveButton extends StatefulWidget {
 class _ResponsiveButtonWidgetState extends State<ResponsiveButton> {
   @override
   Widget build(BuildContext context) {
-    return Utils.isAndroidPlatform()
-        ? ElevatedButton(
+    return  ElevatedButton(
             onPressed: widget.tapCallback,
             child: Text(' ${widget.title}'),
             style: ElevatedButton.styleFrom(
               primary: Colors.green,
               minimumSize: Size(200.0, 40.0)
             ),
-          )
-        : CupertinoButton(
-            child: Text(widget.title),
-            onPressed: widget.tapCallback,
-            color: green1,
           );
   }
 }
