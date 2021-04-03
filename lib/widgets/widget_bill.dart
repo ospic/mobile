@@ -1,5 +1,5 @@
 import 'package:mobile/model/bill.dart';
-import 'package:mobile/screens/screen_bill.dart';
+import 'package:mobile/screens/view_bill.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
