@@ -7,8 +7,8 @@ const RESOURCES = {
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "manifest.json": "bbf096d4b21132e3de3a45fec751771a",
-"index.html": "d5aee91f4d90c111a3b12be2e1dd102b",
-"/": "d5aee91f4d90c111a3b12be2e1dd102b",
+"index.html": "e57a2158a60e9367e17744712df8aec3",
+"/": "e57a2158a60e9367e17744712df8aec3",
 "assets/packages/file_icon/fonts/seti.ttf": "2b67c27356467781d7786c59ca58b34f",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
 "assets/packages/progress_dialog/assets/double_ring_loading_io.gif": "e5b006904226dc824fdb6b8027f7d930",
@@ -24,7 +24,7 @@ const RESOURCES = {
 "assets/fonts/Calibri-Light.ttf": "0d717c4bf80cbb556bf87777fef7d09e",
 "assets/AssetManifest.json": "c20a07cd898d44b8d5935ddfdc0bced4",
 "assets/FontManifest.json": "ea9c7e3eb00a91d63dac96a14572d9f3",
-"main.dart.js": "f389a94b07d4737df9266cfa7ae16eda",
+"main.dart.js": "b54e35b660b30c0ff6aab154c7bce9a6",
 "version.json": "d75b5ea4d59e2aafe556a5d9ddc482f3"
 };
 
