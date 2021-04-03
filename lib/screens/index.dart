@@ -9,4 +9,5 @@ export 'login_screen.dart';
 export 'tab_diagnoses.dart';
 export 'tab_reports.dart';
 export 'tab_admissions.dart';
+export 'tab_services.dart';
 export 'view_report.dart';
