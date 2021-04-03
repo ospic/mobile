@@ -55,7 +55,7 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Report> report
               minHeight: 70,
             ),
             child: ListTile(
-              leading: FileIcon(reports[index].name, size: 25.0,),
+             // leading: FileIcon(reports[index].name, size: 25.0,),
               title: Text(reports[index].name, style: TextStyle(color: colorAccent, fontWeight: FontWeight.bold)),
               subtitle: Text(reports[index].location),
               onTap:() => Navigator.push(
