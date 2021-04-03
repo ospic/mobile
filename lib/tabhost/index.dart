@@ -1,3 +1,3 @@
-export 'TabBills.dart';
-export 'TabSentRequests.dart';
-export 'Consultations.dart';
+export 'tab_bills.dart';
+export 'tab_costs.dart';
+export 'tab_consultations.dart';

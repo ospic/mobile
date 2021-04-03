@@ -41,17 +41,9 @@ ListView _buildNotifications(BuildContext context, BuiltList<Consultation> cs) {
   return ListView.builder(
       itemCount: cs.length,
       scrollDirection: Axis.vertical,
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(0.0),
       physics: const AlwaysScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-              return Container(
-                width: null,
-                margin: const EdgeInsets.all(0.0),
-                alignment: Alignment.center,
-                  child:ConsultationWidget(
-                    'group_widget',
-                    cs: cs[index]
-                  ),
-                );
+              return ConsultationWidget('consultation_widget', cs: cs[index]);
       });
 }

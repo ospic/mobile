@@ -15,7 +15,7 @@ class ViewReportScreen extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: green1.withOpacity(0.9),
-          title: Text('Report ' + reportId.toString()),
+          title: Text('View report '),
         ),
         body: _buildBody(context, reportId));
   }
@@ -45,12 +45,24 @@ SingleChildScrollView _buildReportWidget(BuildContext context, Report report) {
     child: Column(children: [
       Padding(
         padding: EdgeInsets.all(2.0),
-
-        child: Center(heightFactor: 2.0, child: Text(report.name)),
+        child: Center(
+          child: Card(
+            color: colorPrimary,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 4.0, left: 4.0, right: 4.0),
+              child: Column(
+                children: [
+                  Center(heightFactor: 2.0, child: Text('[ ${report.id}  ] [  ${report.size}  ] [  ${report.type} ]  [ ${report.name} ] ', style: TextStyle(fontWeight: FontWeight.normal, color: Colors.white),),),
+                  report.type.startsWith('image/') ? FadeInImage.assetNetwork(
+                      placeholder: 'images/placeholder.gif',
+                      image: baseUrl + report.url): Center(heightFactor: 2.0,child:Text('Document view not implemented'))
+                  ,
+                ],
+              ),
+            )
+          ),
+        ),
       ),
-      report.type.startsWith('image/') ? FadeInImage.assetNetwork(
-        placeholder: 'images/placeholder.gif',
-          image: baseUrl + report.url): Center(heightFactor: 2.0,child:Text('Document view not implemented'))
 
     ]),
   ));
