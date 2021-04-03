@@ -1,4 +1,5 @@
 import 'package:chopper/chopper.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/bill_payload.dart';
 import 'package:mobile/model/transaction.dart';
@@ -71,46 +72,174 @@ FutureBuilder<Response<BillPayload>> _buildBody(BuildContext context, int id) {
 }
 
 ListView _buildBillWidget(BuildContext context, BillPayload bill){
+  final BuiltList<Transaction> transactions = bill.transactionResponse.transactions;
    return ListView(
       children: <Widget>[
-      Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-      children: <Widget>[
-      ListTile(
-      title: Text('Created Date:'),
-      subtitle: Text(bill.createdDate + " By: " + bill.createdBy),
-      ),
-      ListTile(
-      title: Text('Last updated'),
-      subtitle: Text(bill.lastUpdatedDate + " By: " + bill.lastUpdatedBy),
-      ),
-      ListTile(
-      title: Text('Total Amount'),
-      subtitle: Text(bill.transactionResponse.totalAmount.toString()),
-      ),
-      ListTile(
-      isThreeLine: true,
-      title: Text('Patient '),
-      subtitle:
-      Text(bill.patientName + "[" + bill.patientId.toString() + "]"),
-      ),
-      ListTile(
-      title: Text('Phone'),
-      subtitle: Text(bill.phoneNumber),
-      ),
-      ListTile(
-      title: Text('Address: '),
-      subtitle: Text(bill.address),
-      ),
-       ListTile(
-         title: Text("Transactions", style: TextStyle(fontWeight: FontWeight.bold, color: colorAccent, fontSize: 18.0),),
-       ),
-        _buildBillTransactions(context, bill.transactionResponse.transactions),
-      ],
-      ),
+        Padding(
+          padding: EdgeInsets.all(2.0),
+          child: Table(
+            defaultColumnWidth: FlexColumnWidth(3),
+            columnWidths: const <int, TableColumnWidth>{
+              0: IntrinsicColumnWidth(),
+              1: FlexColumnWidth()
+            },
 
-      )
+            border: TableBorder.all(
+                color: gray1, style: BorderStyle.solid, width:0.5 ),
+            children: [
+
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('Created Date', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text(bill.createdDate)),
+              ]),
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('Created by', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text(bill.createdBy)),
+              ]),
+
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('Last updated', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text(bill.lastUpdatedDate)),
+              ]),
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('Updated by', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text(bill.lastUpdatedBy)),
+              ]),
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('For client', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text(bill.patientName + '[ '+bill.patientId.toString()+' ]')),
+              ]),
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('For consultation ', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text(bill.consultationId.toString())),
+              ]),
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('Total Amount', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text(bill.totalAmount.toString())),
+              ]),
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('Paid Amount', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text(bill.paidAmount.toString())),
+              ]),
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('Is active ?', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0,left: 5.0),
+                    child:Text(bill.isActive.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: bill.isActive? colorPrimary: Colors.red),)),
+              ]),
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('Is Paid ?', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text(bill.isPaid.toString(),style: TextStyle(fontWeight: FontWeight.bold, color: bill.isPaid? colorPrimary: Colors.red),)),
+              ]),
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('Client addresses', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('', style: TextStyle(fontWeight: FontWeight.bold))),
+
+              ]),
+
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('Client address', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text(bill.address)),
+              ]),
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('Client email', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text(bill.emailAddress)),
+              ]),
+              TableRow(children: [
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text('Client phone', style: TextStyle(fontWeight: FontWeight.bold))),
+                Padding(
+                    padding:
+                    EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                    child: Text(bill.phoneNumber.toString())),
+              ]),
+            ],
+          ),
+        ),
+        Container(
+          color: Colors.grey,
+          margin: EdgeInsets.only(top:10.0),
+          child: Center(heightFactor: 3.0, child: Text('Bill ${bill.id} Transactions',style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold),),),
+        ),
+        transactions.length > 0 ? _buildBillTransactions(context, transactions) : Center(heightFactor: 2.0,child: Text('No transaction found'),)
       ]);
 
 }
@@ -119,23 +248,30 @@ ListView _buildBillTransactions(BuildContext context, BuiltList<Transaction> tra
   return ListView.builder(
       itemCount: transactions.length,
       scrollDirection: Axis.vertical,
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(0.0),
       physics: ClampingScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        return Card(
-            color: Colors.green,
-            elevation: 1,
-            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 5.0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(0.0),
+        return  Container(
+            decoration: BoxDecoration( //                    <-- BoxDecoration
+              border: Border(bottom: BorderSide()),
             ),
-            child: Container(
-                decoration:
-                BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
-                child: TransactionWidget("transaction_widget",transaction:transactions[index])
+            child:ListTile(
+              tileColor: gray1,
+              dense: true,
+              leading: Icon(MdiIcons.account),
+              trailing: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Text(transactions[index].amount.toString() +" "+ transactions[index].currencyCode, style: TextStyle(fontWeight: FontWeight.bold),)],
+              ),
+              title:  Text((transactions[index].medicalServiceName == null?  'Medicine:\t'+transactions[index].medicineName.toString():'Service:\t'+transactions[index].medicalServiceName.toString())),
+              subtitle:     Text('Date:'+transactions[index].transactionDate,style: TextStyle(color: textPrimaryColor,  fontWeight: FontWeight.w200)),
             ));
-      });
+
+      },
+
+
+  );
 
 }
 

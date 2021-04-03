@@ -20,25 +20,26 @@ class _TransactionWidgetState extends State<TransactionWidget> {
   Widget build(BuildContext context) {
     //var size = MediaQuery.of(context).size;
     return Material(
+      color: gray1,
       child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 5.0),
-          child: Row(children: <Widget>[
-            Expanded(
-              flex: 4,
               child: ListTile(
-
-                leading: Container(
-                  padding: EdgeInsets.only(right: 8.0),
-
-                  child: new CircleAvatar(
-                    radius: 20,
-                    backgroundColor: widget.transaction.isReversed ? gray1 : colorAccent,
-                    child: new Icon(
-                      MdiIcons.currencySign,
-                      color: green1,
-                    ),
+                dense: true,
+                  selectedTileColor: colorPrimary,
+                  leading: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                     CircleAvatar(
+                        radius: 10,
+                        backgroundColor: widget.transaction.isReversed ? gray1 : colorAccent,
+                        child: new Icon(
+                          MdiIcons.currencySign,
+                          size: 10.0,
+                          color: green1,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
                 title: Text(
                   "Transaction No."+widget.transaction.id.toString() ?? '',
                   style: TextStyle(color: textPrimaryColor,  fontWeight: FontWeight.bold),
@@ -56,9 +57,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
                 ),
                 onTap: null
               ),
-            ),
-
-          ])),
+          ),
     );
   }
 }
