@@ -2,7 +2,7 @@ import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/index.dart';
-import 'package:mobile/utils/colors.dart';
+import 'package:mobile/widgets/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +38,20 @@ FutureBuilder<Response<TransactionResponse>> _buildBody(BuildContext context, in
 ListView _buildConsultationWidget(BuildContext context, TransactionResponse response){
   final colors = [ Colors.blue, Colors.green, Colors.yellowAccent, Colors.red, Colors.indigo];
   final BuiltList<Transaction> transactions = response.transactions;
-  return  ListView(children: <Widget>[
+  return ListView.builder(
+    itemCount: transactions.length,
+    scrollDirection: Axis.vertical,
+    padding: EdgeInsets.all(0.0),
+    physics: ClampingScrollPhysics(),
+    shrinkWrap: true,
+    itemBuilder: (context, index) {
+      return  TransactionWidget('service_transaction_widget', transaction: transactions[index]);
+
+    },
+
+
+  );
+  /**return  ListView(children: <Widget>[
     Center(
         child: Text(
           'Service and costs',
@@ -81,4 +94,5 @@ ListView _buildConsultationWidget(BuildContext context, TransactionResponse resp
       ],
     )).toList()),
   ]);
+  **/
 }
