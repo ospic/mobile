@@ -38,17 +38,19 @@ FutureBuilder<Response<Report>> _buildBody(BuildContext context, int id) {
 }
 
 SingleChildScrollView _buildReportWidget(BuildContext context, Report report) {
+  final String baseUrl = Provider.of<PostApiService>(context).client.baseUrl.replaceAll('/self', '');
   return SingleChildScrollView(
       child: ConstrainedBox(
     constraints: BoxConstraints(),
     child: Column(children: [
       Padding(
         padding: EdgeInsets.all(2.0),
+
         child: Center(heightFactor: 2.0, child: Text(report.name)),
       ),
       report.type.startsWith('image/') ? FadeInImage.assetNetwork(
         placeholder: 'images/placeholder.gif',
-          image: report.url): Center(heightFactor: 2.0,child:Text('Document view not implemented'))
+          image: baseUrl + report.url): Center(heightFactor: 2.0,child:Text('Document view not implemented'))
 
     ]),
   ));
