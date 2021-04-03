@@ -23,7 +23,7 @@ class BillScreen extends StatelessWidget {
               "Bill No. " + billId.toString(),
               style: TextStyle(fontFamily: 'Batmfa'),
             ),
-            backgroundColor: green1,
+            backgroundColor: colorPrimary,
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.add),
@@ -235,7 +235,7 @@ ListView _buildBillWidget(BuildContext context, BillPayload bill){
           ),
         ),
         Container(
-          color: Colors.grey,
+          color: gray3,
           margin: EdgeInsets.only(top:10.0),
           child: Center(heightFactor: 3.0, child: Text('Bill ${bill.id} Transactions',style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold),),),
         ),

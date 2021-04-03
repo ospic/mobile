@@ -105,7 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
       screens: itens,
       backgroundColorMenu: blue,
       slidePercent: 60.0,
-      backgroundColorAppBar: green1.withOpacity(0.9),
+      elevationAppBar: 0.0,
+      backgroundColorAppBar: colorPrimary,
     );
   }
 }

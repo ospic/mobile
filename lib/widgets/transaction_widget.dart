@@ -30,7 +30,7 @@ class _TransactionWidgetState extends State<TransactionWidget> {
         child:ListTile(
           tileColor: gray1,
           dense: true,
-          leading: Icon(MdiIcons.account),
+          leading: Icon(MdiIcons.creditCardMinusOutline, color: colorPrimary,),
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [Text(transaction.amount.toString() +" "+ transaction.currencyCode, style: TextStyle(fontWeight: FontWeight.bold),)],

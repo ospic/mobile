@@ -46,12 +46,12 @@ class _HomeScreenState extends State<ScreenTabs> {
           appBar: PreferredSize(
               child: AppBar(
                 centerTitle: false,
-                backgroundColor: gray2,
-                elevation: 0,
+                backgroundColor: colorPrimary,
+                elevation: 0.0,
                 bottom: TabBar(
                   labelStyle: TextStyle(color: Colors.white,  fontSize: 18.0),
                   unselectedLabelStyle: TextStyle(color: Colors.white,  fontSize: 15.0),
-                  indicatorColor: green1,
+                  indicatorColor: colorAccent,
                   labelColor: Colors.white,
                   unselectedLabelColor: green2,
                   tabs: [
