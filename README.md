@@ -1,4 +1,4 @@
-# mobile
+# mobile [![Builds](https://github.com/ospic/mobile/actions/workflows/dart.yml/badge.svg)](https://github.com/ospic/mobile/actions/workflows/dart.yml)   [![Projects](https://github.com/ospic/mobile/actions/workflows/projects.yml/badge.svg)](https://github.com/ospic/mobile/actions/workflows/projects.yml)
 
 A new Flutter project.
 
