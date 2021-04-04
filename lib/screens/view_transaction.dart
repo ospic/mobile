@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:chopper/chopper.dart';
+import 'package:flutter/foundation.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/transaction.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,7 +21,7 @@ class ViewTransaction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PreferredSizeWidget appBar = Utils.isAndroidPlatform()
+    final PreferredSizeWidget appBar = (kIsWeb || Platform.isAndroid)
         ? AppBar(
               title: Text("Transaction No. " + transactionId.toString(), style: TextStyle(fontFamily: 'Batmfa'),),
               backgroundColor: green1
@@ -27,7 +30,7 @@ class ViewTransaction extends StatelessWidget {
             middle: Text("Transaction No. " + transactionId.toString(), style: TextStyle(fontFamily: 'Batmfa'),),
     );
 
-    return Utils.isAndroidPlatform()
+    return (kIsWeb || Platform.isAndroid)
         ? Scaffold(appBar: appBar, body: _buildBody(context, consultationId, transactionId))
         : CupertinoPageScaffold(child: _buildBody(context, consultationId, transactionId), navigationBar: appBar);
   }
