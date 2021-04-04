@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:http/http.dart';
 import 'package:mobile/model/patient.dart';
+import 'package:mobile/utils/Constants.dart';
 
 
 import 'httpclients/http_client_base.dart'
@@ -57,13 +58,13 @@ class Session {
   }
 
   static String _baseUri(String urlEndPoint){
-    var baseUrl = 'http://192.168.43.11:8080/api/self';
+    var baseUrl = Constants.RELEASE_BASE_URL;
     String fullUrl = baseUrl + urlEndPoint;
     return Uri.parse(fullUrl).toString();//.replace(queryParameters: queryParameters);
   }
   
   static String _getFullUrl(String  urlEndPoint){
-    var baseUrl = 'http://192.168.43.11:8080/api/self';
+    var baseUrl = Constants.RELEASE_BASE_URL;
     return baseUrl + urlEndPoint;
   }
 
