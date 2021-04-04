@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'dart:convert';
+import 'package:chopper/chopper.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:mobile/model/patient.dart';
 
@@ -24,15 +25,13 @@ class Session {
     return await jsonDecode(response.toString());
   }
 
-  static Future<String> apiAuthPost( dynamic data) async {
+  static Future<HttpClientResponse> apiAuthPost( dynamic data) async {
     HttpClientRequest request = await client.postUrl(_baseUri('/login'));
     _setHeadersCookies(request, _getFullUrl('/login'));
     request.add(utf8.encode(json.encode(data)));
     HttpClientResponse response = await request.close();
     _updateCookies(response, _getFullUrl('/login'));
-    
-
-    return await response.transform(utf8.decoder).join();
+    return response;
   }
 
   static void _setHeadersCookies(HttpClientRequest request, String url) {
