@@ -60,7 +60,7 @@ jobs:
           token: ${{ secrets.GITHUBTOKEN }}
           branch: master # The branch the action should deploy to.
           repository-name: ospic/deploys
-          target-folder: mobile/apk
+          target-folder: mobile/apks
           folder: build/app/outputs/apk/debug # The folder the action should deploy.
 
       - name: Deploy appbundle 🚀
