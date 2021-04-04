@@ -8,6 +8,7 @@ import 'package:mobile/model/index.dart';
 import 'package:mobile/model/report.dart';
 import 'package:mobile/utils/sharedpreference.dart';
 import 'package:http/io_client.dart' as http;
+import 'package:mobile/utils/Constants.dart';
 
 import 'package:mobile/utils/httpclients/http_client_base.dart'
 // ignore: uri_does_not_exist
@@ -78,7 +79,7 @@ abstract class PostApiService extends ChopperService {
         (X509Certificate cert, String host, int port) => true;
     **/
     final client = ChopperClient(
-      baseUrl: 'http://192.168.43.11:8080/api/self',
+      baseUrl: Constants.RELEASE_BASE_URL,
       services: [_$PostApiService()],
       client: dartclient,
       converter: BuiltValueConverter(),
