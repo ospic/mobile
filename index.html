@@ -11,7 +11,7 @@
     Fore more details:
     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
   -->
-  <base href="/">
+  <base href="/mobile">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -27,7 +27,7 @@
   <link rel="icon" type="image/png" href="favicon.png"/>
 
   <title>mobile</title>
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="mobile/manifest.json">
 </head>
 <body>
   <!-- This script installs service_worker.js to provide PWA functionality to
@@ -36,10 +36,10 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('flutter-first-frame', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=2424123050');
+        navigator.serviceWorker.register('flutter_service_worker.js?v=3368423902');
       });
     }
   </script>
-  <script src="main.dart.js" type="application/javascript"></script>
+  <script src="mobile/main.dart.js" type="application/javascript"></script>
 </body>
 </html>
