@@ -1,5 +1,5 @@
+import 'dart:io';
 import 'package:chopper/chopper.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/bill_payload.dart';
 import 'package:mobile/model/transaction.dart';
@@ -9,7 +9,7 @@ import 'package:mobile/utils/utils.dart';
 import 'package:mobile/widgets/index.dart';
 import 'package:provider/provider.dart';
 import 'package:built_collection/built_collection.dart';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 class BillScreen extends StatelessWidget {
   final int billId;
 
@@ -17,7 +17,7 @@ class BillScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PreferredSizeWidget appBar = Utils.isAndroidPlatform()
+    final PreferredSizeWidget appBar = (kIsWeb || Platform.isAndroid)
         ? AppBar(
             title: Text(
               "Bill No. " + billId.toString(),
@@ -48,7 +48,7 @@ class BillScreen extends StatelessWidget {
             ),
           );
 
-    return Utils.isAndroidPlatform()
+    return (kIsWeb || Platform.isAndroid)
         ? Scaffold(appBar: appBar, body: _buildBody(context, billId))
         : CupertinoPageScaffold(
             child: _buildBody(context, billId), navigationBar: appBar);

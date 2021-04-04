@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/model/auth_post.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:progress_dialog/progress_dialog.dart';
+import 'package:http/http.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key key}) : super(key: key);
@@ -233,8 +234,8 @@ Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,Prog
       );
       pr.show();
       final response = await Session.apiAuthPost(serializers.serialize(newPost));
-      HttpClientResponse httpClientResponse = response;
-      String value = await httpClientResponse.transform(utf8.decoder).join();
+      Response httpClientResponse = response;
+      String value =  response.body;
       AuthResponse authResponse = serializers.deserializeWith(AuthResponse.serializer, jsonDecode(value) ?? Map());
       final int statusCode = httpClientResponse.statusCode;
       print("Status code"+authResponse.toString());

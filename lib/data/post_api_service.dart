@@ -1,14 +1,22 @@
 import 'dart:io';
 
 import 'package:chopper/chopper.dart';
+import 'package:http/http.dart' as darthttp;
 import 'package:mobile/data/built_value_converter.dart.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/model/report.dart';
 import 'package:mobile/utils/sharedpreference.dart';
 import 'package:http/io_client.dart' as http;
-part 'post_api_service.chopper.dart';
 
+import 'package:mobile/utils/httpclients/http_client_base.dart'
+// ignore: uri_does_not_exist
+if (dart.library.html) 'package:mobile/utils/httpclients/http_client_web.dart'
+// ignore: uri_does_not_exist
+if (dart.library.io) 'package:mobile/utils/httpclients/http_client_nonweb.dart';
+
+
+part 'post_api_service.chopper.dart';
 @ChopperApi()
 abstract class PostApiService extends ChopperService {
   @Get(path: '/patients/')
@@ -63,14 +71,16 @@ abstract class PostApiService extends ChopperService {
   Future<Response> postForLogin(@Body() dynamic body);
 
   static PostApiService create() {
+    final darthttp.BaseClient dartclient = createHttpClient();
     
-    final ioc = new HttpClient();
+    /**final ioc = new HttpClient();
     ioc.badCertificateCallback =
         (X509Certificate cert, String host, int port) => true;
+    **/
     final client = ChopperClient(
       baseUrl: 'http://192.168.43.11:8080/api/self',
       services: [_$PostApiService()],
-      client: http.IOClient(ioc),
+      client: dartclient,
       converter: BuiltValueConverter(),
       interceptors: [
         _addQuery,

@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:io';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'Constants.dart';
+
 
 class Utils {
   static Future<bool> checkConnection() async {
@@ -20,14 +22,13 @@ class Utils {
 
   
   static bool isAndroidPlatform(){
-    if (Platform.isAndroid) {
-      return true;
-      // Android-specific code
-    } else if (Platform.isIOS) {
-      // iOS-specific code
-      return false;
-    }
-    return false;
+      if (Platform.isAndroid) {
+        return true;
+        // Android-specific code
+      } else if (Platform.isIOS) {
+        // iOS-specific code
+        return false;
+      }
   }
 
 
