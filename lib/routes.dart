@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile/utils/navigation_service.dart';
 import 'package:provider/provider.dart';
 import 'package:logging/logging.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class Routes {
   Routes(){
@@ -39,6 +41,7 @@ class MyApp extends StatelessWidget{
     
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Provider(
       create:(_) => PostApiService.create() ,
       dispose: (_, PostApiService service) => service.client.dispose(),
@@ -48,10 +51,10 @@ class MyApp extends StatelessWidget{
           fontFamily: 'FiraSans',
         brightness: Brightness.light,
         primarySwatch: Colors.blue,
-          textTheme: TextTheme(
-            body1:  TextStyle(fontWeight: FontWeight.normal, height: 1.0, fontFamily: 'FiraSans', fontSize: 20.0),
-            headline: TextStyle(fontWeight: FontWeight.normal, height: 1.0, fontFamily: 'FiraSans', fontSize: 20.0),
-            button: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0, letterSpacing: 1.25),
+          textTheme: GoogleFonts.firaSansTextTheme(textTheme).copyWith(
+            headline1: GoogleFonts.firaSans(textStyle: textTheme.headline1),
+            bodyText2: GoogleFonts.firaSans(textStyle: textTheme.bodyText2),
+            bodyText1: GoogleFonts.firaSans(textStyle: textTheme.bodyText1),
           )
       ),
       debugShowCheckedModeBanner: false,
