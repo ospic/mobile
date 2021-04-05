@@ -19,12 +19,17 @@ const RESOURCES = {
 "assets/images/placeholder.gif": "baeaf0c7f02777839e58eed62cc714c4",
 "assets/images/background.png": "382c2f7d83d3d38b09de975bd43413a0",
 "assets/images/icon.png": "74206a090719bd9c7eb6f5fd81bb2bd2",
-"assets/fonts/Calibri-Regular.ttf": "5d7c31b284ddb01fc1cbae0edc9ec210",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
-"assets/fonts/Calibri-Light.ttf": "0d717c4bf80cbb556bf87777fef7d09e",
-"assets/AssetManifest.json": "c20a07cd898d44b8d5935ddfdc0bced4",
-"assets/FontManifest.json": "ea9c7e3eb00a91d63dac96a14572d9f3",
-"main.dart.js": "766a9c85f97998cf204f8aa622dcf69a",
+"assets/fonts/FiraSans-Thin.ttf": "979e1f11f340455e5a96e81b0e7de352",
+"assets/fonts/FiraSans-ExtraLightItalic.ttf": "c606dc72dd989c9b294d4377851f78a0",
+"assets/fonts/FiraSans-ThinItalic.ttf": "68cf3ce6260664b260e5474d7169cd39",
+"assets/fonts/FiraSans-Light.ttf": "034229170eceddca9e300e8d2a4c8208",
+"assets/fonts/FiraSans-Regular.ttf": "895f5b025a6cc4924b263f6beb06c777",
+"assets/fonts/FiraSans-ExtraLight.ttf": "882c94daf9a5a47d4450feef12da7c22",
+"assets/fonts/FiraSans-LightItalic.ttf": "6d15364fb3883d074dea8096229942a7",
+"assets/AssetManifest.json": "3c6c376b026dd79817a2cd9620367f8c",
+"assets/FontManifest.json": "d27d3b38b164a831f31d1a9e5c44ff52",
+"main.dart.js": "917bdb9eb85e144cb600f1fb09cd9cda",
 "version.json": "d75b5ea4d59e2aafe556a5d9ddc482f3"
 };
 
