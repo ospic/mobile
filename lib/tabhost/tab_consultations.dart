@@ -65,7 +65,7 @@ class _MasterListTabState extends State<Consultations> {
     return Row(
       children: [
         Expanded(
-          flex: 4,
+          flex: isLargeScreen ?  3 : 10,
           child: ListView.separated(
             itemCount: cs.length,
             scrollDirection: Axis.vertical,
@@ -131,16 +131,17 @@ class _MasterListTabState extends State<Consultations> {
                   color: Colors.grey, height: 1);
             },),
         ),
-        ValueListenableBuilder(
+    Expanded(
+    flex: isLargeScreen ? 7 : 0,
+       child: ValueListenableBuilder(
             valueListenable: _notifier,
             builder: (BuildContext context, bool quoteReady, Widget child){
               return
                 isLargeScreen
-                    ? Expanded(
-                    flex: 8,
-                    child: ScreenVieConsultation(selectedValue))
-                    : Container();
+                    ?  ScreenVieConsultation(selectedValue) : Container();
             })
+    )
+
       ],
     );
   }
