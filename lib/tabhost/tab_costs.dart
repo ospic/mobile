@@ -3,7 +3,7 @@ import 'package:mobile/widgets/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobile/utils/sharedpreference.dart';
 
-class TabSentRequest extends StatelessWidget{
+class TabMasterList extends StatelessWidget{
   SharedPreference sharedPref = new SharedPreference();
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,4 @@ class TabSentRequest extends StatelessWidget{
       ],
     );
   }
-
-  
 }

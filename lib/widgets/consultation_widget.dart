@@ -2,14 +2,15 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:mobile/model/consultation.dart';
 import 'package:mobile/screens/view_consultation.dart';
 import 'package:flutter/material.dart';
-
+typedef Null ItemSelectedCallback(int value);
 class ConsultationWidget extends StatefulWidget {
   final Consultation cs;
+  final ItemSelectedCallback onItemSelected;
 
   const ConsultationWidget(
     String s, {
     Key key,
-    @required this.cs,
+    @required this.cs, this.onItemSelected,
   }) : super(key: key);
 
   @override
@@ -63,10 +64,9 @@ class _ConsultationWidgetWidgetState extends State<ConsultationWidget> {
         ),
 
     ),
-    onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                ScreenVieConsultation(widget.cs.id))),);
+      onTap: (){
+       widget.onItemSelected(widget.cs.id);
+      },
+    );
   }
 }

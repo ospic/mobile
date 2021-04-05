@@ -62,14 +62,14 @@ class _HomeScreenState extends State<ScreenTabs> {
                       text: 'Bills',
                     ),
                     Tab(
-                      text: 'Costs',
+                      text: 'Screes',
                     )
                   ],
                 ),
               ),
               preferredSize: Size.fromHeight(48.0)),
           body: TabBarView(
-            children: [ Consultations(), TabBills(),TabSentRequest()],
+            children: [ Consultations(), TabBills(),MasterListTab()],
           ),
           
         ),
