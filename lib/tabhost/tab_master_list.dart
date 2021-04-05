@@ -2,12 +2,14 @@ import 'package:chopper/chopper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/screens/index.dart';
+import 'package:mobile/utils/colors.dart';
 import 'package:mobile/widgets/index.dart';
 import 'package:provider/provider.dart';
-var selectedValue = 2;
+var selectedValue = 0;
 var isLargeScreen = false;
 
 
@@ -18,12 +20,9 @@ class MasterListTab extends StatefulWidget {
 }
 
 class _MasterListTabState extends State<MasterListTab> {
-  BuiltList<Consultation> _consultations;
+  ValueNotifier<bool> _notifier = ValueNotifier(false);
 
-  @override
-  Future<void> initState() {
-    super.initState();
-  }
+
 
 
   @override
@@ -52,6 +51,7 @@ class _MasterListTabState extends State<MasterListTab> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           final BuiltList<Consultation> consultation = snapshot.data.body;
+          selectedValue = consultation[0].id;
           return consultation.length > 0 ? _buildNotifications(
               context, consultation.reversed.toBuiltList()) : Center(
             child: Text("No consultation found"),);
@@ -65,37 +65,63 @@ class _MasterListTabState extends State<MasterListTab> {
   }
 
 
+
+
   Widget _buildNotifications(BuildContext context, BuiltList<Consultation> cs) {
     return Row(
       children: [
         Expanded(
-          child: ListView.builder(
+          flex: 2,
+          child: ListView.separated(
               itemCount: cs.length,
               scrollDirection: Axis.vertical,
               padding: EdgeInsets.all(0.0),
               physics: const AlwaysScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return ConsultationWidget('consultation_widget',
-                    cs: cs[index],
-                    onItemSelected: (value) {
-                      if (isLargeScreen) {
-                        selectedValue = cs[index].id;
-                        setState(() {
 
-                        });
-                      } else {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return ScreenVieConsultation(selectedValue);
-                          },
-                        ));
-                      }
-                    });
-              }),
+              itemBuilder: (context, index) {
+                return  Container(
+
+                child: ListTile(
+                  dense: true,
+                  leading: CircleAvatar(
+                    radius: 20,
+                    backgroundColor: cs[index].isAdmitted ?  Colors.red[700]: Colors.green[100],
+                    child: cs[index].isAdmitted ? Icon(MdiIcons.bed, color: Colors.white,): Text(
+                      cs[index].id.toString(),
+                      style: TextStyle(fontWeight: FontWeight.bold, color: cs[index].isActive ? Colors.white : Colors.green),
+                    ),
+                  ),
+                  title: Text(cs[index].fromDate),
+                  subtitle: Text(cs[index].patientName),
+                  onTap: () {
+                    if (isLargeScreen) {
+                      selectedValue = cs[index].id;
+                      print(selectedValue);
+                      _notifier.value = !_notifier.value;
+                    } else {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return ScreenVieConsultation(selectedValue);
+                        },
+                      ));
+                    }
+                  },
+                ));
+              },
+          separatorBuilder: (context, index){
+                return Container(color: Colors.grey, height: 1);
+          },),
         ),
-        isLargeScreen
-            ? Expanded(child: ScreenVieConsultation(selectedValue))
-            : Container(),
+        ValueListenableBuilder(
+            valueListenable: _notifier,
+            builder: (BuildContext context, bool quoteReady, Widget child){
+              return
+                isLargeScreen
+                    ? Expanded(
+                    flex: 8,
+                    child: ScreenVieConsultation(selectedValue))
+                    : Container();
+            })
       ],
     );
   }

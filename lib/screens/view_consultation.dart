@@ -7,19 +7,39 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+var selectedValue = 2;
+var isLargeScreen = false;
+
 class ScreenVieConsultation extends StatelessWidget {
   final int consultationId;
   ScreenVieConsultation(this.consultationId);
 
   Widget build(BuildContext context) {
-    return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          backgroundColor: green1.withOpacity(0.9),
-          title: Text('Consultation No. '+consultationId.toString()),
-        ),
-        body: _buildBody(context, consultationId)
-    );
+    return OrientationBuilder(
+        builder: (context, orientation) {
+          if (MediaQuery
+              .of(context)
+              .size
+              .width > 600) {
+            isLargeScreen = true;
+          } else {
+            isLargeScreen = false;
+          }
+          return Container(
+            padding: EdgeInsets.all(0.0),
+            child:  Scaffold(
+                resizeToAvoidBottomInset: false,
+                appBar:  AppBar(
+                  elevation: 0.0,
+                  automaticallyImplyLeading: !isLargeScreen,
+                  backgroundColor: green1.withOpacity(0.9),
+                  title: Text('Consultation No. '+consultationId.toString()),
+                ),
+                body: _buildBody(context, consultationId)
+            ),
+          );
+        });
+
   }
 }
 

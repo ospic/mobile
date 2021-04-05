@@ -27,11 +27,10 @@ class _ConsultationWidgetWidgetState extends State<ConsultationWidget> {
     final String consultant = widget.cs.staffName==null? '': 'Consultant name '+widget.cs.staffName;
     return  GestureDetector(
      child: Card(
-      shadowColor: Colors.brown,
-       elevation: 1.0,
-       shape: RoundedRectangleBorder(
-         borderRadius: BorderRadius.circular(5.0),
-       ),
+       margin: EdgeInsets.all(1.8),
+      shadowColor: Colors.transparent,
+       elevation: 0.0,
+
         child: Padding(
           padding: EdgeInsets.all(5.0),
           child:  Container(
