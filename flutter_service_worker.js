@@ -24,7 +24,7 @@ const RESOURCES = {
 "assets/fonts/Calibri-Light.ttf": "0d717c4bf80cbb556bf87777fef7d09e",
 "assets/AssetManifest.json": "c20a07cd898d44b8d5935ddfdc0bced4",
 "assets/FontManifest.json": "ea9c7e3eb00a91d63dac96a14572d9f3",
-"main.dart.js": "6ddbd1b59905fe7332967a5fdf754c2d",
+"main.dart.js": "bd30097b9adf40fadc0d46443971d8da",
 "version.json": "d75b5ea4d59e2aafe556a5d9ddc482f3"
 };
 
