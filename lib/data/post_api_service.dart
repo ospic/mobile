@@ -6,6 +6,7 @@ import 'package:mobile/data/built_value_converter.dart.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/model/report.dart';
+import 'package:mobile/utils/index.dart';
 import 'package:mobile/utils/sharedpreference.dart';
 import 'package:http/io_client.dart' as http;
 import 'package:mobile/utils/Constants.dart';
@@ -79,7 +80,7 @@ abstract class PostApiService extends ChopperService {
         (X509Certificate cert, String host, int port) => true;
     **/
     final client = ChopperClient(
-      baseUrl: Constants.RELEASE_BASE_URL,
+      baseUrl: UrlEndpoints.RELEASE_BASE_URL,
       services: [_$PostApiService()],
       client: dartclient,
       converter: BuiltValueConverter(),

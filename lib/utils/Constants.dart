@@ -16,8 +16,6 @@ class Constants{
   static final String emailPattern = "^([0-9a-zA-Z]([-.+\\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})\$";
   static const String PHOTOSURL = "https://api.unsplash.com/";
   static const String PHOTOS = "photos";
-  static const String RELEASE_BASE_URL ="http://192.168.43.11:8080/api/self";
-  static const String DEBUG_BASE_URL ="http://192.168.43.11:8080/api/self";
   //URL For list of photos
   static const String accessKey = "f96abcd230664d7cab7ed900470db93878d44b15d672603e8c6817a267a96c78";
 }
