@@ -73,11 +73,22 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: Calibri
+     - family: FiraSans
        fonts:
-         - asset: fonts/Calibri-Regular.ttf
-         - asset: fonts/Calibri-Light.ttf
+         - asset: fonts/FiraSans-Regular.ttf
+           weight: 100
+
+     - family: FiraSansExtraLight
+       fonts:
+         - asset: fonts/FiraSans-ExtraLight.ttf
+         - asset: fonts/FiraSans-ExtraLightItalic.ttf
+         - asset: fonts/FiraSans-Light.ttf
+         - asset: fonts/FiraSans-LightItalic.ttf
+         - asset: fonts/FiraSans-Thin.ttf
+         - asset: fonts/FiraSans-ThinItalic.ttf
            style: normal
+           weight: 100
+uses-material-design: true
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

@@ -44,7 +44,16 @@ class MyApp extends StatelessWidget{
       dispose: (_, PostApiService service) => service.client.dispose(),
       child:  MaterialApp(
         navigatorKey: NavigationService.instance.navigationKey,
-      theme: ThemeData(fontFamily: 'Calibri'),
+      theme: ThemeData(
+          fontFamily: 'FiraSans',
+        brightness: Brightness.light,
+        primarySwatch: Colors.blue,
+          textTheme: TextTheme(
+            body1:  TextStyle(fontWeight: FontWeight.normal, height: 1.0, fontFamily: 'FiraSans', fontSize: 20.0),
+            headline: TextStyle(fontWeight: FontWeight.normal, height: 1.0, fontFamily: 'FiraSans', fontSize: 20.0),
+            button: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0, letterSpacing: 1.25),
+          )
+      ),
       debugShowCheckedModeBanner: false,
         routes: routes,
         title: '',
