@@ -46,7 +46,7 @@ class _ConsultationWidgetWidgetState extends State<ConsultationWidget> {
                       backgroundColor: widget.cs.isAdmitted ?  Colors.red[700]: Colors.green[100],
                       child: widget.cs.isAdmitted ? Icon(MdiIcons.bed, color: Colors.white,): Text(
                         widget.cs.id.toString(),
-                        style: TextStyle(fontWeight: FontWeight.bold, color: widget.cs.isActive ? Colors.white : Colors.green),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'FiraSans', color: widget.cs.isActive ? Colors.white : Colors.green),
                       ),
                     )),
                 Column(

@@ -28,14 +28,14 @@ class _TransactionWidgetState extends State<TransactionWidget> {
           border: Border(bottom: BorderSide()),
         ),
         child:ListTile(
-          tileColor: gray1,
+          tileColor: Colors.white,
           dense: true,
-          leading: Icon(MdiIcons.creditCardMinusOutline, color: colorPrimary,),
+          leading: Icon(MdiIcons.creditCardMultipleOutline, color: colorPrimary,),
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text(transaction.amount.toString() +" "+ transaction.currencyCode, style: TextStyle(fontWeight: FontWeight.bold),)],
+            children: [Text(transaction.amount.toString() +" "+ transaction.currencyCode, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),)],
           ),
-          title:  Text((transaction.medicalServiceName == null?  'Medicine:\t'+transaction.medicineName.toString():'Service:\t'+transaction.medicalServiceName.toString())),
+          title:  Text((transaction.medicalServiceName == null?  'Medicine: ${transaction.medicineName.toString()}':'Service: ${transaction.medicalServiceName.toString()}')),
           subtitle:     Text('Date:'+transaction.transactionDate,style: TextStyle(color: textPrimaryColor,  fontWeight: FontWeight.w200)),
           onTap:() => Navigator.push(
               context,
