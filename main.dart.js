@@ -9863,7 +9863,7 @@ var $async$a6V=P.X(function(b,c){if(b===1)return P.Z(c,r)
 while(true)switch(s){case 0:p=C.ae.Ny(a,null)
 o=t.X
 s=3
-return P.a5($.av1().v8("POST",P.ha("http://192.168.43.11:8080/api/self/login").i(0),P.aM(["Content-type","application/json"],o,o),p,null),$async$a6V)
+return P.a5($.av1().v8("POST",P.ha("https://ospicapi.herokuapp.com/api/self/login").i(0),P.aM(["Content-type","application/json"],o,o),p,null),$async$a6V)
 case 3:q=c
 s=1
 break
@@ -14523,7 +14523,7 @@ arG:function(a){var s=new U.Nb()
 s.Yf(a)
 return s},
 aCq:function(){var s=H.b([U.arG(null)],t.cK),r=t.X
-return U.arG(R.aAn("http://192.168.43.11:8080/api/self",new O.FE(P.b7(t.Rj)),new D.Wi(),[U.aIG(),new L.r1(P.aM(["Cache-control","no-cache"],r,r)),new L.r1(P.aM(["Content-Type","application/json"],r,r)),new L.r1(P.aM(["Accept","*/*"],r,r)),new L.I6(),new U.a3Q()],s))},
+return U.arG(R.aAn("https://ospicapi.herokuapp.com/api/self",new O.FE(P.b7(t.Rj)),new D.Wi(),[U.aIG(),new L.r1(P.aM(["Cache-control","no-cache"],r,r)),new L.r1(P.aM(["Content-Type","application/json"],r,r)),new L.r1(P.aM(["Accept","*/*"],r,r)),new L.I6(),new U.a3Q()],s))},
 agY:function(a){return U.aF9(a)},
 aF9:function(a){var s=0,r=P.a1(t.I_),q,p,o,n,m,l
 var $async$agY=P.X(function(b,c){if(b===1)return P.Z(c,r)
