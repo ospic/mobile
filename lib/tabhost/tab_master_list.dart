@@ -9,10 +9,6 @@ import 'package:mobile/screens/index.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:mobile/widgets/index.dart';
 import 'package:provider/provider.dart';
-var selectedValue = 0;
-var isLargeScreen = false;
-
-
 class MasterListTab extends StatefulWidget {
 
   @override
@@ -21,12 +17,13 @@ class MasterListTab extends StatefulWidget {
 
 class _MasterListTabState extends State<MasterListTab> {
   ValueNotifier<bool> _notifier = ValueNotifier(false);
-
+  var isLargeScreen = false;
 
 
 
   @override
   Widget build(BuildContext context) {
+
     return OrientationBuilder(
         builder: (context, orientation) {
           if (MediaQuery
@@ -44,17 +41,13 @@ class _MasterListTabState extends State<MasterListTab> {
   }
 
 
-  FutureBuilder<Response<BuiltList<Consultation>>> _buildBody(
-      BuildContext context) {
-    return FutureBuilder<Response<BuiltList<Consultation>>>(
-      future: Provider.of<PostApiService>(context).getUserConsultations(),
+  FutureBuilder<Response<BuiltList<Bill>>> _buildBody(BuildContext context) {
+    return FutureBuilder<Response<BuiltList<Bill>>>(
+      future: Provider.of<PostApiService>(context).getBills(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          final BuiltList<Consultation> consultation = snapshot.data.body;
-          selectedValue = consultation[0].id;
-          return consultation.length > 0 ? _buildNotifications(
-              context, consultation.reversed.toBuiltList()) : Center(
-            child: Text("No consultation found"),);
+          final BuiltList<Bill> bills = snapshot.data.body;
+          return _buildBillsList(context, bills);
         } else {
           return Center(
             child: CircularProgressIndicator(),
@@ -67,13 +60,13 @@ class _MasterListTabState extends State<MasterListTab> {
 
 
 
-  Widget _buildNotifications(BuildContext context, BuiltList<Consultation> cs) {
+  Widget _buildBillsList(BuildContext context, BuiltList<Bill> bills) {
     return Row(
       children: [
         Expanded(
-          flex: 2,
+          flex: isLargeScreen ? 3 : 10,
           child: ListView.separated(
-              itemCount: cs.length,
+              itemCount: bills.length,
               scrollDirection: Axis.vertical,
               padding: EdgeInsets.all(0.0),
               physics: const AlwaysScrollableScrollPhysics(),
@@ -85,23 +78,28 @@ class _MasterListTabState extends State<MasterListTab> {
                   dense: true,
                   leading: CircleAvatar(
                     radius: 20,
-                    backgroundColor: cs[index].isAdmitted ?  Colors.red[700]: Colors.green[100],
-                    child: cs[index].isAdmitted ? Icon(MdiIcons.bed, color: Colors.white,): Text(
-                      cs[index].id.toString(),
-                      style: TextStyle(fontWeight: FontWeight.bold, color: cs[index].isActive ? Colors.white : Colors.green),
+                    backgroundColor: bills[index].isPaid ?   Colors.green[100]:Colors.red[700],
+                    child:  Text(bills[index].id.toString(),
+                      style: TextStyle(fontWeight: FontWeight.bold, color: bills[index].isActive ? Colors.white : Colors.green),
                     ),
                   ),
-                  title: Text(cs[index].fromDate),
-                  subtitle: Text(cs[index].patientName),
+                  title: Text(bills[index].createdDate),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Bill amount: ${bills[index].totalAmount}'),
+                      Text('Paid amount: ${bills[index].paidAmount}'),
+                    ],
+                  ),
                   onTap: () {
                     if (isLargeScreen) {
-                      selectedValue = cs[index].id;
+                      selectedValue = bills[index].id;
                       print(selectedValue);
                       _notifier.value = !_notifier.value;
                     } else {
                       Navigator.push(context, MaterialPageRoute(
                         builder: (context) {
-                          return ScreenVieConsultation(selectedValue);
+                          return BillScreen(selectedValue);
                         },
                       ));
                     }
@@ -112,16 +110,13 @@ class _MasterListTabState extends State<MasterListTab> {
                 return Container(color: Colors.grey, height: 1);
           },),
         ),
-        ValueListenableBuilder(
-            valueListenable: _notifier,
-            builder: (BuildContext context, bool quoteReady, Widget child){
-              return
-                isLargeScreen
-                    ? Expanded(
-                    flex: 8,
-                    child: ScreenVieConsultation(selectedValue))
-                    : Container();
-            })
+        Expanded(
+            flex: isLargeScreen ? 7: 0,
+            child:ValueListenableBuilder(
+                valueListenable: _notifier,
+                builder: (BuildContext context, bool quoteReady, Widget child){
+                  return isLargeScreen ? BillScreen(selectedValue): Container();
+            }))
       ],
     );
   }

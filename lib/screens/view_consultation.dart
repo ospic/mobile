@@ -32,8 +32,8 @@ class ScreenVieConsultation extends StatelessWidget {
                 appBar:  AppBar(
                   elevation: 0.0,
                   automaticallyImplyLeading: !isLargeScreen,
-                  backgroundColor: green1.withOpacity(0.9),
-                  title: Text('Consultation No. '+consultationId.toString()),
+                  backgroundColor: isLargeScreen ? Colors.white : colorPrimary ,
+                  title: Text('Consultation No. '+consultationId.toString(), style: TextStyle(fontFamily: 'Batmfa', color: Colors.black)),
                 ),
                 body: _buildBody(context, consultationId)
             ),
