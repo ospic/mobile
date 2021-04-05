@@ -5,7 +5,7 @@ const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-"favicon.png": "5dcef449791fa27946b3d35ad8803796",
+"favicon.png": "2765281b412bd2ee27c1677e8f5f1ea2",
 "manifest.json": "bbf096d4b21132e3de3a45fec751771a",
 "index.html": "03397ead15ecfafda6887878c8858e1b",
 "/": "03397ead15ecfafda6887878c8858e1b",
@@ -24,7 +24,7 @@ const RESOURCES = {
 "assets/fonts/Calibri-Light.ttf": "0d717c4bf80cbb556bf87777fef7d09e",
 "assets/AssetManifest.json": "c20a07cd898d44b8d5935ddfdc0bced4",
 "assets/FontManifest.json": "ea9c7e3eb00a91d63dac96a14572d9f3",
-"main.dart.js": "493275238c51ab408bf568f82c0bc4a9",
+"main.dart.js": "ed1cd21caaf7a23d0ca9c2cdc70035ed",
 "version.json": "d75b5ea4d59e2aafe556a5d9ddc482f3"
 };
 
