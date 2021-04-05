@@ -47,6 +47,7 @@ class _TabBillsState extends State<TabBills> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           final BuiltList<Bill> bills = snapshot.data.body;
+          selectedValue = bills[0].id;
           return _buildBillsList(context, bills);
         } else {
           return Center(

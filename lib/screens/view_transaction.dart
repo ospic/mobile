@@ -76,7 +76,7 @@ ListView _buildTransactionWidget(BuildContext context, Transaction transaction){
                 Padding(
                     padding:
                     EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                    child: Text(transaction.transactionDate)),
+                    child: Text(transaction.transactionDate.toString())),
               ]),
 
               transaction.medicineName==null? TableRow(children: [
