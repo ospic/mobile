@@ -32,6 +32,8 @@ class MyApp extends StatelessWidget{
       '/profile': (BuildContext context) => ProfileScreen(),
       '/help': (BuildContext context) => HelpScreen(),
       '/contacts': (BuildContext context) => ContactsScreen(),
+      '/consultations':(BuildContext context) => HomeScreen(),
+
     };
 
     

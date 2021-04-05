@@ -29,7 +29,9 @@ class ReusableListTile extends State<ReusableDrawerListTile>{
       dense: true,
       isThreeLine: false,
       leading: Icon(widget.leading, color: colorPrimary,),
-       onTap: widget.disabled ? () {} : widget.onTap,
+       onTap: widget.disabled ? () {
+
+       } : widget.onTap,
       
     );
     
