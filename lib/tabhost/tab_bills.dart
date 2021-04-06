@@ -100,7 +100,7 @@ class _TabBillsState extends State<TabBills> {
                       } else {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return BillScreen(selectedValue);
+                            return BillScreen(bills[index].id);
                           },
                         ));
                       }
