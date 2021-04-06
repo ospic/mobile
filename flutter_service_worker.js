@@ -8,7 +8,7 @@ const RESOURCES = {
 "favicon.png": "2765281b412bd2ee27c1677e8f5f1ea2",
 "manifest.json": "bbf096d4b21132e3de3a45fec751771a",
 "index.html": "03397ead15ecfafda6887878c8858e1b",
-"/": "03397ead15ecfafda6887878c8858e1b",
+"mobile/": "03397ead15ecfafda6887878c8858e1b",
 "assets/packages/file_icon/fonts/seti.ttf": "2b67c27356467781d7786c59ca58b34f",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
 "assets/packages/progress_dialog/assets/double_ring_loading_io.gif": "e5b006904226dc824fdb6b8027f7d930",
@@ -36,7 +36,7 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "/",
+  "mobile/",
 "main.dart.js",
 "index.html",
 "assets/NOTICES",
