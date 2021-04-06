@@ -65,7 +65,7 @@ class _State extends State<LoginScreen> {
                                             labelText: 'Username *',
                                             fillColor: Colors.white70),
                                         textInputAction: TextInputAction.next,
-                                        autofocus: false,
+                                        autofocus: true,
                                         onFieldSubmitted: (v){
                                           FocusScope.of(context).requestFocus(focus);
                                         },

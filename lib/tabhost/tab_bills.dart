@@ -76,10 +76,9 @@ class _TabBillsState extends State<TabBills> {
               return  Container(
 
                   child: ListTile(
-                    dense: true,
                     leading: CircleAvatar(
                       radius: 20,
-                      backgroundColor: bills[index].isPaid ?   Colors.green[100]:Colors.red[700],
+                      backgroundColor: bills[index].isPaid ?   colorPrimary : Colors.blue[700],
                       child:  Text(bills[index].id.toString(),
                         style: TextStyle(fontWeight: FontWeight.bold, color: bills[index].isActive ? Colors.white : Colors.green),
                       ),
