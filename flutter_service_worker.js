@@ -40,8 +40,8 @@ const CORE = [
 "main.dart.js",
 "index.html",
 "assets/NOTICES",
-"assets/AssetManifest.json",
-"assets/FontManifest.json"];
+"mobile/assets/AssetManifest.json",
+"mobile/assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
