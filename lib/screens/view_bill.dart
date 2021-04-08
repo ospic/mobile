@@ -277,7 +277,7 @@ class BillScreen extends StatelessWidget {
             ),
           ),
           Container(
-            color: gray3,
+            color: colorPrimary,
             margin: EdgeInsets.only(top: 10.0),
             child: Center(heightFactor: 3.0,
               child: Text('Bill ${bill.id} Transactions', style: TextStyle(
