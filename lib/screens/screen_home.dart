@@ -10,17 +10,18 @@ import '../utils/sharedpreference.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
+
   @override
   _HomeScreenState createState() => new _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<ScreenHiddenDrawer> itens = [];
+  List<ScreenHiddenDrawer> drawerItems = [];
   var sharedPreference = new SharedPreference();
 
   @override
   void initState() {
-    itens.add(new ScreenHiddenDrawer(
+    drawerItems.add(new ScreenHiddenDrawer(
         new ItemHiddenMenu(
           name: "Home",
           colorLineSelected: green1,
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         Container(color: Colors.teal, child: ScreenTabs())));
 
-    itens.add(new ScreenHiddenDrawer(
+    drawerItems.add(new ScreenHiddenDrawer(
         new ItemHiddenMenu(
           name: "Profile",
           colorLineSelected: green1,
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
           color: Colors.orange,
           child: Center(child: ProfileScreen()),
         )));
-    itens.add(new ScreenHiddenDrawer(
+    drawerItems.add(new ScreenHiddenDrawer(
         new ItemHiddenMenu(
           name: "Contact Us",
           colorLineSelected: green1,
@@ -57,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           color: Colors.orange,
           child: Center(child: ContactsScreen()),
         )));
-    itens.add(new ScreenHiddenDrawer(
+    drawerItems.add(new ScreenHiddenDrawer(
         new ItemHiddenMenu(
           name: "Help",
           colorLineSelected: green1,
@@ -70,14 +71,14 @@ class _HomeScreenState extends State<HomeScreen> {
           color: Colors.orange,
           child: Center(child: HelpScreen()),
         )));
-    itens.add(new ScreenHiddenDrawer(
+    drawerItems.add(new ScreenHiddenDrawer(
         new ItemHiddenMenu(
           name: "Logout",
           colorLineSelected: green1,
           baseStyle: TextStyle(
             color: Colors.white,
           ),
-          onTap: (){
+          onTap: () {
             this.sharedPreference.clearSF();
           },
           selectedStyle: TextStyle(color: green1, fontSize: 25.0),
@@ -102,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return HiddenDrawerMenu(
       initPositionSelected: 0,
-      screens: itens,
+      screens: drawerItems,
       backgroundColorMenu: blue,
       slidePercent: 60.0,
       elevationAppBar: 0.0,

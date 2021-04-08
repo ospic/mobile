@@ -117,7 +117,7 @@ class _MasterListTabState extends State<Consultations> {
                         } else {
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
-                              return ScreenVieConsultation(selectedValue);
+                              return ScreenVieConsultation(cs[index].id);
                             },
                           ));
                         }
