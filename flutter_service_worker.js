@@ -29,7 +29,7 @@ const RESOURCES = {
 "assets/fonts/FiraSans-LightItalic.ttf": "6d15364fb3883d074dea8096229942a7",
 "assets/AssetManifest.json": "3c6c376b026dd79817a2cd9620367f8c",
 "assets/FontManifest.json": "d27d3b38b164a831f31d1a9e5c44ff52",
-"main.dart.js": "ca3515db0b642068986c9c012ceb4b12",
+"main.dart.js": "310c8cc89baef542163fd01a02555579",
 "version.json": "d75b5ea4d59e2aafe556a5d9ddc482f3"
 };
 
