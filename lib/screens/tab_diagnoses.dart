@@ -60,11 +60,25 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> dia
               constraints: BoxConstraints(
                 minHeight: 90,
               ),
-              child: ListTile(
-                title: Text(diagnoses[index].date, style: TextStyle(color: colorAccent, fontWeight: FontWeight.bold)),
-                subtitle: Text(diagnoses[index].symptoms),
+              child:Card(
+                elevation: 0.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0.5), // if you need this
+                  side: BorderSide(
+                    color: colorPrimary,
+                    width: 1,
+                  ),
+                ),
+                child: Container(
+                  color: Colors.transparent,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.all(8.0),
+                    title: Text(diagnoses[index].date, style: TextStyle(color: colorAccent, fontWeight: FontWeight.bold)),
+                    subtitle: Text(diagnoses[index].symptoms),
+                  ),
+                ),
               ),
-              color: gray1,
+              color: Colors.transparent,
             ),
           );
         });

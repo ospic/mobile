@@ -17,11 +17,7 @@ class _$PatientSerializer implements StructuredSerializer<Patient> {
   @override
   Iterable<Object> serialize(Serializers serializers, Patient object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
-      'contactsInformation',
-      serializers.serialize(object.contactsInformation,
-          specifiedType: const FullType(ContactsInformation)),
-    ];
+    final result = <Object>[];
     if (object.id != null) {
       result
         ..add('id')
@@ -130,10 +126,10 @@ class _$PatientSerializer implements StructuredSerializer<Patient> {
         ..add(serializers.serialize(object.note,
             specifiedType: const FullType(String)));
     }
-    if (object.symptoms != null) {
+    if (object.allergies != null) {
       result
-        ..add('symptoms')
-        ..add(serializers.serialize(object.symptoms,
+        ..add('allergies')
+        ..add(serializers.serialize(object.allergies,
             specifiedType: const FullType(String)));
     }
     if (object.marriageStatus != null) {
@@ -159,6 +155,12 @@ class _$PatientSerializer implements StructuredSerializer<Patient> {
         ..add('hasSelfServiceUserAccount')
         ..add(serializers.serialize(object.hasSelfServiceUserAccount,
             specifiedType: const FullType(bool)));
+    }
+    if (object.contactsInformation != null) {
+      result
+        ..add('contactsInformation')
+        ..add(serializers.serialize(object.contactsInformation,
+            specifiedType: const FullType(ContactsInformation)));
     }
     return result;
   }
@@ -246,8 +248,8 @@ class _$PatientSerializer implements StructuredSerializer<Patient> {
           result.note = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'symptoms':
-          result.symptoms = serializers.deserialize(value,
+        case 'allergies':
+          result.allergies = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'marriageStatus':
@@ -316,7 +318,7 @@ class _$Patient extends Patient {
   @override
   final String note;
   @override
-  final String symptoms;
+  final String allergies;
   @override
   final String marriageStatus;
   @override
@@ -350,17 +352,13 @@ class _$Patient extends Patient {
       this.patientPhoto,
       this.bloodGroup,
       this.note,
-      this.symptoms,
+      this.allergies,
       this.marriageStatus,
       this.gender,
       this.isActive,
       this.hasSelfServiceUserAccount,
       this.contactsInformation})
-      : super._() {
-    if (contactsInformation == null) {
-      throw new BuiltValueNullFieldError('Patient', 'contactsInformation');
-    }
-  }
+      : super._();
 
   @override
   Patient rebuild(void Function(PatientBuilder) updates) =>
@@ -391,7 +389,7 @@ class _$Patient extends Patient {
         patientPhoto == other.patientPhoto &&
         bloodGroup == other.bloodGroup &&
         note == other.note &&
-        symptoms == other.symptoms &&
+        allergies == other.allergies &&
         marriageStatus == other.marriageStatus &&
         gender == other.gender &&
         isActive == other.isActive &&
@@ -433,7 +431,7 @@ class _$Patient extends Patient {
                                         patientPhoto.hashCode),
                                     bloodGroup.hashCode),
                                 note.hashCode),
-                            symptoms.hashCode),
+                            allergies.hashCode),
                         marriageStatus.hashCode),
                     gender.hashCode),
                 isActive.hashCode),
@@ -462,7 +460,7 @@ class _$Patient extends Patient {
           ..add('patientPhoto', patientPhoto)
           ..add('bloodGroup', bloodGroup)
           ..add('note', note)
-          ..add('symptoms', symptoms)
+          ..add('allergies', allergies)
           ..add('marriageStatus', marriageStatus)
           ..add('gender', gender)
           ..add('isActive', isActive)
@@ -550,9 +548,9 @@ class PatientBuilder implements Builder<Patient, PatientBuilder> {
   String get note => _$this._note;
   set note(String note) => _$this._note = note;
 
-  String _symptoms;
-  String get symptoms => _$this._symptoms;
-  set symptoms(String symptoms) => _$this._symptoms = symptoms;
+  String _allergies;
+  String get allergies => _$this._allergies;
+  set allergies(String allergies) => _$this._allergies = allergies;
 
   String _marriageStatus;
   String get marriageStatus => _$this._marriageStatus;
@@ -600,7 +598,7 @@ class PatientBuilder implements Builder<Patient, PatientBuilder> {
       _patientPhoto = _$v.patientPhoto;
       _bloodGroup = _$v.bloodGroup;
       _note = _$v.note;
-      _symptoms = _$v.symptoms;
+      _allergies = _$v.allergies;
       _marriageStatus = _$v.marriageStatus;
       _gender = _$v.gender;
       _isActive = _$v.isActive;
@@ -648,17 +646,17 @@ class PatientBuilder implements Builder<Patient, PatientBuilder> {
               patientPhoto: patientPhoto,
               bloodGroup: bloodGroup,
               note: note,
-              symptoms: symptoms,
+              allergies: allergies,
               marriageStatus: marriageStatus,
               gender: gender,
               isActive: isActive,
               hasSelfServiceUserAccount: hasSelfServiceUserAccount,
-              contactsInformation: contactsInformation.build());
+              contactsInformation: _contactsInformation?.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'contactsInformation';
-        contactsInformation.build();
+        _contactsInformation?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Patient', _$failedField, e.toString());
