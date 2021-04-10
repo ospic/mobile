@@ -1,6 +1,6 @@
 import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
-import 'package:mobile/model/patient.dart';
+import 'package:mobile/model/index.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +56,9 @@ FutureBuilder<Response<Patient>> _buildBody(BuildContext context) {
 
 Widget _buildPosts(BuildContext context, Patient user) {
   final String baseUrl = Provider.of<PostApiService>(context).client.baseUrl.replaceAll('/self', '');
+  final ContactsInformation contactsInformation = user.contactsInformation;
+  final String city = contactsInformation == null ? '':contactsInformation.city;
+  final String state = contactsInformation == null ? '':contactsInformation.state;
 
   return ListView(
     children: <Widget>[
@@ -124,7 +127,7 @@ Widget _buildPosts(BuildContext context, Patient user) {
                   ),
                   ListTile(
                     title: Text("Home address",style: TextStyle(color: Colors.white70, fontWeight: FontWeight.bold)),
-                    subtitle: Text(user.address + ","+user.contactsInformation.city + " , "+user.contactsInformation.state,style: TextStyle(color: Colors.white70)),
+                    subtitle: Text(user.address + ","+city + " , "+state,style: TextStyle(color: Colors.white70)),
                   ),
 
                   const Divider(
@@ -171,6 +174,10 @@ Widget _buildPosts(BuildContext context, Patient user) {
                     subtitle: Text(user.bloodPressure,style: TextStyle(color: Colors.white70)),
                   ),
 
+                  ListTile(
+                    title: Text("Allergies",style: TextStyle(color: Colors.white70, fontWeight: FontWeight.bold)),
+                    subtitle: Text(user.allergies,style: TextStyle(color: Colors.white70)),
+                  ),
                   const Divider(
                     height: 2,
                     thickness: 2,
@@ -203,6 +210,7 @@ Widget _buildPosts(BuildContext context, Patient user) {
                     title: Text("Last modified",style: TextStyle(color: Colors.white70, fontWeight: FontWeight.bold)),
                     subtitle: Text(user.lastModifiedDate,style: TextStyle(color: Colors.white70)),
                   ),
+
 
                   const Divider(
                     height: 2,
