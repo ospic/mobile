@@ -1,4 +1,5 @@
 import 'package:chopper/chopper.dart';
+import 'package:flutter/gestures.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/screens/index.dart';
@@ -69,7 +70,10 @@ Widget _buildConsultationWidget(
           pinned: true,
           expandedHeight: 160.0,
           forceElevated: innerBoxIsScrolled,
-          bottom: TabBar( isScrollable: true,
+          bottom: TabBar(
+            isScrollable: true,
+            indicatorSize: TabBarIndicatorSize.tab,
+            labelStyle: TextStyle( fontWeight: FontWeight.bold),
             tabs: _tabs.map((String name) => Tab(text: name)).toList(),
           ),
         ),
