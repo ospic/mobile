@@ -47,7 +47,7 @@ class BillScreen extends StatelessWidget {
           )
               : CupertinoNavigationBar(
             automaticallyImplyLeading: !isLargeScreen,
-            backgroundColor: green1,
+            backgroundColor: colorPrimary,
             middle: Text(
               'Group no.' /** + billId.id.toString()**/,
               style: TextStyle(fontFamily: 'Batmfa'),

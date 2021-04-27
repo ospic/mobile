@@ -26,7 +26,7 @@ class ViewTransaction extends StatelessWidget {
               title: Text("Transaction No. " + transactionId.toString(), style: TextStyle(fontFamily: 'Batmfa'),),
               backgroundColor: green1
     ) : CupertinoNavigationBar(
-           backgroundColor: green1,
+           backgroundColor: colorPrimary,
             middle: Text("Transaction No. " + transactionId.toString(), style: TextStyle(fontFamily: 'Batmfa'),),
     );
 

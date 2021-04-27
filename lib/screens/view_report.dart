@@ -14,7 +14,7 @@ class ViewReportScreen extends StatelessWidget {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          backgroundColor: green1.withOpacity(0.9),
+          backgroundColor: colorPrimary.withOpacity(0.9),
           title: Text('View report '),
         ),
         body: _buildBody(context, reportId));

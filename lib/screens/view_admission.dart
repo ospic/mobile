@@ -17,7 +17,7 @@ class ViewAdmissionScreen extends StatelessWidget {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          backgroundColor: green1.withOpacity(0.9),
+          backgroundColor: colorPrimary.withOpacity(0.9),
           title: Text('Admission ' + admissionId.toString()),
         ),
         body: _buildBody(context, admissionId));
