@@ -73,33 +73,34 @@ class _TabBillsState extends State<TabBills> {
             physics: const AlwaysScrollableScrollPhysics(),
 
             itemBuilder: (context, index) {
+              final Bill bill = bills[index];
               return  Container(
 
                   child: ListTile(
                     leading: CircleAvatar(
                       radius: 20,
-                      backgroundColor: bills[index].isPaid ?   colorPrimary : Colors.blue[700],
-                      child:  Text(bills[index].id.toString(),
-                        style: TextStyle(fontWeight: FontWeight.bold, color: bills[index].isActive ? Colors.white : Colors.green),
+                      backgroundColor: bill.isPaid ?   colorPrimary : Colors.blue[700],
+                      child:  Text(bill.id.toString(),
+                        style: TextStyle(fontWeight: FontWeight.bold, color: bill.isActive ? Colors.white : Colors.green),
                       ),
                     ),
-                    title: Text(bills[index].createdDate),
+                    title: Text(bill.createdDate),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Bill amount: ${bills[index].totalAmount}'),
-                        Text('Paid amount: ${bills[index].paidAmount}'),
+                        Text('Bill amount: ${bill.totalAmount}'),
+                        Text('Paid amount: ${bill.paidAmount}'),
                       ],
                     ),
                     onTap: () {
                       if (isLargeScreen) {
-                        selectedValue = bills[index].id;
+                        selectedValue = bill.id;
                         print(selectedValue);
                         _notifier.value = !_notifier.value;
                       } else {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return BillScreen(bills[index].id);
+                            return BillScreen(bill.id,bill.createdDate );
                           },
                         ));
                       }
@@ -115,7 +116,7 @@ class _TabBillsState extends State<TabBills> {
             child:ValueListenableBuilder(
                 valueListenable: _notifier,
                 builder: (BuildContext context, bool quoteReady, Widget child){
-                  return isLargeScreen ? BillScreen(selectedValue): Container();
+                  return isLargeScreen ? BillScreen(selectedValue, ): Container();
                 }))
       ],
     );
