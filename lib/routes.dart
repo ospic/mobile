@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/screens/screen_profile.dart';
 import 'package:mobile/screens/index.dart';
@@ -12,7 +15,13 @@ import 'package:google_fonts/google_fonts.dart';
 class Routes {
   Routes(){
     _setupLogging();
+    FlutterError.onError = (FlutterErrorDetails details) {
+      FlutterError.dumpErrorToConsole(details);
+      if (kReleaseMode)
+        exit(1);
+    };
       runApp(MyApp());
+
     }
   }
 

@@ -29,12 +29,7 @@ class ScreenVieConsultation extends StatelessWidget {
             padding: EdgeInsets.all(0.0),
             child:  Scaffold(
                 resizeToAvoidBottomInset: false,
-                appBar:  AppBar(
-                  elevation: 0.0,
-                  automaticallyImplyLeading: !isLargeScreen,
-                  backgroundColor: isLargeScreen ? Colors.white : colorPrimary ,
-                  title: Text('Consultation No. '+consultationId.toString(), style: TextStyle(fontFamily: 'Batmfa', color: Colors.black)),
-                ),
+
                 body: _buildBody(context, consultationId)
             ),
           );
@@ -59,14 +54,30 @@ FutureBuilder<Response<ConsultationPayload>> _buildBody(BuildContext context, in
   );
 }
 
-SingleChildScrollView _buildConsultationWidget(BuildContext context, ConsultationPayload consultation){
+Widget _buildConsultationWidget(BuildContext context, ConsultationPayload consultation){
   final Staff staff = consultation.staff;
   final String staffName = staff==null? 'Un-assigned': (staff.fullName == null ? staff.username : staff.fullName);
-  return SingleChildScrollView(
+  final int consultationId = consultation.id;
+  return NestedScrollView(
+    floatHeaderSlivers: true,
 
-    child: ConstrainedBox(
-      constraints: BoxConstraints(),
-      child: Column(
+    headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+      return <Widget>[
+        SliverAppBar(
+          primary: true,
+          backgroundColor: colorPrimary,
+          title:  Text('View consultation $consultationId'),
+          floating: true,
+          pinned: true,
+          expandedHeight: 100.0,
+          forceElevated: innerBoxIsScrolled,
+
+        ),
+
+      ];
+    },
+    body: Expanded(
+      child: ListView(
           children:[
             Padding(
               padding: EdgeInsets.all(2.0),
