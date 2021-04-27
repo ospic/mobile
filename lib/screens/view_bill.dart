@@ -13,8 +13,11 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 class BillScreen extends StatelessWidget {
   final int billId;
+  final String date;
 
-  BillScreen(this.billId);
+  BillScreen(
+      this.billId,
+      [this.date]);
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +37,10 @@ class BillScreen extends StatelessWidget {
             elevation: 0.0,
             automaticallyImplyLeading: !isLargeScreen,
             title: Text(
-              "Bill No. " + billId.toString(),
-              style: TextStyle(fontFamily: 'Batmfa', color: Colors.black),
+              date==null? "Bill No. ${billId}":date,
+              style: TextStyle(fontSize: 16.0, color: isLargeScreen ? colorPrimary:Colors.white),
             ),
-            backgroundColor: isLargeScreen ? Colors.white:colorPrimary,
+            backgroundColor: isLargeScreen ? gray1:colorPrimary,
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.add),
