@@ -14,3 +14,4 @@ export 'view_consultation.dart';
 export 'view_bill.dart';
 export 'view_report.dart';
 export 'view_transaction.dart';
+export 'tab_info.dart';
