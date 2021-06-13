@@ -15,3 +15,6 @@ export 'view_bill.dart';
 export 'view_report.dart';
 export 'view_transaction.dart';
 export 'tab_info.dart';
+
+
+export 'screen_new_home.dart';

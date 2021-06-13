@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         Container(
           color: Colors.orange,
-          child: Center(child: HelpScreen()),
+          child: Center(child: ScreenNewHome()),
         )));
     drawerItems.add(new ScreenHiddenDrawer(
         new ItemHiddenMenu(

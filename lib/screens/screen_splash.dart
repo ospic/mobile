@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
       bool n = await sharedPref.getBoolValuesSF(enumKey.IS_LOGGED_IN.toString()) ?? false;
       if(n){
         print('Logged In');
-        Navigator.of(context).pushReplacementNamed('/home');
+        Navigator.of(context).pushReplacementNamed('/newhome');
       }else{
         print('Not Logged In');
         Navigator.of(context).pushReplacementNamed('/login');
