@@ -136,4 +136,11 @@ class _$PostApiService extends PostApiService {
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<dynamic, dynamic>($request);
   }
+
+  @override
+  Future<Response<BuiltList<InsuranceCard>>> getInsuranceCards() {
+    final $url = '/insurances';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<BuiltList<InsuranceCard>, InsuranceCard>($request);
+  }
 }

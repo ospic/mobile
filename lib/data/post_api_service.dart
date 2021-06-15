@@ -72,6 +72,9 @@ abstract class PostApiService extends ChopperService {
   @Post(path: '/login')
   Future<Response> postForLogin(@Body() dynamic body);
 
+  @Get(path: '/insurances')
+  Future<Response<BuiltList<InsuranceCard>>> getInsuranceCards();
+
   static PostApiService create() {
     final darthttp.BaseClient dartclient = createHttpClient();
     
