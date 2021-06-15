@@ -19,3 +19,5 @@ export 'user.dart';
 export 'report.dart';
 export 'admission.dart';
 export 'visit.dart';
+export 'insurance.dart';
+export 'insurance_card.dart';
