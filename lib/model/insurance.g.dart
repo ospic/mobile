@@ -17,27 +17,42 @@ class _$InsuranceSerializer implements StructuredSerializer<Insurance> {
   @override
   Iterable<Object> serialize(Serializers serializers, Insurance object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
-      'poBox',
-      serializers.serialize(object.poBox,
-          specifiedType: const FullType(String)),
-      'location',
-      serializers.serialize(object.location,
-          specifiedType: const FullType(String)),
-      'telephoneNo',
-      serializers.serialize(object.telephoneNo,
-          specifiedType: const FullType(String)),
-      'emailAddress',
-      serializers.serialize(object.emailAddress,
-          specifiedType: const FullType(String)),
-    ];
+    final result = <Object>[];
     if (object.id != null) {
       result
         ..add('id')
         ..add(serializers.serialize(object.id,
             specifiedType: const FullType(int)));
+    }
+    if (object.name != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(object.name,
+            specifiedType: const FullType(String)));
+    }
+    if (object.poBox != null) {
+      result
+        ..add('poBox')
+        ..add(serializers.serialize(object.poBox,
+            specifiedType: const FullType(String)));
+    }
+    if (object.location != null) {
+      result
+        ..add('location')
+        ..add(serializers.serialize(object.location,
+            specifiedType: const FullType(String)));
+    }
+    if (object.telephoneNo != null) {
+      result
+        ..add('telephoneNo')
+        ..add(serializers.serialize(object.telephoneNo,
+            specifiedType: const FullType(String)));
+    }
+    if (object.emailAddress != null) {
+      result
+        ..add('emailAddress')
+        ..add(serializers.serialize(object.emailAddress,
+            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -108,23 +123,7 @@ class _$Insurance extends Insurance {
       this.location,
       this.telephoneNo,
       this.emailAddress})
-      : super._() {
-    if (name == null) {
-      throw new BuiltValueNullFieldError('Insurance', 'name');
-    }
-    if (poBox == null) {
-      throw new BuiltValueNullFieldError('Insurance', 'poBox');
-    }
-    if (location == null) {
-      throw new BuiltValueNullFieldError('Insurance', 'location');
-    }
-    if (telephoneNo == null) {
-      throw new BuiltValueNullFieldError('Insurance', 'telephoneNo');
-    }
-    if (emailAddress == null) {
-      throw new BuiltValueNullFieldError('Insurance', 'emailAddress');
-    }
-  }
+      : super._();
 
   @override
   Insurance rebuild(void Function(InsuranceBuilder) updates) =>

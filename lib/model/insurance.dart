@@ -6,11 +6,11 @@ part 'insurance.g.dart';
 abstract class Insurance implements Built<Insurance, InsuranceBuilder> {
   @nullable
   int get id;
-  String get name;
-  String get poBox;
-  String get location;
-  String get telephoneNo;
-  String get emailAddress;
+  @nullable String get name;
+  @nullable String get poBox;
+  @nullable String get location;
+  @nullable String get telephoneNo;
+  @nullable String get emailAddress;
 
   Insurance._();
   factory Insurance([updates(InsuranceBuilder b)]) = _$Insurance;

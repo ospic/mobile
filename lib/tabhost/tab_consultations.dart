@@ -32,6 +32,14 @@ class _MasterListTabState extends State<Consultations> {
             isLargeScreen = false;
           }
           return Container(
+            padding: EdgeInsets.symmetric(vertical: 5.0),
+            margin: EdgeInsets.symmetric(horizontal: 3.0),
+            decoration: new BoxDecoration(
+                color: Colors.white,
+                borderRadius: new BorderRadius.only(
+                  topLeft: const Radius.circular(10.0),
+                  topRight: const Radius.circular(10.0),
+                )),
             child: _buildBody(context),
           );
         });
