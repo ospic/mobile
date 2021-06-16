@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/utils/navigation_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum enumKey { IS_LOGGED_IN, BASE_64_EncodedAuthenticationKey }
+enum enumKey { IS_LOGGED_IN, BASE_64_EncodedAuthenticationKey, USER_NAME }
 
 class SharedPreference {
   SharedPreferences prefs;
