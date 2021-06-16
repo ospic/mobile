@@ -303,13 +303,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"
-  hidden_drawer_menu:
-    dependency: "direct main"
-    description:
-      name: hidden_drawer_menu
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
   html:
     dependency: transitive
     description:

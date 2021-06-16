@@ -1,5 +1,6 @@
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/consultation.dart';
+import 'package:mobile/utils/sharedpreference.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class TabHome extends StatefulWidget {
   _TabHomeTabState createState() => _TabHomeTabState();
 }
   class _TabHomeTabState extends State<TabHome> {
+    SharedPreference sharedPref = new SharedPreference();
   @override
   Widget build(BuildContext context) {
     return NestedScrollView(
