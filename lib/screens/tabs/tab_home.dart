@@ -44,13 +44,18 @@ class TabHome extends StatefulWidget {
                     'Here is a list of consultations \nyou may need to check...',
                     style: TextStyle(color: Constants.clr_blue,)
                 ),
-                trailing: ClipRRect(
+                trailing:  GestureDetector(
+                    child: ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Container(
                         decoration: BoxDecoration(
                           color: colorAccent,
                         ),
                         child: Image.asset('images/haired.jpg', height: 50.0, width: 50.0, fit: BoxFit.fitWidth,))),
+                  onTap: (){
+                    Navigator.pushNamed(context, '/profile');
+                  },
+                ),
               )
 
           ),
