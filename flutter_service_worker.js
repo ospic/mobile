@@ -4,7 +4,7 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "d75b5ea4d59e2aafe556a5d9ddc482f3",
-"main.dart.js": "8684c396289348b1d42d462c9df3e93c",
+"main.dart.js": "8c45665a36663fe66b8345b8f90e8c39",
 "index.html": "03397ead15ecfafda6887878c8858e1b",
 "/": "03397ead15ecfafda6887878c8858e1b",
 "assets/packages/material_design_icons_flutter/lib/fonts/materialdesignicons-webfont.ttf": "62fa0ce72ddf9a22ac36d88cf9b28bfb",
@@ -23,7 +23,7 @@ const RESOURCES = {
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
 "assets/FontManifest.json": "d27d3b38b164a831f31d1a9e5c44ff52",
 "assets/images/background.png": "382c2f7d83d3d38b09de975bd43413a0",
-"assets/images/icon.png": "74206a090719bd9c7eb6f5fd81bb2bd2",
+"assets/images/icon.png": "2541dca687e2794bbf21a45cb801731b",
 "assets/images/haired.jpg": "870a2015666b4e8ebd665a132bf5d8fa",
 "assets/images/placeholder.gif": "baeaf0c7f02777839e58eed62cc714c4",
 "assets/images/filter_variant.png": "1631cc9d137f072e772858a0a31b1227",
