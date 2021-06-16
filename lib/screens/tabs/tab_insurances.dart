@@ -35,7 +35,7 @@ class _InsurancesTabState extends State<TabInsurances> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           final BuiltList<InsuranceCard> cards = snapshot.data.body;
-          return cards.length > 0 ? _buildCardList(
+          return cards.isNotEmpty  ? _buildCardList(
               context,  cards.reversed.toBuiltList()) : Center(
             child: Text("No consultation found"),);
         } else {
@@ -83,8 +83,8 @@ class _InsurancesTabState extends State<TabInsurances> {
                       child: Container(
                         height: 50.0,
                         width: 50.0,
-                        color: Constants.clr_blue,
-                        child:  Center(child: Text(cs[index].id.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),),)
+                        color: cs[index].isActive ? Constants.clr_blue : Colors.black12,
+                        child:  Center(child: Icon(cs[index].isActive ? Icons.lock_open_outlined :Icons.lock_outline, color: Colors.white,),)
                       ),
                     ),
                     title: Text(cs[index].insurance.name, style: TextStyle(fontWeight: FontWeight.bold, color: colorPrimary),),
