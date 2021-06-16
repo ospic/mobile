@@ -18,42 +18,72 @@ class _$InsuranceCardSerializer implements StructuredSerializer<InsuranceCard> {
   @override
   Iterable<Object> serialize(Serializers serializers, InsuranceCard object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
-      'patientName',
-      serializers.serialize(object.patientName,
-          specifiedType: const FullType(String)),
-      'membershipNumber',
-      serializers.serialize(object.membershipNumber,
-          specifiedType: const FullType(String)),
-      'sex',
-      serializers.serialize(object.sex, specifiedType: const FullType(String)),
-      'voteNo',
-      serializers.serialize(object.voteNo,
-          specifiedType: const FullType(String)),
-      'dateOfBirth',
-      serializers.serialize(object.dateOfBirth,
-          specifiedType: const FullType(String)),
-      'issuedDate',
-      serializers.serialize(object.issuedDate,
-          specifiedType: const FullType(String)),
-      'expireDate',
-      serializers.serialize(object.expireDate,
-          specifiedType: const FullType(String)),
-      'codeNo',
-      serializers.serialize(object.codeNo,
-          specifiedType: const FullType(String)),
-      'isActive',
-      serializers.serialize(object.isActive,
-          specifiedType: const FullType(bool)),
-      'insurance',
-      serializers.serialize(object.insurance,
-          specifiedType: const FullType(Insurance)),
-    ];
+    final result = <Object>[];
     if (object.id != null) {
       result
         ..add('id')
         ..add(serializers.serialize(object.id,
             specifiedType: const FullType(int)));
+    }
+    if (object.patientName != null) {
+      result
+        ..add('patientName')
+        ..add(serializers.serialize(object.patientName,
+            specifiedType: const FullType(String)));
+    }
+    if (object.membershipNumber != null) {
+      result
+        ..add('membershipNumber')
+        ..add(serializers.serialize(object.membershipNumber,
+            specifiedType: const FullType(String)));
+    }
+    if (object.sex != null) {
+      result
+        ..add('sex')
+        ..add(serializers.serialize(object.sex,
+            specifiedType: const FullType(String)));
+    }
+    if (object.voteNo != null) {
+      result
+        ..add('voteNo')
+        ..add(serializers.serialize(object.voteNo,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dateOfBirth != null) {
+      result
+        ..add('dateOfBirth')
+        ..add(serializers.serialize(object.dateOfBirth,
+            specifiedType: const FullType(String)));
+    }
+    if (object.issuedDate != null) {
+      result
+        ..add('issuedDate')
+        ..add(serializers.serialize(object.issuedDate,
+            specifiedType: const FullType(String)));
+    }
+    if (object.expireDate != null) {
+      result
+        ..add('expireDate')
+        ..add(serializers.serialize(object.expireDate,
+            specifiedType: const FullType(String)));
+    }
+    if (object.codeNo != null) {
+      result
+        ..add('codeNo')
+        ..add(serializers.serialize(object.codeNo,
+            specifiedType: const FullType(String)));
+    }
+    if (object.isActive != null) {
+      result
+        ..add('isActive')
+        ..add(serializers.serialize(object.isActive,
+            specifiedType: const FullType(bool)));
+    }
+    if (object.insurance != null) {
+      result
+        ..add('insurance')
+        ..add(serializers.serialize(object.insurance,
+            specifiedType: const FullType(Insurance)));
     }
     return result;
   }
@@ -160,38 +190,7 @@ class _$InsuranceCard extends InsuranceCard {
       this.codeNo,
       this.isActive,
       this.insurance})
-      : super._() {
-    if (patientName == null) {
-      throw new BuiltValueNullFieldError('InsuranceCard', 'patientName');
-    }
-    if (membershipNumber == null) {
-      throw new BuiltValueNullFieldError('InsuranceCard', 'membershipNumber');
-    }
-    if (sex == null) {
-      throw new BuiltValueNullFieldError('InsuranceCard', 'sex');
-    }
-    if (voteNo == null) {
-      throw new BuiltValueNullFieldError('InsuranceCard', 'voteNo');
-    }
-    if (dateOfBirth == null) {
-      throw new BuiltValueNullFieldError('InsuranceCard', 'dateOfBirth');
-    }
-    if (issuedDate == null) {
-      throw new BuiltValueNullFieldError('InsuranceCard', 'issuedDate');
-    }
-    if (expireDate == null) {
-      throw new BuiltValueNullFieldError('InsuranceCard', 'expireDate');
-    }
-    if (codeNo == null) {
-      throw new BuiltValueNullFieldError('InsuranceCard', 'codeNo');
-    }
-    if (isActive == null) {
-      throw new BuiltValueNullFieldError('InsuranceCard', 'isActive');
-    }
-    if (insurance == null) {
-      throw new BuiltValueNullFieldError('InsuranceCard', 'insurance');
-    }
-  }
+      : super._();
 
   @override
   InsuranceCard rebuild(void Function(InsuranceCardBuilder) updates) =>
@@ -358,12 +357,12 @@ class InsuranceCardBuilder
               expireDate: expireDate,
               codeNo: codeNo,
               isActive: isActive,
-              insurance: insurance.build());
+              insurance: _insurance?.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'insurance';
-        insurance.build();
+        _insurance?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'InsuranceCard', _$failedField, e.toString());

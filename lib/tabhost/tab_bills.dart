@@ -6,6 +6,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/screens/index.dart';
+import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:mobile/widgets/index.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +36,15 @@ class _TabBillsState extends State<TabBills> {
             isLargeScreen = false;
           }
           return Container(
+                padding: EdgeInsets.symmetric(vertical: 5.0),
+                margin: EdgeInsets.symmetric(horizontal: 3.0),
+                decoration: new BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: new BorderRadius.only(
+                      topLeft: const Radius.circular(10.0),
+                      topRight: const Radius.circular(10.0),
+                    )),
+
             child: _buildBody(context),
           );
         });
