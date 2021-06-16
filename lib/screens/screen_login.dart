@@ -244,6 +244,7 @@ Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,Prog
         var sharepref = new SharedPreference();
         await sharepref.setStringToSF(enumKey.BASE_64_EncodedAuthenticationKey.toString(), authResponse.accessToken);
         await sharepref.setBooleanToSF(enumKey.IS_LOGGED_IN.toString(), true).then((onValue) {});
+        await sharepref.setStringToSF(enumKey.USER_NAME.toString(), authResponse.username);
         Navigator.pushNamed(context, '/newhome');
       }else if(statusCode == 500){
         pr.hide();
