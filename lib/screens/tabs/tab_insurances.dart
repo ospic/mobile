@@ -92,9 +92,9 @@ class _InsurancesTabState extends State<TabInsurances> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Divider(),
-                        Text("Member No: " + cs[index].membershipNumber ),
-                        Text("Member name: " +cs[index].patientName),
-                        Text('Expired on: ' + cs[index].expireDate)
+                        Text("Member No: \t\t\t\t\t" + cs[index].membershipNumber ),
+                        Text("Member name: \t" +cs[index].patientName),
+                        Text('Expire date: \t\t\t\t\t\t' + cs[index].expireDate)
                       ],
                     ),
                     onTap: () {}

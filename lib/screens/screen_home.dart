@@ -87,14 +87,15 @@ class _NewHomeScreenState extends State<HomeScreen> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: _selectedIndex ==0 ? FloatingActionButton(
         onPressed: () {
           _showLogoutDialog();
         },
         mini: false,
         child: const Icon(Icons.power_settings_new),
         backgroundColor: Colors.red,
-      ),
+        foregroundColor: Colors.white,
+      ):null,
     );
   }
 
