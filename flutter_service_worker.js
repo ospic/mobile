@@ -4,7 +4,7 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "d75b5ea4d59e2aafe556a5d9ddc482f3",
-"main.dart.js": "3306e455480f82cfa8f7ebde84007eeb",
+"main.dart.js": "b7bedf0972656a1ecac6f17be4f4ced5",
 "index.html": "03397ead15ecfafda6887878c8858e1b",
 "/": "03397ead15ecfafda6887878c8858e1b",
 "assets/packages/material_design_icons_flutter/lib/fonts/materialdesignicons-webfont.ttf": "62fa0ce72ddf9a22ac36d88cf9b28bfb",
@@ -12,7 +12,7 @@ const RESOURCES = {
 "assets/packages/file_icon/fonts/seti.ttf": "2b67c27356467781d7786c59ca58b34f",
 "assets/packages/progress_dialog/assets/double_ring_loading_io.gif": "e5b006904226dc824fdb6b8027f7d930",
 "assets/AssetManifest.json": "ea3d5de77bc78dc465afc384b592f90e",
-"assets/NOTICES": "7f1f6526b1bbfec0d4d7f9f395c200bc",
+"assets/NOTICES": "a4018cbc5ce6aefb372ee23bbabef2fb",
 "assets/fonts/FiraSans-Thin.ttf": "979e1f11f340455e5a96e81b0e7de352",
 "assets/fonts/FiraSans-Light.ttf": "034229170eceddca9e300e8d2a4c8208",
 "assets/fonts/FiraSans-ExtraLightItalic.ttf": "c606dc72dd989c9b294d4377851f78a0",
