@@ -3,9 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:mobile/screens/tabs/tab_home.dart';
-import 'package:mobile/screens/tabs/tab_insurances.dart';
-import 'package:mobile/tabhost/index.dart';
+import 'package:mobile/screens/index.dart';
 import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/sharedpreference.dart';
 class HomeScreen extends StatefulWidget {
