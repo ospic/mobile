@@ -1,5 +1,7 @@
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/consultation.dart';
+import 'package:mobile/model/patient.dart';
+import 'package:mobile/utils/index.dart';
 import 'package:mobile/utils/sharedpreference.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,7 +20,6 @@ class TabHome extends StatefulWidget {
   _TabHomeTabState createState() => _TabHomeTabState();
 }
   class _TabHomeTabState extends State<TabHome> {
-    SharedPreference sharedPref = new SharedPreference();
   @override
   Widget build(BuildContext context) {
     return NestedScrollView(
@@ -36,27 +37,7 @@ class TabHome extends StatefulWidget {
               backgroundColor: Constants.clr_light_blue,
               title: Text(''),
               elevation: 0.0,
-              flexibleSpace:
-              ListTile(
-
-                title: Text('Hi Chizi',style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold, fontSize: 25.0, ),),
-                subtitle: Text(
-                    'Here is a list of consultations \nyou may need to check...',
-                    style: TextStyle(color: Constants.clr_blue,)
-                ),
-                trailing:  GestureDetector(
-                    child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15.0),
-                    child: Container(
-                        decoration: BoxDecoration(
-                          color: colorAccent,
-                        ),
-                        child: Image.asset('images/haired.jpg', height: 50.0, width: 50.0, fit: BoxFit.fitWidth,))),
-                  onTap: (){
-                    Navigator.pushNamed(context, '/profile');
-                  },
-                ),
-              )
+              flexibleSpace:_flexibleSpace(context)
 
           ),
         ];
@@ -66,6 +47,41 @@ class TabHome extends StatefulWidget {
     );
   }
 
+  FutureBuilder<Response<Patient>>  _flexibleSpace(BuildContext context) {
+    return FutureBuilder<Response<Patient>>(
+      future: Provider.of<PostApiService>(context).getPatients(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+
+          final Patient patient = snapshot.data.body;
+          return ListTile(
+            title: Text('Hi ${patient.name}',style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold, fontSize: 25.0, ),),
+            subtitle: Text('Here is a list of consultations \nyou may need to check...', style: TextStyle(color: Constants.clr_blue,)),
+            trailing:  GestureDetector(
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Container(
+                      decoration: BoxDecoration(
+                        color: colorAccent,
+                      ),
+                      child: patient.patientPhoto == null ?
+                      Image.asset('images/haired.jpg', height: 50.0, width: 50.0, fit: BoxFit.fitWidth,):
+                  Image.network(UrlEndpoints.IMAGE_BASE_URL + patient.patientPhoto))),
+              onTap: (){
+                Navigator.pushNamed(context, '/profile');
+              },
+            ),
+          );
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    );
+  }
+
+
 
   FutureBuilder<Response<BuiltList<Consultation>>> _buildBody(
       BuildContext context) {
@@ -74,7 +90,7 @@ class TabHome extends StatefulWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           final BuiltList<Consultation> consultation = snapshot.data.body;
-         
+
           return consultation.length > 0 ? _buildConsultationList(
               context, consultation.reversed.toBuiltList()) : Center(
             child: Text("No consultation found"),);
