@@ -1,5 +1,4 @@
 import 'package:chopper/chopper.dart';
-import 'package:file_icon/file_icon.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/index.dart';
@@ -9,7 +8,6 @@ import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:timeline_tile/timeline_tile.dart';
 
 class ReportsTab extends StatelessWidget {
   final int consultationId;
