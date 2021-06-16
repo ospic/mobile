@@ -37,6 +37,11 @@ abstract class Patient implements Built<Patient, PatientBuilder> {
   Patient._();
 
   factory Patient([updates(PatientBuilder b)]) = _$Patient;
+  factory Patient.from(id, name) => new _$Patient._(
+    id:id,
+    name:name
+  );
+
 
   static Serializer<Patient> get serializer => _$patientSerializer;
 }
