@@ -1,5 +1,4 @@
 import 'package:chopper/chopper.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
