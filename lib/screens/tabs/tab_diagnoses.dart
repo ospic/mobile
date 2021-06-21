@@ -5,6 +5,7 @@ import 'package:mobile/model/diagnosis.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/widgets/index.dart';
 import 'package:provider/provider.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
@@ -25,7 +26,7 @@ FutureBuilder<Response<BuiltList<Diagnosis>>> _buildBody(BuildContext context, i
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
         final BuiltList<Diagnosis> diagnoses = snapshot.data.body;
-        return diagnoses.length > 0 ?   _buildConsultationWidget(context,  diagnoses) : Center(heightFactor: 4.0,child: Text("No diagnoses"));
+        return diagnoses.length > 0 ?   _buildConsultationWidget(context,  diagnoses) : NothingFoundWarning( );
       } else {
         return Center(
           child: CircularProgressIndicator(),

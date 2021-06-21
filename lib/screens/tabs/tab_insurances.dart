@@ -6,6 +6,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/colors.dart';
+import 'package:mobile/widgets/widget_not_found.dart';
 import 'package:provider/provider.dart';
 
 class TabInsurances extends StatefulWidget {
@@ -36,8 +37,7 @@ class _InsurancesTabState extends State<TabInsurances> {
         if (snapshot.connectionState == ConnectionState.done) {
           final BuiltList<InsuranceCard> cards = snapshot.data.body;
           return cards.isNotEmpty  ? _buildCardList(
-              context,  cards.reversed.toBuiltList()) : Center(
-            child: Text("No consultation found"),);
+              context,  cards.reversed.toBuiltList()) : NothingFoundWarning();
         } else {
           return Center(
             child: CircularProgressIndicator(),

@@ -23,6 +23,7 @@ class ViewTransaction extends StatelessWidget {
   Widget build(BuildContext context) {
     final PreferredSizeWidget appBar = (kIsWeb || Platform.isAndroid)
         ? AppBar(
+      elevation: 0.0,
               title: Text("Transaction No. " + transactionId.toString(), style: TextStyle(fontFamily: 'Batmfa'),),
               backgroundColor: green1
     ) : CupertinoNavigationBar(
@@ -151,23 +152,4 @@ ListView _buildTransactionWidget(BuildContext context, Transaction transaction){
 
 }
 
-ListView _buildtransactionTransactions(BuildContext context, BuiltList<Transaction> transactions) {
-  return ListView.builder(
-    itemCount: transactions.length,
-    scrollDirection: Axis.vertical,
-    padding: EdgeInsets.all(0.0),
-    physics: ClampingScrollPhysics(),
-    shrinkWrap: true,
-    itemBuilder: (context, index) {
-      return  TransactionWidget('transaction_trxn_widget', transaction: transactions[index]);
 
-    },
-
-
-  );
-
-}
-
-_startAddNewTransaction(BuildContext context) {
-  print('No object');
-}

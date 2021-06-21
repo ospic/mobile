@@ -7,6 +7,7 @@ import 'package:mobile/screens/view_admission.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/widgets/widget_not_found.dart';
 import 'package:provider/provider.dart';
 
 class AdmissionsTab extends StatelessWidget {
@@ -26,7 +27,7 @@ FutureBuilder<Response<BuiltList<Admission>>> _buildBody(BuildContext context, i
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
         final BuiltList<Admission> admissions = snapshot.data.body;
-        return admissions.length > 0 ? _buildConsultationWidget(context,  admissions): Center(heightFactor: 4.0,child: Text("Not admitted"));
+        return admissions.length > 0 ? _buildConsultationWidget(context,  admissions): NothingFoundWarning();
       } else {
         return Center(
           child: CircularProgressIndicator(),
