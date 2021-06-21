@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/screens/index.dart';
+import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -64,8 +65,11 @@ Widget _buildConsultationWidget(
       return <Widget>[
         SliverAppBar(
           primary: true,
-          backgroundColor: colorPrimary,
-          title: Text('View consultation $consultationId'),
+          backgroundColor: Constants.clr_light_blue,
+          iconTheme: IconThemeData(
+            color: Constants.clr_blue
+          ),
+          title: Text('Consultation: ${consultation==null? consultationId : consultation.fromdate}', style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold),),
           floating: true,
           pinned: true,
           expandedHeight: 160.0,
@@ -73,7 +77,9 @@ Widget _buildConsultationWidget(
           bottom: TabBar(
             isScrollable: true,
             indicatorSize: TabBarIndicatorSize.tab,
-            labelStyle: TextStyle( fontWeight: FontWeight.bold),
+            unselectedLabelColor: Colors.black54,
+            labelColor: Constants.clr_blue,
+            labelStyle: TextStyle(fontWeight: FontWeight.bold),
             tabs: _tabs.map((String name) => Tab(text: name)).toList(),
           ),
         ),

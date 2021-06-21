@@ -3,6 +3,7 @@ import 'package:mobile/model/consultation.dart';
 import 'package:mobile/model/patient.dart';
 import 'package:mobile/utils/index.dart';
 import 'package:mobile/utils/sharedpreference.dart';
+import 'package:mobile/widgets/widget_not_found.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -92,8 +93,7 @@ class TabHome extends StatefulWidget {
           final BuiltList<Consultation> consultation = snapshot.data.body;
 
           return consultation.length > 0 ? _buildConsultationList(
-              context, consultation.reversed.toBuiltList()) : Center(
-            child: Text("No consultation found"),);
+              context, consultation.reversed.toBuiltList()) : NothingFoundWarning();
         } else {
           return Center(
             child: CircularProgressIndicator(),

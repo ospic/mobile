@@ -7,6 +7,7 @@ import 'package:mobile/screens/index.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/widgets/widget_not_found.dart';
 import 'package:provider/provider.dart';
 
 class ReportsTab extends StatelessWidget {
@@ -26,7 +27,7 @@ FutureBuilder<Response<BuiltList<Report>>> _buildBody(BuildContext context, int 
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
         final BuiltList<Report> reports = snapshot.data.body;
-        return reports.length > 0 ? _buildConsultationWidget(context,  reports): Center(heightFactor: 4.0,child: Text("No reports"));
+        return reports.length > 0 ? _buildConsultationWidget(context,  reports):  NothingFoundWarning();
       } else {
         return Center(
           child: CircularProgressIndicator(),

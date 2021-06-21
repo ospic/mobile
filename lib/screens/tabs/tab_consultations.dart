@@ -55,8 +55,7 @@ class _MasterListTabState extends State<Consultations> {
           final BuiltList<Consultation> consultation = snapshot.data.body;
           selectedValue = consultation[0].id;
           return consultation.length > 0 ? _buildNotifications(
-              context, consultation.reversed.toBuiltList()) : Center(
-            child: Text("No consultation found"),);
+              context, consultation.reversed.toBuiltList()) :  NothingFoundWarning();
         } else {
           return Center(
             child: CircularProgressIndicator(),
