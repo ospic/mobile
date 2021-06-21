@@ -2,6 +2,7 @@ import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/diagnosis.dart';
+import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class DiagnosesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        backgroundColor: Constants.clr_light_blue,
         body: _buildBody(context, consultationId)
     );
   }
@@ -64,7 +66,7 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> dia
               child:Card(
                 elevation: 0.0,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0.5), // if you need this
+                  borderRadius: BorderRadius.circular(4), // if you need this
                   side: BorderSide(
                     color: colorPrimary,
                     width: 1,
@@ -74,7 +76,7 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> dia
                   color: Colors.transparent,
                   child: ListTile(
                     contentPadding: EdgeInsets.all(8.0),
-                    title: Text(diagnoses[index].date, style: TextStyle(color: colorAccent, fontWeight: FontWeight.bold)),
+                    title: Text(diagnoses[index].date, style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold)),
                     subtitle: Text(diagnoses[index].symptoms),
                   ),
                 ),
