@@ -84,8 +84,7 @@ class TabHome extends StatefulWidget {
 
 
 
-  FutureBuilder<Response<BuiltList<Consultation>>> _buildBody(
-      BuildContext context) {
+  FutureBuilder<Response<BuiltList<Consultation>>> _buildBody(BuildContext context) {
     return FutureBuilder<Response<BuiltList<Consultation>>>(
       future: Provider.of<PostApiService>(context).getUserConsultations(),
       builder: (context, snapshot) {
