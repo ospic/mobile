@@ -255,7 +255,7 @@ class BillScreen extends StatelessWidget {
         ),
       ),
       transactions.length > 0
-          ? _buildBillTransactions(context, transactions)
+          ? _buildBillTransactions(context, transactions.where((it) => !it.isReversed).toBuiltList())
           : NothingFoundWarning()
     ]);
   }
