@@ -19,8 +19,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _State extends State<LoginScreen> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final username = TextEditingController();
+  final password = TextEditingController();
   final focus = FocusNode();
   final _formKey = GlobalKey<FormState>();
   ProgressDialog pd;
@@ -37,22 +37,22 @@ class _State extends State<LoginScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
+                          Image.asset(
+                            'images/icon.png',
+                            width: 100,
+                            height: 100,
+                          ),
                           Form(
                               key: _formKey,
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
-                                    Container(
-                                        alignment: Alignment.center,
-                                        padding: EdgeInsets.all(10),
-                                        child: Center(
-                                        child: Text("Ospic Mobile", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 33.0, color: green2,
-                                        ),))),
+
 
                                     Container(
                                       padding: EdgeInsets.all(10),
                                       child: TextFormField(
-                                        controller: nameController,
+                                        controller: username,
                                         decoration: new InputDecoration(
                                           prefixIcon: Icon(MdiIcons.account),
 
@@ -97,13 +97,13 @@ class _State extends State<LoginScreen> {
                                           return null;
                                         },
                                         textInputAction: TextInputAction.go,
-                                        controller: passwordController,
+                                        controller: password,
                                         onFieldSubmitted: (v){
                                           pd = new ProgressDialog(context,
                                               type: ProgressDialogType.Normal,
                                               isDismissible: true,
                                               showLogs: false);
-                                          tryToLogin(context, _formKey,pd, nameController, passwordController);
+                                          tryToLogin(context, _formKey,pd, );
                                         },
                                       ),
                                     ),
@@ -118,7 +118,7 @@ class _State extends State<LoginScreen> {
                                             type: ProgressDialogType.Normal,
                                             isDismissible: true,
                                             showLogs: false);
-                                        tryToLogin(context, _formKey,pd, nameController, passwordController);
+                                        tryToLogin(context, _formKey,pd);
                                       },
                                     ),
                                   ])),
@@ -152,7 +152,7 @@ Future<bool> isloggedIn() async {
   return await sharepref.getBoolValuesSF(enumKey.IS_LOGGED_IN.toString());
 }
 
-Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,ProgressDialog pr,TextEditingController username, TextEditingController password) async{
+Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,ProgressDialog pr) async{
 
     if (_formKey.currentState.validate()) {
 
