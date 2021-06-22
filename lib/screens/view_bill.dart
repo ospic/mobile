@@ -30,13 +30,16 @@ class BillScreen extends StatelessWidget {
           ? AppBar(
               elevation: 0.0,
               automaticallyImplyLeading: !isLargeScreen,
+              iconTheme: IconThemeData(
+                color: Constants.clr_blue
+              ),
               title: Text(
                 date == null ? "Bill No. ${billId}" : date,
                 style: TextStyle(
                     fontSize: 16.0,
-                    color: isLargeScreen ? colorPrimary : Colors.white),
+                    color: isLargeScreen ? colorPrimary : Constants.clr_blue, fontWeight: FontWeight.bold),
               ),
-              backgroundColor: isLargeScreen ? gray1 :Constants.clr_blue,
+              backgroundColor: isLargeScreen ? gray1 :Constants.clr_light_blue,
 
             )
           : CupertinoNavigationBar(
@@ -241,13 +244,13 @@ class BillScreen extends StatelessWidget {
         ),
       ),
       Container(
-        color: Constants.clr_blue,
+        color: Constants.clr_light_blue,
         margin: EdgeInsets.only(top: 10.0),
         child: Center(
           heightFactor: 3.0,
           child: Text(
             'Bill ${bill.id} Transactions',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold),
           ),
         ),
       ),
