@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:chopper/chopper.dart';
 import 'package:http/http.dart' as darthttp;
@@ -8,8 +7,6 @@ import 'package:mobile/model/index.dart';
 import 'package:mobile/model/report.dart';
 import 'package:mobile/utils/index.dart';
 import 'package:mobile/utils/sharedpreference.dart';
-import 'package:http/io_client.dart' as http;
-import 'package:mobile/utils/Constants.dart';
 
 import 'package:mobile/utils/httpclients/http_client_base.dart'
 // ignore: uri_does_not_exist
@@ -70,7 +67,7 @@ abstract class PostApiService extends ChopperService {
   Future<Response<Patient>> postPost(@Body() Patient body);
 
   @Post(path: '/login')
-  Future<Response> postForLogin(@Body() dynamic body);
+  Future<Response> postForLogin(@Body() AuthPost body);
 
   @Get(path: '/insurances')
   Future<Response<BuiltList<InsuranceCard>>> getInsuranceCards();
@@ -111,11 +108,10 @@ Future<Request> _addQuery(Request req) async {
   SharedPreference sharedPref = new SharedPreference();
    String n = await sharedPref.getStringValuesSF(enumKey.BASE_64_EncodedAuthenticationKey.toString());
   final params = Map<String, dynamic>.from(req.parameters);
-  //params['tenantIdentifier'] = 'default';
-  //params['msisdn'] = '255754710521';
-
   final header = new Map<String, String>.from(req.parameters);
-  header['Authorization'] = 'Bearer $n';
+  if(req.url != '/login') {
+    header['Authorization'] = 'Bearer $n';
+  }
   return req.copyWith(parameters: params, headers: header);
 }
 

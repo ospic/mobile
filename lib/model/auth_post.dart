@@ -11,6 +11,10 @@ part 'auth_post.g.dart';
   String get  password;
   AuthPost._();
   factory AuthPost([updates(AuthPostBuilder b)]) = _$AuthPost;
+  factory AuthPost.from(String username, String password) => new _$AuthPost._(
+   username: username,
+   password: password
+  );
 
   static Serializer<AuthPost> get serializer => _$authPostSerializer;
 

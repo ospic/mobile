@@ -28,11 +28,9 @@ class _State extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Stack(children: <Widget>[
-
       Scaffold(
           backgroundColor: colorPrimary,
           resizeToAvoidBottomInset: false,
-
           body: Center(
                   child: Padding(
                       padding: EdgeInsets.all(13.0),
@@ -121,58 +119,6 @@ class _State extends State<LoginScreen> {
                                             isDismissible: true,
                                             showLogs: false);
                                         tryToLogin(context, _formKey,pd, nameController, passwordController);
-                                       /** var newPost = AuthPost().rebuild((b) =>
-                                            b
-                                              ..username =
-                                                  nameController.text.toString()
-                                              ..password = passwordController
-                                                  .text
-                                                  .toString());
-
-                                        if (_formKey.currentState.validate()) {
-                                          pr = new ProgressDialog(context,
-                                              type: ProgressDialogType.Normal,
-                                              isDismissible: true,
-                                              showLogs: false);
-                                          pr.update(progress: 50.0, message: "Please wait...", progressWidget: Container(
-                                                padding: EdgeInsets.all(8.0),
-                                                child: CircularProgressIndicator()),
-                                            maxProgress: 100.0,
-                                            progressTextStyle: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 13.0,
-                                                fontWeight: FontWeight.w400),
-                                            messageTextStyle: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 19.0,
-                                                fontWeight: FontWeight.w600),
-                                          );
-                                          pr.show();
-                                          final response = await Session.apiAuthPost(serializers.serialize(newPost));
-                                          AuthResponse authResponse =
-                                              serializers.deserializeWith(
-                                                  AuthResponse.serializer,
-                                                  jsonDecode(response));
-                                          print(authResponse.toString());
-                                          
-                                          //Commented for testing
-                                           if (authResponse?.accessToken?.isNotEmpty ?? true ) {
-                                            var sharepref = new SharedPreference();
-                                            await sharepref.setStringToSF(
-                                                enumKey.BASE_64_EncodedAuthenticationKey
-                                                    .toString(),
-                                                authResponse.accessToken);
-                                            await sharepref
-                                                .setBooleanToSF(
-                                                    enumKey.IS_LOGGED_IN
-                                                        .toString(),
-                                                    true)
-                                                .then((onValue) {});
-                                            Navigator.pushNamed(
-                                                context, '/home');
-
-                                          }
-                                        }**/
                                       },
                                     ),
                                   ])),
@@ -199,23 +145,14 @@ class _State extends State<LoginScreen> {
                       ))))
     ]);
   }
-}
+
 
 Future<bool> isloggedIn() async {
   var sharepref = new SharedPreference();
   return await sharepref.getBoolValuesSF(enumKey.IS_LOGGED_IN.toString());
 }
 
-Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,ProgressDialog pr,TextEditingController nameController, TextEditingController passwordController) async{
-  //final _formKey = GlobalKey<FormState>();
-
-  var newPost = AuthPost().rebuild((b) =>
-    b
-      ..username =
-      nameController.text.toString()
-      ..password = passwordController
-          .text
-          .toString());
+Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,ProgressDialog pr,TextEditingController username, TextEditingController password) async{
 
     if (_formKey.currentState.validate()) {
 
@@ -232,6 +169,7 @@ Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,Prog
             fontSize: 19.0,
             fontWeight: FontWeight.w600),
       );
+      var newPost = AuthPost.from(username.text.toString(), password.text.toString());
       pr.show();
       final response = await Session.apiAuthPost(serializers.serialize(newPost));
       Response httpClientResponse = response;
@@ -261,7 +199,6 @@ Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,Prog
               content: Text("Internal server error. Please try again later..."),
             ));
       }
-
     }
 
-}
+}}
