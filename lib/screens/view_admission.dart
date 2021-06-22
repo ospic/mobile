@@ -1,7 +1,9 @@
 import 'package:chopper/chopper.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:flutter/widgets.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
+import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +12,17 @@ import 'package:timeline_tile/timeline_tile.dart';
 
 class ViewAdmissionScreen extends StatelessWidget {
   final int admissionId;
+
   ViewAdmissionScreen(this.admissionId);
 
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          backgroundColor: colorPrimary.withOpacity(0.9),
-          title: Text('Admission ' + admissionId.toString()),
+          backgroundColor: Constants.clr_light_blue,
+          elevation: 0.0,
+          title: Text('Admission ' + admissionId.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: Constants.clr_blue),),
+          iconTheme: IconThemeData(color: Constants.clr_blue),
         ),
         body: _buildBody(context, admissionId));
   }
@@ -40,93 +45,104 @@ FutureBuilder<Response<Admission>> _buildBody(BuildContext context, int id) {
   );
 }
 
-SingleChildScrollView _buildConsultationWidget(
-    BuildContext context, Admission admission) {
+SingleChildScrollView _buildConsultationWidget(BuildContext context, Admission admission) {
   return SingleChildScrollView(
     child: ConstrainedBox(
         constraints: BoxConstraints(),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
               padding: EdgeInsets.all(2.0),
               child: Table(
                 defaultColumnWidth: FlexColumnWidth(3),
-
                 border: TableBorder.all(
-                    color: gray1, style: BorderStyle.solid, width:0.5 ),
+                    color: gray1, style: BorderStyle.solid, width: 0.5),
                 children: [
-
                   TableRow(children: [
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                        child: Text('Start Date', style: TextStyle(fontWeight: FontWeight.bold))),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text('Start Date',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
                         child: Text(admission.startDate)),
                   ]),
                   TableRow(children: [
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                        child: Text('End Date', style: TextStyle(fontWeight: FontWeight.bold))),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text('End Date',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
                         child: Text(admission.endDate)),
                   ]),
                   TableRow(children: [
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                        child: Text('Is active ?', style: TextStyle(fontWeight: FontWeight.bold))),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text('Is active ?',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0,left: 5.0),
-                        child:Text(admission.isActive.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: admission.isActive? colorPrimary: Colors.red),)),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text(
+                          admission.isActive.toString(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: admission.isActive
+                                  ? colorPrimary
+                                  : Colors.red),
+                        )),
                   ]),
                   TableRow(children: [
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                        child: Text('Ward name', style: TextStyle(fontWeight: FontWeight.bold))),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text('Ward name',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
                         child: Text(admission.wardName)),
                   ]),
                   TableRow(children: [
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                        child: Text('Ward id', style: TextStyle(fontWeight: FontWeight.bold))),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text('Ward id',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
                         child: Text(admission.wardId.toString())),
                   ]),
                   TableRow(children: [
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                        child: Text('Bed no.', style: TextStyle(fontWeight: FontWeight.bold))),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                        child: Text('Bed no.',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
                         child: Text(admission.bedId.toString())),
                   ]),
                   TableRow(children: [
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
                         child: Text(
                           'Ward Bed Identifier',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )),
                     Padding(
                         padding:
-                        EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
+                            EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
                         child: Text(admission.bedIdentifier)),
                   ]),
                 ],
@@ -144,8 +160,7 @@ SingleChildScrollView _buildConsultationWidget(
   );
 }
 
-FutureBuilder<Response<BuiltList<Visit>>> _buildAdmissionVisitsBody(
-    BuildContext context, int id) {
+FutureBuilder<Response<BuiltList<Visit>>> _buildAdmissionVisitsBody(BuildContext context, int id) {
   return FutureBuilder<Response<BuiltList<Visit>>>(
     future: Provider.of<PostApiService>(context)
         .getConsultationAdmissionsVisits(id),
@@ -164,8 +179,7 @@ FutureBuilder<Response<BuiltList<Visit>>> _buildAdmissionVisitsBody(
   );
 }
 
-ListView _buildConsultationVisitsWidget(
-    BuildContext context, BuiltList<Visit> visits) {
+ListView _buildConsultationVisitsWidget(BuildContext context, BuiltList<Visit> visits) {
   final colors = [
     Colors.blue,
     Colors.green,
@@ -192,16 +206,17 @@ ListView _buildConsultationVisitsWidget(
           endChild: Container(
             margin: EdgeInsets.only(top: 2.0, bottom: 2.0, left: 1.0),
             padding: EdgeInsets.only(top: 3.0, bottom: 4.0),
+            color: Constants.clr_light_blue,
             constraints: BoxConstraints(
               minHeight: 90,
             ),
             child: ListTile(
-              title: Text(visits[index].date.toString(),
-                  style: TextStyle(
-                      color: colorAccent, fontWeight: FontWeight.bold)),
-              subtitle: Text(visits[index].symptoms.toString()),
+              title: Text(visits[index].date.toString(), style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold)),
+              subtitle: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(visits[index].symptoms.toString(),style: TextStyle(color: Colors.black)),
+              ),
             ),
-            color: gray1,
           ),
         );
       });
