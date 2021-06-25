@@ -182,6 +182,7 @@ Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,Prog
         await sharepref.setStringToSF(enumKey.BASE_64_EncodedAuthenticationKey.toString(), authResponse.accessToken);
         await sharepref.setBooleanToSF(enumKey.IS_LOGGED_IN.toString(), true).then((onValue) {});
         await sharepref.setStringToSF(enumKey.USER_NAME.toString(), authResponse.username);
+        await sharepref.setStringToSF(enumKey.BASE_URL.toString(), response.request.url.toString().substring(0,response.request.url.toString().length - 6 ));
         Navigator.pushNamed(context, '/home');
       }else if(statusCode == 500){
         pr.hide();
