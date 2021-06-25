@@ -51,12 +51,14 @@ class _MasterListTabState extends State<Consultations> {
     return FutureBuilder<Response<BuiltList<Consultation>>>(
       future: Provider.of<PostApiService>(context).getUserConsultations(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
+        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           final BuiltList<Consultation> consultation = snapshot.data.body;
           selectedValue = consultation[0].id;
           return consultation.length > 0 ? _buildNotifications(
               context, consultation.reversed.toBuiltList()) :  NothingFoundWarning();
-        } else {
+        } else if(snapshot.hasError){
+          return SomethingWrongHasHappened();
+        }  else {
           return Center(
             child: CircularProgressIndicator(),
           );
