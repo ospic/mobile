@@ -4,6 +4,7 @@ import 'package:mobile/model/index.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/widgets/widget_something_happened.dart';
 import 'package:provider/provider.dart';
 
 class InfoTab extends StatelessWidget {
@@ -20,10 +21,12 @@ FutureBuilder<Response<ConsultationPayload>> _buildBody(BuildContext context, in
   return FutureBuilder<Response<ConsultationPayload>>(
     future: Provider.of<PostApiService>(context).getUserConsultationById(id),
     builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.done) {
+      if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
         final ConsultationPayload consultation = snapshot.data.body;
         return _buildConsultationWidget(context, consultation);
-      } else {
+      } else if(snapshot.hasError){
+        return SomethingWrongHasHappened();
+      }  else {
         return Center(
           child: CircularProgressIndicator(),
         );

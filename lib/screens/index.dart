@@ -21,6 +21,6 @@ export 'tabs/tab_insurances.dart';
 export 'tabs/tab_diagnoses.dart';
 export 'tabs/tab_reports.dart';
 export 'tabs/tab_admissions.dart';
-export 'tab_services.dart';
+export 'tabs/tab_costs.dart';
 export 'tabs/tab_info.dart';
 export 'tabs/tab_settings.dart';

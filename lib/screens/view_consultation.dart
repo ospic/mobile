@@ -7,6 +7,7 @@ import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/widgets/widget_something_happened.dart';
 import 'package:provider/provider.dart';
 
 var selectedValue = 2;
@@ -38,10 +39,12 @@ FutureBuilder<Response<ConsultationPayload>> _buildBody(
   return FutureBuilder<Response<ConsultationPayload>>(
     future: Provider.of<PostApiService>(context).getUserConsultationById(id),
     builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.done) {
+      if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
         final ConsultationPayload consultation = snapshot.data.body;
         return _buildConsultationWidget(context, consultation);
-      } else {
+      } else if(snapshot.hasError){
+        return SomethingWrongHasHappened();
+      }  else {
         return Center(
           child: CircularProgressIndicator(),
         );
@@ -122,22 +125,10 @@ Widget _tabSection(BuildContext context, int consultationId) {
             color: green1.withOpacity(0.9),
             child:
                 TabBar(indicatorColor: colorPrimary, isScrollable: true, tabs: [
-              Container(
-                width: tabWidth,
-                child: Tab(text: "Info"),
-              ),
-              Container(
-                width: tabWidth,
-                child: Tab(text: "Diagnoses"),
-              ),
-              Container(
-                width: tabWidth,
-                child: Tab(text: "Services & Costs"),
-              ),
-              Container(
-                width: tabWidth,
-                child: Tab(text: "Reports"),
-              ),
+              Container(width: tabWidth, child: Tab(text: "Info"),),
+              Container(width: tabWidth, child: Tab(text: "Diagnoses"),),
+              Container(width: tabWidth, child: Tab(text: "Costs"),),
+              Container(width: tabWidth, child: Tab(text: "Reports"),),
               Container(width: tabWidth, child: Tab(text: "Admissions"))
             ]),
           ),

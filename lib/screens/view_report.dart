@@ -4,6 +4,7 @@ import 'package:mobile/model/index.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/widgets/widget_something_happened.dart';
 import 'package:provider/provider.dart';
 
 class ViewReportScreen extends StatelessWidget {
@@ -25,10 +26,12 @@ FutureBuilder<Response<Report>> _buildBody(BuildContext context, int id) {
   return FutureBuilder<Response<Report>>(
     future: Provider.of<PostApiService>(context).getConsultationReportById(id),
     builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.done) {
+      if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
         final Report consultation = snapshot.data.body;
         return _buildReportWidget(context, consultation);
-      } else {
+      } else if(snapshot.hasError){
+        return SomethingWrongHasHappened();
+      }  else {
         return Center(
           child: CircularProgressIndicator(),
         );

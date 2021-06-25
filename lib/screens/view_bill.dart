@@ -73,10 +73,12 @@ class BillScreen extends StatelessWidget {
     return FutureBuilder<Response<BillPayload>>(
       future: Provider.of<PostApiService>(context).getBillById(id),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
+        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           final BillPayload posts = snapshot.data.body;
           return _buildBillWidget(context, posts);
-        } else {
+        } else if(snapshot.hasError){
+          return SomethingWrongHasHappened();
+        }  else {
           return Center(
             child: CircularProgressIndicator(),
           );

@@ -23,10 +23,12 @@ FutureBuilder<Response<TransactionResponse>> _buildBody(BuildContext context, in
   return FutureBuilder<Response<TransactionResponse>>(
     future: Provider.of<PostApiService>(context).getConsultationServiceAndCosts(id),
     builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.done) {
+      if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
         final TransactionResponse response = snapshot.data.body;
         return response==null?Center(heightFactor: 4.0,child: Text("No transaction")): _buildConsultationWidget(context,  response);
-      } else {
+      } else if(snapshot.hasError){
+        return SomethingWrongHasHappened();
+      }  else {
         return Center(
           child: CircularProgressIndicator(),
         );

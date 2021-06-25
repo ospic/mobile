@@ -8,6 +8,7 @@ import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/widgets/widget_not_found.dart';
+import 'package:mobile/widgets/widget_something_happened.dart';
 import 'package:provider/provider.dart';
 
 class AdmissionsTab extends StatelessWidget {
@@ -25,10 +26,12 @@ FutureBuilder<Response<BuiltList<Admission>>> _buildBody(BuildContext context, i
   return FutureBuilder<Response<BuiltList<Admission>>>(
     future: Provider.of<PostApiService>(context).getConsultationAdmissions(id),
     builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.done) {
+      if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
         final BuiltList<Admission> admissions = snapshot.data.body;
         return admissions.length > 0 ? _buildConsultationWidget(context,  admissions): NothingFoundWarning();
-      } else {
+      } else if(snapshot.hasError){
+        return SomethingWrongHasHappened();
+      }  else {
         return Center(
           child: CircularProgressIndicator(),
         );

@@ -53,10 +53,12 @@ FutureBuilder<Response<Transaction>> _buildBody(
     future: Provider.of<PostApiService>(context)
         .getUserConsultationTransactionById(consultationId, transactionId),
     builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.done) {
+      if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
         final Transaction transaction = snapshot.data.body;
         return _buildTransactionWidget(context, transaction);
-      } else {
+      } else if(snapshot.hasError){
+        return SomethingWrongHasHappened();
+      }  else {
         return Center(
           child: CircularProgressIndicator(),
         );
