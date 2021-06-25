@@ -7,6 +7,7 @@ import 'package:mobile/model/index.dart';
 import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:mobile/widgets/widget_not_found.dart';
+import 'package:mobile/widgets/widget_something_happened.dart';
 import 'package:provider/provider.dart';
 
 class TabInsurances extends StatefulWidget {
@@ -34,11 +35,13 @@ class _InsurancesTabState extends State<TabInsurances> {
     return FutureBuilder<Response<BuiltList<InsuranceCard>>>(
       future: Provider.of<PostApiService>(context).getInsuranceCards(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
+        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           final BuiltList<InsuranceCard> cards = snapshot.data.body;
           return cards.isNotEmpty  ? _buildCardList(
               context,  cards.reversed.toBuiltList()) : NothingFoundWarning();
-        } else {
+        } else if(snapshot.hasError){
+          return SomethingWrongHasHappened();
+        }  else {
           return Center(
             child: CircularProgressIndicator(),
           );

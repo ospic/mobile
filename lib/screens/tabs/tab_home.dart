@@ -2,8 +2,7 @@ import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/consultation.dart';
 import 'package:mobile/model/patient.dart';
 import 'package:mobile/utils/index.dart';
-import 'package:mobile/utils/sharedpreference.dart';
-import 'package:mobile/widgets/widget_not_found.dart';
+import 'package:mobile/widgets/index.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,13 +51,17 @@ class TabHome extends StatefulWidget {
     return FutureBuilder<Response<Patient>>(
       future: Provider.of<PostApiService>(context).getPatients(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-
+        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           final Patient patient = snapshot.data.body;
           return ListTile(
-            title: Text('Hi ${patient.name}',style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold, fontSize: 25.0, ),),
-            subtitle: Text('Here is a list of consultations \nyou may need to check...', style: TextStyle(color: Constants.clr_blue,)),
-            trailing:  GestureDetector(
+            title: Text('Hi ${patient.name}', style: TextStyle(
+              color: Constants.clr_blue,
+              fontWeight: FontWeight.bold,
+              fontSize: 25.0,),),
+            subtitle: Text(
+                'Here is a list of consultations \nyou may need to check...',
+                style: TextStyle(color: Constants.clr_blue,)),
+            trailing: GestureDetector(
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
@@ -66,13 +69,18 @@ class TabHome extends StatefulWidget {
                         color: colorAccent,
                       ),
                       child: patient.patientPhoto == null ?
-                      Image.asset('images/icon.png', height: 50.0, width: 50.0, fit: BoxFit.fitWidth,):
-                  Image.network(UrlEndpoints.IMAGE_BASE_URL + patient.patientPhoto))),
-              onTap: (){
+                      Image.asset('images/icon.png', height: 50.0,
+                        width: 50.0,
+                        fit: BoxFit.fitWidth,) :
+                      Image.network(
+                          UrlEndpoints.IMAGE_BASE_URL + patient.patientPhoto))),
+              onTap: () {
                 Navigator.pushNamed(context, '/profile');
               },
             ),
           );
+        } else if(snapshot.hasError){
+          return Center(child: Text(''),);
         } else {
           return Center(
             child: CircularProgressIndicator(),
@@ -88,11 +96,13 @@ class TabHome extends StatefulWidget {
     return FutureBuilder<Response<BuiltList<Consultation>>>(
       future: Provider.of<PostApiService>(context).getUserConsultations(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
+        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           final BuiltList<Consultation> consultation = snapshot?.data?.body;
 
           return consultation.length > 0 ? _buildConsultationList(
               context, consultation.reversed.toBuiltList()) : NothingFoundWarning();
+        } else if(snapshot.hasError){
+          return SomethingWrongHasHappened();
         } else {
           return Center(
             child: CircularProgressIndicator(),
