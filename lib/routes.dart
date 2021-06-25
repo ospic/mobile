@@ -20,7 +20,7 @@ class Routes {
       if (kReleaseMode)
         exit(1);
     };
-      runApp(MyApp());
+      runApp(Application());
 
     }
   }
@@ -35,8 +35,16 @@ void _setupLogging(){
     
 
 
-class MyApp extends StatelessWidget{
+class Application extends StatefulWidget{
+  @override
+  _ApplicationState createState()=> _ApplicationState();
 
+  static _ApplicationState of(BuildContext context) => context.findAncestorStateOfType<_ApplicationState>();
+}
+
+class _ApplicationState extends State<Application>{
+  // ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = ThemeMode.light;
   final routes = <String, WidgetBuilder>{
       '/home': (BuildContext context) => HomeScreen(),
       '/login': (BuildContext context) => LoginScreen(),
@@ -47,6 +55,12 @@ class MyApp extends StatelessWidget{
 
     };
 
+  void changeTheme(ThemeMode themeMode) {
+    setState(() {
+      _themeMode = themeMode;
+    });
+  }
+
     
   @override
   Widget build(BuildContext context) {
@@ -55,22 +69,25 @@ class MyApp extends StatelessWidget{
       create:(_) => PostApiService.create() ,
       dispose: (_, PostApiService service) => service.client.dispose(),
       child:  MaterialApp(
-        navigatorKey: NavigationService.instance.navigationKey,
-      theme: ThemeData(
-          fontFamily: 'FiraSans',
-        brightness: Brightness.light,
-        primarySwatch: Colors.blue,
-          textTheme: GoogleFonts.firaSansTextTheme(textTheme).copyWith(
-            headline1: GoogleFonts.firaSans(textStyle: textTheme.headline1),
-            bodyText2: GoogleFonts.firaSans(textStyle: textTheme.bodyText2),
-            bodyText1: GoogleFonts.firaSans(textStyle: textTheme.bodyText1),
+            navigatorKey: NavigationService.instance.navigationKey,
+            theme: ThemeData(
+                fontFamily: 'FiraSans',
+                brightness: Brightness.light,
+                primarySwatch: Colors.blue,
+                textTheme: GoogleFonts.firaSansTextTheme(textTheme).copyWith(
+                  headline1: GoogleFonts.firaSans(textStyle: textTheme.headline1),
+                  bodyText2: GoogleFonts.firaSans(textStyle: textTheme.bodyText2),
+                  bodyText1: GoogleFonts.firaSans(textStyle: textTheme.bodyText1),
+                )
+            ),
+            darkTheme: ThemeData.dark(),
+            themeMode: _themeMode,
+            debugShowCheckedModeBanner: false,
+            routes: routes,
+            title: '',
+            home: SplashScreen(),
           )
-      ),
-      debugShowCheckedModeBanner: false,
-        routes: routes,
-        title: '',
-        home: SplashScreen(),
-    )
+
     );
   }
   
