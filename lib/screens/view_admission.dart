@@ -7,6 +7,7 @@ import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/widgets/widget_something_happened.dart';
 import 'package:provider/provider.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
@@ -165,12 +166,12 @@ FutureBuilder<Response<BuiltList<Visit>>> _buildAdmissionVisitsBody(BuildContext
     future: Provider.of<PostApiService>(context)
         .getConsultationAdmissionsVisits(id),
     builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.done) {
+      if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
         final BuiltList<Visit> visits = snapshot.data.body;
-        return visits.length > 0
-            ? _buildConsultationVisitsWidget(context, visits)
-            : Center(heightFactor: 4.0, child: Text("No visits"));
-      } else {
+        return visits.length > 0 ? _buildConsultationVisitsWidget(context, visits) : Center(heightFactor: 4.0, child: Text("No visits"));
+      } else if(snapshot.hasError){
+        return SomethingWrongHasHappened();
+      }  else {
         return Center(
           child: CircularProgressIndicator(),
         );
