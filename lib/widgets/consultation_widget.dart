@@ -1,6 +1,5 @@
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mobile/model/consultation.dart';
-import 'package:mobile/screens/view_consultation.dart';
 import 'package:flutter/material.dart';
 typedef Null ItemSelectedCallback(int value);
 class ConsultationWidget extends StatefulWidget {
@@ -18,13 +17,9 @@ class ConsultationWidget extends StatefulWidget {
 }
 
 class _ConsultationWidgetWidgetState extends State<ConsultationWidget> {
-  String _value = '';
-
-  void _setValue(String value) => setState(() => _value = value);
 
   @override
   Widget build(BuildContext context) {
-    final String consultant = widget.cs.staffName==null? '': 'Consultant name '+widget.cs.staffName;
     return  GestureDetector(
      child: Card(
        margin: EdgeInsets.all(1.8),

@@ -5,8 +5,6 @@ import 'package:mobile/utils/index.dart';
 import 'package:mobile/utils/sharedpreference.dart';
 import 'package:settings_ui/settings_ui.dart';
 
-import '../../routes.dart';
-
 class TabSettings extends StatefulWidget {
 
   @override
@@ -75,8 +73,10 @@ class _TabSettingsState extends State<TabSettings> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SettingsList(
+          lightBackgroundColor: Colors.white,
           sections: [
             SettingsSection(
+
               tiles: [
                 SettingsTile(
                   title: 'Language',
