@@ -37,6 +37,7 @@ dependencies:
    timeline_tile: ^2.0.0
    file_icon: ^1.0.0
    google_fonts: ^1.1.2
+   settings_ui: ^0.6.0
 
 dev_dependencies:
    flutter_test:

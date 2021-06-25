@@ -60,7 +60,7 @@ class _NewHomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.blueGrey,
         selectedItemColor: Constants.clr_blue,
-        backgroundColor: Colors.white,
+
         showUnselectedLabels: false,
         showSelectedLabels: true,
         elevation: 0,
