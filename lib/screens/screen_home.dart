@@ -20,7 +20,7 @@ class _NewHomeScreenState extends State<HomeScreen> {
     Consultations(),
     TabBills(),
     TabInsurances(),
-    Placeholder(color:Colors.blue,)
+    TabSettings()
   ];
   void _onItemTapped(int index) {
     setState(() {

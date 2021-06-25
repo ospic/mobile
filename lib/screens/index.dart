@@ -23,3 +23,4 @@ export 'tabs/tab_reports.dart';
 export 'tabs/tab_admissions.dart';
 export 'tab_services.dart';
 export 'tabs/tab_info.dart';
+export 'tabs/tab_settings.dart';
