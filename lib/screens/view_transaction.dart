@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:mobile/utils/utils.dart';
 import 'package:mobile/widgets/index.dart';
 import 'package:provider/provider.dart';
-import 'package:built_collection/built_collection.dart';
 
 class ViewTransaction extends StatelessWidget {
   final int transactionId;

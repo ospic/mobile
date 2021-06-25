@@ -38,8 +38,6 @@ FutureBuilder<Response<ConsultationPayload>> _buildBody(BuildContext context, in
 Widget _buildConsultationWidget(BuildContext context, ConsultationPayload consultation){
   final Staff staff = consultation.staff;
   final String staffName = staff==null? 'Un-assigned': (staff.fullName == null ? staff.username : staff.fullName);
-
-  final int consultationId = consultation.id;
   return ListView(
       children:[
         Padding(

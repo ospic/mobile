@@ -1,10 +1,8 @@
 import 'package:chopper/chopper.dart';
-import 'package:flutter/gestures.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:mobile/utils/Constants.dart';
-import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/widgets/widget_something_happened.dart';
@@ -55,8 +53,6 @@ FutureBuilder<Response<ConsultationPayload>> _buildBody(
 
 Widget _buildConsultationWidget(
     BuildContext context, ConsultationPayload consultation) {
-  final Staff staff = consultation.staff;
-  final String staffName = staff == null ? 'Un-assigned' : (staff.fullName == null ? staff.username : staff.fullName);
   final int consultationId = consultation.id;
   final List<String> _tabs = ['Info', 'Diagnoses','Costs','Reports','Admissions'];
 
@@ -109,52 +105,3 @@ Widget _buildConsultationWidget(
   ));
 }
 
-Widget _tabSection(BuildContext context, int consultationId) {
-  double width = MediaQuery.of(context).size.width;
-  final int numberOfTabs = 5;
-  double tabWidth = width / numberOfTabs;
-
-  return DefaultTabController(
-    length: numberOfTabs,
-    child: Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        Container(
-          child: Material(
-            color: green1.withOpacity(0.9),
-            child:
-                TabBar(indicatorColor: colorPrimary, isScrollable: true, tabs: [
-              Container(width: tabWidth, child: Tab(text: "Info"),),
-              Container(width: tabWidth, child: Tab(text: "Diagnoses"),),
-              Container(width: tabWidth, child: Tab(text: "Costs"),),
-              Container(width: tabWidth, child: Tab(text: "Reports"),),
-              Container(width: tabWidth, child: Tab(text: "Admissions"))
-            ]),
-          ),
-        ),
-        Container(
-          //Add this to give height
-          height: MediaQuery.of(context).size.height,
-          child: TabBarView(children: [
-            Container(
-              child: InfoTab(consultationId),
-            ),
-            Container(
-              child: DiagnosesTab(consultationId),
-            ),
-            Container(
-              child: ServiceAndCostsTab(consultationId),
-            ),
-            Container(
-              child: ReportsTab(consultationId),
-            ),
-            Container(
-              child: AdmissionsTab(consultationId),
-            ),
-          ]),
-        ),
-      ],
-    ),
-  );
-}

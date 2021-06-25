@@ -41,7 +41,6 @@ FutureBuilder<Response<BuiltList<Admission>>> _buildBody(BuildContext context, i
 }
 
 ListView _buildConsultationWidget(BuildContext context, BuiltList<Admission> admissions){
-  final colors = [ Colors.blue, Colors.green, Colors.yellowAccent, Colors.red, Colors.indigo];
   return  ListView.builder(
       itemCount: admissions.length,
       scrollDirection: Axis.vertical,

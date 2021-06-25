@@ -6,7 +6,6 @@ import 'package:mobile/widgets/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:timeline_tile/timeline_tile.dart';
 
 class ServiceAndCostsTab extends StatelessWidget {
   final int consultationId;
@@ -38,7 +37,6 @@ FutureBuilder<Response<TransactionResponse>> _buildBody(BuildContext context, in
 }
 
 ListView _buildConsultationWidget(BuildContext context, TransactionResponse response){
-  final colors = [ Colors.blue, Colors.green, Colors.yellowAccent, Colors.red, Colors.indigo];
   final BuiltList<Transaction> transactions = response.transactions;
   return ListView.builder(
     itemCount: transactions.length,

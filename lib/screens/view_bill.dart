@@ -34,7 +34,7 @@ class BillScreen extends StatelessWidget {
                 color: Constants.clr_blue
               ),
               title: Text(
-                date == null ? "Bill No. ${billId}" : date,
+                date == null ? "Bill No. $billId" : date,
                 style: TextStyle(
                     fontSize: 16.0,
                     color: isLargeScreen ? colorPrimary : Constants.clr_blue, fontWeight: FontWeight.bold),
