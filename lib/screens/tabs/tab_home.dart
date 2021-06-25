@@ -72,8 +72,7 @@ class TabHome extends StatefulWidget {
                       Image.asset('images/icon.png', height: 50.0,
                         width: 50.0,
                         fit: BoxFit.fitWidth,) :
-                      Image.network(
-                          UrlEndpoints.IMAGE_BASE_URL + patient.patientPhoto))),
+                      Image.network(UrlEndpoints.IMAGE_BASE_URL + patient.patientPhoto))),
               onTap: () {
                 Navigator.pushNamed(context, '/profile');
               },
