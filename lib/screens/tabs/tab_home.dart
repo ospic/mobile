@@ -66,7 +66,7 @@ class TabHome extends StatefulWidget {
                         color: colorAccent,
                       ),
                       child: patient.patientPhoto == null ?
-                      Image.asset('images/haired.jpg', height: 50.0, width: 50.0, fit: BoxFit.fitWidth,):
+                      Image.asset('images/icon.png', height: 50.0, width: 50.0, fit: BoxFit.fitWidth,):
                   Image.network(UrlEndpoints.IMAGE_BASE_URL + patient.patientPhoto))),
               onTap: (){
                 Navigator.pushNamed(context, '/profile');
@@ -89,7 +89,7 @@ class TabHome extends StatefulWidget {
       future: Provider.of<PostApiService>(context).getUserConsultations(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          final BuiltList<Consultation> consultation = snapshot.data.body;
+          final BuiltList<Consultation> consultation = snapshot?.data?.body;
 
           return consultation.length > 0 ? _buildConsultationList(
               context, consultation.reversed.toBuiltList()) : NothingFoundWarning();

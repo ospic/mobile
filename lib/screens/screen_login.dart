@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:mobile/model/auth_response.dart';
 import 'package:mobile/model/serializers.dart';
 import 'package:mobile/utils/api.dart';
