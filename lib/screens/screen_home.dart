@@ -6,6 +6,8 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:mobile/screens/index.dart';
 import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/sharedpreference.dart';
+final List<String> _titles = ['', 'Consultations','Bill\'s','Insurances','Settings'];
+
 class HomeScreen extends StatefulWidget {
   @override
   _NewHomeScreenState createState() => _NewHomeScreenState();
@@ -50,6 +52,7 @@ class _NewHomeScreenState extends State<HomeScreen> {
         backgroundColor: Constants.clr_light_blue,
         bottomOpacity: 2,
         automaticallyImplyLeading: false,
+        title: Text(_titles[_selectedIndex], style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueGrey),),
         actions: [Padding(padding: EdgeInsets.only(right: 10.0, top: 10.0), child: Text('${dateFormatter(DateTime.now())}',style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold),),)],
       ),
 
@@ -80,8 +83,8 @@ class _NewHomeScreenState extends State<HomeScreen> {
             label: 'Insurances',
           ),
           BottomNavigationBarItem(
-            icon: Icon(MdiIcons.forumOutline),
-            label: 'Notification',
+            icon: Icon(Icons.settings),
+            label: 'Settings',
           ),
         ],
         currentIndex: _selectedIndex,
