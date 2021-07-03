@@ -8,6 +8,8 @@ part of 'serializers.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Admission.serializer)
+      ..add(Appointment.serializer)
+      ..add(AppointmentInfo.serializer)
       ..add(AuthPost.serializer)
       ..add(AuthResponse.serializer)
       ..add(AuthRole.serializer)
