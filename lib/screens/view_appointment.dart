@@ -19,6 +19,14 @@ class ScreenViewAppointment extends  StatelessWidget{
        iconTheme: IconThemeData(
            color: Constants.clr_blue
        ),
+       actions: [
+         TextButton(
+             onPressed: (){},
+             child: Text(
+               "Edit",
+               style: TextStyle(color: Colors.black87),
+             )),
+       ],
        backgroundColor: Constants.clr_light_blue,
      ),
        resizeToAvoidBottomInset: false,
