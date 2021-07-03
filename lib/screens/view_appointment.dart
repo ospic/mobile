@@ -20,12 +20,11 @@ class ScreenViewAppointment extends  StatelessWidget{
            color: Constants.clr_blue
        ),
        actions: [
-         TextButton(
-             onPressed: (){},
-             child: Text(
-               "Edit",
-               style: TextStyle(color: Colors.black87),
-             )),
+     IconButton(
+       icon: const Icon(Icons.edit),
+     color: Colors.black54,
+     onPressed: () {},
+   ),
        ],
        backgroundColor: Constants.clr_light_blue,
      ),
