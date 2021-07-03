@@ -21,3 +21,5 @@ export 'admission.dart';
 export 'visit.dart';
 export 'insurance.dart';
 export 'insurance_card.dart';
+export 'appointment.dart';
+export 'appointment_info.dart';

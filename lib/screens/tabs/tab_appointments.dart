@@ -2,21 +2,24 @@
 import 'package:chopper/chopper.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mobile/data/post_api_service.dart';
+import 'package:mobile/model/appointment.dart';
+import 'package:mobile/model/appointment_info.dart';
 import 'package:mobile/model/consultation.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mobile/screens/index.dart';
 import 'package:mobile/screens/view_consultation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/widgets/index.dart';
 import 'package:provider/provider.dart';
 import 'package:built_collection/built_collection.dart';
 
-class Consultations  extends StatefulWidget {
+class AppointmentsTab  extends StatefulWidget {
 
   @override
-  _MasterListTabState createState()=>_MasterListTabState();
+  _AppointmentsTabState createState()=>_AppointmentsTabState();
 }
 
-class _MasterListTabState extends State<Consultations> {
+class _AppointmentsTabState extends State<AppointmentsTab> {
   ValueNotifier<bool> _notifier = ValueNotifier(false);
 
   @override
@@ -46,16 +49,15 @@ class _MasterListTabState extends State<Consultations> {
   }
 
 
-  FutureBuilder<Response<BuiltList<Consultation>>> _buildBody(
+  FutureBuilder<Response<BuiltList<AppointmentInfo>>> _buildBody(
       BuildContext context) {
-    return FutureBuilder<Response<BuiltList<Consultation>>>(
-      future: Provider.of<PostApiService>(context).getUserConsultations(),
+    return FutureBuilder<Response<BuiltList<AppointmentInfo>>>(
+      future: Provider.of<PostApiService>(context).getAppointments(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-          final BuiltList<Consultation> consultation = snapshot.data.body;
-          selectedValue = consultation[0].id;
-          return consultation.length > 0 ? _buildNotifications(
-              context, consultation.reversed.toBuiltList()) :  NothingFoundWarning();
+          final BuiltList<AppointmentInfo> appointments = snapshot.data.body;
+          selectedValue = appointments[0].id;
+          return appointments.length > 0 ? _buildNotifications(context, appointments) :  NothingFoundWarning();
         } else if(snapshot.hasError){
           return SomethingWrongHasHappened();
         }  else {
@@ -70,13 +72,13 @@ class _MasterListTabState extends State<Consultations> {
 
 
 
-  Widget _buildNotifications(BuildContext context, BuiltList<Consultation> cs) {
+  Widget _buildNotifications(BuildContext context, BuiltList<AppointmentInfo> ap) {
     return Row(
       children: [
         Expanded(
           flex: isLargeScreen ?  3 : 10,
           child: ListView.separated(
-            itemCount: cs.length,
+            itemCount: ap.length,
             scrollDirection: Axis.vertical,
             padding: EdgeInsets.all(0.0),
             physics: const AlwaysScrollableScrollPhysics(),
@@ -84,52 +86,36 @@ class _MasterListTabState extends State<Consultations> {
             itemBuilder: (context, index) {
               return  Container(
                 padding: EdgeInsets.all(0.0),
-                  child: isLargeScreen ?
+                  child:
                   ListTile(
                     dense: true,
                     leading: CircleAvatar(
                       radius: 20,
-                      backgroundColor: cs[index].isAdmitted ?  Colors.red[700]: Colors.green[100],
-                      child: cs[index].isAdmitted ? Icon(MdiIcons.bed, color: Colors.white,): Text(
-                        cs[index].id.toString(),
-                        style: TextStyle(fontWeight: FontWeight.bold, color: cs[index].isActive ? Colors.white : Colors.green),
+                      backgroundColor: ap[index].status == 'WAITING' ?  Colors.red[700]: Colors.green[100],
+                      child: ap[index].status == 'WAITING' ? Icon(MdiIcons.bed, color: Colors.white,): Text(
+                        ap[index].id.toString(),
+                        style: TextStyle(fontWeight: FontWeight.bold, color: ap[index].status == 'WAITING' ? Colors.white : Colors.green),
                       ),
                     ),
-                    title: Text(cs[index].fromDate),
+                    title: Text(ap[index].appointmentDate),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Patient: " + cs[index].patientName ),
-                        Text("Admitted: " +cs[index].isAdmitted.toString())
+                        Text("Status: " + ap[index].status ),
+                        Text("Patient: " +ap[index].patientId .toString())
                       ],
                     ),
                     onTap: () {
                       if (isLargeScreen) {
-                        selectedValue = cs[index].id;
+                        selectedValue = ap[index].id;
                         print(selectedValue);
                         _notifier.value = !_notifier.value;
                       } else {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return ScreenVieConsultation(cs[index].id);
+                            return ScreenViewAppointment(ap[index].id);
                           },
                         ));
-                      }
-                    },
-                  ): ConsultationWidget('consultation_widget', cs: cs[index],
-                    onItemSelected: (value){
-                      {
-                        if (isLargeScreen) {
-                          selectedValue = cs[index].id;
-                          print(selectedValue);
-                          _notifier.value = !_notifier.value;
-                        } else {
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) {
-                              return ScreenVieConsultation(cs[index].id);
-                            },
-                          ));
-                        }
                       }
                     },
                   ));
@@ -147,7 +133,7 @@ class _MasterListTabState extends State<Consultations> {
             builder: (BuildContext context, bool quoteReady, Widget child){
               return
                 isLargeScreen
-                    ?  ScreenVieConsultation(selectedValue) : Container();
+                    ?  ScreenViewAppointment(selectedValue) : Container();
             })
     )
 

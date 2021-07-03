@@ -10,12 +10,13 @@ export 'view_consultation.dart';
 export 'view_bill.dart';
 export 'view_report.dart';
 export 'view_transaction.dart';
+export 'view_appointment.dart';
 
 
 
 /**Tabs**/
 export 'tabs/tab_bills.dart';
-export 'tabs/tab_consultations.dart';
+export 'tabs/tab_appointments.dart';
 export 'tabs/tab_home.dart';
 export 'tabs/tab_insurances.dart';
 export 'tabs/tab_diagnoses.dart';

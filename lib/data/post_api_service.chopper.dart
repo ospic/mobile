@@ -122,6 +122,20 @@ class _$PostApiService extends PostApiService {
   }
 
   @override
+  Future<Response<BuiltList<AppointmentInfo>>> getAppointments() {
+    final $url = '/appointments/';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<BuiltList<AppointmentInfo>, AppointmentInfo>($request);
+  }
+
+  @override
+  Future<Response<Appointment>> getAppointmentByd(int id) {
+    final $url = '/appointments/$id';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<Appointment, Appointment>($request);
+  }
+
+  @override
   Future<Response<Patient>> postPost(Patient body) {
     final $url = '';
     final $body = body;
