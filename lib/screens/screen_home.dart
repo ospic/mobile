@@ -17,7 +17,7 @@ class _NewHomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final List<Widget> _children = [
     TabHome(),
-    Consultations(),
+    AppointmentsTab(),
     TabBills(),
     TabInsurances(),
     TabSettings()
