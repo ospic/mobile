@@ -129,10 +129,10 @@ class _$PostApiService extends PostApiService {
   }
 
   @override
-  Future<Response<Appointment>> getAppointmentByd(int id) {
-    final $url = '/appointments/$id';
+  Future<Response> getAppointmentByd(int id) {
+    final $url = '/appointments/$id/';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<Appointment, Appointment>($request);
+    return client.send<dynamic, dynamic>($request);
   }
 
   @override
