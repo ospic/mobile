@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:mobile/screens/view_consultation.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/utils/Constants.dart';
+import 'package:mobile/utils/colors.dart';
 import 'package:mobile/widgets/index.dart';
 import 'package:provider/provider.dart';
 import 'package:built_collection/built_collection.dart';
@@ -81,46 +83,59 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
             physics: const AlwaysScrollableScrollPhysics(),
 
             itemBuilder: (context, index) {
-              return  Container(
-                padding: EdgeInsets.all(0.0),
-                  child:
-                  ListTile(
-                    dense: true,
-                    leading: CircleAvatar(
-                      radius: 20,
-                      backgroundColor: ap[index].status == 'WAITING' ?  Colors.red[700]: Colors.green[100],
-                      child: ap[index].status == 'WAITING' ? Icon(MdiIcons.bed, color: Colors.white,): Text(
-                        ap[index].id.toString(),
-                        style: TextStyle(fontWeight: FontWeight.bold, color: ap[index].status == 'WAITING' ? Colors.white : Colors.green),
+              return  Card(
+
+                child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 10.0),
+                    child: ListTile(
+                      leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(30.5),
+                          child: Container(
+                              padding: EdgeInsets.all(5.0),
+                              decoration: BoxDecoration(
+                                color:  ap[index]!.status=='CANCELLED' ? Colors.red[200] : Constants.clr_light_blue,
+                              ),
+                              child:
+                              Image.asset('images/user_icon.png', height: 50.0, width: 50.0, fit: BoxFit.fitWidth,color: Constants.clr_blue,) )),
+                      title: Text('Date: ${ap[index].appointmentDate!}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(text: 'Status: '),
+                                TextSpan(
+                                  text: ap[index]!.status,
+                                  style: TextStyle(fontWeight: FontWeight.bold, color: ap[index]!.status=='CANCELLED' ? Colors.red : null),
+                                ),
+
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                    ),
-                    title: Text(ap[index].appointmentDate!),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Status: " + ap[index].status! ),
-                        Text("Patient: " +ap[index].patientId .toString())
-                      ],
-                    ),
-                    onTap: () {
-                      if (isLargeScreen) {
-                        selectedValue = ap[index].id!;
-                        print(selectedValue);
-                        _notifier.value = !_notifier.value;
-                      } else {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return ScreenViewAppointment(ap[index].id!);
-                          },
-                        ));
-                      }
-                    },
-                  ));
+                      trailing: Icon(Icons.arrow_right_sharp,color: ap[index]!.status=='CANCELLED' ? Colors.red : null),
+                      onTap: () {
+                        if (isLargeScreen) {
+                          selectedValue = ap[index].id!;
+                          print(selectedValue);
+                          _notifier.value = !_notifier.value;
+                        } else {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return ScreenViewAppointment(ap[index].id!);
+                            },
+                          ));
+                        }
+                      },
+                    )),
+              );
             },
             separatorBuilder: (context, index){
               return  Container(
                   padding:  EdgeInsets.only(top: 1.0, bottom: 1.0),
-                  color: Colors.grey, height: 1);
+                  color: Colors.white70, height: 1);
             },),
         ),
 
