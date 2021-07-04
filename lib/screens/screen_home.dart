@@ -90,15 +90,33 @@ class _NewHomeScreenState extends State<HomeScreen> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
-      floatingActionButton: _selectedIndex ==0 ? FloatingActionButton(
-        onPressed: () {
-          _showLogoutDialog();
-        },
-        mini: false,
-        child: const Icon(Icons.power_settings_new),
-        backgroundColor: Colors.red,
-        foregroundColor: Colors.white,
-      ):null,
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+        Visibility(
+          visible: _selectedIndex ==0  ,
+            child:FloatingActionButton(
+          onPressed: () {
+            _showLogoutDialog();
+          },
+          mini: false,
+          child: const Icon(Icons.power_settings_new),
+          backgroundColor: Colors.red,
+          foregroundColor: Colors.white,
+        )),
+          Visibility(
+              visible: _selectedIndex ==1  ,
+              child:FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenCreateAppointment()));
+                },
+                mini: false,
+                child: const Icon(Icons.add_outlined),
+                backgroundColor: Constants.clr_light_blue,
+                foregroundColor: Constants.clr_blue,
+              ))
+        ],
+      ),
     );
   }
 
