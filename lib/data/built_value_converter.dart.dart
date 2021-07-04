@@ -3,15 +3,15 @@ import 'package:mobile/model/serializers.dart';
 import 'package:built_collection/built_collection.dart';
 
 class  BuiltValueConverter extends JsonConverter{
-   @override
+  @override
   Request convertRequest(Request request) {
     return super.convertRequest(
       request.copyWith(
-        // request.body is of type dynamic, but we know that it holds only BuiltValue classes (Patient).
+        // request.body is of type dynamic, but we know that it holds only BuiltValue classes (BuiltPost).
         // Before sending the request to the network, serialize it to a List/Map using a BuiltValue serializer.
         body: serializers.serializeWith(
           // Since convertRequest doesn't have a type parameter, Serializer's type will be determined at runtime
-          serializers.serializerForType(request.body.runtimeType),
+          serializers.serializerForType(request.body.runtimeType)!,
           request.body,
         ),
       ),
@@ -26,7 +26,7 @@ class  BuiltValueConverter extends JsonConverter{
     final Response dynamicResponse = super.convertResponse(response);
     // customBody can be either a BuiltList<SingleItemType> or just the SingleItemType (if there's no list).
     final BodyType customBody =
-        _convertToCustomObject<SingleItemType>(dynamicResponse.body);
+    _convertToCustomObject<SingleItemType>(dynamicResponse.body);
 
     // Return the original dynamicResponse with a no-longer-dynamic body type.
     return dynamicResponse.copyWith<BodyType>(body: customBody);
@@ -44,22 +44,17 @@ class  BuiltValueConverter extends JsonConverter{
   }
 
   BuiltList<SingleItemType> _deserializeListOf<SingleItemType>(
-    List dynamicList,
-  ) {
+      List dynamicList,
+      ) {
     // Make a BuiltList holding individual custom objects
     return BuiltList<SingleItemType>(
       dynamicList.map((element) => _deserialize<SingleItemType>(element)),
     );
   }
 
-  SingleItemType _deserialize<SingleItemType>(
-    Map<String, dynamic> value,
-  ) {
+  SingleItemType? _deserialize<SingleItemType>(Map<String, dynamic> value) {
     // We have a type parameter for the BuiltValue type
     // which should be returned after deserialization.
-    return serializers.deserializeWith<SingleItemType>(
-      serializers.serializerForType(SingleItemType),
-      value,
-    );
+    return serializers.deserializeWith<dynamic>(serializers.serializerForType(SingleItemType)!, value);
   }
 }

@@ -14,7 +14,7 @@ class ClientRequestInterceptor implements RequestInterceptor{
   }
 _getAuthToken() async{
  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
- String stk = sharedPreferences.getString("BASE_64_EncodedAuthenticationKey");
+ String? stk = sharedPreferences.getString("BASE_64_EncodedAuthenticationKey");
     return 'Basic $stk'.toString(); 
 }
   
