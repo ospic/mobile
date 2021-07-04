@@ -40,9 +40,9 @@ jobs:
       - name: Run Clean to reduce app sizes
         run: flutter clean
       - name: Build apk
-        run: flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --no-tree-shake-icons  --debug
+        run: flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --no-tree-shake-icons  --debug --debug --no-sound-null-safety
       - name: Build app-bundle
-        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64  --debug
+        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64  --debug --debug --no-sound-null-safety
       #- name: Enable Web
        # run: flutter create ./
       - name: Build Web
