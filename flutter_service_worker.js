@@ -4,12 +4,13 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "favicon.png": "2765281b412bd2ee27c1677e8f5f1ea2",
-"main.dart.js": "bfb1fa2078bb9ed1368f58cdcba1dbe6",
+"main.dart.js": "26d5ae9ce79ba46cc2503e2425fc64f4",
 "index.html": "03397ead15ecfafda6887878c8858e1b",
 "/": "03397ead15ecfafda6887878c8858e1b",
 "manifest.json": "bbf096d4b21132e3de3a45fec751771a",
 "assets/images/icon.png": "2541dca687e2794bbf21a45cb801731b",
 "assets/images/placeholder.gif": "baeaf0c7f02777839e58eed62cc714c4",
+"assets/images/user_icon.png": "eb76b7a31ff519d439005af24cce66f9",
 "assets/packages/progress_dialog/assets/double_ring_loading_io.gif": "e5b006904226dc824fdb6b8027f7d930",
 "assets/packages/material_design_icons_flutter/lib/fonts/materialdesignicons-webfont.ttf": "174c02fc4609e8fc4389f5d21f16a296",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
@@ -24,7 +25,7 @@ const RESOURCES = {
 "assets/fonts/FiraSans-Regular.ttf": "895f5b025a6cc4924b263f6beb06c777",
 "assets/fonts/FiraSans-Thin.ttf": "979e1f11f340455e5a96e81b0e7de352",
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
-"assets/AssetManifest.json": "10c618841bc53c6e78ad6111d6a1660c",
+"assets/AssetManifest.json": "190b8895fca50ab1a0011834422febe3",
 "version.json": "d75b5ea4d59e2aafe556a5d9ddc482f3",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1"
