@@ -56,7 +56,7 @@ SingleChildScrollView _buildReportWidget(BuildContext context, Report? report) {
               child: Column(
                 children: [
                   Center(heightFactor: 2.0, child: Text('[ ${report!.id}  ] [  ${report.size!}  ] [  ${report.type} ]  [ ${report.name} ] ', style: TextStyle(fontWeight: FontWeight.normal, color: Colors.white),),),
-                  report!.type!.startsWith('image/') ? FadeInImage.assetNetwork(
+                  report.type!.startsWith('image/') ? FadeInImage.assetNetwork(
                       placeholder: 'images/placeholder.gif',
                       image: baseUrl + report.url!): Center(heightFactor: 2.0,child:Text('Document view not implemented'))
                   ,

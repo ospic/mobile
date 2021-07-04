@@ -63,9 +63,9 @@ class ProfileScreen extends StatelessWidget {
         .replaceAll('/self', '');
     final ContactsInformation contactsInformation = user!.contactsInformation!;
     final String city =
-        contactsInformation == null ? '' : contactsInformation!.city!;
+        contactsInformation == null ? '' : contactsInformation.city!;
     final String state =
-        contactsInformation == null ? '' : contactsInformation!.state!;
+        contactsInformation == null ? '' : contactsInformation.state!;
 
     return ListView(
       children: <Widget>[
@@ -239,7 +239,7 @@ class ProfileScreen extends StatelessWidget {
                             style: TextStyle(
                                 color: Colors.white70,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(user!.height!,
+                        subtitle: Text(user.height!,
                             style: TextStyle(color: Colors.white70)),
                       ),
                       const Divider(
@@ -253,7 +253,7 @@ class ProfileScreen extends StatelessWidget {
                             style: TextStyle(
                                 color: Colors.white70,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(user!.weight!,
+                        subtitle: Text(user.weight!,
                             style: TextStyle(color: Colors.white70)),
                       ),
                       const Divider(
@@ -267,7 +267,7 @@ class ProfileScreen extends StatelessWidget {
                             style: TextStyle(
                                 color: Colors.white70,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(user!.lastModifiedDate!,
+                        subtitle: Text(user.lastModifiedDate!,
                             style: TextStyle(color: Colors.white70)),
                       ),
                       const Divider(
