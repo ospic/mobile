@@ -70,8 +70,8 @@ class ScreenViewAppointment extends  StatelessWidget{
             child:  ListTile(
               leading: CircleAvatar(
                 radius: 35.0,
-                backgroundColor: appointment!.staff!.isActive! ?  Colors.red[700]: Colors.green[100],
-                child: appointment!.staff.isActive!  ? Icon(Icons.ac_unit, color: Colors.white,): Text(
+                backgroundColor: appointment.staff.isActive! ?  Colors.red[700]: Colors.green[100],
+                child: appointment.staff.isActive!  ? Icon(Icons.ac_unit, color: Colors.white,): Text(
                   appointment.staff.username!,
                   style: TextStyle(fontWeight: FontWeight.bold, color:  appointment.staff.isActive!  ? Colors.white : Colors.green),
                 ),

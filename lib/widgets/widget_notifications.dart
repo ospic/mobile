@@ -111,17 +111,17 @@ class _NotificationsWidgetState extends State<Notifications> {
                   ),
                 ),
                 title: Text(
-                  widget.mTitle ?? '',
+                  widget.mTitle,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                subtitle: Text(widget.subTitle ?? ''),
+                subtitle: Text(widget.subTitle),
               ),
             ),
             Expanded(
               flex: 1,
               child: ListTile(
                 subtitle: Text(
-                  widget.mDataDate ?? '',
+                  widget.mDataDate,
                   textAlign: TextAlign.end,
                 ),
               ),
