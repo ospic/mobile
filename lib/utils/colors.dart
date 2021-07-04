@@ -16,8 +16,8 @@ Color gray2 = new Color.fromRGBO(191, 204, 212, 1);
 Color gray3 = new Color.fromRGBO(99, 112, 118, 1);
 
 Color colorOne = Colors.red;
-Color colorTwo = Colors.red[300];
-Color colorThree = Colors.red[100];
+Color colorTwo = Colors.red;
+Color colorThree = Colors.redAccent;
 
 final appTheme = ThemeData(
   primarySwatch: Colors.red,

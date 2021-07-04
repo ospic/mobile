@@ -21,7 +21,7 @@ class Utils {
   }
 
   
-  static bool isAndroidPlatform(){
+  static bool? isAndroidPlatform(){
       if (Platform.isAndroid) {
         return true;
         // Android-specific code
@@ -32,38 +32,6 @@ class Utils {
   }
 
 
-
-  static void showAlert(
-      BuildContext context, String title, String text, VoidCallback onPressed,bool cancelable) {
-    var alert = Utils.isAndroidPlatform() ? AlertDialog: CupertinoAlertDialog (
-
-      title: Text(title,overflow: TextOverflow.ellipsis,),
-
-      content: SingleChildScrollView(
-        child: ListBody(
-          children: <Widget>[
-            Text(text),
-          ],
-        ),
-      ),
-
-      actions: <Widget>[
-        Utils.isAndroidPlatform()?TextButton:CupertinoDialogAction(
-            onPressed: onPressed,
-            child: Text(
-              "OK",
-              style: TextStyle(color: Constants.clr_blue),
-            ))
-      ],
-    );
-
-    showDialog(
-        context: context,
-        barrierDismissible: cancelable,
-        builder: (_) {
-          return alert;
-        });
-  }
 
   static void showOkCancelAlert(
       BuildContext context, String title, String text, VoidCallback onPressed) {

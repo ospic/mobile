@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Screen {
-  Size screenSize;
+  Size screenSize = Size.infinite;
 
   Screen._internal();
   Screen(this.screenSize);

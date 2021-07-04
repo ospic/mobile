@@ -35,7 +35,7 @@ FutureBuilder<Response<Admission>> _buildBody(BuildContext context, int id) {
         Provider.of<PostApiService>(context).getConsultationAdmissionsById(id),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
-        final Admission admission = snapshot.data.body;
+        final Admission? admission = snapshot.data?.body;
         return _buildConsultationWidget(context, admission);
       } else {
         return Center(
@@ -46,7 +46,7 @@ FutureBuilder<Response<Admission>> _buildBody(BuildContext context, int id) {
   );
 }
 
-SingleChildScrollView _buildConsultationWidget(BuildContext context, Admission admission) {
+SingleChildScrollView _buildConsultationWidget(BuildContext context, Admission? admission) {
   return SingleChildScrollView(
     child: ConstrainedBox(
         constraints: BoxConstraints(),
@@ -69,7 +69,7 @@ SingleChildScrollView _buildConsultationWidget(BuildContext context, Admission a
                     Padding(
                         padding:
                             EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                        child: Text(admission.startDate)),
+                        child: Text(admission!.startDate!)),
                   ]),
                   TableRow(children: [
                     Padding(
@@ -80,7 +80,7 @@ SingleChildScrollView _buildConsultationWidget(BuildContext context, Admission a
                     Padding(
                         padding:
                             EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                        child: Text(admission.endDate)),
+                        child: Text(admission.endDate!)),
                   ]),
                   TableRow(children: [
                     Padding(
@@ -95,7 +95,7 @@ SingleChildScrollView _buildConsultationWidget(BuildContext context, Admission a
                           admission.isActive.toString(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: admission.isActive
+                              color: admission.isActive!
                                   ? colorPrimary
                                   : Colors.red),
                         )),
@@ -109,7 +109,7 @@ SingleChildScrollView _buildConsultationWidget(BuildContext context, Admission a
                     Padding(
                         padding:
                             EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                        child: Text(admission.wardName)),
+                        child: Text(admission.wardName.toString())),
                   ]),
                   TableRow(children: [
                     Padding(
@@ -144,7 +144,7 @@ SingleChildScrollView _buildConsultationWidget(BuildContext context, Admission a
                     Padding(
                         padding:
                             EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                        child: Text(admission.bedIdentifier)),
+                        child: Text(admission.bedIdentifier.toString())),
                   ]),
                 ],
               ),
@@ -167,8 +167,8 @@ FutureBuilder<Response<BuiltList<Visit>>> _buildAdmissionVisitsBody(BuildContext
         .getConsultationAdmissionsVisits(id),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-        final BuiltList<Visit> visits = snapshot.data.body;
-        return visits.length > 0 ? _buildConsultationVisitsWidget(context, visits) : Center(heightFactor: 4.0, child: Text("No visits"));
+        final BuiltList<Visit>? visits = snapshot.data?.body;
+        return visits!.length > 0 ? _buildConsultationVisitsWidget(context, visits) : Center(heightFactor: 4.0, child: Text("No visits"));
       } else if(snapshot.hasError){
         return SomethingWrongHasHappened();
       }  else {

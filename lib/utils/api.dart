@@ -35,10 +35,10 @@ class Session {
   }
 
 
-  static String _baseUri(String urlEndPoint){
+  static Uri _baseUri(String urlEndPoint){
     var baseUrl = UrlEndpoints.RELEASE_BASE_URL;
     String fullUrl = baseUrl + urlEndPoint;
-    return Uri.parse(fullUrl).toString();
+    return Uri.parse(fullUrl);
   }
   static Future<String> _endPointUrl(String endpoint) async{
      String baseUrl = await _baseUrl();
