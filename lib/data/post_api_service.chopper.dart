@@ -116,6 +116,13 @@ class _$PostApiService extends PostApiService {
   }
 
   @override
+  Future<Response<BuiltList<InsuranceCard>>> getInsuranceCards() {
+    final $url = '/insurances';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<BuiltList<InsuranceCard>, InsuranceCard>($request);
+  }
+
+  @override
   Future<Response<Patient>> getPost(int id) {
     final $url = '/$id';
     final $request = Request('GET', $url, client.baseUrl);
@@ -153,9 +160,10 @@ class _$PostApiService extends PostApiService {
   }
 
   @override
-  Future<Response<BuiltList<InsuranceCard>>> getInsuranceCards() {
-    final $url = '/insurances';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<BuiltList<InsuranceCard>, InsuranceCard>($request);
+  Future<Response<AppointmentInfo>> createAppointment(AppointmentRequest body) {
+    final $url = '/appointments';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<AppointmentInfo, AppointmentInfo>($request);
   }
 }

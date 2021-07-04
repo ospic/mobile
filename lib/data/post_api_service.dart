@@ -60,6 +60,9 @@ abstract class PostApiService extends ChopperService {
   @Get(path: '/bills/{id}')
   Future<Response<BillPayload>> getBillById(@Path('id') int id);
 
+  @Get(path: '/insurances')
+  Future<Response<BuiltList<InsuranceCard>>> getInsuranceCards();
+
   @Get(path: '/{id}')
   Future<Response<Patient>> getPost(@Path('id') int id);
 
@@ -75,8 +78,9 @@ abstract class PostApiService extends ChopperService {
   @Post(path: '/login')
   Future<Response> postForLogin(@Body() AuthPost body);
 
-  @Get(path: '/insurances')
-  Future<Response<BuiltList<InsuranceCard>>> getInsuranceCards();
+   @Post(path: '/appointments')
+  Future<Response<AppointmentInfo>> createAppointment(@Body() AppointmentRequest body);
+
 
   static PostApiService create() {
     final darthttp.BaseClient dartclient = createHttpClient();
