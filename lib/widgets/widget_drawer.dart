@@ -44,6 +44,7 @@ class DrawerWidget extends StatelessWidget {
           title: 'Contact Us',
           leading: MdiIcons.alphaCCircleOutline,
           disabled: false,
+          routename: '/about',
           onTap: () {
             Navigator.pushNamed(context, '/contacts');
           },
@@ -54,6 +55,7 @@ class DrawerWidget extends StatelessWidget {
           title: 'Help',
           leading: MdiIcons.helpCircleOutline,
           disabled: false,
+          routename: '/about',
           onTap: () {
             Navigator.pushNamed(context, '/help');
           },
@@ -64,6 +66,7 @@ class DrawerWidget extends StatelessWidget {
           title: 'This App',
           leading: MdiIcons.alertCircleOutline,
           disabled: false,
+          routename: '/about',
           onTap: () {
             Navigator.pushNamed(context, '/app');
           },

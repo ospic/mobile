@@ -3,7 +3,7 @@ import 'package:mobile/utils/index.dart';
 
 class TopBar extends StatelessWidget {
   final Widget child;
-  TopBar({@required this.child});
+  TopBar({required this.child});
   @override
   Widget build(BuildContext context) {
     return CustomPaint(

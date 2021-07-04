@@ -9,13 +9,12 @@ class Notifications extends StatefulWidget {
 
   const Notifications(
     String s, {
-    Key key,
-    this.iconData,
-    @required this.mTitle,
-    this.subTitle,
-    this.mDataDate,
-    this.mDataInfo,
-  }) : super(key: key);
+    required this.iconData,
+    required this.mTitle,
+    required this.subTitle,
+    required this.mDataDate,
+    required this.mDataInfo,
+  });
 
   @override
   State<StatefulWidget> createState() => _NotificationsWidgetState();

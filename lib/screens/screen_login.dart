@@ -146,9 +146,9 @@ class _State extends State<LoginScreen> {
   }
 
 
-Future<bool> isloggedIn() async {
-  var sharepref = new SharedPreference();
-  return await sharepref.getBoolValuesSF(enumKey.IS_LOGGED_IN.toString());
+Future<bool?> isLoggedIn() async {
+  var sp = new SharedPreference();
+  return await sp.getBoolValuesSF(enumKey.IS_LOGGED_IN.toString());
 }
 
 Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,ProgressDialog pr) async{

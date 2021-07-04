@@ -7,10 +7,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 class BillWidget extends StatefulWidget {
   final Bill bill;
 
-  const BillWidget(String s,
-      {Key key,
-      @required this.bill})
-      : super(key: key);
+  const BillWidget(String s, {required this.bill});
 
   @override
   State<StatefulWidget> createState() => _BillWidgetState();
@@ -35,7 +32,7 @@ class _BillWidgetState extends State<BillWidget> {
                           right: new BorderSide(width: 1.0, color: gray2))),
                   child: new CircleAvatar(
                     radius: 30,
-                    backgroundColor: widget.bill.isPaid ? gray1 : colorAccent,
+                    backgroundColor: widget.bill.isPaid! ? gray1 : colorAccent,
                     child: new Icon(
                       MdiIcons.currencyUsd,
                       color: green1,
@@ -51,7 +48,7 @@ class _BillWidgetState extends State<BillWidget> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            BillScreen(widget.bill.id))),
+                            BillScreen(widget.bill.id!, widget.bill.createdDate!))),
               ),
               ),
 
