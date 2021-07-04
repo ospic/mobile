@@ -46,7 +46,7 @@ jobs:
       #- name: Enable Web
        # run: flutter create ./
       - name: Build Web
-        run: flutter build web
+        run: flutter build web --no-sound-null-safety
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
