@@ -52,9 +52,9 @@ class TabHome extends StatefulWidget {
       future: Provider.of<PostApiService>(context).getPatients(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-          final Patient patient = snapshot.data.body;
+          final Patient? patient = snapshot.data?.body;
           return ListTile(
-            title: Text('Hi ${patient.name}', style: TextStyle(
+            title: Text('Hi ${patient!.name}', style: TextStyle(
               color: Constants.clr_blue,
               fontWeight: FontWeight.bold,
               fontSize: 25.0,),),
@@ -72,7 +72,7 @@ class TabHome extends StatefulWidget {
                       Image.asset('images/icon.png', height: 50.0,
                         width: 50.0,
                         fit: BoxFit.fitWidth,) :
-                      Image.network(UrlEndpoints.IMAGE_BASE_URL + patient.patientPhoto))),
+                      Image.network(UrlEndpoints.IMAGE_BASE_URL + patient.patientPhoto!))),
               onTap: () {
                 Navigator.pushNamed(context, '/profile');
               },
@@ -96,9 +96,9 @@ class TabHome extends StatefulWidget {
       future: Provider.of<PostApiService>(context).getUserConsultations(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-          final BuiltList<Consultation> consultation = snapshot?.data?.body;
+          final BuiltList<Consultation>? consultation = snapshot.data?.body;
 
-          return consultation.length > 0 ? _buildConsultationList(
+          return consultation!.length > 0 ? _buildConsultationList(
               context, consultation.reversed.toBuiltList()) : NothingFoundWarning();
         } else if(snapshot.hasError){
           return SomethingWrongHasHappened();
@@ -147,15 +147,15 @@ class TabHome extends StatefulWidget {
                                 decoration: BoxDecoration(
                                   color: colorAccent,
                                 ),
-                                child: Icon(MdiIcons.drupal, color: cs[index].isActive ? Constants.clr_blue: null,), height: 40.0, width: 40.0,),
+                                child: Icon(MdiIcons.drupal, color: cs[index].isActive! ? Constants.clr_blue: null,), height: 40.0, width: 40.0,),
                             ),
-                            title: Text(cs[index].fromDate,style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black54),),
-                            subtitle: Text(cs[index].patientName),
+                            title: Text(cs[index].fromDate!,style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black54),),
+                            subtitle: Text(cs[index].patientName!),
                             trailing: Icon(MdiIcons.chevronRight),
                             onTap: (){
                               Navigator.push(context, MaterialPageRoute(
                                   builder: (context) {
-                                return ScreenVieConsultation(cs[index].id);
+                                return ScreenVieConsultation(cs[index].id!);
                               },
                               ));
                             },

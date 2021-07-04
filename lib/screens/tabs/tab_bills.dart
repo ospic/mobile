@@ -46,8 +46,8 @@ class _TabBillsState extends State<TabBills> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
-          final BuiltList<Bill> bills = snapshot.data.body;
-          selectedValue = bills[0].id;
+          final BuiltList<Bill>? bills = snapshot.data?.body;
+          selectedValue = bills![0].id!;
           return _buildBillsList(context, bills);
         } else if (snapshot.hasError) {
           return SomethingWrongHasHappened();
@@ -64,7 +64,6 @@ class _TabBillsState extends State<TabBills> {
     return Row(
       children: [
         Expanded(
-          flex: isLargeScreen ? 3 : 10,
           child: ListView.separated(
             itemCount: bills.length,
             scrollDirection: Axis.vertical,
@@ -77,15 +76,15 @@ class _TabBillsState extends State<TabBills> {
                 leading: CircleAvatar(
                   radius: 20,
                   backgroundColor:
-                      bill.isPaid ? colorPrimary : Colors.blue[700],
+                      bill.isPaid! ? colorPrimary : Colors.blue[700],
                   child: Text(
                     bill.id.toString(),
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: bill.isActive ? Colors.white : Colors.green),
+                        color: bill.isActive! ? Colors.white : Colors.green),
                   ),
                 ),
-                title: Text(bill.createdDate),
+                title: Text(bill.createdDate!),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -95,13 +94,13 @@ class _TabBillsState extends State<TabBills> {
                 ),
                 onTap: () {
                   if (isLargeScreen) {
-                    selectedValue = bill.id;
+                    selectedValue = bill.id!;
                     print(selectedValue);
                     _notifier.value = !_notifier.value;
                   } else {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
-                        return BillScreen(bill.id, bill.createdDate);
+                        return BillScreen(bill.id!, bill.createdDate!);
                       },
                     ));
                   }
@@ -113,17 +112,7 @@ class _TabBillsState extends State<TabBills> {
             },
           ),
         ),
-        Expanded(
-            flex: isLargeScreen ? 7 : 0,
-            child: ValueListenableBuilder(
-                valueListenable: _notifier,
-                builder: (BuildContext context, bool quoteReady, Widget child) {
-                  return isLargeScreen
-                      ? BillScreen(
-                          selectedValue,
-                        )
-                      : Container();
-                }))
+
       ],
     );
   }

@@ -53,8 +53,8 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
       future: Provider.of<PostApiService>(context).getAppointments(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-          final BuiltList<AppointmentInfo> appointments = snapshot.data.body;
-          selectedValue = appointments[0].id;
+          final BuiltList<AppointmentInfo>? appointments = snapshot.data?.body;
+          selectedValue = appointments![0].id!;
           return appointments.length > 0 ? _buildNotifications(context, appointments) :  NothingFoundWarning();
         } else if(snapshot.hasError){
           return SomethingWrongHasHappened();
@@ -74,7 +74,6 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
     return Row(
       children: [
         Expanded(
-          flex: isLargeScreen ?  3 : 10,
           child: ListView.separated(
             itemCount: ap.length,
             scrollDirection: Axis.vertical,
@@ -95,23 +94,23 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
                         style: TextStyle(fontWeight: FontWeight.bold, color: ap[index].status == 'WAITING' ? Colors.white : Colors.green),
                       ),
                     ),
-                    title: Text(ap[index].appointmentDate),
+                    title: Text(ap[index].appointmentDate!),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Status: " + ap[index].status ),
+                        Text("Status: " + ap[index].status! ),
                         Text("Patient: " +ap[index].patientId .toString())
                       ],
                     ),
                     onTap: () {
                       if (isLargeScreen) {
-                        selectedValue = ap[index].id;
+                        selectedValue = ap[index].id!;
                         print(selectedValue);
                         _notifier.value = !_notifier.value;
                       } else {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return ScreenViewAppointment(ap[index].id);
+                            return ScreenViewAppointment(ap[index].id!);
                           },
                         ));
                       }
@@ -124,16 +123,6 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
                   color: Colors.grey, height: 1);
             },),
         ),
-    Expanded(
-    flex: isLargeScreen ? 7 : 0,
-       child: ValueListenableBuilder(
-            valueListenable: _notifier,
-            builder: (BuildContext context, bool quoteReady, Widget child){
-              return
-                isLargeScreen
-                    ?  ScreenViewAppointment(selectedValue) : Container();
-            })
-    )
 
       ],
     );

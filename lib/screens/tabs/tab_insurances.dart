@@ -36,8 +36,8 @@ class _InsurancesTabState extends State<TabInsurances> {
       future: Provider.of<PostApiService>(context).getInsuranceCards(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-          final BuiltList<InsuranceCard> cards = snapshot.data.body;
-          return cards.isNotEmpty  ? _buildCardList(
+          final BuiltList<InsuranceCard>? cards = snapshot.data?.body;
+          return cards!.isNotEmpty  ? _buildCardList(
               context,  cards.reversed.toBuiltList()) : NothingFoundWarning();
         } else if(snapshot.hasError){
           return SomethingWrongHasHappened();
@@ -86,18 +86,18 @@ class _InsurancesTabState extends State<TabInsurances> {
                       child: Container(
                         height: 50.0,
                         width: 50.0,
-                        color: cs[index].isActive ? Constants.clr_blue : Colors.black12,
-                        child:  Center(child: Icon(cs[index].isActive ? Icons.lock_open_outlined :Icons.lock_outline, color: Colors.white,),)
+                        color: cs[index].isActive! ? Constants.clr_blue : Colors.black12,
+                        child:  Center(child: Icon(cs[index].isActive! ? Icons.lock_open_outlined :Icons.lock_outline, color: Colors.white,),)
                       ),
                     ),
-                    title: Text(cs[index].insurance.name, style: TextStyle(fontWeight: FontWeight.bold, color: colorPrimary),),
+                    title: Text(cs[index].insurance.name!, style: TextStyle(fontWeight: FontWeight.bold, color: colorPrimary),),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Divider(),
-                        Text("Member No: \t\t\t\t\t" + cs[index].membershipNumber ),
-                        Text("Member name: \t" +cs[index].patientName),
-                        Text('Expire date: \t\t\t\t\t\t' + cs[index].expireDate)
+                        Text("Member No: \t\t\t\t\t" + cs[index].membershipNumber! ),
+                        Text("Member name: \t" +cs[index].patientName!),
+                        Text('Expire date: \t\t\t\t\t\t' + cs[index].expireDate!)
                       ],
                     ),
                     onTap: () {}

@@ -22,7 +22,7 @@ FutureBuilder<Response<ConsultationPayload>> _buildBody(BuildContext context, in
     future: Provider.of<PostApiService>(context).getUserConsultationById(id),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-        final ConsultationPayload consultation = snapshot.data.body;
+        final ConsultationPayload? consultation = snapshot.data?.body;
         return _buildConsultationWidget(context, consultation);
       } else if(snapshot.hasError){
         return SomethingWrongHasHappened();
@@ -35,9 +35,9 @@ FutureBuilder<Response<ConsultationPayload>> _buildBody(BuildContext context, in
   );
 }
 
-Widget _buildConsultationWidget(BuildContext context, ConsultationPayload consultation){
-  final Staff staff = consultation.staff;
-  final String staffName = staff==null? 'Un-assigned': (staff.fullName == null ? staff.username : staff.fullName);
+Widget _buildConsultationWidget(BuildContext context, ConsultationPayload? consultation){
+  final Staff staff = consultation!.staff;
+  final String staffName = staff==null? 'Un-assigned': (staff.fullName == null ? staff.username! : staff.fullName!);
   return ListView(
       children:[
         Padding(
@@ -57,7 +57,7 @@ Widget _buildConsultationWidget(BuildContext context, ConsultationPayload consul
                 Padding(
                     padding:
                     EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                    child: Text(consultation.fromdate)),
+                    child: Text(consultation.fromdate!)),
               ]),
               TableRow(children: [
                 Padding(
@@ -67,7 +67,7 @@ Widget _buildConsultationWidget(BuildContext context, ConsultationPayload consul
                 Padding(
                     padding:
                     EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                    child: Text(consultation.todate)),
+                    child: Text(consultation.todate!)),
               ]),
               TableRow(children: [
                 Padding(
@@ -77,7 +77,7 @@ Widget _buildConsultationWidget(BuildContext context, ConsultationPayload consul
                 Padding(
                     padding:
                     EdgeInsets.only(top: 5.0, bottom: 4.0,left: 5.0),
-                    child:Text(consultation.isActive.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: consultation.isActive? colorPrimary: Colors.red),)),
+                    child:Text(consultation.isActive.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: consultation.isActive!? colorPrimary: Colors.red),)),
               ]),
               TableRow(children: [
                 Padding(
@@ -87,7 +87,7 @@ Widget _buildConsultationWidget(BuildContext context, ConsultationPayload consul
                 Padding(
                     padding:
                     EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                    child: Text(consultation.isAdmitted.toString(),style: TextStyle(fontWeight: FontWeight.bold, color: consultation.isAdmitted? colorPrimary: Colors.red),)),
+                    child: Text(consultation.isAdmitted.toString(),style: TextStyle(fontWeight: FontWeight.bold, color: consultation.isAdmitted!? colorPrimary: Colors.red),)),
               ]),
               TableRow(children: [
                 Padding(

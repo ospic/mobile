@@ -27,8 +27,8 @@ FutureBuilder<Response<BuiltList<Admission>>> _buildBody(BuildContext context, i
     future: Provider.of<PostApiService>(context).getConsultationAdmissions(id),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-        final BuiltList<Admission> admissions = snapshot.data.body;
-        return admissions.length > 0 ? _buildConsultationWidget(context,  admissions): NothingFoundWarning();
+        final BuiltList<Admission>? admissions = snapshot.data?.body;
+        return admissions!.length > 0 ? _buildConsultationWidget(context,  admissions): NothingFoundWarning();
       } else if(snapshot.hasError){
         return SomethingWrongHasHappened();
       }  else {
@@ -56,9 +56,9 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Admission> adm
             minHeight: 70,
           ),
           child: ListTile(
-            leading: Icon( MdiIcons.circle,color: admissions[index].isActive ? green1: gray3),
-            title: Text(admissions[index].startDate, style: TextStyle(color: colorAccent, fontWeight: FontWeight.bold)),
-            subtitle: Text("\n Admitted from:  "+admissions[index].startDate + "\n To: "+admissions[index].endDate +"\n On ward: "+admissions[index].wardName + "\n Bed no."+admissions[index].bedId.toString() + " - ["+admissions[index].bedIdentifier+"]"),
+            leading: Icon( MdiIcons.circle,color: admissions[index].isActive! ? green1: gray3),
+            title: Text(admissions[index].startDate!, style: TextStyle(color: colorAccent, fontWeight: FontWeight.bold)),
+            subtitle: Text("\n Admitted from:  "+admissions[index].startDate! + "\n To: "+admissions[index].endDate! +"\n On ward: "+admissions[index].wardName! + "\n Bed no."+admissions[index].bedId.toString() + " - ["+admissions[index].bedIdentifier!+"]"),
             onTap:() => Navigator.push(
                 context,
                 MaterialPageRoute(

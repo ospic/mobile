@@ -11,7 +11,6 @@ import 'package:progress_dialog/progress_dialog.dart';
 import 'package:http/http.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({required Key key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => new _State();

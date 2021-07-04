@@ -27,8 +27,8 @@ FutureBuilder<Response<BuiltList<Report>>> _buildBody(BuildContext context, int 
     future: Provider.of<PostApiService>(context).getConsultationReports(id),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-        final BuiltList<Report> reports = snapshot.data.body;
-        return reports.length > 0 ? _buildConsultationWidget(context,  reports):  NothingFoundWarning();
+        final BuiltList<Report>? reports = snapshot.data?.body;
+        return reports!.length > 0 ? _buildConsultationWidget(context,  reports):  NothingFoundWarning();
       } else if(snapshot.hasError){
         return SomethingWrongHasHappened();
       } else {
@@ -57,8 +57,8 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Report> report
             ),
             child: ListTile(
              // leading: FileIcon(reports[index].name, size: 25.0,),
-              title: Text(reports[index].name, style: TextStyle(color: colorAccent, fontWeight: FontWeight.bold)),
-              subtitle: Text(reports[index].location),
+              title: Text(reports[index].name!, style: TextStyle(color: colorAccent, fontWeight: FontWeight.bold)),
+              subtitle: Text(reports[index].location!),
               onTap:() => Navigator.push(
                   context,
                   MaterialPageRoute(

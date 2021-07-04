@@ -27,8 +27,8 @@ FutureBuilder<Response<BuiltList<Diagnosis>>> _buildBody(BuildContext context, i
     future: Provider.of<PostApiService>(context).getConsultationDiagnoses(id),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
-        final BuiltList<Diagnosis> diagnoses = snapshot.data.body;
-        return diagnoses.length > 0 ?   _buildConsultationWidget(context,  diagnoses) : NothingFoundWarning( );
+        final BuiltList<Diagnosis>? diagnoses = snapshot.data?.body;
+        return diagnoses!.length > 0 ?   _buildConsultationWidget(context,  diagnoses) : NothingFoundWarning( );
       } else {
         return Center(
           child: CircularProgressIndicator(),
@@ -76,8 +76,8 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> dia
                   color: Colors.transparent,
                   child: ListTile(
                     contentPadding: EdgeInsets.all(8.0),
-                    title: Text(diagnoses[index].date, style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold)),
-                    subtitle: Text(diagnoses[index].symptoms),
+                    title: Text(diagnoses[index].date!, style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold)),
+                    subtitle: Text(diagnoses[index].symptoms!),
                   ),
                 ),
               ),
