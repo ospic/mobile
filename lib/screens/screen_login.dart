@@ -11,7 +11,7 @@ import 'package:progress_dialog/progress_dialog.dart';
 import 'package:http/http.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key key}) : super(key: key);
+  LoginScreen({required Key key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => new _State();
@@ -22,7 +22,7 @@ class _State extends State<LoginScreen> {
   final password = TextEditingController();
   final focus = FocusNode();
   final _formKey = GlobalKey<FormState>();
-  ProgressDialog pd;
+  late ProgressDialog pd;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class _State extends State<LoginScreen> {
                                         },
 
                                         validator: (value) {
-                                          if (value.isEmpty) {
+                                          if (value!.isEmpty) {
                                             return 'Username cannot be empty';
                                           }
                                           return null;
@@ -90,7 +90,7 @@ class _State extends State<LoginScreen> {
                                             fillColor: Colors.white70),
                                         focusNode: focus,
                                         validator: (value) {
-                                          if (value.isEmpty) {
+                                          if (value!.isEmpty) {
                                             return 'Password cannot be empty';
                                           }
                                           return null;
@@ -153,7 +153,7 @@ Future<bool> isloggedIn() async {
 
 Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,ProgressDialog pr) async{
 
-    if (_formKey.currentState.validate()) {
+    if (_formKey.currentState!.validate()) {
 
       pr.update(progress: 50.0, message: "Please wait...", progressWidget: Container(
           padding: EdgeInsets.all(8.0),
@@ -173,16 +173,16 @@ Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,Prog
       final response = await Session.apiAuthPost(serializers.serialize(newPost));
       Response httpClientResponse = response;
       String value =  response.body;
-      AuthResponse authResponse = serializers.deserializeWith(AuthResponse.serializer, jsonDecode(value) ?? Map());
+      AuthResponse? authResponse = serializers.deserializeWith(AuthResponse.serializer, jsonDecode(value) ?? Map());
       final int statusCode = httpClientResponse.statusCode;
       print("Status code"+authResponse.toString());
       if(statusCode == 200){
         pr.hide();
         var sharepref = new SharedPreference();
-        await sharepref.setStringToSF(enumKey.BASE_64_EncodedAuthenticationKey.toString(), authResponse.accessToken);
+        await sharepref.setStringToSF(enumKey.BASE_64_EncodedAuthenticationKey.toString(), authResponse!.accessToken!);
         await sharepref.setBooleanToSF(enumKey.IS_LOGGED_IN.toString(), true).then((onValue) {});
-        await sharepref.setStringToSF(enumKey.USER_NAME.toString(), authResponse.username);
-        await sharepref.setStringToSF(enumKey.BASE_URL.toString(), response.request.url.toString().substring(0,response.request.url.toString().length - 6 ));
+        await sharepref.setStringToSF(enumKey.USER_NAME.toString(), authResponse.username!);
+        await sharepref.setStringToSF(enumKey.BASE_URL.toString(), response.request!.url.toString().substring(0,response.request!.url.toString().length - 6 ));
         Navigator.pushNamed(context, '/home');
       }else if(statusCode == 500){
         pr.hide();
