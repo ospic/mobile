@@ -7,11 +7,11 @@ part 'user.g.dart';
 
 abstract class User  implements Built<User, UserBuilder>  {
 
-  @nullable int get id;
-  @nullable String get  username;
-  @nullable String get email;
-  @nullable bool get isStaff;
-  @nullable BuiltList<Role>  get roles;
+  int ? get id;
+  String ? get  username;
+  String ? get email;
+  bool ? get isStaff;
+  BuiltList<Role>  get roles;
 
   User._();
   factory User([updates(UserBuilder b)]) = _$User;

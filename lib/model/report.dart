@@ -3,11 +3,11 @@ import 'package:built_value/serializer.dart';
 part 'report.g.dart';
 abstract class Report implements Built<Report, ReportBuilder>{
   int get id;
-  @nullable String get name;
-  @nullable String get url;
-  @nullable String get location;
-  @nullable String get type;
-  @nullable String get size;
+  String ? get name;
+  String ? get url;
+  String ? get location;
+  String ? get type;
+  String ? get size;
   
 
   Report._();

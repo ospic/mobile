@@ -4,13 +4,9 @@ import 'package:built_value/serializer.dart';
 part 'notification_model.g.dart';
 
 abstract class NotificationModel implements Built<NotificationModel, NotificationModelBuilder> {
-  // IDs are set in the back-end.
-  // In a POST request, NotificationModel's ID will be null.
-  // Only NotificationModels obtained through a GET request will have an ID.
-  @nullable
-  int get groupid;
-  int get requestId;
-  String get description;
+  int ? get groupid;
+  int ? get requestId;
+  String ? get description;
  
 
   NotificationModel._();

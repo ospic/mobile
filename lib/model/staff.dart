@@ -3,15 +3,15 @@ import 'package:built_value/serializer.dart';
 import 'package:mobile/model/department.dart';
 part 'staff.g.dart';
 abstract class Staff implements Built<Staff, StaffBuilder>{
-  @nullable int get id;
-  @nullable String get username;
-  @nullable String get fullName;
-  @nullable String get contacts;
-  @nullable String get imageUrl;
-  @nullable String get level;
-  @nullable String get email;
-  @nullable bool get isActive;
-  @nullable bool get isAvailable;
+  int ? get id;
+  String ? get username;
+  String ? get fullName;
+  String ? get contacts;
+  String ? get imageUrl;
+  String ? get level;
+  String ? get email;
+  bool ? get isActive;
+  bool ? get isAvailable;
   @BuiltValueField(wireName: "department")
   Department get department;
 
