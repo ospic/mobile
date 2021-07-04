@@ -39,7 +39,7 @@ class Application extends StatefulWidget{
   @override
   _ApplicationState createState()=> _ApplicationState();
 
-  static _ApplicationState of(BuildContext context) => context.findAncestorStateOfType<_ApplicationState>();
+  static _ApplicationState? of(BuildContext context) => context.findAncestorStateOfType<_ApplicationState>();
 }
 
 class _ApplicationState extends State<Application>{
