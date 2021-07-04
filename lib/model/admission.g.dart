@@ -15,65 +15,71 @@ class _$AdmissionSerializer implements StructuredSerializer<Admission> {
   final String wireName = 'Admission';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Admission object,
+  Iterable<Object?> serialize(Serializers serializers, Admission object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
     ];
-    if (object.startDate != null) {
+    Object? value;
+    value = object.startDate;
+    if (value != null) {
       result
         ..add('startDate')
-        ..add(serializers.serialize(object.startDate,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.endDate != null) {
+    value = object.endDate;
+    if (value != null) {
       result
         ..add('endDate')
-        ..add(serializers.serialize(object.endDate,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.isActive != null) {
+    value = object.isActive;
+    if (value != null) {
       result
         ..add('isActive')
-        ..add(serializers.serialize(object.isActive,
-            specifiedType: const FullType(bool)));
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
     }
-    if (object.wardId != null) {
+    value = object.wardId;
+    if (value != null) {
       result
         ..add('wardId')
-        ..add(serializers.serialize(object.wardId,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.bedId != null) {
+    value = object.bedId;
+    if (value != null) {
       result
         ..add('bedId')
-        ..add(serializers.serialize(object.bedId,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.bedIdentifier != null) {
+    value = object.bedIdentifier;
+    if (value != null) {
       result
         ..add('bedIdentifier')
-        ..add(serializers.serialize(object.bedIdentifier,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.wardName != null) {
+    value = object.wardName;
+    if (value != null) {
       result
         ..add('wardName')
-        ..add(serializers.serialize(object.wardName,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.serviceId != null) {
+    value = object.serviceId;
+    if (value != null) {
       result
         ..add('serviceId')
-        ..add(serializers.serialize(object.serviceId,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     return result;
   }
 
   @override
-  Admission deserialize(Serializers serializers, Iterable<Object> serialized,
+  Admission deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new AdmissionBuilder();
 
@@ -81,7 +87,7 @@ class _$AdmissionSerializer implements StructuredSerializer<Admission> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
@@ -89,35 +95,35 @@ class _$AdmissionSerializer implements StructuredSerializer<Admission> {
           break;
         case 'startDate':
           result.startDate = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'endDate':
           result.endDate = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'isActive':
           result.isActive = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'wardId':
           result.wardId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'bedId':
           result.bedId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'bedIdentifier':
           result.bedIdentifier = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'wardName':
           result.wardName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'serviceId':
           result.serviceId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
       }
     }
@@ -130,27 +136,27 @@ class _$Admission extends Admission {
   @override
   final int id;
   @override
-  final String startDate;
+  final String? startDate;
   @override
-  final String endDate;
+  final String? endDate;
   @override
-  final bool isActive;
+  final bool? isActive;
   @override
-  final int wardId;
+  final int? wardId;
   @override
-  final int bedId;
+  final int? bedId;
   @override
-  final String bedIdentifier;
+  final String? bedIdentifier;
   @override
-  final String wardName;
+  final String? wardName;
   @override
-  final int serviceId;
+  final int? serviceId;
 
-  factory _$Admission([void Function(AdmissionBuilder) updates]) =>
+  factory _$Admission([void Function(AdmissionBuilder)? updates]) =>
       (new AdmissionBuilder()..update(updates)).build();
 
   _$Admission._(
-      {this.id,
+      {required this.id,
       this.startDate,
       this.endDate,
       this.isActive,
@@ -160,9 +166,7 @@ class _$Admission extends Admission {
       this.wardName,
       this.serviceId})
       : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('Admission', 'id');
-    }
+    BuiltValueNullFieldError.checkNotNull(id, 'Admission', 'id');
   }
 
   @override
@@ -222,58 +226,59 @@ class _$Admission extends Admission {
 }
 
 class AdmissionBuilder implements Builder<Admission, AdmissionBuilder> {
-  _$Admission _$v;
+  _$Admission? _$v;
 
-  int _id;
-  int get id => _$this._id;
-  set id(int id) => _$this._id = id;
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
 
-  String _startDate;
-  String get startDate => _$this._startDate;
-  set startDate(String startDate) => _$this._startDate = startDate;
+  String? _startDate;
+  String? get startDate => _$this._startDate;
+  set startDate(String? startDate) => _$this._startDate = startDate;
 
-  String _endDate;
-  String get endDate => _$this._endDate;
-  set endDate(String endDate) => _$this._endDate = endDate;
+  String? _endDate;
+  String? get endDate => _$this._endDate;
+  set endDate(String? endDate) => _$this._endDate = endDate;
 
-  bool _isActive;
-  bool get isActive => _$this._isActive;
-  set isActive(bool isActive) => _$this._isActive = isActive;
+  bool? _isActive;
+  bool? get isActive => _$this._isActive;
+  set isActive(bool? isActive) => _$this._isActive = isActive;
 
-  int _wardId;
-  int get wardId => _$this._wardId;
-  set wardId(int wardId) => _$this._wardId = wardId;
+  int? _wardId;
+  int? get wardId => _$this._wardId;
+  set wardId(int? wardId) => _$this._wardId = wardId;
 
-  int _bedId;
-  int get bedId => _$this._bedId;
-  set bedId(int bedId) => _$this._bedId = bedId;
+  int? _bedId;
+  int? get bedId => _$this._bedId;
+  set bedId(int? bedId) => _$this._bedId = bedId;
 
-  String _bedIdentifier;
-  String get bedIdentifier => _$this._bedIdentifier;
-  set bedIdentifier(String bedIdentifier) =>
+  String? _bedIdentifier;
+  String? get bedIdentifier => _$this._bedIdentifier;
+  set bedIdentifier(String? bedIdentifier) =>
       _$this._bedIdentifier = bedIdentifier;
 
-  String _wardName;
-  String get wardName => _$this._wardName;
-  set wardName(String wardName) => _$this._wardName = wardName;
+  String? _wardName;
+  String? get wardName => _$this._wardName;
+  set wardName(String? wardName) => _$this._wardName = wardName;
 
-  int _serviceId;
-  int get serviceId => _$this._serviceId;
-  set serviceId(int serviceId) => _$this._serviceId = serviceId;
+  int? _serviceId;
+  int? get serviceId => _$this._serviceId;
+  set serviceId(int? serviceId) => _$this._serviceId = serviceId;
 
   AdmissionBuilder();
 
   AdmissionBuilder get _$this {
-    if (_$v != null) {
-      _id = _$v.id;
-      _startDate = _$v.startDate;
-      _endDate = _$v.endDate;
-      _isActive = _$v.isActive;
-      _wardId = _$v.wardId;
-      _bedId = _$v.bedId;
-      _bedIdentifier = _$v.bedIdentifier;
-      _wardName = _$v.wardName;
-      _serviceId = _$v.serviceId;
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _startDate = $v.startDate;
+      _endDate = $v.endDate;
+      _isActive = $v.isActive;
+      _wardId = $v.wardId;
+      _bedId = $v.bedId;
+      _bedIdentifier = $v.bedIdentifier;
+      _wardName = $v.wardName;
+      _serviceId = $v.serviceId;
       _$v = null;
     }
     return this;
@@ -281,14 +286,12 @@ class AdmissionBuilder implements Builder<Admission, AdmissionBuilder> {
 
   @override
   void replace(Admission other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Admission;
   }
 
   @override
-  void update(void Function(AdmissionBuilder) updates) {
+  void update(void Function(AdmissionBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -296,7 +299,7 @@ class AdmissionBuilder implements Builder<Admission, AdmissionBuilder> {
   _$Admission build() {
     final _$result = _$v ??
         new _$Admission._(
-            id: id,
+            id: BuiltValueNullFieldError.checkNotNull(id, 'Admission', 'id'),
             startDate: startDate,
             endDate: endDate,
             isActive: isActive,
