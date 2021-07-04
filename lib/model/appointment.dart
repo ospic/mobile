@@ -6,7 +6,7 @@ import 'appointment_info.dart';
 
 part 'appointment.g.dart';
 abstract class Appointment implements Built<Appointment, AppointmentBuilder>{
-  @nullable bool get success;
+   bool ? get success;
   @BuiltValueField(wireName: "appointment")
   AppointmentInfo get appointment;
   @BuiltValueField(wireName: "staff")
