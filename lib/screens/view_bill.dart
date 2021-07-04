@@ -9,63 +9,31 @@ import 'package:mobile/utils/utils.dart';
 import 'package:mobile/widgets/index.dart';
 import 'package:provider/provider.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 class BillScreen extends StatelessWidget {
   final int billId;
   final String date;
 
-  BillScreen(this.billId, [this.date]);
+  BillScreen(this.billId, this.date, );
 
   @override
   Widget build(BuildContext context) {
-    var isLargeScreen = false;
-    return OrientationBuilder(builder: (context, orientation) {
-      if (MediaQuery.of(context).size.width > 600) {
-        isLargeScreen = true;
-      } else {
-        isLargeScreen = false;
-      }
-      final PreferredSizeWidget appBar = (kIsWeb || Platform.isAndroid)
-          ? AppBar(
-              elevation: 0.0,
-              automaticallyImplyLeading: !isLargeScreen,
-              iconTheme: IconThemeData(
-                color: Constants.clr_blue
-              ),
-              title: Text(
-                date == null ? "Bill No. $billId" : date,
-                style: TextStyle(
-                    fontSize: 16.0,
-                    color: isLargeScreen ? colorPrimary : Constants.clr_blue, fontWeight: FontWeight.bold),
-              ),
-              backgroundColor: isLargeScreen ? gray1 :Constants.clr_light_blue,
+      return Scaffold(appBar: AppBar(
+        elevation: 0.0,
+        automaticallyImplyLeading: true,
+        iconTheme: IconThemeData(
+            color: Constants.clr_blue
+        ),
+        title: Text(
+          date == null ? "Bill No. $billId" : date,
+          style: TextStyle(
+              fontSize: 16.0,
+              color:  Constants.clr_blue, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Constants.clr_light_blue,
 
-            )
-          : CupertinoNavigationBar(
-              automaticallyImplyLeading: !isLargeScreen,
-              backgroundColor: colorPrimary,
-              middle: Text(
-                'Group no.' /** + billId.id.toString()**/,
-                style: TextStyle(fontFamily: 'Batmfa'),
-              ),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  GestureDetector(
-                    child: Icon(CupertinoIcons.add),
-                    onTap: () => _startAddNewTransaction(context),
-                  )
-                ],
-              ),
-            );
-      return Container(
-          padding: EdgeInsets.all(0.0),
-          child: (kIsWeb || Platform.isAndroid)
-              ? Scaffold(appBar: appBar, body: _buildBody(context, billId))
-              : CupertinoPageScaffold(
-                  child: _buildBody(context, billId), navigationBar: appBar));
-    });
+      ),
+          body: _buildBody(context, billId));
   }
 
   FutureBuilder<Response<BillPayload>> _buildBody(
@@ -74,8 +42,8 @@ class BillScreen extends StatelessWidget {
       future: Provider.of<PostApiService>(context).getBillById(id),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-          final BillPayload posts = snapshot.data.body;
-          return _buildBillWidget(context, posts);
+          final BillPayload? posts = snapshot.data?.body;
+          return _buildBillWidget(context, posts!);
         } else if(snapshot.hasError){
           return SomethingWrongHasHappened();
         }  else {
@@ -88,8 +56,7 @@ class BillScreen extends StatelessWidget {
   }
 
   ListView _buildBillWidget(BuildContext context, BillPayload bill) {
-    final BuiltList<Transaction> transactions =
-        bill.transactionResponse.transactions;
+    final BuiltList<Transaction> transactions = bill.transactionResponse.transactions;
     return ListView(children: <Widget>[
       Padding(
         padding: EdgeInsets.all(2.0),
@@ -109,7 +76,7 @@ class BillScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold))),
               Padding(
                   padding: EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                  child: Text(bill.createdDate)),
+                  child: Text(bill.createdDate!)),
             ]),
             TableRow(children: [
               Padding(
@@ -118,7 +85,7 @@ class BillScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold))),
               Padding(
                   padding: EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                  child: Text(bill.createdBy)),
+                  child: Text(bill.createdBy!)),
             ]),
             TableRow(children: [
               Padding(
@@ -127,7 +94,7 @@ class BillScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold))),
               Padding(
                   padding: EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                  child: Text(bill.lastUpdatedDate)),
+                  child: Text(bill.lastUpdatedDate!)),
             ]),
             TableRow(children: [
               Padding(
@@ -136,7 +103,7 @@ class BillScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold))),
               Padding(
                   padding: EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                  child: Text(bill.lastUpdatedBy)),
+                  child: Text(bill.lastUpdatedBy!)),
             ]),
             TableRow(children: [
               Padding(
@@ -145,7 +112,7 @@ class BillScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold))),
               Padding(
                   padding: EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                  child: Text(bill.patientName +
+                  child: Text(bill.patientName! +
                       '[ ' +
                       bill.patientId.toString() +
                       ' ]')),
@@ -188,7 +155,7 @@ class BillScreen extends StatelessWidget {
                     bill.isActive.toString(),
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: bill.isActive ? colorPrimary : Colors.red),
+                        color: bill.isActive! ? colorPrimary : Colors.red),
                   )),
             ]),
             TableRow(children: [
@@ -202,7 +169,7 @@ class BillScreen extends StatelessWidget {
                     bill.isPaid.toString(),
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: bill.isPaid ? colorPrimary : Colors.red),
+                        color: bill.isPaid! ? colorPrimary : Colors.red),
                   )),
             ]),
             TableRow(children: [
@@ -222,7 +189,7 @@ class BillScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold))),
               Padding(
                   padding: EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                  child: Text(bill.address)),
+                  child: Text(bill.address!)),
             ]),
             TableRow(children: [
               Padding(
@@ -231,7 +198,7 @@ class BillScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold))),
               Padding(
                   padding: EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                  child: Text(bill.emailAddress)),
+                  child: Text(bill.emailAddress!)),
             ]),
             TableRow(children: [
               Padding(
@@ -257,7 +224,7 @@ class BillScreen extends StatelessWidget {
         ),
       ),
       transactions.length > 0
-          ? _buildBillTransactions(context, transactions.where((it) => !it.isReversed).toBuiltList())
+          ? _buildBillTransactions(context, transactions.where((it) => !it.isReversed!).toBuiltList())
           : NothingFoundWarning()
     ]);
   }

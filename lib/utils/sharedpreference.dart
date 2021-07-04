@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 enum enumKey { IS_LOGGED_IN, BASE_64_EncodedAuthenticationKey, USER_NAME, BASE_URL }
 
 class SharedPreference {
-  SharedPreferences prefs;
+  late SharedPreferences prefs;
 
   setStringToSF(String key, String value) async {
     prefs = await SharedPreferences.getInstance();
@@ -37,7 +37,7 @@ class SharedPreference {
   }
 
 
-  Future<bool> getBoolValuesSF(String key) async {
+  Future<bool?> getBoolValuesSF(String key) async {
     prefs = await SharedPreferences.getInstance();
     return prefs.getBool(key);
    

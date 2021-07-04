@@ -27,7 +27,7 @@ FutureBuilder<Response<Report>> _buildBody(BuildContext context, int id) {
     future: Provider.of<PostApiService>(context).getConsultationReportById(id),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-        final Report consultation = snapshot.data.body;
+        final Report? consultation = snapshot.data?.body;
         return _buildReportWidget(context, consultation);
       } else if(snapshot.hasError){
         return SomethingWrongHasHappened();
@@ -40,7 +40,7 @@ FutureBuilder<Response<Report>> _buildBody(BuildContext context, int id) {
   );
 }
 
-SingleChildScrollView _buildReportWidget(BuildContext context, Report report) {
+SingleChildScrollView _buildReportWidget(BuildContext context, Report? report) {
   final String baseUrl = Provider.of<PostApiService>(context).client.baseUrl.replaceAll('/self', '');
   return SingleChildScrollView(
       child: ConstrainedBox(
@@ -55,10 +55,10 @@ SingleChildScrollView _buildReportWidget(BuildContext context, Report report) {
               padding: EdgeInsets.only(bottom: 4.0, left: 4.0, right: 4.0),
               child: Column(
                 children: [
-                  Center(heightFactor: 2.0, child: Text('[ ${report.id}  ] [  ${report.size}  ] [  ${report.type} ]  [ ${report.name} ] ', style: TextStyle(fontWeight: FontWeight.normal, color: Colors.white),),),
-                  report.type.startsWith('image/') ? FadeInImage.assetNetwork(
+                  Center(heightFactor: 2.0, child: Text('[ ${report!.id}  ] [  ${report.size!}  ] [  ${report.type} ]  [ ${report.name} ] ', style: TextStyle(fontWeight: FontWeight.normal, color: Colors.white),),),
+                  report!.type!.startsWith('image/') ? FadeInImage.assetNetwork(
                       placeholder: 'images/placeholder.gif',
-                      image: baseUrl + report.url): Center(heightFactor: 2.0,child:Text('Document view not implemented'))
+                      image: baseUrl + report.url!): Center(heightFactor: 2.0,child:Text('Document view not implemented'))
                   ,
                 ],
               ),

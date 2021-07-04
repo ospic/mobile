@@ -18,31 +18,20 @@ class ViewTransaction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PreferredSizeWidget appBar = (kIsWeb || Platform.isAndroid)
-        ? AppBar(
+    final PreferredSizeWidget appBar = AppBar(
             elevation: 0.0,
             iconTheme: IconThemeData(color: Constants.clr_blue),
             title: Text(
               "Transaction No. " + transactionId.toString(),
               style: TextStyle(fontFamily: 'Batmfa', color: Constants.clr_blue),
             ),
-            backgroundColor: Constants.clr_light_blue)
-        : CupertinoNavigationBar(
-            backgroundColor: colorPrimary,
-            middle: Text(
-              "Transaction No. " + transactionId.toString(),
-              style: TextStyle(fontFamily: 'Batmfa'),
-            ),
-          );
+            backgroundColor: Constants.clr_light_blue);
 
-    return (kIsWeb || Platform.isAndroid)
-        ? Scaffold(
+    return Scaffold(
             appBar: appBar,
             backgroundColor: colorAccent,
-            body: _buildBody(context, consultationId, transactionId))
-        : CupertinoPageScaffold(
-            child: _buildBody(context, consultationId, transactionId),
-            navigationBar: appBar);
+            body: _buildBody(context, consultationId, transactionId));
+
   }
 }
 
@@ -53,7 +42,7 @@ FutureBuilder<Response<Transaction>> _buildBody(
         .getUserConsultationTransactionById(consultationId, transactionId),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-        final Transaction transaction = snapshot.data.body;
+        final Transaction? transaction = snapshot.data?.body;
         return _buildTransactionWidget(context, transaction);
       } else if(snapshot.hasError){
         return SomethingWrongHasHappened();
@@ -66,7 +55,7 @@ FutureBuilder<Response<Transaction>> _buildBody(
   );
 }
 
-Widget _buildTransactionWidget(BuildContext context, Transaction transaction) {
+Widget _buildTransactionWidget(BuildContext context, Transaction? transaction) {
   return Center(
     heightFactor: 2.0,
     child: Card(
@@ -88,7 +77,7 @@ Widget _buildTransactionWidget(BuildContext context, Transaction transaction) {
                     Padding(
                         padding:
                             EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                        child: Text(transaction.transactionDate.toString())),
+                        child: Text(transaction!.transactionDate.toString())),
                   ]),
                   transaction.medicineName == null
                       ? TableRow(children: [
@@ -128,7 +117,7 @@ Widget _buildTransactionWidget(BuildContext context, Transaction transaction) {
                         child: Text(
                           transaction.amount.toString() +
                               " " +
-                              transaction.currencyCode,
+                              transaction.currencyCode!,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         )),
                   ]),
@@ -141,7 +130,7 @@ Widget _buildTransactionWidget(BuildContext context, Transaction transaction) {
                     Padding(
                         padding:
                             EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                        child: Text(transaction.departmentName +
+                        child: Text(transaction.departmentName! +
                             "-[" +
                             transaction.departmentId.toString() +
                             " ]")),
@@ -170,7 +159,7 @@ Widget _buildTransactionWidget(BuildContext context, Transaction transaction) {
                           transaction.isReversed.toString(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: transaction.isReversed
+                              color: transaction.isReversed!
                                   ? colorPrimary
                                   : Colors.red),
                         )),

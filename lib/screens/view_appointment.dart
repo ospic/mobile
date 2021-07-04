@@ -37,7 +37,7 @@ class ScreenViewAppointment extends  StatelessWidget{
       future: Provider.of<PostApiService>(context).getAppointmentByd(id),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-          final Appointment appointment = snapshot.data.body;
+          final Appointment? appointment = snapshot.data?.body;
           return _updateAppointmentView(context, appointment);
         } else if(snapshot.hasError){
           return SomethingWrongHasHappened();
@@ -50,7 +50,7 @@ class ScreenViewAppointment extends  StatelessWidget{
     );
   }
 
-  Widget _updateAppointmentView(BuildContext context, Appointment appointment){
+  Widget _updateAppointmentView(BuildContext context, Appointment? appointment){
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -58,7 +58,7 @@ class ScreenViewAppointment extends  StatelessWidget{
           margin: EdgeInsets.all(5.0),
           child: ListTile(
             subtitle: Center(child: Text('Appointment date', style: TextStyle(fontSize: 16.0),)),
-            title: Center(child: Text(appointment.appointment.appointmentDate,  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold, color: Constants.clr_blue))),
+            title: Center(child: Text(appointment!.appointment.appointmentDate!,  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold, color: Constants.clr_blue))),
 
           ),
         ),
@@ -70,13 +70,13 @@ class ScreenViewAppointment extends  StatelessWidget{
             child:  ListTile(
               leading: CircleAvatar(
                 radius: 35.0,
-                backgroundColor: appointment.staff.isActive ?  Colors.red[700]: Colors.green[100],
-                child: appointment.staff.isActive  ? Icon(Icons.ac_unit, color: Colors.white,): Text(
-                  appointment.staff.username,
-                  style: TextStyle(fontWeight: FontWeight.bold, color:  appointment.staff.isActive  ? Colors.white : Colors.green),
+                backgroundColor: appointment!.staff!.isActive! ?  Colors.red[700]: Colors.green[100],
+                child: appointment!.staff.isActive!  ? Icon(Icons.ac_unit, color: Colors.white,): Text(
+                  appointment.staff.username!,
+                  style: TextStyle(fontWeight: FontWeight.bold, color:  appointment.staff.isActive!  ? Colors.white : Colors.green),
                 ),
               ),
-              title:  Text(appointment.staff.fullName==null? appointment.staff.username : appointment.staff.fullName,style: TextStyle(fontWeight: FontWeight.bold), ),
+              title:  Text(appointment.staff.fullName==null? appointment.staff.username! : appointment.staff.fullName!,style: TextStyle(fontWeight: FontWeight.bold), ),
               subtitle:  Text('Email ${appointment.staff.email}' ),
             ),
           )

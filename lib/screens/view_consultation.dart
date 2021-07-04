@@ -38,7 +38,7 @@ FutureBuilder<Response<ConsultationPayload>> _buildBody(
     future: Provider.of<PostApiService>(context).getUserConsultationById(id),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-        final ConsultationPayload consultation = snapshot.data.body;
+        final ConsultationPayload? consultation = snapshot.data?.body;
         return _buildConsultationWidget(context, consultation);
       } else if(snapshot.hasError){
         return SomethingWrongHasHappened();
@@ -52,8 +52,8 @@ FutureBuilder<Response<ConsultationPayload>> _buildBody(
 }
 
 Widget _buildConsultationWidget(
-    BuildContext context, ConsultationPayload consultation) {
-  final int consultationId = consultation.id;
+    BuildContext context, ConsultationPayload? consultation) {
+  final int consultationId = consultation!.id!;
   final List<String> _tabs = ['Info', 'Diagnoses','Costs','Reports','Admissions'];
 
   return DefaultTabController(
