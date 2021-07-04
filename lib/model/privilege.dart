@@ -5,12 +5,8 @@ import 'package:built_value/serializer.dart';
 part 'privilege.g.dart';
 
 abstract class Privilege  implements Built<Privilege, PrivilegeBuilder>  {
-
-  @nullable
-  int get id;
-  @nullable
-  String get  name;
-  @nullable
+  int? get id;
+  String? get  name;
   BuiltList<String>  get roles;
 
   Privilege._();

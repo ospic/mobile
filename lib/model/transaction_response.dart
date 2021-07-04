@@ -7,7 +7,7 @@ import 'package:built_collection/built_collection.dart';
 part 'transaction_response.g.dart';
 
 abstract class TransactionResponse implements Built<TransactionResponse, TransactionResponseBuilder>{
-  @nullable double get totalAmount;
+  double ? get totalAmount;
   @BuiltValueField(wireName: "transactions")
   BuiltList<Transaction> get transactions;
 

@@ -6,17 +6,17 @@ part 'transaction.g.dart';
 abstract class Transaction implements Built<Transaction, TransactionBuilder>{
 
   int get id;
-  @nullable double get  amount;
-  @nullable  String get  currencyCode;
-  @nullable bool get isReversed;
-  @nullable String get  transactionDate;
-  @nullable int get consultationId;
-  @nullable int get departmentId;
-  @nullable  String get departmentName;
-  @nullable int get medicalServiceId;
-  @nullable String get medicalServiceName;
-  @nullable int get  medicineId;
- @nullable String get medicineName;
+  double ? get  amount;
+  String ? get  currencyCode;
+  bool ? get isReversed;
+  String ? get  transactionDate;
+  int ? get consultationId;
+  int ? get departmentId;
+  String ? get departmentName;
+  int ? get medicalServiceId;
+  String ? get medicalServiceName;
+  int ? get  medicineId;
+  String ? get medicineName;
 
   Transaction._();
   factory Transaction([updates(TransactionBuilder b)]) = _$Transaction;

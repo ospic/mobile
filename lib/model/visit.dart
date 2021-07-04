@@ -4,9 +4,9 @@ import 'package:built_value/serializer.dart';
 part 'visit.g.dart';
 abstract class Visit implements Built<Visit, VisitBuilder>{
   int get id;
-  @nullable String get symptoms;
+  String ? get symptoms;
   @BuiltValueField(wireName: 'dateTime')
-  @nullable String get date;
+  String ? get date;
 
   Visit._();
   factory Visit([updates(VisitBuilder b)]) = _$Visit;

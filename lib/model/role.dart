@@ -6,12 +6,8 @@ import 'package:mobile/model/privilege.dart';
 part 'role.g.dart';
 
 abstract class Role  implements Built<Role, RoleBuilder>  {
-
-  @nullable
-  int get id;
-  @nullable
-  String get  name;
-  @nullable
+  int ? get id;
+  String ? get  name;
   BuiltList<Privilege>  get privileges;
 
   Role._();

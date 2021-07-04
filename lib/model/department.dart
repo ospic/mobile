@@ -5,9 +5,9 @@ part 'department.g.dart';
 
 abstract class Department implements Built<Department, DepartmentBuilder>{
   int get id;
-  @nullable String get name;
-  @nullable String get descriptions;
-  @nullable String get openingDate;
+  String ? get name;
+  String ? get descriptions;
+  String ? get openingDate;
 
   Department._();
   factory Department([updates(DepartmentBuilder b)]) = _$Department ;

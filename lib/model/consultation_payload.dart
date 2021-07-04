@@ -5,15 +5,15 @@ import 'package:mobile/model/staff.dart';
 
 part 'consultation_payload.g.dart';
 abstract class ConsultationPayload implements Built<ConsultationPayload, ConsultationPayloadBuilder>{
-  @nullable int get id;
-  @nullable String get fromdate;
-  @nullable String get todate;
-  @nullable bool get  isActive;
-  @nullable bool get  isAdmitted;
+  int? get id;
+  String ? get fromdate;
+  String ? get todate;
+  bool? get  isActive;
+  bool? get  isAdmitted;
   @BuiltValueField(wireName: "patient")
   Patient get patient;
   @BuiltValueField(wireName: "staff")
-  @nullable Staff get staff;
+  Staff get staff;
   
   ConsultationPayload._();
 
