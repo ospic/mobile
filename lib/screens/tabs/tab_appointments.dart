@@ -2,9 +2,7 @@
 import 'package:chopper/chopper.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mobile/data/post_api_service.dart';
-import 'package:mobile/model/appointment.dart';
 import 'package:mobile/model/appointment_info.dart';
-import 'package:mobile/model/consultation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:mobile/screens/view_consultation.dart';
