@@ -6,7 +6,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:mobile/screens/index.dart';
 import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/sharedpreference.dart';
-final List<String> _titles = ['', 'Consultations','Bill\'s','Insurances','Settings'];
+final List<String> _titles = ['', 'Appointment\'s','Bill\'s','Insurances','Settings'];
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -72,7 +72,7 @@ class _NewHomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(MdiIcons.clipboardListOutline),
-            label: 'Consultations',
+            label: 'Appointments',
           ),
           BottomNavigationBarItem(
             icon: Icon(MdiIcons.calendarBlankOutline),
