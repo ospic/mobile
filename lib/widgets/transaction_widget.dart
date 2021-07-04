@@ -8,10 +8,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 class TransactionWidget extends StatefulWidget {
   final Transaction transaction;
 
-  const TransactionWidget(String s,
-      {Key key,
-        @required this.transaction})
-      : super(key: key);
+  const TransactionWidget(String s, {required this.transaction});
 
   @override
   State<StatefulWidget> createState() => _TransactionWidgetState();
@@ -33,15 +30,15 @@ class _TransactionWidgetState extends State<TransactionWidget> {
           leading: Icon(MdiIcons.creditCardMultipleOutline, color: colorPrimary,),
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text(transaction.amount.toString() +" "+ transaction.currencyCode, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),)],
+            children: [Text(transaction.amount.toString() +" "+ transaction.currencyCode!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),)],
           ),
           title:  Text((transaction.medicalServiceName == null?  'Medicine: ${transaction.medicineName.toString()}':'Service: ${transaction.medicalServiceName.toString()}')),
-          subtitle:     Text('Date:'+transaction.transactionDate,style: TextStyle(color: textPrimaryColor,  fontWeight: FontWeight.w200)),
+          subtitle:     Text('Date:'+transaction.transactionDate!,style: TextStyle(color: textPrimaryColor,  fontWeight: FontWeight.w200)),
           onTap:() => Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      ViewTransaction(transaction.consultationId,transaction.id))),
+                      ViewTransaction(transaction.consultationId!,transaction.id))),
 
         ));
   }

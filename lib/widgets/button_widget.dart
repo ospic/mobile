@@ -9,11 +9,11 @@ class ResponsiveButton extends StatefulWidget {
   final GestureTapCallback tapCallback;
 
   const ResponsiveButton(String s,
-      {Key key,
-      this.iconData,
-      @required this.title,
-      this.textColor,
-      this.tapCallback})
+      {required Key key,
+      required this.iconData,
+      required this.title,
+      required this.textColor,
+      required this.tapCallback})
       : super(key: key);
 
   @override

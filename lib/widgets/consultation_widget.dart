@@ -8,8 +8,8 @@ class ConsultationWidget extends StatefulWidget {
 
   const ConsultationWidget(
     String s, {
-    Key key,
-    @required this.cs, this.onItemSelected,
+    required Key key,
+    required this.cs, required this.onItemSelected,
   }) : super(key: key);
 
   @override
@@ -38,19 +38,19 @@ class _ConsultationWidgetWidgetState extends State<ConsultationWidget> {
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                     child: CircleAvatar(
                       radius: 20,
-                      backgroundColor: widget.cs.isAdmitted ?  Colors.red[700]: Colors.green[100],
-                      child: widget.cs.isAdmitted ? Icon(MdiIcons.bed, color: Colors.white,): Text(
+                      backgroundColor: widget.cs.isAdmitted! ?  Colors.red[700]: Colors.green[100],
+                      child: widget.cs.isAdmitted! ? Icon(MdiIcons.bed, color: Colors.white,): Text(
                         widget.cs.id.toString(),
-                        style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'FiraSans', color: widget.cs.isActive ? Colors.white : Colors.green),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'FiraSans', color: widget.cs.isActive! ? Colors.white : Colors.green),
                       ),
                     )),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(widget.cs.fromDate,
+                      Text(widget.cs.fromDate!,
                           style: TextStyle(fontSize: 16, color: Color(0xff000000))),
-                      Text(widget.cs.patientName,
+                      Text(widget.cs.patientName!,
                           style: TextStyle(fontSize: 14, color: Color(0xff000000)))
                     ]),
 
@@ -59,7 +59,7 @@ class _ConsultationWidgetWidgetState extends State<ConsultationWidget> {
 
     ),
       onTap: (){
-       widget.onItemSelected(widget.cs.id);
+       widget.onItemSelected(widget.cs.id!);
       },
     );
   }

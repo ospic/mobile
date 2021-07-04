@@ -5,17 +5,16 @@ import 'package:flutter/material.dart';
 class ReusableDrawerListTile extends  StatefulWidget{
   final String title;
   final String subtitle;
-  final IconData leading; 
-  final Function action;
+  final IconData leading;
   final String routename;
   final bool disabled;
   final GestureTapCallback onTap;
 
   ReusableDrawerListTile({
-     @required this.title,
-    @required this.subtitle,
-    this.disabled,
-   @required this.leading, this.routename, this.action, this.onTap});
+     required this.title,
+    required this.subtitle,
+    required this.disabled,
+   required this.leading, required this.routename,required this.onTap});
 
   @override
   ReusableListTile createState() => new ReusableListTile();
