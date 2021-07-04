@@ -4,11 +4,8 @@ import 'package:built_value/serializer.dart';
 part 'auth_post.g.dart';
 
  abstract class AuthPost  implements Built<AuthPost, AuthPostBuilder>  {
-
-  @nullable
-  String get username;
-  @nullable
-  String get  password;
+  String ? get username;
+  String ? get  password;
   AuthPost._();
   factory AuthPost([updates(AuthPostBuilder b)]) = _$AuthPost;
   factory AuthPost.from(String username, String password) => new _$AuthPost._(
