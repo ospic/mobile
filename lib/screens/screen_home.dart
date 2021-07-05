@@ -71,8 +71,8 @@ class _NewHomeScreenState extends State<HomeScreen> {
             label: 'Consultations',
           ),
           BottomNavigationBarItem(
-            icon: Icon(MdiIcons.clipboardListOutline),
-            label: 'Appointments',
+            icon: Icon(MdiIcons.calendarMonthOutline),
+            label: 'Schedules',
           ),
           BottomNavigationBarItem(
             icon: Icon(MdiIcons.calendarBlankOutline),
