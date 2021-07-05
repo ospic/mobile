@@ -93,7 +93,7 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
                           child: Container(
                               padding: EdgeInsets.all(5.0),
                               decoration: BoxDecoration(
-                                color:  ap[index]!.status=='CANCELLED' ? Colors.red[200] : Constants.clr_light_blue,
+                                color:  ap[index].status=='CANCELLED' ? Colors.red[200] : Constants.clr_light_blue,
                               ),
                               child:
                               Image.asset('images/user_icon.png', height: 50.0, width: 50.0, fit: BoxFit.fitWidth,color: Constants.clr_blue,) )),
@@ -106,8 +106,8 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
                               children: [
                                 TextSpan(text: 'Status: '),
                                 TextSpan(
-                                  text: ap[index]!.status,
-                                  style: TextStyle(fontWeight: FontWeight.bold, color: ap[index]!.status=='CANCELLED' ? Colors.red : null),
+                                  text: ap[index].status,
+                                  style: TextStyle(fontWeight: FontWeight.bold, color: ap[index].status=='CANCELLED' ? Colors.red : null),
                                 ),
 
                               ],
@@ -115,7 +115,7 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
                           )
                         ],
                       ),
-                      trailing: Icon(Icons.arrow_right_sharp,color: ap[index]!.status=='CANCELLED' ? Colors.red : null),
+                      trailing: Icon(Icons.arrow_right_sharp,color: ap[index].status=='CANCELLED' ? Colors.red : null),
                       onTap: () {
                         if (isLargeScreen) {
                           selectedValue = ap[index].id!;
