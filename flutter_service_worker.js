@@ -15,7 +15,7 @@ const RESOURCES = {
 "assets/packages/material_design_icons_flutter/lib/fonts/materialdesignicons-webfont.ttf": "174c02fc4609e8fc4389f5d21f16a296",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
 "assets/packages/file_icon/fonts/seti.ttf": "2b67c27356467781d7786c59ca58b34f",
-"assets/NOTICES": "a5422959aa8d23980bb50cf64dc76f61",
+"assets/NOTICES": "62a06d945919962d1d0cfacfb3811be5",
 "assets/FontManifest.json": "d27d3b38b164a831f31d1a9e5c44ff52",
 "assets/fonts/FiraSans-ExtraLightItalic.ttf": "c606dc72dd989c9b294d4377851f78a0",
 "assets/fonts/FiraSans-ThinItalic.ttf": "68cf3ce6260664b260e5474d7169cd39",
