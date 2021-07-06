@@ -81,6 +81,14 @@ abstract class PostApiService extends ChopperService {
    @Post(path: '/appointments')
   Future<Response<AppointmentInfo>> createAppointment(@Body() AppointmentRequest body);
 
+   /** Put **/
+  @Delete(path: '/appointments/unschedule/{id}')
+  Future<Response<AppointmentInfo>> unScheduleAppointmentByd(@Path('id') int id);
+
+   /** DELETE **/
+
+  @Delete(path: '/appointments/{id}')
+  Future<Response> deleteAppointmentByd(@Path('id') int id);
 
   static PostApiService create() {
     final darthttp.BaseClient dartclient = createHttpClient();
