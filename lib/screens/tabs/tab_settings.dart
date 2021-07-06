@@ -1,8 +1,12 @@
+import 'package:chopper/chopper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/data/post_api_service.dart';
+import 'package:mobile/model/index.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:mobile/utils/index.dart';
 import 'package:mobile/utils/sharedpreference.dart';
+import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 class TabSettings extends StatefulWidget {
@@ -103,7 +107,7 @@ class _TabSettingsState extends State<TabSettings> {
                 ),
                 SizedBox(height: 20.0,),
                 TextField(
-                  controller: newPassword,
+                  controller: rePassword,
                   decoration: InputDecoration(
                     labelText: 'Re-type password',
                   ),
@@ -188,6 +192,15 @@ class _TabSettingsState extends State<TabSettings> {
   }
 
   Future<void> _updatePassword(TextEditingController cPassword,TextEditingController newPassword, TextEditingController rePassword) async{
+    if(newPassword.text.toString() == rePassword.text.toString()){
+      PasswordUpdate passwordUpdate = PasswordUpdate.from(cPassword.text.toString(), rePassword.text.toString());
+      Future<Response> response = Provider.of<PostApiService>(context, listen: false).updatePassword(passwordUpdate);
+      response.then((value) => {
+        if(value.isSuccessful){
+          //Navigator.pop(context),
+        }
+      });
+    }
     Navigator.of(context).pop();
   }
 }
