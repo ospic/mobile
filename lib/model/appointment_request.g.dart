@@ -22,12 +22,6 @@ class _$AppointmentRequestSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
-    value = object.patientId;
-    if (value != null) {
-      result
-        ..add('patientId')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
-    }
     value = object.physicianId;
     if (value != null) {
       result
@@ -63,10 +57,6 @@ class _$AppointmentRequestSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'patientId':
-          result.patientId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
-          break;
         case 'physicianId':
           result.physicianId = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
@@ -88,8 +78,6 @@ class _$AppointmentRequestSerializer
 
 class _$AppointmentRequest extends AppointmentRequest {
   @override
-  final int? patientId;
-  @override
   final int? physicianId;
   @override
   final String? appointmentDate;
@@ -101,7 +89,7 @@ class _$AppointmentRequest extends AppointmentRequest {
       (new AppointmentRequestBuilder()..update(updates)).build();
 
   _$AppointmentRequest._(
-      {this.patientId, this.physicianId, this.appointmentDate, this.timeZone})
+      {this.physicianId, this.appointmentDate, this.timeZone})
       : super._();
 
   @override
@@ -117,7 +105,6 @@ class _$AppointmentRequest extends AppointmentRequest {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is AppointmentRequest &&
-        patientId == other.patientId &&
         physicianId == other.physicianId &&
         appointmentDate == other.appointmentDate &&
         timeZone == other.timeZone;
@@ -125,16 +112,13 @@ class _$AppointmentRequest extends AppointmentRequest {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc(0, patientId.hashCode), physicianId.hashCode),
-            appointmentDate.hashCode),
+    return $jf($jc($jc($jc(0, physicianId.hashCode), appointmentDate.hashCode),
         timeZone.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('AppointmentRequest')
-          ..add('patientId', patientId)
           ..add('physicianId', physicianId)
           ..add('appointmentDate', appointmentDate)
           ..add('timeZone', timeZone))
@@ -145,10 +129,6 @@ class _$AppointmentRequest extends AppointmentRequest {
 class AppointmentRequestBuilder
     implements Builder<AppointmentRequest, AppointmentRequestBuilder> {
   _$AppointmentRequest? _$v;
-
-  int? _patientId;
-  int? get patientId => _$this._patientId;
-  set patientId(int? patientId) => _$this._patientId = patientId;
 
   int? _physicianId;
   int? get physicianId => _$this._physicianId;
@@ -168,7 +148,6 @@ class AppointmentRequestBuilder
   AppointmentRequestBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _patientId = $v.patientId;
       _physicianId = $v.physicianId;
       _appointmentDate = $v.appointmentDate;
       _timeZone = $v.timeZone;
@@ -192,7 +171,6 @@ class AppointmentRequestBuilder
   _$AppointmentRequest build() {
     final _$result = _$v ??
         new _$AppointmentRequest._(
-            patientId: patientId,
             physicianId: physicianId,
             appointmentDate: appointmentDate,
             timeZone: timeZone);
