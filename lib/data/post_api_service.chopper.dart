@@ -168,6 +168,14 @@ class _$PostApiService extends PostApiService {
   }
 
   @override
+  Future<Response<AppointmentInfo>> updatePassword(PasswordUpdate body) {
+    final $url = '/updatepassword';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<AppointmentInfo, AppointmentInfo>($request);
+  }
+
+  @override
   Future<Response<AppointmentInfo>> unScheduleAppointmentByd(int id) {
     final $url = '/appointments/unschedule/$id';
     final $request = Request('DELETE', $url, client.baseUrl);

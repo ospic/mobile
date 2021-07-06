@@ -24,3 +24,4 @@ export 'insurance_card.dart';
 export 'appointment.dart';
 export 'appointment_info.dart';
 export 'appointment_request.dart';
+export 'password_update.dart';
