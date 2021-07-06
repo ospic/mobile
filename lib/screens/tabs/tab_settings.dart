@@ -14,6 +14,10 @@ class TabSettings extends StatefulWidget {
 class _TabSettingsState extends State<TabSettings> {
 
   final url = TextEditingController();
+  final cPassword = TextEditingController();
+  final rePassword = TextEditingController();
+  final newPassword = TextEditingController();
+
   bool value = false;
   void _onFingerPrintSetting(bool it) {
     setState(() {
@@ -69,6 +73,64 @@ class _TabSettingsState extends State<TabSettings> {
     );
   }
 
+  Future<void> _showPasswordChangeDialog() async{
+    url.text = await _baseUrl() == null? "NO VALUE" :   await _baseUrl();
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.fromLTRB(10.0, 0,0,0),
+          title: Text('Change password'),
+          content: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                SizedBox(height: 20.0,),
+                TextField(
+                  controller: cPassword,
+                  decoration: InputDecoration(
+                    labelText: 'Current password',
+                  ),
+                ),
+                SizedBox(height: 20.0,),
+                TextField(
+                  controller: newPassword,
+                  decoration: InputDecoration(
+                    labelText: 'New password',
+                  ),
+                ),
+                SizedBox(height: 20.0,),
+                TextField(
+                  controller: newPassword,
+                  decoration: InputDecoration(
+                    labelText: 'Re-type password',
+                  ),
+                )
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            ElevatedButton(
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.resolveWith((states) => colorPrimary)),
+              child: Text('UPDATE PASSWORD'),
+              onPressed: () async{
+                await _updatePassword(cPassword, newPassword, rePassword);
+              },
+            ),
+            ElevatedButton(
+              child: Text('IGNORE'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -100,6 +162,15 @@ class _TabSettingsState extends State<TabSettings> {
                     _onFingerPrintSetting(value);
                   },
                 ),
+
+                SettingsTile(
+                    title: 'Update password',
+                    subtitle: 'Change your current password',
+                    leading: Icon(Icons.lock_outline),
+                    onPressed: (BuildContext context){
+                      _showPasswordChangeDialog();
+                    }
+                ),
               ],
             ),
           ],
@@ -113,6 +184,10 @@ class _TabSettingsState extends State<TabSettings> {
   Future<void> _updateUrl(String baseUrl) async{
     SharedPreference sp = new SharedPreference();
     sp.setStringToSF(enumKey.BASE_URL.toString(), baseUrl);
+    Navigator.of(context).pop();
+  }
+
+  Future<void> _updatePassword(TextEditingController cPassword,TextEditingController newPassword, TextEditingController rePassword) async{
     Navigator.of(context).pop();
   }
 }
