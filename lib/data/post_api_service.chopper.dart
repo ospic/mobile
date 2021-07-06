@@ -166,4 +166,18 @@ class _$PostApiService extends PostApiService {
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<AppointmentInfo, AppointmentInfo>($request);
   }
+
+  @override
+  Future<Response<AppointmentInfo>> unScheduleAppointmentByd(int id) {
+    final $url = '/appointments/unschedule/$id';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<AppointmentInfo, AppointmentInfo>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> deleteAppointmentByd(int id) {
+    final $url = '/appointments/$id';
+    final $request = Request('DELETE', $url, client.baseUrl);
+    return client.send<dynamic, dynamic>($request);
+  }
 }
