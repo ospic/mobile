@@ -38,6 +38,7 @@ dependencies:
    file_icon: ^1.0.0
    google_fonts: ^2.1.0
    settings_ui: ^0.6.0
+   group_button: ^2.3.0
 
 dev_dependencies:
    flutter_test:
