@@ -20,7 +20,10 @@ class _ScreenViewAppointmentState extends State<ScreenViewAppointment>{
   var radiusCircle = 30.0;
   @override
   Widget build(BuildContext context) {
-    return _buildBody(context, widget.appointmentId);
+    return Container(
+      color: Constants.clr_light_blue,
+      child: _buildBody(context, widget.appointmentId),
+    );
   }
 
 

@@ -50,8 +50,8 @@ class ScreenCreateAppointment extends StatelessWidget {
                       topRight: Radius.circular(_borderRadius))),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: Colors.red,
-                  child: Icon(Icons.ac_unit, color: Colors.white,),
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.ac_unit, color: Constants.clr_blue,),
                 ),
                 title: Text(
                   'World Tour', style: TextStyle(color: Colors.white,),),
@@ -234,7 +234,7 @@ class ScreenCreateAppointment extends StatelessWidget {
           padding: EdgeInsets.all(10.0),
           child: ElevatedButton(
             style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(colorPrimary)),
+                backgroundColor: MaterialStateProperty.all(Constants.clr_blue)),
             onPressed: () async {
               _requestAppointmentSchedule(context);
             },
