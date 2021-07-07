@@ -176,9 +176,18 @@ class _$PostApiService extends PostApiService {
   }
 
   @override
-  Future<Response<AppointmentInfo>> unScheduleAppointmentByd(int id) {
+  Future<Response<AppointmentInfo>> unScheduleAppointmentById(int id) {
     final $url = '/appointments/unschedule/$id';
-    final $request = Request('DELETE', $url, client.baseUrl);
+    final $request = Request('PUT', $url, client.baseUrl);
+    return client.send<AppointmentInfo, AppointmentInfo>($request);
+  }
+
+  @override
+  Future<Response<AppointmentInfo>> updateAppointmentById(
+      int id, AppointmentRequest body) {
+    final $url = '/appointments/$id';
+    final $body = body;
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
     return client.send<AppointmentInfo, AppointmentInfo>($request);
   }
 
@@ -186,15 +195,6 @@ class _$PostApiService extends PostApiService {
   Future<Response<dynamic>> deleteAppointmentByd(int id) {
     final $url = '/appointments/$id';
     final $request = Request('DELETE', $url, client.baseUrl);
-    return client.send<dynamic, dynamic>($request);
-  }
-
-  @override
-  Future<Response<dynamic>> updateAppointmentById(
-      int id, AppointmentRequest body) {
-    final $url = '/appointments/$id';
-    final $body = body;
-    final $request = Request('DELETE', $url, client.baseUrl, body: $body);
     return client.send<dynamic, dynamic>($request);
   }
 }
