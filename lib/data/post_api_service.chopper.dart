@@ -188,4 +188,13 @@ class _$PostApiService extends PostApiService {
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<dynamic, dynamic>($request);
   }
+
+  @override
+  Future<Response<dynamic>> updateAppointmentById(
+      int id, AppointmentRequest body) {
+    final $url = '/appointments/$id';
+    final $body = body;
+    final $request = Request('DELETE', $url, client.baseUrl, body: $body);
+    return client.send<dynamic, dynamic>($request);
+  }
 }
