@@ -91,7 +91,11 @@ abstract class PostApiService extends ChopperService {
   @Put(path: '/appointments/{id}')
   Future<Response<AppointmentInfo>> updateAppointmentById(@Path('id') int id, @Body() AppointmentRequest body);
 
-   /// DELETE REQUESTS
+  @Put(path: '/token')
+  Future<Response<AppointmentInfo>> updateFcmToken(@Body()  TokenUpdate body);
+
+
+  /// DELETE REQUESTS
   @Delete(path: '/appointments/{id}')
   Future<Response> deleteAppointmentByd(@Path('id') int id);
 
