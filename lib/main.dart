@@ -11,8 +11,5 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_messageHandler);
-  FirebaseMessaging.instance.getToken().then((value) => {
-    print('token updated : $value')
-  });
   new Routes();
 }
