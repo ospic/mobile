@@ -4,7 +4,7 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "favicon.png": "2765281b412bd2ee27c1677e8f5f1ea2",
-"main.dart.js": "6cedb7a156a5d1df37919c63665f09f6",
+"main.dart.js": "46466e19846efdc8e52a7aeb6467e130",
 "index.html": "03397ead15ecfafda6887878c8858e1b",
 "/": "03397ead15ecfafda6887878c8858e1b",
 "manifest.json": "bbf096d4b21132e3de3a45fec751771a",
@@ -15,7 +15,7 @@ const RESOURCES = {
 "assets/packages/material_design_icons_flutter/lib/fonts/materialdesignicons-webfont.ttf": "174c02fc4609e8fc4389f5d21f16a296",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
 "assets/packages/file_icon/fonts/seti.ttf": "2b67c27356467781d7786c59ca58b34f",
-"assets/NOTICES": "41f07f274622aa64256280ddcc253f3b",
+"assets/NOTICES": "9a2243811615cce5adcda56a50923e7f",
 "assets/FontManifest.json": "d27d3b38b164a831f31d1a9e5c44ff52",
 "assets/fonts/FiraSans-ExtraLightItalic.ttf": "c606dc72dd989c9b294d4377851f78a0",
 "assets/fonts/FiraSans-ThinItalic.ttf": "68cf3ce6260664b260e5474d7169cd39",
