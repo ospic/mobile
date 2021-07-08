@@ -234,7 +234,11 @@ class ScreenCreateAppointment extends StatelessWidget {
           padding: EdgeInsets.all(10.0),
           child: ElevatedButton(
             style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Constants.clr_blue)),
+              elevation: MaterialStateProperty.all(0.0),
+                backgroundColor: MaterialStateProperty.all(Constants.clr_blue),
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25.0))))
+            ),
+              
             onPressed: () async {
               _requestAppointmentSchedule(context);
             },
