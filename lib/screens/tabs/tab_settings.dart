@@ -9,6 +9,8 @@ import 'package:mobile/utils/sharedpreference.dart';
 import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
 
+import '../screen_message.dart';
+
 class TabSettings extends StatefulWidget {
 
   @override
@@ -148,7 +150,11 @@ class _TabSettingsState extends State<TabSettings> {
                   title: 'Language',
                   subtitle: 'English',
                   leading: Icon(Icons.language),
-                  onPressed: (BuildContext context) {},
+                  onPressed: (BuildContext context) {
+
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenMessage()));
+
+                  },
                 ),
                 SettingsTile(
                   title: 'Update end point',
