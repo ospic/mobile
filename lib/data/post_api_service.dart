@@ -72,6 +72,8 @@ abstract class PostApiService extends ChopperService {
   @Get(path: '/appointments/{id}/')
   Future<Response<Appointment>> getAppointmentByd(@Path('id') int id);
 
+  /// POST REQUESTS
+
   @Post()
   Future<Response<Patient>> postPost(@Body() Patient body);
 
@@ -101,7 +103,7 @@ abstract class PostApiService extends ChopperService {
 
 
   static PostApiService create() {
-    final darthttp.BaseClient dartclient = createHttpClient();
+    final darthttp.BaseClient dartClient = createHttpClient();
     
     /**final ioc = new HttpClient();
     ioc.badCertificateCallback =
@@ -110,7 +112,7 @@ abstract class PostApiService extends ChopperService {
     final client = ChopperClient(
       baseUrl: UrlEndpoints.RELEASE_BASE_URL,
       services: [_$PostApiService()],
-      client: dartclient,
+      client: dartClient,
       converter: BuiltValueConverter(),
       interceptors: [
         _addQuery,
@@ -133,14 +135,17 @@ abstract class PostApiService extends ChopperService {
 }
 
 Future<Request> _addQuery(Request req) async {
-  SharedPreference sharedPref = new SharedPreference();
-   String n = await sharedPref.getStringValuesSF(enumKey.BASE_64_EncodedAuthenticationKey.toString());
-  final params = Map<String, dynamic>.from(req.parameters);
-  final header = new Map<String, String>.from(req.parameters);
+  SharedPreference sp = new SharedPreference();
+   String n = await sp.getStringValuesSF(enumKey.BASE_64_EncodedAuthenticationKey.toString());
+   String _baseUrl = await sp.getStringValuesSF(enumKey.BASE_URL.toString());
+
+  final _params = Map<String, dynamic>.from(req.parameters);
+  final _headers = new Map<String, String>.from(req.parameters);
   if(req.url != '/login') {
-    header['Authorization'] = 'Bearer $n';
+    _headers['Authorization'] = 'Bearer $n';
   }
-  return req.copyWith(parameters: params, headers: header);
+  print('Current url: $_baseUrl');
+  return req.copyWith(parameters: _params, headers: _headers,baseUrl: _baseUrl.isEmpty ? UrlEndpoints.RELEASE_BASE_URL :_baseUrl );
 }
 
 
