@@ -87,13 +87,13 @@ abstract class PostApiService extends ChopperService {
   Future<Response<AppointmentInfo>> updatePassword(@Body() PasswordUpdate body);
 
    /// PUT REQUESTS
-  @Put(path: '/appointments/{id}/update')
+  @Put(path: '/appointments/{id}/update', optionalBody: true)
   Future<Response<AppointmentInfo>> unScheduleAppointmentById(@Path('id') int id,{@Query("action") String action="unschedule"});
 
-  @Put(path: '/appointments/{id}')
+  @Put(path: '/appointments/{id}', optionalBody: true)
   Future<Response<AppointmentInfo>> updateAppointmentById(@Path('id') int id, @Body() AppointmentRequest body);
 
-  @Put(path: '/token')
+  @Put(path: '/token', optionalBody: true)
   Future<Response<AppointmentInfo>> updateFcmToken(@Body()  TokenUpdate body);
 
 
