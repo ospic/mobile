@@ -67,7 +67,7 @@ jobs:
           target-folder: mobile/apks/debug
           folder: build/app/outputs/apk/debug # The folder the action should deploy.
 
-    - name: Deploy release apk
+      - name: Deploy release apk
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           token: ${{ secrets.GITHUBTOKEN }}
