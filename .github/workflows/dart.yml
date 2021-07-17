@@ -85,11 +85,11 @@ jobs:
           target-folder: mobile/appbundle/debug
           folder: build/app/outputs/bundle/debug # The folder the action should deploy.
 
-        - name: Deploy release appbundle 🚀
-          uses: JamesIves/github-pages-deploy-action@4.1.0
-          with:
-            token: ${{ secrets.GITHUBTOKEN }}
-            branch: master # The branch the action should deploy to.
-            repository-name: ospic/deploys
-            target-folder: mobile/appbundle/release
-            folder: build/app/outputs/bundle/release # The folder the action should deploy.
+      - name: Deploy release appbundle 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          token: ${{ secrets.GITHUBTOKEN }}
+          branch: master # The branch the action should deploy to.
+          repository-name: ospic/deploys
+          target-folder: mobile/appbundle/release
+          folder: build/app/outputs/bundle/release # The folder the action should deploy.
