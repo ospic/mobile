@@ -39,10 +39,14 @@ jobs:
         run: flutter config --enable-web
       - name: Run Clean to reduce app sizes
         run: flutter clean
-      - name: Build apk
-        run: flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --no-tree-shake-icons  --debug --debug --no-sound-null-safety
-      - name: Build app-bundle
-        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64  --debug --debug --no-sound-null-safety
+      - name: Build debug apk
+        run: flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --no-tree-shake-icons  --debug  --no-sound-null-safety
+      - name: Build debug app-bundle
+        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64  --debug  --no-sound-null-safety
+      - name: Build release apk
+        run: flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi --no-tree-shake-icons  --release --no-sound-null-safety
+      - name: Build release app-bundle
+        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64  --release --no-sound-null-safety
       #- name: Enable Web
        # run: flutter create ./
       - name: Build Web
@@ -54,20 +58,38 @@ jobs:
           branch: gh-pages # The branch the action should deploy to.
           folder: build/web # The folder the action should deploy.
 
-      - name: Deploy apk
+      - name: Deploy debug apk
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           token: ${{ secrets.GITHUBTOKEN }}
           branch: master # The branch the action should deploy to.
           repository-name: ospic/deploys
-          target-folder: mobile/apks
+          target-folder: mobile/apks/debug
           folder: build/app/outputs/apk/debug # The folder the action should deploy.
 
-      - name: Deploy appbundle 🚀
+    - name: Deploy release apk
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           token: ${{ secrets.GITHUBTOKEN }}
           branch: master # The branch the action should deploy to.
           repository-name: ospic/deploys
-          target-folder: mobile/appbundle
+          target-folder: mobile/apks/release
+          folder: build/app/outputs/apk/release # The folder the action should deploy.
+
+      - name: Deploy debug appbundle 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          token: ${{ secrets.GITHUBTOKEN }}
+          branch: master # The branch the action should deploy to.
+          repository-name: ospic/deploys
+          target-folder: mobile/appbundle/debug
           folder: build/app/outputs/bundle/debug # The folder the action should deploy.
+
+        - name: Deploy release appbundle 🚀
+          uses: JamesIves/github-pages-deploy-action@4.1.0
+          with:
+            token: ${{ secrets.GITHUBTOKEN }}
+            branch: master # The branch the action should deploy to.
+            repository-name: ospic/deploys
+            target-folder: mobile/appbundle/release
+            folder: build/app/outputs/bundle/release # The folder the action should deploy.
