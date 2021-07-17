@@ -84,7 +84,7 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
 
             itemBuilder: (context, index) {
               return  Card(
-
+                color: ap[index].status=='CANCELLED' ? Constants.clr_orange : null,
                 child: Container(
                     padding: EdgeInsets.symmetric(vertical: 10.0),
                     child: ListTile(

@@ -57,7 +57,7 @@ class _ScreenViewAppointmentState extends State<ScreenViewAppointment>{
             floating: true,
             pinned: false,
             automaticallyImplyLeading: true,
-            backgroundColor: Constants.clr_blue,
+            backgroundColor: appointment?.appointment.status !='CANCELLED' ? Constants.clr_blue :Constants.clr_red,
             foregroundColor: Colors.white,
             title: Text('Appointment request', style: TextStyle(fontWeight: FontWeight.w200),),
             elevation: 0.0,
