@@ -20,6 +20,18 @@ class _$TransactionSerializer implements StructuredSerializer<Transaction> {
     final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
+      'medicalServiceId',
+      serializers.serialize(object.medicalServiceId,
+          specifiedType: const FullType(int)),
+      'medicalServiceName',
+      serializers.serialize(object.medicalServiceName,
+          specifiedType: const FullType(String)),
+      'medicineId',
+      serializers.serialize(object.medicineId,
+          specifiedType: const FullType(int)),
+      'medicineName',
+      serializers.serialize(object.medicineName,
+          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.amount;
@@ -66,32 +78,6 @@ class _$TransactionSerializer implements StructuredSerializer<Transaction> {
     if (value != null) {
       result
         ..add('departmentName')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.medicalServiceId;
-    if (value != null) {
-      result
-        ..add('medicalServiceId')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
-    }
-    value = object.medicalServiceName;
-    if (value != null) {
-      result
-        ..add('medicalServiceName')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.medicineId;
-    if (value != null) {
-      result
-        ..add('medicineId')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
-    }
-    value = object.medicineName;
-    if (value != null) {
-      result
-        ..add('medicineName')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -143,19 +129,19 @@ class _$TransactionSerializer implements StructuredSerializer<Transaction> {
           break;
         case 'medicalServiceId':
           result.medicalServiceId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+              specifiedType: const FullType(int)) as int;
           break;
         case 'medicalServiceName':
           result.medicalServiceName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+              specifiedType: const FullType(String)) as String;
           break;
         case 'medicineId':
           result.medicineId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+              specifiedType: const FullType(int)) as int;
           break;
         case 'medicineName':
           result.medicineName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -182,13 +168,13 @@ class _$Transaction extends Transaction {
   @override
   final String? departmentName;
   @override
-  final int? medicalServiceId;
+  final int medicalServiceId;
   @override
-  final String? medicalServiceName;
+  final String medicalServiceName;
   @override
-  final int? medicineId;
+  final int medicineId;
   @override
-  final String? medicineName;
+  final String medicineName;
 
   factory _$Transaction([void Function(TransactionBuilder)? updates]) =>
       (new TransactionBuilder()..update(updates)).build();
@@ -202,12 +188,20 @@ class _$Transaction extends Transaction {
       this.consultationId,
       this.departmentId,
       this.departmentName,
-      this.medicalServiceId,
-      this.medicalServiceName,
-      this.medicineId,
-      this.medicineName})
+      required this.medicalServiceId,
+      required this.medicalServiceName,
+      required this.medicineId,
+      required this.medicineName})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, 'Transaction', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        medicalServiceId, 'Transaction', 'medicalServiceId');
+    BuiltValueNullFieldError.checkNotNull(
+        medicalServiceName, 'Transaction', 'medicalServiceName');
+    BuiltValueNullFieldError.checkNotNull(
+        medicineId, 'Transaction', 'medicineId');
+    BuiltValueNullFieldError.checkNotNull(
+        medicineName, 'Transaction', 'medicineName');
   }
 
   @override
@@ -381,10 +375,14 @@ class TransactionBuilder implements Builder<Transaction, TransactionBuilder> {
             consultationId: consultationId,
             departmentId: departmentId,
             departmentName: departmentName,
-            medicalServiceId: medicalServiceId,
-            medicalServiceName: medicalServiceName,
-            medicineId: medicineId,
-            medicineName: medicineName);
+            medicalServiceId: BuiltValueNullFieldError.checkNotNull(
+                medicalServiceId, 'Transaction', 'medicalServiceId'),
+            medicalServiceName: BuiltValueNullFieldError.checkNotNull(
+                medicalServiceName, 'Transaction', 'medicalServiceName'),
+            medicineId: BuiltValueNullFieldError.checkNotNull(
+                medicineId, 'Transaction', 'medicineId'),
+            medicineName: BuiltValueNullFieldError.checkNotNull(
+                medicineName, 'Transaction', 'medicineName'));
     replace(_$result);
     return _$result;
   }

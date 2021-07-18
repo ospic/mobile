@@ -181,11 +181,23 @@ class _TabSettingsState extends State<TabSettings> {
                       _showPasswordChangeDialog();
                     }
                 ),
+                SettingsTile(
+                    title: 'Logout',
+                    subtitle: 'Click to log out. This will require you re-login',
+                    leading: Icon(Icons.settings_power_rounded,color: Colors.redAccent,),
+                    onPressed: (BuildContext context){
+                      _logout();
+                    }
+                ),
               ],
             ),
           ],
         )
     );
+  }
+  Future<void> _logout() async{
+    SharedPreference sp = new SharedPreference();
+    sp.clearSF();
   }
   Future<String> _baseUrl() async{
     SharedPreference sp = new SharedPreference();

@@ -24,7 +24,7 @@ FutureBuilder<Response<TransactionResponse>> _buildBody(BuildContext context, in
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
         final TransactionResponse? response = snapshot.data?.body;
-        return response==null?Center(heightFactor: 4.0,child: Text("No transaction")): _buildConsultationWidget(context,  response);
+        return response!.transactions.length > 0? _buildConsultationWidget(context,  response) : NothingFoundWarning();
       } else if(snapshot.hasError){
         return SomethingWrongHasHappened();
       }  else {

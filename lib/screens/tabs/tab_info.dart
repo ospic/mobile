@@ -36,7 +36,7 @@ FutureBuilder<Response<ConsultationPayload>> _buildBody(BuildContext context, in
 }
 
 Widget _buildConsultationWidget(BuildContext context, ConsultationPayload? consultation){
-  final Staff staff = consultation!.staff;
+  final Staff? staff = consultation?.staff;
   final String staffName = staff==null? 'Un-assigned': (staff.fullName == null ? staff.username! : staff.fullName!);
   return ListView(
       children:[
@@ -57,7 +57,7 @@ Widget _buildConsultationWidget(BuildContext context, ConsultationPayload? consu
                 Padding(
                     padding:
                     EdgeInsets.only(top: 5.0, bottom: 4.0, left: 5.0),
-                    child: Text(consultation.fromdate!)),
+                    child: Text(consultation!.fromdate!)),
               ]),
               TableRow(children: [
                 Padding(

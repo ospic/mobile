@@ -45,8 +45,10 @@ class SharedPreference {
 
   Future<bool> clearSF() async {
     prefs = await SharedPreferences.getInstance();
+    prefs.remove(enumKey.BASE_64_EncodedAuthenticationKey.toString());
+    prefs.remove(enumKey.USER_NAME.toString());
     NavigationService.instance.navigateTo("/login");
-    return prefs.clear();
+    return prefs.setBool(enumKey.IS_LOGGED_IN.toString(), false);
   }
 /**
   getDoubleValuesSF(String key) async {

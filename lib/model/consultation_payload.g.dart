@@ -23,13 +23,7 @@ class _$ConsultationPayloadSerializer
   Iterable<Object?> serialize(
       Serializers serializers, ConsultationPayload object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'patient',
-      serializers.serialize(object.patient,
-          specifiedType: const FullType(Patient)),
-      'staff',
-      serializers.serialize(object.staff, specifiedType: const FullType(Staff)),
-    ];
+    final result = <Object?>[];
     Object? value;
     value = object.id;
     if (value != null) {
@@ -64,6 +58,20 @@ class _$ConsultationPayloadSerializer
         ..add('isAdmitted')
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.patient;
+    if (value != null) {
+      result
+        ..add('patient')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(Patient)));
+    }
+    value = object.staff;
+    if (value != null) {
+      result
+        ..add('staff')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(Staff)));
     }
     return result;
   }
@@ -127,9 +135,9 @@ class _$ConsultationPayload extends ConsultationPayload {
   @override
   final bool? isAdmitted;
   @override
-  final Patient patient;
+  final Patient? patient;
   @override
-  final Staff staff;
+  final Staff? staff;
 
   factory _$ConsultationPayload(
           [void Function(ConsultationPayloadBuilder)? updates]) =>
@@ -141,14 +149,9 @@ class _$ConsultationPayload extends ConsultationPayload {
       this.todate,
       this.isActive,
       this.isAdmitted,
-      required this.patient,
-      required this.staff})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        patient, 'ConsultationPayload', 'patient');
-    BuiltValueNullFieldError.checkNotNull(
-        staff, 'ConsultationPayload', 'staff');
-  }
+      this.patient,
+      this.staff})
+      : super._();
 
   @override
   ConsultationPayload rebuild(
@@ -242,8 +245,8 @@ class ConsultationPayloadBuilder
       _todate = $v.todate;
       _isActive = $v.isActive;
       _isAdmitted = $v.isAdmitted;
-      _patient = $v.patient.toBuilder();
-      _staff = $v.staff.toBuilder();
+      _patient = $v.patient?.toBuilder();
+      _staff = $v.staff?.toBuilder();
       _$v = null;
     }
     return this;
@@ -271,15 +274,15 @@ class ConsultationPayloadBuilder
               todate: todate,
               isActive: isActive,
               isAdmitted: isAdmitted,
-              patient: patient.build(),
-              staff: staff.build());
+              patient: _patient?.build(),
+              staff: _staff?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'patient';
-        patient.build();
+        _patient?.build();
         _$failedField = 'staff';
-        staff.build();
+        _staff?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'ConsultationPayload', _$failedField, e.toString());
