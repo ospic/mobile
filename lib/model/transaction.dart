@@ -13,10 +13,10 @@ abstract class Transaction implements Built<Transaction, TransactionBuilder>{
   int ? get consultationId;
   int ? get departmentId;
   String ? get departmentName;
-  int ? get medicalServiceId;
-  String ? get medicalServiceName;
-  int ? get  medicineId;
-  String ? get medicineName;
+  int  get medicalServiceId;
+  String  get medicalServiceName;
+  int  get  medicineId;
+  String  get medicineName;
 
   Transaction._();
   factory Transaction([updates(TransactionBuilder b)]) = _$Transaction;

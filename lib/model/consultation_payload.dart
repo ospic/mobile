@@ -11,9 +11,9 @@ abstract class ConsultationPayload implements Built<ConsultationPayload, Consult
   bool? get  isActive;
   bool? get  isAdmitted;
   @BuiltValueField(wireName: "patient")
-  Patient get patient;
+  Patient? get patient;
   @BuiltValueField(wireName: "staff")
-  Staff get staff;
+  Staff? get staff;
   
   ConsultationPayload._();
 

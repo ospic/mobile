@@ -94,7 +94,7 @@ class _NewHomeScreenState extends State<HomeScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
         Visibility(
-          visible: _selectedIndex ==0  ,
+          visible: false ,
             child:FloatingActionButton(
           onPressed: () {
             _showLogoutDialog();
@@ -107,6 +107,7 @@ class _NewHomeScreenState extends State<HomeScreen> {
           Visibility(
               visible: _selectedIndex ==1  ,
               child:FloatingActionButton(
+                tooltip: 'Create new appointment',
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenCreateAppointment()));
                 },
