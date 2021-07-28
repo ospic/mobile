@@ -78,7 +78,7 @@ abstract class PostApiService extends ChopperService {
   Future<Response<Patient>> postPost(@Body() Patient body);
 
   @Post(path: '/login')
-  Future<Response> postForLogin(@Body() AuthPost body);
+  Future<Response<AuthResponse>> postForLogin(@Body() AuthPost body);
 
    @Post(path: '/appointments')
   Future<Response<AppointmentInfo>> createAppointment(@Body() AppointmentRequest body);
