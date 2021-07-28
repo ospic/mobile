@@ -1,14 +1,12 @@
-import 'dart:convert';
+import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/auth_response.dart';
-import 'package:mobile/model/serializers.dart';
-import 'package:mobile/utils/api.dart';
 import 'package:mobile/utils/index.dart';
 import 'package:mobile/widgets/index.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/model/auth_post.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:progress_dialog/progress_dialog.dart';
-import 'package:http/http.dart';
+import 'package:provider/provider.dart';
+import 'package:chopper/chopper.dart';
 
 class LoginScreen extends StatefulWidget {
 
@@ -52,7 +50,7 @@ class _State extends State<LoginScreen> {
                                       child: TextFormField(
                                         controller: username,
                                         decoration: new InputDecoration(
-                                          prefixIcon: Icon(MdiIcons.account),
+                                          prefixIcon: Icon(Icons.account_circle_outlined),
 
                                             filled: true,
                                             hintStyle: new TextStyle(color: Colors.grey[800], fontStyle: FontStyle.italic),
@@ -80,7 +78,7 @@ class _State extends State<LoginScreen> {
                                       child: TextFormField(
                                         obscureText: true,
                                         decoration: new InputDecoration(
-                                          prefixIcon: Icon(MdiIcons.lock),
+                                          prefixIcon: Icon(Icons.lock_outline),
                                             filled: true,
                                             hintStyle: new TextStyle(color: Colors.grey[800], fontStyle: FontStyle.italic),
                                             errorStyle: TextStyle(color: Colors.white,fontStyle: FontStyle.italic),
@@ -101,7 +99,7 @@ class _State extends State<LoginScreen> {
                                               type: ProgressDialogType.Normal,
                                               isDismissible: true,
                                               showLogs: false);
-                                          tryToLogin(context, _formKey,pd, );
+                                          tryToLogin(context, _formKey, );
                                         },
                                       ),
                                     ),
@@ -109,14 +107,14 @@ class _State extends State<LoginScreen> {
                                       'responsice_button',
                                       key: Key('value'),
                                       textColor: Colors.white,
-                                      iconData: MdiIcons.abjadArabic,
+                                      iconData: Icons.attach_money_rounded,
                                       title: 'Sign In',
                                       tapCallback: () async {
                                         pd = new ProgressDialog(context,
                                             type: ProgressDialogType.Normal,
                                             isDismissible: true,
                                             showLogs: false);
-                                        tryToLogin(context, _formKey,pd);
+                                        tryToLogin(context, _formKey,);
                                       },
                                     ),
                                   ])),
@@ -150,8 +148,11 @@ Future<bool?> isLoggedIn() async {
   return await sp.getBoolValuesSF(enumKey.IS_LOGGED_IN.toString());
 }
 
-Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,ProgressDialog pr) async{
-
+Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,) async{
+   late AuthResponse _authResponse;
+   late SharedPreference sharepref;
+   int statusCode = 0;
+   ProgressDialog pr = new ProgressDialog(context);
     if (_formKey.currentState!.validate()) {
 
       pr.update(progress: 50.0, message: "Please wait...", progressWidget: Container(
@@ -169,35 +170,37 @@ Future<void> tryToLogin(BuildContext context, GlobalKey<FormState> _formKey,Prog
       );
       var newPost = AuthPost.from(username.text.toString(), password.text.toString());
       pr.show();
-      final response = await Session.apiAuthPost(serializers.serialize(newPost));
-      Response httpClientResponse = response;
-      String value =  response.body;
-      AuthResponse? authResponse = serializers.deserializeWith(AuthResponse.serializer, jsonDecode(value) ?? Map());
-      final int statusCode = httpClientResponse.statusCode;
-      print("Status code"+authResponse.toString());
+      Future<Response<AuthResponse>> response = Provider.of<PostApiService>(context, listen: false).postForLogin(newPost);
+      response.then((v) async => {
+        statusCode  = v.statusCode,
+        if(v.isSuccessful){
+           _authResponse = v.body!,
+
       if(statusCode == 200){
-        pr.hide();
-        var sharepref = new SharedPreference();
-        await sharepref.setStringToSF(enumKey.BASE_64_EncodedAuthenticationKey.toString(), authResponse!.accessToken!);
-        await sharepref.setBooleanToSF(enumKey.IS_LOGGED_IN.toString(), true).then((onValue) {});
-        await sharepref.setStringToSF(enumKey.USER_NAME.toString(), authResponse.username!);
-        await sharepref.setStringToSF(enumKey.BASE_URL.toString(), response.request!.url.toString().substring(0,response.request!.url.toString().length - 6 ));
-        Navigator.pushNamed(context, '/home');
+        pr.hide(),
+        sharepref = new SharedPreference(),
+        await sharepref.setStringToSF(enumKey.BASE_64_EncodedAuthenticationKey.toString(), _authResponse.accessToken!),
+        await sharepref.setBooleanToSF(enumKey.IS_LOGGED_IN.toString(), true).then((onValue) {}),
+        await sharepref.setStringToSF(enumKey.USER_NAME.toString(), _authResponse.username!),
+        //await sharepref.setStringToSF(enumKey.BASE_URL.toString(), response.!.url.toString().substring(0,response.request!.url.toString().length - 6 ));
+        Navigator.pushNamed(context, '/home'),
       }else if(statusCode == 500){
-        pr.hide();
+        pr.hide(),
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               backgroundColor: Colors.redAccent,
               content: Text("Invalid username or password. Try again ..."),
-            ));
+            )),
       }else{
-        pr.hide();
+        pr.hide(),
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               backgroundColor: Colors.redAccent,
               content: Text("Internal server error. Please try again later..."),
-            ));
+            )),
       }
+        }
+      });
     }
 
 }}

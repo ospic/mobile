@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/utils/Constants.dart';
-import 'package:mobile/utils/colors.dart';
 import 'package:group_button/group_button.dart';
 import 'package:provider/provider.dart';
 

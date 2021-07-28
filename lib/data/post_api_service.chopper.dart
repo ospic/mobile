@@ -152,11 +152,11 @@ class _$PostApiService extends PostApiService {
   }
 
   @override
-  Future<Response<dynamic>> postForLogin(AuthPost body) {
+  Future<Response<AuthResponse>> postForLogin(AuthPost body) {
     final $url = '/login';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
-    return client.send<dynamic, dynamic>($request);
+    return client.send<AuthResponse, AuthResponse>($request);
   }
 
   @override
