@@ -144,8 +144,10 @@ Future<Request> _addQuery(Request req) async {
   if(req.url != '/login') {
     _headers['Authorization'] = 'Bearer $n';
   }
-  print('Current url: $_baseUrl');
-  return req.copyWith(parameters: _params, headers: _headers,baseUrl: _baseUrl == 'null' ? UrlEndpoints.RELEASE_BASE_URL :_baseUrl );
+
+  print(_baseUrl == "null");
+  return req.copyWith(parameters: _params, headers: _headers,baseUrl: (_baseUrl == "null") ? UrlEndpoints.RELEASE_BASE_URL :_baseUrl );
+
 }
 
 
