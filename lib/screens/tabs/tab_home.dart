@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/consultation.dart';
 import 'package:mobile/model/patient.dart';
@@ -54,12 +55,12 @@ class TabHome extends StatefulWidget {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           final Patient? patient = snapshot.data?.body;
           return ListTile(
-            title: Text('Hi ${patient!.name}', style: TextStyle(
+            title: Text('message.hi'.tr(args: ['${patient!.name}']), style: TextStyle(
               color: Constants.clr_blue,
               fontWeight: FontWeight.bold,
               fontSize: 25.0,),),
             subtitle: Text(
-                'Here is a list of consultations \nyou may need to check...',
+                'message.list_of_consultations'.tr(),
                 style: TextStyle(color: Constants.clr_blue,)),
             trailing: GestureDetector(
               child: ClipRRect(

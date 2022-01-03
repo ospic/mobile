@@ -10,6 +10,8 @@ import 'package:mobile/utils/navigation_service.dart';
 import 'package:provider/provider.dart';
 import 'package:logging/logging.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 
 class Routes {
@@ -20,7 +22,14 @@ class Routes {
       if (kReleaseMode)
         exit(1);
     };
-      runApp(Application());
+      //runApp(Application());
+      runApp(EasyLocalization(
+         supportedLocales: [Locale('en'), Locale('sw')],
+         path: 'assets/locales', // <-- change the path of the translation files
+         fallbackLocale: Locale('en'),
+         useOnlyLangCode: true,
+           child: Application(),
+           ));
 
     }
   }
@@ -69,7 +78,10 @@ class _ApplicationState extends State<Application>{
       create:(_) => PostApiService.create() ,
       dispose: (_, PostApiService service) => service.client.dispose(),
       child:  MaterialApp(
-            navigatorKey: NavigationService.instance.navigationKey,
+           navigatorKey: NavigationService.instance.navigationKey,
+           localizationsDelegates: context.localizationDelegates,
+           supportedLocales: context.supportedLocales,
+           locale: context.locale,
             theme: ThemeData(
                 fontFamily: 'FiraSans',
                 brightness: Brightness.light,
