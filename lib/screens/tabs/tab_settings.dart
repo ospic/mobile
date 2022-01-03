@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
+import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:mobile/utils/index.dart';
 import 'package:mobile/utils/sharedpreference.dart';
@@ -139,19 +140,19 @@ class _TabSettingsState extends State<TabSettings> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
+        backgroundColor: Constants.clr_light_blue,
         body: SettingsList(
-          lightBackgroundColor: Colors.white,
+          lightBackgroundColor: Constants.clr_light_blue,
           sections: [
             SettingsSection(
-
+              title: 'Common',
               tiles: [
                 SettingsTile(
                   title: 'Language',
                   subtitle: 'English',
                   leading: Icon(Icons.language),
                   onPressed: (BuildContext context) {
-
                     Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenMessage()));
 
                   },
@@ -164,6 +165,12 @@ class _TabSettingsState extends State<TabSettings> {
                     _showLinkChangesDialog();
                   }
                 ),
+              ],
+            ),
+            SettingsSection(
+              title: 'Security',
+              tiles: [
+
                 SettingsTile.switchTile(
                   title: 'Use fingerprint',
                   leading: Icon(Icons.fingerprint),
