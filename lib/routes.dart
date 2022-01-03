@@ -83,14 +83,9 @@ class _ApplicationState extends State<Application>{
            supportedLocales: context.supportedLocales,
            locale: context.locale,
             theme: ThemeData(
-                fontFamily: 'FiraSans',
                 brightness: Brightness.light,
                 primarySwatch: Colors.blue,
-                textTheme: GoogleFonts.firaSansTextTheme(textTheme).copyWith(
-                  headline1: GoogleFonts.firaSans(textStyle: textTheme.headline1),
-                  bodyText2: GoogleFonts.firaSans(textStyle: textTheme.bodyText2),
-                  bodyText1: GoogleFonts.firaSans(textStyle: textTheme.bodyText1),
-                )
+
             ),
             darkTheme: ThemeData.dark(),
             themeMode: _themeMode,

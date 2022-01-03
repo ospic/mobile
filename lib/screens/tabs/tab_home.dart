@@ -57,7 +57,6 @@ class TabHome extends StatefulWidget {
           return ListTile(
             title: Text('message.hi'.tr(args: ['${patient!.name}']), style: TextStyle(
               color: Constants.clr_blue,
-              fontWeight: FontWeight.bold,
               fontSize: 25.0,),),
             subtitle: Text(
                 'message.list_of_consultations'.tr(),
@@ -150,7 +149,7 @@ class TabHome extends StatefulWidget {
                                 ),
                                 child: Icon(MdiIcons.drupal, color: cs[index].isActive! ? Constants.clr_blue: null,), height: 40.0, width: 40.0,),
                             ),
-                            title: Text(cs[index].fromDate!,style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black54),),
+                            title: Text(cs[index].fromDate!,style: TextStyle( color: Colors.black54),),
                             subtitle: Text(cs[index].patientName!),
                             trailing: Icon(MdiIcons.chevronRight),
                             onTap: (){
