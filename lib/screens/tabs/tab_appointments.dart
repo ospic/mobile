@@ -38,7 +38,7 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
             padding: EdgeInsets.symmetric(vertical: 5.0),
             margin: EdgeInsets.symmetric(horizontal: 3.0),
             decoration: new BoxDecoration(
-                color: Colors.white,
+                color: Colors.transparent,
                 borderRadius: new BorderRadius.only(
                   topLeft: const Radius.circular(10.0),
                   topRight: const Radius.circular(10.0),

@@ -9,6 +9,7 @@ class Constants{
   static const Color clr_red = const Color(0xFFF44336);
   static const Color clr_orange = const Color(0xFFFF682D);
   static const Color clr_light_grey = const Color(0xAAD3D3D3);
+  static const Color colorPrimary = const Color.fromRGBO(47,68,84, 1);
 
   static String isOnBoard= "IS_ONBOARD";
   static String isLoggedIn= "IS_LOGGED_IN";

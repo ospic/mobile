@@ -44,23 +44,27 @@ class _NewHomeScreenState extends State<HomeScreen> {
   }
   @override
   Widget build(BuildContext context) {
+    ThemeData _theme = Theme.of(context);
     return Scaffold(
       backgroundColor: Constants.clr_light_blue,
 
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Constants.clr_light_blue,
+        backgroundColor: _theme.appBarTheme.backgroundColor,
         bottomOpacity: 2,
         automaticallyImplyLeading: false,
         title: Text(_titles[_selectedIndex], style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueGrey),),
         actions: [Padding(padding: EdgeInsets.only(right: 10.0, top: 10.0), child: Text('${dateFormatter(DateTime.now())}',style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold),),)],
       ),
 
-      body: _children[_selectedIndex],
+      body: Container(
+        color: _theme.primaryColor,
+        child:  _children[_selectedIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.blueGrey,
         selectedItemColor: Constants.clr_blue,
-
+        backgroundColor: _theme.primaryColor,
         showUnselectedLabels: false,
         showSelectedLabels: true,
         elevation: 0,
