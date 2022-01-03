@@ -7,7 +7,7 @@ import 'package:mobile/utils/colors.dart';
 import 'package:mobile/utils/index.dart';
 import 'package:mobile/utils/sharedpreference.dart';
 import 'package:provider/provider.dart';
-import 'package:settings_ui/settings_ui.dart';
+import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 
 import '../screen_message.dart';
 
