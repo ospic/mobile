@@ -129,7 +129,7 @@ class TabHome extends StatefulWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(padding: EdgeInsets.only(left:15.0, bottom:5.0, top: 20.0),
-                child: Text('CONSULTATIONS (${cs.length})',style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),),),
+                child: Text('title.consultations'.tr(args: ['${cs.length}']),style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),),),
 
               Flexible(
                   child: Container(
