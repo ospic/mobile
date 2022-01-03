@@ -31,6 +31,7 @@ jobs:
         run: flutter pub upgrade
       - name: Install dependencies
         run: flutter pub get
+      - name: Create application icons
         run: flutter pub run flutter_launcher_icons:main
       - name: Checkout to Beta channel
         run: flutter channel beta
