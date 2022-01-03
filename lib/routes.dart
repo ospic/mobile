@@ -6,6 +6,7 @@ import 'package:mobile/screens/screen_profile.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/utils/ThemeClass.dart';
 import 'package:mobile/utils/navigation_service.dart';
 import 'package:provider/provider.dart';
 import 'package:logging/logging.dart';
@@ -41,7 +42,7 @@ void _setupLogging(){
     print('${rec.level.name}: ${rec.time} : ${rec.message}');
   });
 }
-    
+
 
 
 class Application extends StatefulWidget{
@@ -52,8 +53,8 @@ class Application extends StatefulWidget{
 }
 
 class _ApplicationState extends State<Application>{
-  // ThemeMode _themeMode = ThemeMode.system;
-  ThemeMode _themeMode = ThemeMode.light;
+   ThemeMode _themeMode = ThemeMode.system;
+  //ThemeMode _themeMode = ThemeMode.light;
   final routes = <String, WidgetBuilder>{
       '/home': (BuildContext context) => HomeScreen(),
       '/login': (BuildContext context) => LoginScreen(),
@@ -82,12 +83,8 @@ class _ApplicationState extends State<Application>{
            localizationsDelegates: context.localizationDelegates,
            supportedLocales: context.supportedLocales,
            locale: context.locale,
-            theme: ThemeData(
-                brightness: Brightness.light,
-                primarySwatch: Colors.blue,
-
-            ),
-            darkTheme: ThemeData.dark(),
+            theme: ThemeClass.lightTheme,
+            darkTheme: ThemeClass.darkTheme,
             themeMode: _themeMode,
             debugShowCheckedModeBanner: false,
             routes: routes,
