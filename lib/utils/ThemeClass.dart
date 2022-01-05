@@ -22,12 +22,12 @@ class ThemeClass{
   primarySwatch: Colors.blue,
   primaryColor: Colors.black,
   brightness: Brightness.dark,
-  accentColor: Colors.white,
+  accentColor: Colors.black,
   accentIconTheme: IconThemeData(color: Colors.black),
-  dividerColor: Colors.black12,
+  dividerColor: Colors.black,
   scaffoldBackgroundColor: Color(0xFF131313),
       appBarTheme: AppBarTheme(
-        backgroundColor: Constants.colorPrimary,
+        backgroundColor: Colors.black,
       )
   );
 }

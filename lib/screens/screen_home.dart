@@ -53,7 +53,7 @@ class _NewHomeScreenState extends State<HomeScreen> {
         backgroundColor: _theme.appBarTheme.backgroundColor,
         bottomOpacity: 2,
         automaticallyImplyLeading: false,
-        title: Text(_titles[_selectedIndex], style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueGrey),),
+        title: Text(_titles[_selectedIndex], style: TextStyle(),),
         actions: [Padding(padding: EdgeInsets.only(right: 10.0, top: 10.0), child: Text('${dateFormatter(DateTime.now())}',style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold),),)],
       ),
 
@@ -64,7 +64,7 @@ class _NewHomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.blueGrey,
         selectedItemColor: Constants.clr_blue,
-        backgroundColor: _theme.primaryColor,
+        backgroundColor: _theme.appBarTheme.backgroundColor,
         showUnselectedLabels: false,
         showSelectedLabels: true,
         elevation: 0,
