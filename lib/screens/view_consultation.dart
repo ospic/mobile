@@ -55,6 +55,7 @@ Widget _buildConsultationWidget(
     BuildContext context, ConsultationPayload? consultation) {
   final int consultationId = consultation!.id!;
   final List<String> _tabs = ['Info', 'Diagnoses','Costs','Reports','Admissions'];
+  late ThemeData _theme  = Theme.of(context);
 
   return DefaultTabController(
     length: _tabs.length,
@@ -64,11 +65,9 @@ Widget _buildConsultationWidget(
       return <Widget>[
         SliverAppBar(
           primary: true,
-          backgroundColor: Constants.clr_light_blue,
-          iconTheme: IconThemeData(
-            color: Constants.clr_blue
-          ),
-          title: Text('Consultation: ${consultation==null? consultationId : consultation.fromdate}', style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold),),
+          backgroundColor: _theme.appBarTheme.backgroundColor,
+          iconTheme: _theme.appBarTheme.actionsIconTheme,
+          title: Text('Consultation: ${consultation==null? consultationId : consultation.fromdate}', style:  _theme.textTheme.headline3,),
           floating: true,
           pinned: true,
           expandedHeight: 160.0,
@@ -76,9 +75,8 @@ Widget _buildConsultationWidget(
           bottom: TabBar(
             isScrollable: true,
             indicatorSize: TabBarIndicatorSize.tab,
-            unselectedLabelColor: Colors.black54,
-            labelColor: Constants.clr_blue,
-            labelStyle: TextStyle(fontWeight: FontWeight.bold),
+            unselectedLabelColor: _theme.tabBarTheme.unselectedLabelColor,
+            labelColor: _theme.tabBarTheme.labelColor,
             tabs: _tabs.map((String name) => Tab(text: name)).toList(),
           ),
         ),

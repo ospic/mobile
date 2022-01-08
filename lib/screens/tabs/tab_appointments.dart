@@ -21,9 +21,11 @@ class AppointmentsTab  extends StatefulWidget {
 
 class _AppointmentsTabState extends State<AppointmentsTab> {
   ValueNotifier<bool> _notifier = ValueNotifier(false);
+  late ThemeData _theme;
 
   @override
   Widget build(BuildContext context) {
+    _theme = Theme.of(context);
     return OrientationBuilder(
         builder: (context, orientation) {
           if (MediaQuery
@@ -99,7 +101,7 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
                               ),
                               child:
                               Image.asset('images/user_icon.png', height: 50.0, width: 50.0, fit: BoxFit.fitWidth,) )),
-                      title: Text('Date: ${ap[index].appointmentDate!}', style: TextStyle(fontWeight: FontWeight.bold,),),
+                      title: Text('Date: ${ap[index].appointmentDate!}', style: _theme.textTheme.headline3,),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

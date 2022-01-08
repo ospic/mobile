@@ -21,8 +21,10 @@ class TabHome extends StatefulWidget {
   _TabHomeTabState createState() => _TabHomeTabState();
 }
   class _TabHomeTabState extends State<TabHome> {
+    late ThemeData _theme;
   @override
   Widget build(BuildContext context) {
+    _theme = Theme.of(context);
     return NestedScrollView(
       floatHeaderSlivers: true,
       physics: PageScrollPhysics(),
@@ -35,7 +37,7 @@ class TabHome extends StatefulWidget {
               pinned: false,
               forceElevated: innerBoxIsScrolled,
               automaticallyImplyLeading: false,
-              backgroundColor: Constants.clr_light_blue,
+              backgroundColor: _theme.appBarTheme.backgroundColor,
               title: Text(''),
               elevation: 0.0,
               flexibleSpace:_flexibleSpace(context)
@@ -55,12 +57,10 @@ class TabHome extends StatefulWidget {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           final Patient? patient = snapshot.data?.body;
           return ListTile(
-            title: Text('message.hi'.tr(args: ['${patient!.name}']), style: TextStyle(
-              color: Constants.clr_blue,
-              fontSize: 25.0,),),
+            title: Text('message.hi'.tr(args: ['${patient!.name}']), style: _theme.textTheme.headline1,),
             subtitle: Text(
                 'message.list_of_consultations'.tr(),
-                style: TextStyle(color: Constants.clr_blue,)),
+                style: _theme.textTheme.headline3),
             trailing: GestureDetector(
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
@@ -113,11 +113,11 @@ class TabHome extends StatefulWidget {
 
   Widget _buildConsultationList(BuildContext context, BuiltList<Consultation> cs){
     return  Container(
-      color: Constants.clr_light_blue,
+      color: _theme.appBarTheme.backgroundColor,
       child: new Container(
           margin: EdgeInsets.symmetric(horizontal: 3.0),
           decoration: new BoxDecoration(
-              color: Colors.white,
+              color: _theme.appBarTheme.foregroundColor,
               borderRadius: new BorderRadius.only(
                 topLeft: const Radius.circular(20.0),
                 topRight: const Radius.circular(20.0),
@@ -128,7 +128,7 @@ class TabHome extends StatefulWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(padding: EdgeInsets.only(left:15.0, bottom:5.0, top: 20.0),
-                child: Text('title.consultations'.tr(args: ['${cs.length}']),style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),),),
+                child: Text('title.consultations'.tr(args: ['${cs.length}']),style: _theme.textTheme.headline2,),),
 
               Flexible(
                   child: Container(
@@ -149,7 +149,7 @@ class TabHome extends StatefulWidget {
                                 ),
                                 child: Icon(MdiIcons.drupal, color: cs[index].isActive! ? Constants.clr_blue: null,), height: 40.0, width: 40.0,),
                             ),
-                            title: Text(cs[index].fromDate!,style: TextStyle( color: Colors.black54),),
+                            title: Text(cs[index].fromDate!,style: _theme.textTheme.headline4,),
                             subtitle: Text(cs[index].patientName!),
                             trailing: Icon(MdiIcons.chevronRight),
                             onTap: (){
