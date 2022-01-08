@@ -53,8 +53,8 @@ class _NewHomeScreenState extends State<HomeScreen> {
         backgroundColor: _theme.appBarTheme.backgroundColor,
         bottomOpacity: 2,
         automaticallyImplyLeading: false,
-        title: Text(_titles[_selectedIndex], style: TextStyle(),),
-        actions: [Padding(padding: EdgeInsets.only(right: 10.0, top: 10.0), child: Text('${dateFormatter(DateTime.now())}',style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold),),)],
+        title: Text(_titles[_selectedIndex], style: _theme.textTheme.headline4,),
+        actions: [Padding(padding: EdgeInsets.only(right: 10.0, top: 10.0), child: Text('${dateFormatter(DateTime.now())}',style: _theme.textTheme.headline4,),)],
       ),
 
       body: Container(
@@ -62,15 +62,16 @@ class _NewHomeScreenState extends State<HomeScreen> {
         child:  _children[_selectedIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Colors.blueGrey,
-        selectedItemColor: Constants.clr_blue,
+        unselectedItemColor: _theme.bottomNavigationBarTheme.unselectedItemColor,
+        selectedItemColor: _theme.bottomNavigationBarTheme.selectedItemColor,
         backgroundColor: _theme.appBarTheme.backgroundColor,
+        selectedIconTheme: _theme.bottomNavigationBarTheme.selectedIconTheme,
+        unselectedIconTheme: _theme.bottomNavigationBarTheme.unselectedIconTheme,
         showUnselectedLabels: false,
         showSelectedLabels: true,
         elevation: 0,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            backgroundColor: Colors.white,
             icon: Icon(Icons.home),
             label: 'Consultations',
           ),
