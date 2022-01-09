@@ -41,7 +41,8 @@ class ThemeClass {
         unselectedLabelColor: Colors.black54,
         labelColor: Constants.clr_blue,
       ),
-      iconTheme: IconThemeData(color: Constants.clr_blue));
+      iconTheme: IconThemeData(color: Constants.clr_blue)
+  );
 
   /* Dark theme settings */
   static ThemeData darkTheme = ThemeData(

@@ -18,10 +18,12 @@ class _ScreenViewAppointmentState extends State<ScreenViewAppointment>{
   var horizontalPadding = 30.0;
   var verticalPadding = 15.0;
   var radiusCircle = 30.0;
+  late  ThemeData _theme;
   @override
   Widget build(BuildContext context) {
+   _theme = Theme.of(context);
     return Container(
-      color: Constants.clr_light_blue,
+      color: _theme.appBarTheme.backgroundColor,
       child: _buildBody(context, widget.appointmentId),
     );
   }
@@ -47,7 +49,9 @@ class _ScreenViewAppointmentState extends State<ScreenViewAppointment>{
   }
 
   Widget _updateAppointmentHeader(BuildContext context, Appointment? appointment){
+    ThemeData _theme = Theme.of(context);
     return  Scaffold(
+      backgroundColor: _theme.appBarTheme.foregroundColor,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -57,12 +61,12 @@ class _ScreenViewAppointmentState extends State<ScreenViewAppointment>{
             floating: true,
             pinned: false,
             automaticallyImplyLeading: true,
-            backgroundColor: appointment?.appointment.status !='CANCELLED' ? Constants.clr_blue :Constants.clr_red,
+            backgroundColor: appointment?.appointment.status !='CANCELLED' ? _theme.appBarTheme.backgroundColor :Constants.clr_red,
             foregroundColor: Colors.white,
-            title: Text('Appointment request', style: TextStyle(fontWeight: FontWeight.w200),),
+            title: Text('Appointment request',style: _theme.textTheme.headline4,),
             elevation: 0.0,
             flexibleSpace: FlexibleSpaceBar(
-              title:  Text('${appointment!.appointment.appointmentDate}',style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 50.0), ),
+              title:  Text('${appointment!.appointment.appointmentDate}', style: _theme.textTheme.headline4, ),
               stretchModes: <StretchMode>[
                 StretchMode.blurBackground
               ],
@@ -80,8 +84,7 @@ class _ScreenViewAppointmentState extends State<ScreenViewAppointment>{
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
         child:  Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Visibility(
                 visible: appointment.appointment.status == 'WAITING',
@@ -106,7 +109,7 @@ class _ScreenViewAppointmentState extends State<ScreenViewAppointment>{
                   child: Text('EDIT', style: TextStyle(color: Colors.white)),
                 )),
             Visibility(
-              visible: appointment.appointment.status == 'CANCELLED',
+              visible: appointment.appointment.status == 'CANCELLED' || appointment.appointment.status == 'REJECTED',
               child: ElevatedButton(
               style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Constants.clr_red),
                   padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: verticalPadding, horizontal:  horizontalPadding)),
@@ -129,7 +132,8 @@ class _ScreenViewAppointmentState extends State<ScreenViewAppointment>{
     return Container(
         margin: EdgeInsets.symmetric(horizontal: 3.0),
         decoration: new BoxDecoration(
-            color: Colors.white, borderRadius: new BorderRadius.only(
+            color: Colors.transparent,
+            borderRadius: new BorderRadius.only(
           topLeft: const Radius.circular(-40.0),
           topRight: const Radius.circular(20.0),)),
         child: Column(
@@ -139,12 +143,14 @@ class _ScreenViewAppointmentState extends State<ScreenViewAppointment>{
               leading: CircleAvatar(
                 radius: 20.0,
                 backgroundColor: appointment!.staff.isActive! ? Constants.clr_blue : Colors.green[100],
-                child: appointment.staff.isActive! ? Icon(
-                  Icons.ac_unit, color: Colors.white,) : Text(appointment.staff.username!, style: TextStyle(fontWeight: FontWeight.bold, color: appointment.staff.isActive! ? Colors.white : Colors.green),
+                child: appointment.staff.isActive! ? Icon(Icons.ac_unit, color: Colors.white,) :
+                Text(appointment.staff.username!, style: _theme.textTheme.headline3,
                 ),
               ),
-              title: Text(appointment.staff.fullName == null ? appointment.staff.username! : appointment.staff.fullName!, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24.0, color: Constants.clr_blue),),
-              subtitle: Text('Email ${appointment.staff.email}'),
+              title: Text(
+                appointment.staff.fullName == null ? appointment.staff.username! : appointment.staff.fullName!,
+                style: _theme.textTheme.headline3,),
+              subtitle: Text('Email ${appointment.staff.email}', style: _theme.textTheme.headline4,),
             ),
           ],
         ));
