@@ -15,25 +15,26 @@ class TransactionWidget extends StatefulWidget {
 }
 
 class _TransactionWidgetState extends State<TransactionWidget> {
-  
+
   @override
   Widget build(BuildContext context) {
-    //var size = MediaQuery.of(context).size;
+    ThemeData _theme = Theme.of(context);
     final Transaction transaction = widget.transaction;
     return  Container(
         decoration: BoxDecoration( //                    <-- BoxDecoration
           border: Border(bottom: BorderSide()),
+          color: _theme.appBarTheme.foregroundColor,
         ),
         child:ListTile(
-          tileColor: Colors.white,
+          tileColor: _theme.appBarTheme.foregroundColor,
           dense: true,
-          leading: Icon(MdiIcons.creditCardMultipleOutline, color: colorPrimary,),
+          leading: Icon(transaction.medicalServiceName != null? Icons.medical_services_outlined :MdiIcons.pill, color: colorPrimary,),
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [Text(transaction.amount.toString() +" "+ transaction.currencyCode!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),)],
           ),
           title:  Text((transaction.medicalServiceName == null?  'Medicine: ${transaction.medicineName.toString()}':'Service: ${transaction.medicalServiceName.toString()}')),
-          subtitle:     Text('Date:'+transaction.transactionDate!,style: TextStyle(color: textPrimaryColor,  fontWeight: FontWeight.w200)),
+          subtitle:     Text(transaction.transactionDate!,style: _theme.textTheme.headline4),
           onTap:() => Navigator.push(
               context,
               MaterialPageRoute(
