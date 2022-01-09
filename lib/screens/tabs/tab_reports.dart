@@ -52,19 +52,18 @@ Widget _buildConsultationWidget(BuildContext context, BuiltList<Report> reports)
       scrollDirection: Axis.vertical,
       padding: EdgeInsets.all(8.0),
       physics: ClampingScrollPhysics(),
-      shrinkWrap: true,
       itemBuilder: (context, index) {
         return  Container(
             margin: EdgeInsets.only(top: 2.0, bottom: 2.0, left: 1.0),
             padding: EdgeInsets.only(top: 3.0, bottom: 4.0),
-          color: Constants.clr_light_grey,
+          color: _theme.appBarTheme.foregroundColor,
             constraints: BoxConstraints(
               minHeight: 70,
             ),
             child: ListTile(
               trailing: FileIcon(reports[index].name!, size: 35.0,),
-              title: Text(reports[index].name!, style: TextStyle( fontWeight: FontWeight.bold)),
-              subtitle: Text(reports[index].location!),
+              title: Text(reports[index].name!, style: _theme.textTheme.headline2),
+              subtitle: Text(reports[index].location!, style: _theme.textTheme.headline4,),
               onTap:() => Navigator.push(
                   context,
                   MaterialPageRoute(

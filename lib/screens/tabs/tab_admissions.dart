@@ -48,27 +48,40 @@ Widget _buildConsultationWidget(BuildContext context, BuiltList<Admission> admis
       child: ListView.builder(
       itemCount: admissions.length,
       scrollDirection: Axis.vertical,
-      padding: EdgeInsets.all(8.0),
+      padding: EdgeInsets.symmetric(horizontal: 1.0, vertical: 1.0),
       physics: ClampingScrollPhysics(),
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return  Container(
-          margin: EdgeInsets.only(top: 2.0, bottom: 2.0, left: 1.0),
-          padding: EdgeInsets.only(top: 3.0, bottom: 4.0),
-          color: gray1,
-          constraints: BoxConstraints(
-            minHeight: 70,
-          ),
-          child: ListTile(
-            leading: Icon( MdiIcons.circle,color: admissions[index].isActive! ? green1: gray3),
-            title: Text(admissions[index].startDate!, style: TextStyle(color: colorAccent, fontWeight: FontWeight.bold)),
-            subtitle: Text("\n Admitted from:  "+admissions[index].startDate! + "\n To: "+admissions[index].endDate! +"\n On ward: "+admissions[index].wardName! + "\n Bed no."+admissions[index].bedId.toString() + " - ["+admissions[index].bedIdentifier!+"]"),
-            onTap:() => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        ViewAdmissionScreen(admissions[index].id))),
 
+      itemBuilder: (context, index) {
+        return  Card(
+          color: _theme.appBarTheme.foregroundColor,
+          child: Container(
+            margin: EdgeInsets.only(top: 2.0, bottom: 2.0, left: 1.0),
+            padding: EdgeInsets.only(top: 3.0, bottom: 4.0),
+            color: _theme.appBarTheme.foregroundColor,
+            constraints: BoxConstraints(
+              minHeight: 70,
+            ),
+            child: ListTile(
+              leading: Icon( MdiIcons.circle,color: admissions[index].isActive! ? green1: gray3),
+              title: Text(admissions[index].startDate!, style: _theme.textTheme.headline3),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(height: 10.0,),
+                  Text(" Date:\t"+admissions[index].startDate!, style: _theme.textTheme.headline4),
+                  Text(" To: \t"+admissions[index].endDate!, style: _theme.textTheme.headline4),
+                  Text(" On ward: "+admissions[index].wardName!, style: _theme.textTheme.headline4),
+                  Text(" Bed No.:"+admissions[index].bedId.toString(), style: _theme.textTheme.headline4)
+                ],
+              ),
+              onTap:() => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          ViewAdmissionScreen(admissions[index].id))),
+
+            ),
           ),
         );
       }));

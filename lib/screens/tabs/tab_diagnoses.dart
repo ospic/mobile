@@ -67,8 +67,9 @@ Widget _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> diagn
                 minHeight: 90,
               ),
               child:Card(
-                elevation: 1.2,
+                elevation: 2,
                 shadowColor: Constants.clr_blue,
+                color: _theme.appBarTheme.foregroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4), // if you need this
                   side: BorderSide(
@@ -77,12 +78,12 @@ Widget _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> diagn
                   ),
                 ),
                 child: Container(
-                  color: Colors.transparent,
+                  color: _theme.appBarTheme.foregroundColor,
                   child: ListTile(
                     contentPadding: EdgeInsets.all(8.0),
                     title: Padding(padding: EdgeInsets.only(bottom: 10.0, ),
-                      child: Text(diagnoses[index].date!, style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold)),),
-                    subtitle: Text(diagnoses[index].symptoms!),
+                      child: Text(diagnoses[index].date!, style: _theme.textTheme.headline2),),
+                    subtitle: Text(diagnoses[index].symptoms!, style: _theme.textTheme.headline4,),
                   ),
                 ),
               ),
