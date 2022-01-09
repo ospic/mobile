@@ -43,7 +43,7 @@ Widget _buildConsultationWidget(BuildContext context, TransactionResponse respon
   final BuiltList<Transaction> transactions = response.transactions;
   return Container(
       color: _theme.appBarTheme.foregroundColor,
-      child:  ListView.builder(
+      child:  ListView.separated(
     itemCount: transactions.length,
     scrollDirection: Axis.vertical,
     padding: EdgeInsets.all(0.0),
@@ -52,6 +52,11 @@ Widget _buildConsultationWidget(BuildContext context, TransactionResponse respon
     itemBuilder: (context, index) {
       return  TransactionWidget('service_transaction_widget', transaction: transactions[index]);
 
-    },
+    }, 
+        separatorBuilder: (context, index){
+          return  Container(
+              padding:  EdgeInsets.all(0.0),
+              color: _theme.primaryColor, height: 1);
+        },
   ));
 }}
