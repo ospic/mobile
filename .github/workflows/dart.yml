@@ -25,7 +25,8 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-java@v1
         with:
-          java-version: ${{ env.java_version }}
+          java-version: '11'
+#          java-version: ${{ env.java_version }}
       - uses: subosito/flutter-action@v1
         with:
           channel: 'beta'
