@@ -14,17 +14,14 @@ class ScreenCreateAppointment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData _theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: _theme.appBarTheme.foregroundColor,
       appBar: AppBar(
         elevation: 0,
-        title: Text('Book appointment', style: TextStyle(
-            color: Constants.clr_blue,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0),),
-        iconTheme: IconThemeData(
-            color: Constants.clr_blue
-        ),
-        backgroundColor: Constants.clr_light_blue,
+        title: Text('Book appointment', style: _theme.textTheme.headline3,),
+        iconTheme: _theme.iconTheme,
+        backgroundColor: _theme.appBarTheme.backgroundColor,
       ),
       body: Card(
         margin: EdgeInsets.all(10.0),
@@ -228,7 +225,7 @@ class ScreenCreateAppointment extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.transparent,
+        color: _theme.appBarTheme.foregroundColor,
         child: Padding(
           padding: EdgeInsets.all(10.0),
           child: ElevatedButton(

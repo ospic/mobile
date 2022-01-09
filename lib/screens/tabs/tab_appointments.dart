@@ -95,7 +95,7 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
                     child: ListTile(
                       leading: CircleAvatar(
                           radius: 20,
-                          backgroundColor:  ap[index].status != 'REJECTED' ? Colors.red : ap[index].status != 'CANCELLED' ? colorPrimary : Colors.red[700],
+                          backgroundColor:  ap[index].status == 'REJECTED' ? Colors.red[700] : ap[index].status == 'CANCELLED' ? Colors.red[70] : ap[index].status == 'ACCEPTED' ? Colors.green : colorPrimary,
                           child: Image.asset('images/user_icon.png', height: 30.0, width: 30.0, fit: BoxFit.fitWidth, )
                       ),
                       title: Text('Date: ${ap[index].appointmentDate!}', style: _theme.textTheme.headline4,),

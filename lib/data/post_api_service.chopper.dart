@@ -178,7 +178,7 @@ class _$PostApiService extends PostApiService {
   @override
   Future<Response<AppointmentInfo>> unScheduleAppointmentById(int id,
       {String action = "unschedule"}) {
-    final $url = '/appointments/$id/update';
+    final $url = '/appointments/unschedule/$id';
     final $params = <String, dynamic>{'action': action};
     final $request = Request('PUT', $url, client.baseUrl, parameters: $params);
     return client.send<AppointmentInfo, AppointmentInfo>($request);
