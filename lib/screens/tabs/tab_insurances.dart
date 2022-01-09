@@ -17,17 +17,21 @@ class TabInsurances extends StatefulWidget {
 }
 
 class _InsurancesTabState extends State<TabInsurances> {
+  late ThemeData _theme;
   @override
   Widget build(BuildContext context) {
+    _theme = Theme.of(context);
     return Container(
+        color: _theme.appBarTheme.backgroundColor,
+        child: Container(
       decoration: new BoxDecoration(
-          color: Colors.white,
+          color: _theme.appBarTheme.backgroundColor,
           borderRadius: new BorderRadius.only(
             topLeft: const Radius.circular(20.0),
             topRight: const Radius.circular(20.0),
           )),
       child: _buildBody(context),
-    );
+    ));
   }
 
   FutureBuilder<Response<BuiltList<InsuranceCard>>> _buildBody(

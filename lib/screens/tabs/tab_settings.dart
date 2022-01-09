@@ -26,6 +26,7 @@ class _TabSettingsState extends State<TabSettings> {
   final cPassword = TextEditingController();
   final rePassword = TextEditingController();
   final newPassword = TextEditingController();
+  late ThemeData _theme;
 
   bool value = false;
   void _onFingerPrintSetting(bool it) {
@@ -187,14 +188,16 @@ class _TabSettingsState extends State<TabSettings> {
   }
 
   Widget build(BuildContext context) {
+    _theme = Theme.of(context);
     return Scaffold(
         resizeToAvoidBottomInset: true,
-        backgroundColor: Constants.clr_light_blue,
+        backgroundColor: _theme.appBarTheme.backgroundColor,
         body: SettingsList(
-          lightBackgroundColor: Constants.clr_light_blue,
+          backgroundColor: _theme.appBarTheme.backgroundColor,
           sections: [
             SettingsSection(
               title: 'Common',
+              titleTextStyle: _theme.textTheme.headline3,
               tiles: [
                 SettingsTile(
                   title: 'Language',
@@ -217,6 +220,7 @@ class _TabSettingsState extends State<TabSettings> {
             ),
             SettingsSection(
               title: 'Security',
+              titleTextStyle: _theme.textTheme.headline3,
               tiles: [
 
                 SettingsTile.switchTile(
