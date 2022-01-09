@@ -4,6 +4,7 @@
      "list_of_consultations": "Here is a list of consultations \n you may need to check..."
    },
   "title": {
-    "consultations": "Consultations ({})"
+    "consultations": "Consultations ({})",
+    "change_language": "Change language"
   }
 }

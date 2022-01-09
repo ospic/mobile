@@ -1,8 +1,10 @@
 import 'package:chopper/chopper.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
+import 'package:mobile/routes.dart';
 import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:mobile/utils/index.dart';
@@ -33,6 +35,52 @@ class _TabSettingsState extends State<TabSettings> {
     });
   }
 
+  void _showLanguageChangeDialog() async{
+    ThemeData _theme = Theme.of(context);
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.fromLTRB(10.0, 0,0,0),
+          title: Center(child: Text('title.change_language'.tr(), style: _theme.appBarTheme.titleTextStyle,)),
+          content: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Divider(),
+                ListTile(
+                  title: Text('English'),
+                  subtitle: Text('Select English as a main language'),
+                  dense: true,
+                  onTap: (){
+                    _updateApplicationLanguage(context, 'ENG');
+                    //MyApp.setLanguage(context, Locale('en'));
+                  },
+                ),
+                Divider(),
+                ListTile(
+                  title: Text('Swahili'),
+                  subtitle: Text('Changua Kiswahili kama lugha yako ya msingi'),
+                  dense: true,
+                  onTap: (){
+                    _updateApplicationLanguage(context, 'SWA');
+                    //MyApp.setLanguage(context, Locale('sw'));
+                  },
+                ),
+
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _updateApplicationLanguage(BuildContext context, String locale){
+    Application.setLanguage(context, Locale(locale.substring(0, locale.length - 1).toLowerCase()));
+  }
 
   Future<void> _showLinkChangesDialog() async{
     url.text = await _baseUrl() == null? "NO VALUE" :   await _baseUrl();
@@ -153,7 +201,7 @@ class _TabSettingsState extends State<TabSettings> {
                   subtitle: 'English',
                   leading: Icon(Icons.language),
                   onPressed: (BuildContext context) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenMessage()));
+                    _showLanguageChangeDialog();
 
                   },
                 ),
