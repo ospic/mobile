@@ -27,8 +27,12 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: 'beta'
-      - name: Upgrade dependencies
-        run: flutter pub upgrade
+#  This app is using a deprecated version of the Android embedding.
+#  To avoid unexpected runtime failures, or future build failures, try to migrate this app to the V2 embedding.
+#   Take a look at the docs for migrating an app: https://github.com/flutter/flutter/wiki/Upgrading-pre-1.12-Android-projects
+#  The plugin `connectivity_plus` requires your app to be migrated to the Android embedding v2. Follow the steps on https://flutter.dev/go/android-project-migration and re-run this command.
+#      - name: Upgrade dependencies
+#        run: flutter pub upgrade
       - name: Install dependencies
         run: flutter pub get
       - name: Create application icons
