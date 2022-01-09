@@ -14,14 +14,17 @@ import 'package:provider/provider.dart';
 
 class ReportsTab extends StatelessWidget {
   final int consultationId;
+  late ThemeData _theme;
   ReportsTab(this.consultationId);
   Widget build(BuildContext context) {
+    _theme = Theme.of(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        backgroundColor: _theme.appBarTheme.backgroundColor,
         body: _buildBody(context, consultationId)
     );
   }
-}
+
 
 FutureBuilder<Response<BuiltList<Report>>> _buildBody(BuildContext context, int id) {
   return FutureBuilder<Response<BuiltList<Report>>>(
@@ -41,8 +44,10 @@ FutureBuilder<Response<BuiltList<Report>>> _buildBody(BuildContext context, int 
   );
 }
 
-ListView _buildConsultationWidget(BuildContext context, BuiltList<Report> reports){
-  return  ListView.builder(
+Widget _buildConsultationWidget(BuildContext context, BuiltList<Report> reports){
+  return  Container(
+      color: _theme.appBarTheme.foregroundColor,
+      child:  ListView.builder(
       itemCount: reports.length,
       scrollDirection: Axis.vertical,
       padding: EdgeInsets.all(8.0),
@@ -67,5 +72,5 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Report> report
                           ViewReportScreen(reports[index].id))),
             ),
         );
-      });
-}
+      }));
+}}

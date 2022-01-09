@@ -11,14 +11,17 @@ import 'package:timeline_tile/timeline_tile.dart';
 
 class DiagnosesTab extends StatelessWidget {
   final int consultationId;
+  late ThemeData _theme;
   DiagnosesTab(this.consultationId);
   Widget build(BuildContext context) {
+    _theme = Theme.of(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        backgroundColor: _theme.appBarTheme.backgroundColor,
         body: _buildBody(context, consultationId)
     );
   }
-}
+
 
 FutureBuilder<Response<BuiltList<Diagnosis>>> _buildBody(BuildContext context, int id) {
   return FutureBuilder<Response<BuiltList<Diagnosis>>>(
@@ -36,9 +39,11 @@ FutureBuilder<Response<BuiltList<Diagnosis>>> _buildBody(BuildContext context, i
   );
 }
 
-ListView _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> diagnoses){
+Widget _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> diagnoses){
   final colors = [ Colors.blue, Colors.green, Colors.yellow, Colors.red, Colors.indigo];
-  return  ListView.builder(
+  return Container(
+    color: _theme.appBarTheme.foregroundColor,
+    child: ListView.builder(
         itemCount: diagnoses.length,
         scrollDirection: Axis.vertical,
         padding: EdgeInsets.all(8.0),
@@ -54,7 +59,7 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> dia
                 padding: const EdgeInsets.all(8),
                 iconStyle: IconStyle(iconData: Icons.circle, color: Colors.blue),
                 color: colors[index%colors.length]),
-            
+
             endChild: Container(
               margin: EdgeInsets.only(top: 1.0, bottom: 1.0, left: 1.0),
               padding: EdgeInsets.only(top: 3.0, bottom: 4.0),
@@ -76,7 +81,7 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> dia
                   child: ListTile(
                     contentPadding: EdgeInsets.all(8.0),
                     title: Padding(padding: EdgeInsets.only(bottom: 10.0, ),
-                    child: Text(diagnoses[index].date!, style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold)),),
+                      child: Text(diagnoses[index].date!, style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold)),),
                     subtitle: Text(diagnoses[index].symptoms!),
                   ),
                 ),
@@ -84,5 +89,6 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> dia
               color: Colors.transparent,
             ),
           );
-        });
-}
+        }),
+  );
+}}
