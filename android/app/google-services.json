@@ -7,18 +7,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:298165528035:android:e39d1a178e5c6da28aacd6",
+        "mobilesdk_app_id": "1:298165528035:android:2f124d1102747f1b8aacd6",
         "android_client_info": {
-          "package_name": "com.example.mobile"
+          "package_name": "com.ospic.mobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "298165528035-ve0pmfvlcqi2i3n9as8bg9pd080g52a6.apps.googleusercontent.com",
+          "client_id": "298165528035-anrd3s1b7eb67shap4i0vo2qce8jh1tr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.mobile",
-            "certificate_hash": "1146ecd2ca94a71d44a557ed8f0aab83850e665d"
+            "package_name": "com.ospic.mobile",
+            "certificate_hash": "02fe5cc005c47fd9b35ae138048aabfe6fd638f8"
           }
         },
         {
@@ -37,6 +37,13 @@
             {
               "client_id": "298165528035-02ruorde05iii8ffta1o6j80i05p3m15.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "298165528035-b8e9htsg3q3ad3aakb02835dbjqnt5h8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mobile"
+              }
             }
           ]
         }
