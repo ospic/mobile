@@ -37,15 +37,18 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
             isLargeScreen = false;
           }
           return Container(
-            padding: EdgeInsets.symmetric(vertical: 5.0),
-            margin: EdgeInsets.symmetric(horizontal: 3.0),
-            decoration: new BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: new BorderRadius.only(
-                  topLeft: const Radius.circular(10.0),
-                  topRight: const Radius.circular(10.0),
-                )),
-            child: _buildBody(context),
+            color: _theme.appBarTheme.backgroundColor,
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 5.0),
+              margin: EdgeInsets.symmetric(horizontal: 3.0),
+              decoration: new BoxDecoration(
+                  color: _theme.appBarTheme.backgroundColor,
+                  borderRadius: new BorderRadius.only(
+                    topLeft: const Radius.circular(10.0),
+                    topRight: const Radius.circular(10.0),
+                  )),
+              child: _buildBody(context),
+            ),
           );
         });
   }
@@ -88,7 +91,7 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
 
             itemBuilder: (context, index) {
               return  Card(
-                color: ap[index].status=='CANCELLED' ? Constants.clr_orange : _theme.primaryColor,
+                color: _theme.appBarTheme.foregroundColor,
                 child: Container(
                     padding: EdgeInsets.symmetric(vertical: 10.0),
                     child: ListTile(
@@ -101,17 +104,17 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
                               ),
                               child:
                               Image.asset('images/user_icon.png', height: 50.0, width: 50.0, fit: BoxFit.fitWidth,) )),
-                      title: Text('Date: ${ap[index].appointmentDate!}', style: _theme.textTheme.headline3,),
+                      title: Text('Date: ${ap[index].appointmentDate!}', style: _theme.textTheme.headline4,),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text.rich(
                             TextSpan(
                               children: [
-                                TextSpan(text: 'Status: '),
+                                TextSpan(text: 'Status: ',style: _theme.textTheme.headline4,),
                                 TextSpan(
                                   text: ap[index].status,
-                                  style: TextStyle(fontWeight: FontWeight.bold, color: ap[index].status=='CANCELLED' ? Colors.red : null),
+                                  style: TextStyle( color: ap[index].status=='CANCELLED' ? Colors.red : null),
                                 ),
 
                               ],
@@ -138,8 +141,8 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
             },
             separatorBuilder: (context, index){
               return  Container(
-                  padding:  EdgeInsets.only(top: 1.0, bottom: 1.0),
-                  color: Colors.white70, height: 1);
+                  padding:  EdgeInsets.symmetric(vertical: 0.0),
+                  color: Colors.transparent, height: 0);
             },),
         ),
 
