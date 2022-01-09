@@ -66,7 +66,7 @@ class _InsurancesTabState extends State<TabInsurances> {
         Padding(padding: EdgeInsets.only(top: 20.0, left: 20.0, bottom: 15.0),
           child: Text('Insurance Cards', style: _theme.textTheme.headline2),),
         Expanded(
-          child: ListView.builder(
+          child: ListView.separated(
             itemCount: cs.length,
             scrollDirection: Axis.vertical,
             padding: EdgeInsets.all(0.0),
@@ -74,8 +74,8 @@ class _InsurancesTabState extends State<TabInsurances> {
 
             itemBuilder: (context, index) {
               return  Container(
-                  padding: EdgeInsets.symmetric(vertical: 5.0),
-                  margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+                  padding: EdgeInsets.symmetric(vertical: 0.0),
+                  margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 5.0),
                   decoration: new BoxDecoration(
                       color: _theme.appBarTheme.foregroundColor,
                       borderRadius: new BorderRadius.only(
@@ -108,6 +108,11 @@ class _InsurancesTabState extends State<TabInsurances> {
                     ),
                     onTap: () {}
                   ));
+            },
+            separatorBuilder: (context, index) {
+              return Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10.0),
+                  color: _theme.appBarTheme.backgroundColor, height: 1);
             },
             ),
         ),
