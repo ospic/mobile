@@ -155,7 +155,7 @@ class TabHome extends StatefulWidget {
                             onTap: (){
                               Navigator.push(context, MaterialPageRoute(
                                   builder: (context) {
-                                return ScreenVieConsultation(cs[index].id!);
+                                return ScreenViewConsultation(cs[index].id!);
                               },
                               ));
                             },

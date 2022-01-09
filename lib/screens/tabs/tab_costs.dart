@@ -9,14 +9,17 @@ import 'package:provider/provider.dart';
 
 class ServiceAndCostsTab extends StatelessWidget {
   final int consultationId;
+  late ThemeData _theme;
   ServiceAndCostsTab(this.consultationId);
   Widget build(BuildContext context) {
+    _theme = Theme.of(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        backgroundColor: _theme.appBarTheme.backgroundColor,
         body: _buildBody(context, consultationId)
     );
   }
-}
+
 
 FutureBuilder<Response<TransactionResponse>> _buildBody(BuildContext context, int id) {
   return FutureBuilder<Response<TransactionResponse>>(
@@ -36,9 +39,11 @@ FutureBuilder<Response<TransactionResponse>> _buildBody(BuildContext context, in
   );
 }
 
-ListView _buildConsultationWidget(BuildContext context, TransactionResponse response){
+Widget _buildConsultationWidget(BuildContext context, TransactionResponse response){
   final BuiltList<Transaction> transactions = response.transactions;
-  return ListView.builder(
+  return Container(
+      color: _theme.appBarTheme.foregroundColor,
+      child:  ListView.builder(
     itemCount: transactions.length,
     scrollDirection: Axis.vertical,
     padding: EdgeInsets.all(0.0),
@@ -48,51 +53,5 @@ ListView _buildConsultationWidget(BuildContext context, TransactionResponse resp
       return  TransactionWidget('service_transaction_widget', transaction: transactions[index]);
 
     },
-
-
-  );
-  /**return  ListView(children: <Widget>[
-    Center(
-        child: Text(
-          'Service and costs',
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-        )),
-    DataTable(
-      sortAscending: true,
-      headingRowColor: MaterialStateColor.resolveWith((states) => colorPrimary),
-      columns: [
-        DataColumn(label: Text(
-            'TID',
-            style: TextStyle( fontWeight: FontWeight.bold)
-        )),
-        DataColumn(label: Text(
-            'Service',
-            style: TextStyle(fontWeight: FontWeight.bold)
-        )),
-        DataColumn(label: Text(
-            'Amount',
-            style: TextStyle( fontWeight: FontWeight.bold)
-        )),
-        DataColumn(label: Text(
-            'Date',
-            style: TextStyle( fontWeight: FontWeight.bold)
-        )),
-       /** DataColumn(label: Text(
-            'Department',
-            style: TextStyle( fontWeight: FontWeight.bold)
-        )),**/
-
-      ],
-      rows: transactions.map((transaction) =>
-        DataRow(
-          cells: [
-          DataCell(Text(transaction.id.toString())),
-          DataCell(Text(transaction.medicalServiceName == null ? transaction.medicineName.toString() : transaction.medicalServiceName.toString())),
-          DataCell(Text(transaction.amount.toString())),
-          DataCell(Text(transaction.transactionDate)),
-          /**DataCell(Text(transaction.departmentName)),**/
-      ],
-    )).toList()),
-  ]);
-  **/
-}
+  ));
+}}

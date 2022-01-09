@@ -13,14 +13,16 @@ import 'package:provider/provider.dart';
 
 class AdmissionsTab extends StatelessWidget {
   final int consultationId;
+  late ThemeData _theme;
   AdmissionsTab(this.consultationId);
   Widget build(BuildContext context) {
+    _theme = Theme.of(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        backgroundColor: _theme.appBarTheme.backgroundColor,
         body: _buildBody(context, consultationId)
     );
   }
-}
 
 FutureBuilder<Response<BuiltList<Admission>>> _buildBody(BuildContext context, int id) {
   return FutureBuilder<Response<BuiltList<Admission>>>(
@@ -40,8 +42,10 @@ FutureBuilder<Response<BuiltList<Admission>>> _buildBody(BuildContext context, i
   );
 }
 
-ListView _buildConsultationWidget(BuildContext context, BuiltList<Admission> admissions){
-  return  ListView.builder(
+Widget _buildConsultationWidget(BuildContext context, BuiltList<Admission> admissions){
+  return  Container(
+      color: _theme.appBarTheme.foregroundColor,
+      child: ListView.builder(
       itemCount: admissions.length,
       scrollDirection: Axis.vertical,
       padding: EdgeInsets.all(8.0),
@@ -67,5 +71,5 @@ ListView _buildConsultationWidget(BuildContext context, BuiltList<Admission> adm
 
           ),
         );
-      });
-}
+      }));
+}}
