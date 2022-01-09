@@ -50,6 +50,10 @@ class Application extends StatefulWidget{
   _ApplicationState createState()=> _ApplicationState();
 
   static _ApplicationState? of(BuildContext context) => context.findAncestorStateOfType<_ApplicationState>();
+
+  static void setLanguage(BuildContext context, Locale locale) {
+    context.setLocale(locale);
+  }
 }
 
 class _ApplicationState extends State<Application>{

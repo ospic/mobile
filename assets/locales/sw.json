@@ -1,5 +1,10 @@
 {
   "message": {
-    "hi": "Mambo {}"
+    "hi": "Mambo {}",
+    "list_of_consultations": "Orodha ya mashauriano ambayo unaweza kuhitaji kuangalia..."
+  },
+  "title": {
+    "consultations": "Mashauriano ({})",
+    "change_language": "Badili lugha"
   }
 }
