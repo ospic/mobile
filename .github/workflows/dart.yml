@@ -84,27 +84,27 @@ jobs:
  #         folder: build/app/outputs/bundle/debug # The folder the action should deploy.
 
 
-      - name: Clean
-        run: flutter clean
-      - name: Build release apk
-        run: flutter build apk  --split-per-abi --no-tree-shake-icons  --release --no-sound-null-safety
-      - name: Build release app-bundle
-        run: flutter build appbundle   --release --no-sound-null-safety
-
-      - name: Deploy release apk 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.0
-        with:
-          token: ${{ secrets.GITHUBTOKEN }}
-          branch: master # The branch the action should deploy to.
-          repository-name: ospic/deploys
-          target-folder: mobile/apks/release
-          folder: build/app/outputs/apk/release # The folder the action should deploy.
-
-      - name: Deploy release appbundle 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.0
-        with:
-          token: ${{ secrets.GITHUBTOKEN }}
-          branch: master # The branch the action should deploy to.
-          repository-name: ospic/deploys
-          target-folder: mobile/appbundle/release
-          folder: build/app/outputs/bundle/release # The folder the action should deploy.
+#      - name: Clean
+#        run: flutter clean
+#      - name: Build release apk
+#        run: flutter build apk  --split-per-abi --no-tree-shake-icons  --release --no-sound-null-safety
+#      - name: Build release app-bundle
+#        run: flutter build appbundle   --release --no-sound-null-safety
+#
+#      - name: Deploy release apk 🚀
+#        uses: JamesIves/github-pages-deploy-action@4.1.0
+#        with:
+#          token: ${{ secrets.GITHUBTOKEN }}
+#          branch: master # The branch the action should deploy to.
+#          repository-name: ospic/deploys
+#          target-folder: mobile/apks/release
+#          folder: build/app/outputs/apk/release # The folder the action should deploy.
+#
+#      - name: Deploy release appbundle 🚀
+#        uses: JamesIves/github-pages-deploy-action@4.1.0
+#        with:
+#          token: ${{ secrets.GITHUBTOKEN }}
+#          branch: master # The branch the action should deploy to.
+#          repository-name: ospic/deploys
+#          target-folder: mobile/appbundle/release
+#          folder: build/app/outputs/bundle/release # The folder the action should deploy.
