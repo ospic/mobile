@@ -86,12 +86,12 @@ Widget _buildViewTransaction(BuildContext context, Transaction? transaction) {
               ),
             ),
             title: Text(
-              transaction!.medicineName.isEmpty ? 'Service' : 'Medicine',
+              transaction!.medicineName==null ? 'Service' : 'Medicine',
               style: TextStyle(
                 color: Colors.white,
               ),
             ),
-            subtitle: Text('${transaction.medicineName.isEmpty ? transaction.medicalServiceName : transaction.medicineName}',
+            subtitle: Text('${transaction.medicineName == null ? transaction.medicalServiceName : transaction.medicineName}',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,

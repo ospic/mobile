@@ -20,18 +20,6 @@ class _$TransactionSerializer implements StructuredSerializer<Transaction> {
     final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
-      'medicalServiceId',
-      serializers.serialize(object.medicalServiceId,
-          specifiedType: const FullType(int)),
-      'medicalServiceName',
-      serializers.serialize(object.medicalServiceName,
-          specifiedType: const FullType(String)),
-      'medicineId',
-      serializers.serialize(object.medicineId,
-          specifiedType: const FullType(int)),
-      'medicineName',
-      serializers.serialize(object.medicineName,
-          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.amount;
@@ -81,6 +69,38 @@ class _$TransactionSerializer implements StructuredSerializer<Transaction> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.medicalServiceId;
+    if (value != null) {
+      result
+        ..add('medicalServiceId')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.medicalServiceName;
+    if (value != null) {
+      result
+        ..add('medicalServiceName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.medicineId;
+    if (value != null) {
+      result
+        ..add('medicineId')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.medicineName;
+    if (value != null) {
+      result
+        ..add('medicineName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.quantity;
+    if (value != null) {
+      result
+        ..add('quantity')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     return result;
   }
 
@@ -129,19 +149,23 @@ class _$TransactionSerializer implements StructuredSerializer<Transaction> {
           break;
         case 'medicalServiceId':
           result.medicalServiceId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'medicalServiceName':
           result.medicalServiceName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'medicineId':
           result.medicineId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'medicineName':
           result.medicineName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'quantity':
+          result.quantity = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
           break;
       }
     }
@@ -168,13 +192,15 @@ class _$Transaction extends Transaction {
   @override
   final String? departmentName;
   @override
-  final int medicalServiceId;
+  final int? medicalServiceId;
   @override
-  final String medicalServiceName;
+  final String? medicalServiceName;
   @override
-  final int medicineId;
+  final int? medicineId;
   @override
-  final String medicineName;
+  final String? medicineName;
+  @override
+  final int? quantity;
 
   factory _$Transaction([void Function(TransactionBuilder)? updates]) =>
       (new TransactionBuilder()..update(updates)).build();
@@ -188,20 +214,13 @@ class _$Transaction extends Transaction {
       this.consultationId,
       this.departmentId,
       this.departmentName,
-      required this.medicalServiceId,
-      required this.medicalServiceName,
-      required this.medicineId,
-      required this.medicineName})
+      this.medicalServiceId,
+      this.medicalServiceName,
+      this.medicineId,
+      this.medicineName,
+      this.quantity})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, 'Transaction', 'id');
-    BuiltValueNullFieldError.checkNotNull(
-        medicalServiceId, 'Transaction', 'medicalServiceId');
-    BuiltValueNullFieldError.checkNotNull(
-        medicalServiceName, 'Transaction', 'medicalServiceName');
-    BuiltValueNullFieldError.checkNotNull(
-        medicineId, 'Transaction', 'medicineId');
-    BuiltValueNullFieldError.checkNotNull(
-        medicineName, 'Transaction', 'medicineName');
   }
 
   @override
@@ -226,7 +245,8 @@ class _$Transaction extends Transaction {
         medicalServiceId == other.medicalServiceId &&
         medicalServiceName == other.medicalServiceName &&
         medicineId == other.medicineId &&
-        medicineName == other.medicineName;
+        medicineName == other.medicineName &&
+        quantity == other.quantity;
   }
 
   @override
@@ -241,18 +261,20 @@ class _$Transaction extends Transaction {
                                 $jc(
                                     $jc(
                                         $jc(
-                                            $jc($jc(0, id.hashCode),
-                                                amount.hashCode),
-                                            currencyCode.hashCode),
-                                        isReversed.hashCode),
-                                    transactionDate.hashCode),
-                                consultationId.hashCode),
-                            departmentId.hashCode),
-                        departmentName.hashCode),
-                    medicalServiceId.hashCode),
-                medicalServiceName.hashCode),
-            medicineId.hashCode),
-        medicineName.hashCode));
+                                            $jc(
+                                                $jc($jc(0, id.hashCode),
+                                                    amount.hashCode),
+                                                currencyCode.hashCode),
+                                            isReversed.hashCode),
+                                        transactionDate.hashCode),
+                                    consultationId.hashCode),
+                                departmentId.hashCode),
+                            departmentName.hashCode),
+                        medicalServiceId.hashCode),
+                    medicalServiceName.hashCode),
+                medicineId.hashCode),
+            medicineName.hashCode),
+        quantity.hashCode));
   }
 
   @override
@@ -269,7 +291,8 @@ class _$Transaction extends Transaction {
           ..add('medicalServiceId', medicalServiceId)
           ..add('medicalServiceName', medicalServiceName)
           ..add('medicineId', medicineId)
-          ..add('medicineName', medicineName))
+          ..add('medicineName', medicineName)
+          ..add('quantity', quantity))
         .toString();
   }
 }
@@ -330,6 +353,10 @@ class TransactionBuilder implements Builder<Transaction, TransactionBuilder> {
   String? get medicineName => _$this._medicineName;
   set medicineName(String? medicineName) => _$this._medicineName = medicineName;
 
+  int? _quantity;
+  int? get quantity => _$this._quantity;
+  set quantity(int? quantity) => _$this._quantity = quantity;
+
   TransactionBuilder();
 
   TransactionBuilder get _$this {
@@ -347,6 +374,7 @@ class TransactionBuilder implements Builder<Transaction, TransactionBuilder> {
       _medicalServiceName = $v.medicalServiceName;
       _medicineId = $v.medicineId;
       _medicineName = $v.medicineName;
+      _quantity = $v.quantity;
       _$v = null;
     }
     return this;
@@ -375,14 +403,11 @@ class TransactionBuilder implements Builder<Transaction, TransactionBuilder> {
             consultationId: consultationId,
             departmentId: departmentId,
             departmentName: departmentName,
-            medicalServiceId: BuiltValueNullFieldError.checkNotNull(
-                medicalServiceId, 'Transaction', 'medicalServiceId'),
-            medicalServiceName: BuiltValueNullFieldError.checkNotNull(
-                medicalServiceName, 'Transaction', 'medicalServiceName'),
-            medicineId: BuiltValueNullFieldError.checkNotNull(
-                medicineId, 'Transaction', 'medicineId'),
-            medicineName: BuiltValueNullFieldError.checkNotNull(
-                medicineName, 'Transaction', 'medicineName'));
+            medicalServiceId: medicalServiceId,
+            medicalServiceName: medicalServiceName,
+            medicineId: medicineId,
+            medicineName: medicineName,
+            quantity: quantity);
     replace(_$result);
     return _$result;
   }
