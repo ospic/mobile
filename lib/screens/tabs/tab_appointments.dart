@@ -78,8 +78,6 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
 
 
   Widget _buildNotifications(BuildContext context, BuiltList<AppointmentInfo> ap) {
-
-    ThemeData _theme = Theme.of(context);
     return Row(
       children: [
         Expanded(
@@ -93,17 +91,13 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
               return  Card(
                 color: _theme.appBarTheme.foregroundColor,
                 child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 10.0),
+                    padding: EdgeInsets.symmetric(vertical: 5.0),
                     child: ListTile(
-                      leading: ClipRRect(
-                          borderRadius: BorderRadius.circular(30.5),
-                          child: Container(
-                              padding: EdgeInsets.all(5.0),
-                              decoration: BoxDecoration(
-                                color:  ap[index].status=='CANCELLED' ? Colors.red[200] : Constants.clr_light_blue,
-                              ),
-                              child:
-                              Image.asset('images/user_icon.png', height: 50.0, width: 50.0, fit: BoxFit.fitWidth,) )),
+                      leading: CircleAvatar(
+                          radius: 20,
+                          backgroundColor:  ap[index].status != 'REJECTED' ? Colors.red : ap[index].status != 'CANCELLED' ? colorPrimary : Colors.red[700],
+                          child: Image.asset('images/user_icon.png', height: 30.0, width: 30.0, fit: BoxFit.fitWidth, )
+                      ),
                       title: Text('Date: ${ap[index].appointmentDate!}', style: _theme.textTheme.headline4,),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
