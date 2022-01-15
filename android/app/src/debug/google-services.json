@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "298165528035",
+    "project_id": "spring-fcm-8987f",
+    "storage_bucket": "spring-fcm-8987f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2981655280351:android:2f124d1102747f1b8aacd6",
+        "android_client_info": {
+          "package_name": "com.ospic.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298165528035-anrd3s1b7eb67shap4i0vo2qce8jh1tr1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ospic.mobile",
+            "certificate_hash": "02fe5cc005c47fd9b35ae138048aabfe6fd638f8"
+          }
+        },
+        {
+          "client_id": "298165528035-02ruorde05iii8ffta1o6j80i05p3m151.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClWbYXKn7THn6SY_9IUQKRzl11NuMU5oo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "298165528035-02ruorde05iii8ffta1o6j80i05p3m15.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "298165528035-7s9pbumcbamldiskjgmkl6p1ip337412.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ospic.mobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
