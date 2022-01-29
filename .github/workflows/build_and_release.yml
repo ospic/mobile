@@ -25,7 +25,7 @@ jobs:
       - name: Install pub Dependencies
         run: flutter pub get
       - name: Run Tests
-        run: flutter test
+        run: flutter test --no-sound-null-safety
       - name: Build Android App
         run: flutter build apk --split-per-abi
       - name: Build iOS App
