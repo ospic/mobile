@@ -72,14 +72,14 @@ class TabHome extends StatefulWidget {
                       Image.asset('images/icon.png', height: 50.0,
                         width: 50.0,
                         fit: BoxFit.fitWidth,) :
-                      Image.network(UrlEndpoints.IMAGE_BASE_URL + patient.patientPhoto!))),
+                      Image.network(UrlEndpoints.IMAGE_BASE_URL + "patients/${patient.id}/images"))),
               onTap: () {
                 Navigator.pushNamed(context, '/profile');
               },
             ),
           );
-        } else if(snapshot.hasError){
-          return Center(child: Text(''),);
+        } else if(snapshot.hasError || snapshot.data?.statusCode == 504){
+          return Center(child: Text('Oops! Error has occurred. Try again after few minutes'),);
         } else {
           return Center(
             child: CircularProgressIndicator(),
