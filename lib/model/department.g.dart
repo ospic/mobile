@@ -53,13 +53,13 @@ class _$DepartmentSerializer implements StructuredSerializer<Department> {
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int))! as int;
           break;
         case 'name':
           result.name = serializers.deserialize(value,
@@ -91,12 +91,12 @@ class _$Department extends Department {
   final String? openingDate;
 
   factory _$Department([void Function(DepartmentBuilder)? updates]) =>
-      (new DepartmentBuilder()..update(updates)).build();
+      (new DepartmentBuilder()..update(updates))._build();
 
   _$Department._(
       {required this.id, this.name, this.descriptions, this.openingDate})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, 'Department', 'id');
+    BuiltValueNullFieldError.checkNotNull(id, r'Department', 'id');
   }
 
   @override
@@ -125,7 +125,7 @@ class _$Department extends Department {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Department')
+    return (newBuiltValueToStringHelper(r'Department')
           ..add('id', id)
           ..add('name', name)
           ..add('descriptions', descriptions)
@@ -179,10 +179,12 @@ class DepartmentBuilder implements Builder<Department, DepartmentBuilder> {
   }
 
   @override
-  _$Department build() {
+  Department build() => _build();
+
+  _$Department _build() {
     final _$result = _$v ??
         new _$Department._(
-            id: BuiltValueNullFieldError.checkNotNull(id, 'Department', 'id'),
+            id: BuiltValueNullFieldError.checkNotNull(id, r'Department', 'id'),
             name: name,
             descriptions: descriptions,
             openingDate: openingDate);
@@ -191,4 +193,4 @@ class DepartmentBuilder implements Builder<Department, DepartmentBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

@@ -142,7 +142,7 @@ class _$BillPayloadSerializer implements StructuredSerializer<BillPayload> {
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
@@ -259,7 +259,7 @@ class _$BillPayload extends BillPayload {
   final TransactionResponse transactionResponse;
 
   factory _$BillPayload([void Function(BillPayloadBuilder)? updates]) =>
-      (new BillPayloadBuilder()..update(updates)).build();
+      (new BillPayloadBuilder()..update(updates))._build();
 
   _$BillPayload._(
       {this.id,
@@ -281,7 +281,7 @@ class _$BillPayload extends BillPayload {
       required this.transactionResponse})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        transactionResponse, 'BillPayload', 'transactionResponse');
+        transactionResponse, r'BillPayload', 'transactionResponse');
   }
 
   @override
@@ -359,7 +359,7 @@ class _$BillPayload extends BillPayload {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('BillPayload')
+    return (newBuiltValueToStringHelper(r'BillPayload')
           ..add('id', id)
           ..add('isPaid', isPaid)
           ..add('extraId', extraId)
@@ -496,7 +496,9 @@ class BillPayloadBuilder implements Builder<BillPayload, BillPayloadBuilder> {
   }
 
   @override
-  _$BillPayload build() {
+  BillPayload build() => _build();
+
+  _$BillPayload _build() {
     _$BillPayload _$result;
     try {
       _$result = _$v ??
@@ -525,7 +527,7 @@ class BillPayloadBuilder implements Builder<BillPayload, BillPayloadBuilder> {
         transactionResponse.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'BillPayload', _$failedField, e.toString());
+            r'BillPayload', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -534,4 +536,4 @@ class BillPayloadBuilder implements Builder<BillPayload, BillPayloadBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

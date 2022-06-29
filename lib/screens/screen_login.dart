@@ -37,7 +37,7 @@ class _State extends State<LoginScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           Image.asset(
-                            'images/icon.png',
+                            'assets/images/icon.png',
                             width: 100,
                             height: 100,
                           ),

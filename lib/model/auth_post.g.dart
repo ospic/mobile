@@ -49,7 +49,7 @@ class _$AuthPostSerializer implements StructuredSerializer<AuthPost> {
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
@@ -81,7 +81,7 @@ class _$AuthPost extends AuthPost {
   final int? tenantId;
 
   factory _$AuthPost([void Function(AuthPostBuilder)? updates]) =>
-      (new AuthPostBuilder()..update(updates)).build();
+      (new AuthPostBuilder()..update(updates))._build();
 
   _$AuthPost._({this.username, this.password, this.tenantId}) : super._();
 
@@ -109,7 +109,7 @@ class _$AuthPost extends AuthPost {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('AuthPost')
+    return (newBuiltValueToStringHelper(r'AuthPost')
           ..add('username', username)
           ..add('password', password)
           ..add('tenantId', tenantId))
@@ -157,7 +157,9 @@ class AuthPostBuilder implements Builder<AuthPost, AuthPostBuilder> {
   }
 
   @override
-  _$AuthPost build() {
+  AuthPost build() => _build();
+
+  _$AuthPost _build() {
     final _$result = _$v ??
         new _$AuthPost._(
             username: username, password: password, tenantId: tenantId);
@@ -166,4 +168,4 @@ class AuthPostBuilder implements Builder<AuthPost, AuthPostBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

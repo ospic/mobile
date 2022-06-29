@@ -42,7 +42,7 @@ class _$AppointmentSerializer implements StructuredSerializer<Appointment> {
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
@@ -75,14 +75,14 @@ class _$Appointment extends Appointment {
   final Staff staff;
 
   factory _$Appointment([void Function(AppointmentBuilder)? updates]) =>
-      (new AppointmentBuilder()..update(updates)).build();
+      (new AppointmentBuilder()..update(updates))._build();
 
   _$Appointment._(
       {this.success, required this.appointment, required this.staff})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        appointment, 'Appointment', 'appointment');
-    BuiltValueNullFieldError.checkNotNull(staff, 'Appointment', 'staff');
+        appointment, r'Appointment', 'appointment');
+    BuiltValueNullFieldError.checkNotNull(staff, r'Appointment', 'staff');
   }
 
   @override
@@ -109,7 +109,7 @@ class _$Appointment extends Appointment {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Appointment')
+    return (newBuiltValueToStringHelper(r'Appointment')
           ..add('success', success)
           ..add('appointment', appointment)
           ..add('staff', staff))
@@ -159,7 +159,9 @@ class AppointmentBuilder implements Builder<Appointment, AppointmentBuilder> {
   }
 
   @override
-  _$Appointment build() {
+  Appointment build() => _build();
+
+  _$Appointment _build() {
     _$Appointment _$result;
     try {
       _$result = _$v ??
@@ -176,7 +178,7 @@ class AppointmentBuilder implements Builder<Appointment, AppointmentBuilder> {
         staff.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'Appointment', _$failedField, e.toString());
+            r'Appointment', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -185,4 +187,4 @@ class AppointmentBuilder implements Builder<Appointment, AppointmentBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas
