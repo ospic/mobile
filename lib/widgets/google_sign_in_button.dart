@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/utils/index.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -59,13 +60,14 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 "photoURL": user.photoURL
               };
               print(_googleAuthentication);
+              Navigator.pushNamed(context, '/home');
             }
           },
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
             child: _isSigningIn
                 ? CircularProgressIndicator(
-                    color: Colors.white,
+                    color: colorPrimary,
                     strokeWidth: 2,
                   )
                 : Row(
