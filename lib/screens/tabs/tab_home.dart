@@ -69,7 +69,7 @@ class TabHome extends StatefulWidget {
                         color: colorAccent,
                       ),
                       child: patient.patientPhoto == null ?
-                      Image.asset('images/icon.png', height: 50.0,
+                      Image.asset('assets/images/icon.png', height: 50.0,
                         width: 50.0,
                         fit: BoxFit.fitWidth,) :
                       Image.network(UrlEndpoints.IMAGE_BASE_URL + "patients/${patient.id}/images"))),

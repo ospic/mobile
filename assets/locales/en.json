@@ -1,4 +1,7 @@
 {
+  "button": {
+    "continue_with_google": "Continue with google"
+  },
    "message": {
      "hi": "Hi {}",
      "list_of_consultations": "Here is a list of consultations \n you may need to check..."

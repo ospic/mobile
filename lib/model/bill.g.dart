@@ -145,7 +145,7 @@ class _$BillSerializer implements StructuredSerializer<Bill> {
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
@@ -261,7 +261,7 @@ class _$Bill extends Bill {
   final String? transactionResponse;
 
   factory _$Bill([void Function(BillBuilder)? updates]) =>
-      (new BillBuilder()..update(updates)).build();
+      (new BillBuilder()..update(updates))._build();
 
   _$Bill._(
       {this.id,
@@ -358,7 +358,7 @@ class _$Bill extends Bill {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Bill')
+    return (newBuiltValueToStringHelper(r'Bill')
           ..add('id', id)
           ..add('isPaid', isPaid)
           ..add('extraId', extraId)
@@ -494,7 +494,9 @@ class BillBuilder implements Builder<Bill, BillBuilder> {
   }
 
   @override
-  _$Bill build() {
+  Bill build() => _build();
+
+  _$Bill _build() {
     final _$result = _$v ??
         new _$Bill._(
             id: id,
@@ -519,4 +521,4 @@ class BillBuilder implements Builder<Bill, BillBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

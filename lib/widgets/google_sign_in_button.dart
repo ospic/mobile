@@ -20,14 +20,14 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
 
   @override
   Widget build(BuildContext context) {
-    final widgetTheme = Provider.of<ThemeData>(context);
+    ThemeData themeData = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: SizedBox(
         width: MediaQuery.of(context).size.width - 70,
         child: ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(widgetTheme.scaffoldBackgroundColor),
+            backgroundColor: MaterialStateProperty.all(themeData.scaffoldBackgroundColor),
             padding: MaterialStateProperty.all(
                 EdgeInsets.symmetric(horizontal: 10.0)),
             shape: MaterialStateProperty.all(
@@ -73,7 +73,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Image(
-                        image: AssetImage("assets/image/google_logo.png"),
+                        image: AssetImage("assets/images/google_logo.png"),
                         height: 25.0,
                       ),
                       Padding(
@@ -81,7 +81,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                         child: Text(
                           'button.continue_with_google'.tr(),
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

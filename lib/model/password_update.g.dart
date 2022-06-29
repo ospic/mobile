@@ -46,7 +46,7 @@ class _$PasswordUpdateSerializer
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
@@ -72,7 +72,7 @@ class _$PasswordUpdate extends PasswordUpdate {
   final String? newPassword;
 
   factory _$PasswordUpdate([void Function(PasswordUpdateBuilder)? updates]) =>
-      (new PasswordUpdateBuilder()..update(updates)).build();
+      (new PasswordUpdateBuilder()..update(updates))._build();
 
   _$PasswordUpdate._({this.oldPassword, this.newPassword}) : super._();
 
@@ -99,7 +99,7 @@ class _$PasswordUpdate extends PasswordUpdate {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('PasswordUpdate')
+    return (newBuiltValueToStringHelper(r'PasswordUpdate')
           ..add('oldPassword', oldPassword)
           ..add('newPassword', newPassword))
         .toString();
@@ -142,7 +142,9 @@ class PasswordUpdateBuilder
   }
 
   @override
-  _$PasswordUpdate build() {
+  PasswordUpdate build() => _build();
+
+  _$PasswordUpdate _build() {
     final _$result = _$v ??
         new _$PasswordUpdate._(
             oldPassword: oldPassword, newPassword: newPassword);
@@ -151,4 +153,4 @@ class PasswordUpdateBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

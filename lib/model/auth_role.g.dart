@@ -56,7 +56,7 @@ class _$AuthRoleSerializer implements StructuredSerializer<AuthRole> {
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
@@ -94,7 +94,7 @@ class _$AuthRole extends AuthRole {
   final bool? disabled;
 
   factory _$AuthRole([void Function(AuthRoleBuilder)? updates]) =>
-      (new AuthRoleBuilder()..update(updates)).build();
+      (new AuthRoleBuilder()..update(updates))._build();
 
   _$AuthRole._({this.id, this.name, this.description, this.disabled})
       : super._();
@@ -125,7 +125,7 @@ class _$AuthRole extends AuthRole {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('AuthRole')
+    return (newBuiltValueToStringHelper(r'AuthRole')
           ..add('id', id)
           ..add('name', name)
           ..add('description', description)
@@ -179,7 +179,9 @@ class AuthRoleBuilder implements Builder<AuthRole, AuthRoleBuilder> {
   }
 
   @override
-  _$AuthRole build() {
+  AuthRole build() => _build();
+
+  _$AuthRole _build() {
     final _$result = _$v ??
         new _$AuthRole._(
             id: id, name: name, description: description, disabled: disabled);
@@ -188,4 +190,4 @@ class AuthRoleBuilder implements Builder<AuthRole, AuthRoleBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas
