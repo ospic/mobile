@@ -24,10 +24,10 @@ dependencies:
    flutter:
     sdk: flutter
    material_design_icons_flutter: ^4.0.5955
-   connectivity_plus: ^2.2.0
-   chopper: ^4.0.1
-   provider: ^6.0.2
-   built_value: ^8.1.0
+   connectivity: ^3.0.6
+   chopper: ^4.0.6
+   provider: ^6.0.3
+   built_value: ^8.3.3
    shared_preferences: ^2.0.11
    progress_dialog: ^1.2.4
    timeline_tile: ^2.0.0
@@ -37,8 +37,13 @@ dependencies:
    group_button: ^2.3.0
    firebase_core: ^1.11.0
    firebase_messaging: ^11.2.5
+   firebase_auth: ^3.3.18
+   google_sign_in: ^5.0.0
    flutter_launcher_icons: ^0.9.2
    easy_localization: ^3.0.0
+
+dependency_overrides:
+  platform: ^3.1.0
 
 dev_dependencies:
    flutter_test:

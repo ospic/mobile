@@ -8,6 +8,9 @@ import 'package:progress_dialog/progress_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:chopper/chopper.dart';
 
+import '../utils/Authentication.dart';
+import '../widgets/google_sign_in_button.dart';
+
 class LoginScreen extends StatefulWidget {
 
   @override
@@ -115,6 +118,22 @@ class _State extends State<LoginScreen> {
                                             isDismissible: true,
                                             showLogs: false);
                                         tryToLogin(context, _formKey,);
+                                      },
+                                    ),
+                                    FutureBuilder(
+                                      future: Authentication.initializeFirebase(context: context),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasError) {
+                                          return Text('Error initializing Firebase');
+                                        } else if (snapshot.connectionState ==
+                                            ConnectionState.done) {
+                                          return GoogleSignInButton();
+                                        }
+                                        return CircularProgressIndicator(
+                                          valueColor: AlwaysStoppedAnimation<Color>(
+                                            Colors.orange,
+                                          ),
+                                        );
                                       },
                                     ),
                                   ])),
