@@ -377,7 +377,6 @@ packages:
       name: google_fonts
       url: "https://pub.dartlang.org"
     source: hosted
-
     version: "2.3.3"
   google_sign_in:
     dependency: "direct main"
@@ -604,7 +603,7 @@ packages:
     source: hosted
     version: "5.0.0"
   platform:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: platform
       url: "https://pub.dartlang.org"
@@ -824,7 +823,6 @@ packages:
       name: vector_math
       url: "https://pub.dartlang.org"
     source: hosted
-
     version: "2.1.2"
   watcher:
     dependency: transitive
