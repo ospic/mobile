@@ -48,6 +48,7 @@
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+
 	<key>CFBundleURLTypes</key>
     <array>
         <dict>
