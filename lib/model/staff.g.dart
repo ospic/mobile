@@ -95,7 +95,7 @@ class _$StaffSerializer implements StructuredSerializer<Staff> {
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
@@ -169,7 +169,7 @@ class _$Staff extends Staff {
   final Department department;
 
   factory _$Staff([void Function(StaffBuilder)? updates]) =>
-      (new StaffBuilder()..update(updates)).build();
+      (new StaffBuilder()..update(updates))._build();
 
   _$Staff._(
       {this.id,
@@ -183,7 +183,7 @@ class _$Staff extends Staff {
       this.isAvailable,
       required this.department})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(department, 'Staff', 'department');
+    BuiltValueNullFieldError.checkNotNull(department, r'Staff', 'department');
   }
 
   @override
@@ -231,7 +231,7 @@ class _$Staff extends Staff {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Staff')
+    return (newBuiltValueToStringHelper(r'Staff')
           ..add('id', id)
           ..add('username', username)
           ..add('fullName', fullName)
@@ -323,7 +323,9 @@ class StaffBuilder implements Builder<Staff, StaffBuilder> {
   }
 
   @override
-  _$Staff build() {
+  Staff build() => _build();
+
+  _$Staff _build() {
     _$Staff _$result;
     try {
       _$result = _$v ??
@@ -345,7 +347,7 @@ class StaffBuilder implements Builder<Staff, StaffBuilder> {
         department.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'Staff', _$failedField, e.toString());
+            r'Staff', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -354,4 +356,4 @@ class StaffBuilder implements Builder<Staff, StaffBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

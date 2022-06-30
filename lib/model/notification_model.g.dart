@@ -51,7 +51,7 @@ class _$NotificationModelSerializer
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
@@ -84,7 +84,7 @@ class _$NotificationModel extends NotificationModel {
 
   factory _$NotificationModel(
           [void Function(NotificationModelBuilder)? updates]) =>
-      (new NotificationModelBuilder()..update(updates)).build();
+      (new NotificationModelBuilder()..update(updates))._build();
 
   _$NotificationModel._({this.groupid, this.requestId, this.description})
       : super._();
@@ -114,7 +114,7 @@ class _$NotificationModel extends NotificationModel {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('NotificationModel')
+    return (newBuiltValueToStringHelper(r'NotificationModel')
           ..add('groupid', groupid)
           ..add('requestId', requestId)
           ..add('description', description))
@@ -163,7 +163,9 @@ class NotificationModelBuilder
   }
 
   @override
-  _$NotificationModel build() {
+  NotificationModel build() => _build();
+
+  _$NotificationModel _build() {
     final _$result = _$v ??
         new _$NotificationModel._(
             groupid: groupid, requestId: requestId, description: description);
@@ -172,4 +174,4 @@ class NotificationModelBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas

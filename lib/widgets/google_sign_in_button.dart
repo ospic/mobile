@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'package:mobile/utils/index.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,14 +22,16 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
 
   @override
   Widget build(BuildContext context) {
-    final widgetTheme = Provider.of<ThemeData>(context);
+
+    ThemeData themeData = Theme.of(context);
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: SizedBox(
         width: MediaQuery.of(context).size.width - 70,
         child: ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(widgetTheme.scaffoldBackgroundColor),
+            backgroundColor: MaterialStateProperty.all(themeData.scaffoldBackgroundColor),
             padding: MaterialStateProperty.all(
                 EdgeInsets.symmetric(horizontal: 10.0)),
             shape: MaterialStateProperty.all(
@@ -59,13 +63,14 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 "photoURL": user.photoURL
               };
               print(_googleAuthentication);
+              Navigator.pushNamed(context, '/home');
             }
           },
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
             child: _isSigningIn
                 ? CircularProgressIndicator(
-                    color: Colors.white,
+                    color: colorPrimary,
                     strokeWidth: 2,
                   )
                 : Row(
@@ -73,7 +78,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Image(
-                        image: AssetImage("assets/image/google_logo.png"),
+                        image: AssetImage("assets/images/google_logo.png"),
                         height: 25.0,
                       ),
                       Padding(
@@ -81,7 +86,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                         child: Text(
                           'button.continue_with_google'.tr(),
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
