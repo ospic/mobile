@@ -9,5 +9,11 @@
   "title": {
     "consultations": "Consultations ({})",
     "change_language": "Change language"
+  },
+  "selection": {
+    "hospital": "Select Hospital"
+  },
+  "warning": {
+    "field_required": "Field is required"
   }
 }
