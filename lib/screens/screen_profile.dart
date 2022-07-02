@@ -8,6 +8,9 @@ import 'package:mobile/widgets/widget_something_happened.dart';
 import 'package:provider/provider.dart';
 import 'dart:developer';
 
+import '../utils/sharedpreference.dart';
+
+
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
 
   FutureBuilder<Response<Patient>> _buildBody(BuildContext context) {
     return FutureBuilder<Response<Patient>>(
-      future: Provider.of<PostApiService>(context).getPatients(),
+      future: Provider.of<PostApiService>(context).getPatients(36),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           log(snapshot.toString());

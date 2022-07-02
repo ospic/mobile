@@ -53,13 +53,12 @@ class _State extends State<LoginScreen> {
                                       child: TextFormField(
                                         controller: username,
                                         decoration: new InputDecoration(
-                                          prefixIcon: Icon(Icons.account_circle_outlined),
-
+                                          prefixIcon: Icon(Icons.email),
                                             filled: true,
                                             hintStyle: new TextStyle(color: Colors.grey[800], fontStyle: FontStyle.italic),
                                             errorStyle: TextStyle(color: Colors.white,fontStyle: FontStyle.italic),
-                                            hintText: "username",
-                                            labelText: 'Username *',
+                                            hintText: "Email",
+                                            labelText: 'Email *',
                                             fillColor: Colors.white70),
                                         textInputAction: TextInputAction.next,
                                         autofocus: true,

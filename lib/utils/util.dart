@@ -4,8 +4,10 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/utils/sharedpreference.dart';
 
 import 'Constants.dart';
+import 'colors.dart';
 
 
 class Utils {
@@ -63,6 +65,16 @@ class Utils {
         builder: (_) {
           return alert;
         });
+  }
+  static InputBorder roundedInputBorder(){
+    return OutlineInputBorder(
+      borderSide: BorderSide(color: colorPrimary, width: 1.0),
+      borderRadius: BorderRadius.circular(50.0),
+    );
+  }
+  static Future<int?> getPatientId() async{
+    SharedPreference sp = new SharedPreference();
+    return sp.getIntValuesSF(enumKey.PATIENT_ID.toString());
   }
 
 

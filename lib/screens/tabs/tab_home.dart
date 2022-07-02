@@ -25,34 +25,12 @@ class TabHome extends StatefulWidget {
   @override
   Widget build(BuildContext context) {
     _theme = Theme.of(context);
-    return NestedScrollView(
-      floatHeaderSlivers: true,
-      physics: PageScrollPhysics(),
-      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-        return <Widget>[
-          SliverAppBar(
-              expandedHeight: 150.0,
-              primary: true,
-              floating: true,
-              pinned: false,
-              forceElevated: innerBoxIsScrolled,
-              automaticallyImplyLeading: false,
-              backgroundColor: _theme.appBarTheme.backgroundColor,
-              title: Text(''),
-              elevation: 0.0,
-              flexibleSpace:_flexibleSpace(context)
-
-          ),
-        ];
-      },
-      body: _buildBody(context),
-
-    );
+    return _currentInstanceBuilder(context);
   }
 
-  FutureBuilder<Response<Patient>>  _flexibleSpace(BuildContext context) {
+  FutureBuilder<Response<Patient>>  _flexibleSpace(BuildContext context, int patientId) {
     return FutureBuilder<Response<Patient>>(
-      future: Provider.of<PostApiService>(context).getPatients(),
+      future: Provider.of<PostApiService>(context).getPatients(patientId),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           final Patient? patient = snapshot.data?.body;
@@ -89,11 +67,45 @@ class TabHome extends StatefulWidget {
     );
   }
 
+    FutureBuilder<int?> _currentInstanceBuilder(BuildContext context){
+      return FutureBuilder<int?>(
+          future: Utils.getPatientId(),
+          builder: (context, snapshot) {
+            if(snapshot.connectionState == ConnectionState.done && snapshot.hasData){
+              int patientId = snapshot.data!;
+              return NestedScrollView(
+                floatHeaderSlivers: true,
+                physics: PageScrollPhysics(),
+                headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                  return <Widget>[
+                    SliverAppBar(
+                        expandedHeight: 150.0,
+                        primary: true,
+                        floating: true,
+                        pinned: false,
+                        forceElevated: innerBoxIsScrolled,
+                        automaticallyImplyLeading: false,
+                        backgroundColor: _theme.appBarTheme.backgroundColor,
+                        title: Text(''),
+                        elevation: 0.0,
+                        flexibleSpace:_flexibleSpace(context,patientId)
+
+                    ),
+                  ];
+                },
+                body: _buildBody(context, patientId),
+
+              );
+            }
+            return NothingFoundWarning();
+          });
+    }
 
 
-  FutureBuilder<Response<BuiltList<Consultation>>> _buildBody(BuildContext context) {
+
+  FutureBuilder<Response<BuiltList<Consultation>>> _buildBody(BuildContext context, int patientId) {
     return FutureBuilder<Response<BuiltList<Consultation>>>(
-      future: Provider.of<PostApiService>(context).getUserConsultations(),
+      future: Provider.of<PostApiService>(context).getUserConsultations(patientId),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           final BuiltList<Consultation>? consultation = snapshot.data?.body;

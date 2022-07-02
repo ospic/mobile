@@ -54,16 +54,15 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
   }
 
 
-  FutureBuilder<Response<BuiltList<AppointmentInfo>>> _buildBody(
-      BuildContext context) {
+  FutureBuilder<Response<BuiltList<AppointmentInfo>>> _buildBody(BuildContext context) {
     return FutureBuilder<Response<BuiltList<AppointmentInfo>>>(
       future: Provider.of<PostApiService>(context).getAppointments(),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData && snapshot.data!.statusCode == 200) {
           final BuiltList<AppointmentInfo>? appointments = snapshot.data?.body;
           selectedValue = appointments![0].id!;
           return appointments.length > 0 ? _buildNotifications(context, appointments) :  NothingFoundWarning();
-        } else if(snapshot.hasError){
+        } else if(snapshot.data!.statusCode != 200){
           return SomethingWrongHasHappened();
         }  else {
           return Center(

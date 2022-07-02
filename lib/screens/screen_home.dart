@@ -1,11 +1,18 @@
 import 'dart:convert';
 
+import 'package:chopper/chopper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/sharedpreference.dart';
+import 'package:mobile/widgets/index.dart';
+import 'package:provider/provider.dart';
+import 'package:built_collection/built_collection.dart';
+import '../data/post_api_service.dart';
+import '../model/m_tenant.dart';
+import '../utils/util.dart';
 final List<String> _titles = ['', 'Appointment\'s','Bill\'s','Insurances','Settings'];
 
 class HomeScreen extends StatefulWidget {
@@ -59,7 +66,7 @@ class _NewHomeScreenState extends State<HomeScreen> {
 
       body: Container(
         color: _theme.primaryColor,
-        child:  _children[_selectedIndex],
+        child:  _currentInstanceBuilder(context),
       ),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: _theme.bottomNavigationBarTheme.unselectedItemColor,
@@ -124,6 +131,35 @@ class _NewHomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+
+  FutureBuilder<int?> _currentInstanceBuilder(BuildContext context){
+    return FutureBuilder<int?>(
+        future: Utils.getPatientId(),
+        builder: (context, snapshot) {
+          if(snapshot.connectionState == ConnectionState.done && snapshot.hasData){
+            return _children[_selectedIndex];
+          }
+          return _buildBody(context);
+        });
+  }
+
+
+  FutureBuilder<Response<BuiltList<Tenant>>> _buildBody(BuildContext context) {
+    return FutureBuilder<Response<BuiltList<Tenant>>>(
+        future: Provider.of<PostApiService>(context).fetchUserTenants(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+            final BuiltList<Tenant>? tenants = snapshot.data?.body;
+            if(tenants!.isNotEmpty){
+              SharedPreference sp = new SharedPreference();
+              sp.setIntToSF(enumKey.PATIENT_ID.name, tenants.first.patientId!);
+              return _children[_selectedIndex];
+            }
+          }
+          return NothingFoundWarning();
+        });
   }
 
   Future<void> _showLogoutDialog() async {

@@ -15,8 +15,10 @@ abstract class InsuranceCard implements Built<InsuranceCard, InsuranceCardBuilde
   String ? get expireDate;
   String ? get codeNo;
   bool ? get isActive;
+  @BuiltValueField(wireName: "new")
+  bool ? get isNew;
   @BuiltValueField(wireName: 'insurance')
-  Insurance get insurance;
+  String? get insurance;
 
   InsuranceCard._();
   factory InsuranceCard([updates(InsuranceCardBuilder b)]) = _$InsuranceCard;

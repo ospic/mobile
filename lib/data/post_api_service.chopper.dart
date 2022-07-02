@@ -17,8 +17,8 @@ class _$PostApiService extends PostApiService {
   final definitionType = PostApiService;
 
   @override
-  Future<Response<Patient>> getPatients() {
-    final $url = '/patients/';
+  Future<Response<Patient>> getPatients(int patientId) {
+    final $url = '/patients/${patientId}';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<Patient, Patient>($request);
   }
@@ -31,8 +31,9 @@ class _$PostApiService extends PostApiService {
   }
 
   @override
-  Future<Response<BuiltList<Consultation>>> getUserConsultations() {
-    final $url = '/consultations/';
+  Future<Response<BuiltList<Consultation>>> getUserConsultations(
+      int patientId) {
+    final $url = '/consultations/patient/${patientId}';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<BuiltList<Consultation>, Consultation>($request);
   }
@@ -53,7 +54,7 @@ class _$PostApiService extends PostApiService {
 
   @override
   Future<Response<TransactionResponse>> getConsultationServiceAndCosts(int id) {
-    final $url = '/${id}/consultation';
+    final $url = '/transactions/${id}/consultation';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<TransactionResponse, TransactionResponse>($request);
   }
@@ -74,7 +75,7 @@ class _$PostApiService extends PostApiService {
 
   @override
   Future<Response<BuiltList<Admission>>> getConsultationAdmissions(int id) {
-    final $url = '/consultations/${id}/admissions';
+    final $url = '/admissions/consultations/${id}/admissions';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<BuiltList<Admission>, Admission>($request);
   }
@@ -96,14 +97,14 @@ class _$PostApiService extends PostApiService {
   @override
   Future<Response<Transaction>> getUserConsultationTransactionById(
       int cid, int tid) {
-    final $url = '/consultations/${cid}/transactions/${tid}';
+    final $url = '/transactions/${tid}';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<Transaction, Transaction>($request);
   }
 
   @override
-  Future<Response<BuiltList<Bill>>> getBills() {
-    final $url = '/bills';
+  Future<Response<BuiltList<Bill>>> getBills(int patientId) {
+    final $url = '/bills/patient/${patientId}';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<BuiltList<Bill>, Bill>($request);
   }
@@ -116,8 +117,8 @@ class _$PostApiService extends PostApiService {
   }
 
   @override
-  Future<Response<BuiltList<InsuranceCard>>> getInsuranceCards() {
-    final $url = '/insurances';
+  Future<Response<BuiltList<InsuranceCard>>> getInsuranceCards(int patientId) {
+    final $url = '/insurance/cards/patient/${patientId}/';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<BuiltList<InsuranceCard>, InsuranceCard>($request);
   }
@@ -144,6 +145,13 @@ class _$PostApiService extends PostApiService {
   }
 
   @override
+  Future<Response<BuiltList<Tenant>>> fetchUserTenants() {
+    final $url = '/auth/tenants';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client.send<BuiltList<Tenant>, Tenant>($request);
+  }
+
+  @override
   Future<Response<Patient>> postPost(Patient body) {
     final $url = '';
     final $body = body;
@@ -153,7 +161,7 @@ class _$PostApiService extends PostApiService {
 
   @override
   Future<Response<AuthResponse>> postForLogin(AuthPost body) {
-    final $url = '/login';
+    final $url = '/auth/signin';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<AuthResponse, AuthResponse>($request);
