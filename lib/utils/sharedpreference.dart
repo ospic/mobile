@@ -1,7 +1,12 @@
 import 'package:mobile/utils/navigation_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum enumKey { IS_LOGGED_IN, BASE_64_EncodedAuthenticationKey, USER_NAME, BASE_URL }
+enum enumKey {
+  IS_LOGGED_IN,
+  BASE_64_EncodedAuthenticationKey,
+  USER_NAME,
+  PATIENT_ID
+}
 
 class SharedPreference {
   late SharedPreferences prefs;
@@ -34,6 +39,11 @@ class SharedPreference {
   Future<String> getStringValuesSF(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString(key).toString();
+  }
+
+  Future<int?> getIntValuesSF(String key) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getInt(key);
   }
 
 

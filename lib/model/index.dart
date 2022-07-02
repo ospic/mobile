@@ -26,3 +26,4 @@ export 'appointment_info.dart';
 export 'appointment_request.dart';
 export 'password_update.dart';
 export 'token_update.dart';
+export 'm_tenant.dart';

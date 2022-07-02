@@ -12,6 +12,7 @@ part 'serializers.g.dart';
   Privilege, User, Transaction,TransactionResponse,
   Role, Consultation, ContactsInformation, Bill, BillPayload,
   Staff, Department,ConsultationPayload, Diagnosis, Report,Visit, Admission,
-  Insurance, InsuranceCard, AppointmentInfo, Appointment, AppointmentRequest, PasswordUpdate, TokenUpdate
+  Insurance, InsuranceCard, AppointmentInfo, Appointment, AppointmentRequest, PasswordUpdate, TokenUpdate,
+  Tenant
 ])
 final Serializers serializers = (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

@@ -18,11 +18,7 @@ class _$InsuranceCardSerializer implements StructuredSerializer<InsuranceCard> {
   @override
   Iterable<Object?> serialize(Serializers serializers, InsuranceCard object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'insurance',
-      serializers.serialize(object.insurance,
-          specifiedType: const FullType(Insurance)),
-    ];
+    final result = <Object?>[];
     Object? value;
     value = object.id;
     if (value != null) {
@@ -93,6 +89,20 @@ class _$InsuranceCardSerializer implements StructuredSerializer<InsuranceCard> {
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.isNew;
+    if (value != null) {
+      result
+        ..add('new')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.insurance;
+    if (value != null) {
+      result
+        ..add('insurance')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -148,9 +158,13 @@ class _$InsuranceCardSerializer implements StructuredSerializer<InsuranceCard> {
           result.isActive = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
           break;
+        case 'new':
+          result.isNew = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
         case 'insurance':
-          result.insurance.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Insurance))! as Insurance);
+          result.insurance = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -181,7 +195,9 @@ class _$InsuranceCard extends InsuranceCard {
   @override
   final bool? isActive;
   @override
-  final Insurance insurance;
+  final bool? isNew;
+  @override
+  final String? insurance;
 
   factory _$InsuranceCard([void Function(InsuranceCardBuilder)? updates]) =>
       (new InsuranceCardBuilder()..update(updates))._build();
@@ -197,11 +213,9 @@ class _$InsuranceCard extends InsuranceCard {
       this.expireDate,
       this.codeNo,
       this.isActive,
-      required this.insurance})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        insurance, r'InsuranceCard', 'insurance');
-  }
+      this.isNew,
+      this.insurance})
+      : super._();
 
   @override
   InsuranceCard rebuild(void Function(InsuranceCardBuilder) updates) =>
@@ -224,6 +238,7 @@ class _$InsuranceCard extends InsuranceCard {
         expireDate == other.expireDate &&
         codeNo == other.codeNo &&
         isActive == other.isActive &&
+        isNew == other.isNew &&
         insurance == other.insurance;
   }
 
@@ -238,16 +253,18 @@ class _$InsuranceCard extends InsuranceCard {
                             $jc(
                                 $jc(
                                     $jc(
-                                        $jc($jc(0, id.hashCode),
-                                            patientName.hashCode),
-                                        membershipNumber.hashCode),
-                                    sex.hashCode),
-                                voteNo.hashCode),
-                            dateOfBirth.hashCode),
-                        issuedDate.hashCode),
-                    expireDate.hashCode),
-                codeNo.hashCode),
-            isActive.hashCode),
+                                        $jc(
+                                            $jc($jc(0, id.hashCode),
+                                                patientName.hashCode),
+                                            membershipNumber.hashCode),
+                                        sex.hashCode),
+                                    voteNo.hashCode),
+                                dateOfBirth.hashCode),
+                            issuedDate.hashCode),
+                        expireDate.hashCode),
+                    codeNo.hashCode),
+                isActive.hashCode),
+            isNew.hashCode),
         insurance.hashCode));
   }
 
@@ -264,6 +281,7 @@ class _$InsuranceCard extends InsuranceCard {
           ..add('expireDate', expireDate)
           ..add('codeNo', codeNo)
           ..add('isActive', isActive)
+          ..add('isNew', isNew)
           ..add('insurance', insurance))
         .toString();
   }
@@ -314,10 +332,13 @@ class InsuranceCardBuilder
   bool? get isActive => _$this._isActive;
   set isActive(bool? isActive) => _$this._isActive = isActive;
 
-  InsuranceBuilder? _insurance;
-  InsuranceBuilder get insurance =>
-      _$this._insurance ??= new InsuranceBuilder();
-  set insurance(InsuranceBuilder? insurance) => _$this._insurance = insurance;
+  bool? _isNew;
+  bool? get isNew => _$this._isNew;
+  set isNew(bool? isNew) => _$this._isNew = isNew;
+
+  String? _insurance;
+  String? get insurance => _$this._insurance;
+  set insurance(String? insurance) => _$this._insurance = insurance;
 
   InsuranceCardBuilder();
 
@@ -334,7 +355,8 @@ class InsuranceCardBuilder
       _expireDate = $v.expireDate;
       _codeNo = $v.codeNo;
       _isActive = $v.isActive;
-      _insurance = $v.insurance.toBuilder();
+      _isNew = $v.isNew;
+      _insurance = $v.insurance;
       _$v = null;
     }
     return this;
@@ -355,32 +377,20 @@ class InsuranceCardBuilder
   InsuranceCard build() => _build();
 
   _$InsuranceCard _build() {
-    _$InsuranceCard _$result;
-    try {
-      _$result = _$v ??
-          new _$InsuranceCard._(
-              id: id,
-              patientName: patientName,
-              membershipNumber: membershipNumber,
-              sex: sex,
-              voteNo: voteNo,
-              dateOfBirth: dateOfBirth,
-              issuedDate: issuedDate,
-              expireDate: expireDate,
-              codeNo: codeNo,
-              isActive: isActive,
-              insurance: insurance.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'insurance';
-        insurance.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'InsuranceCard', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        new _$InsuranceCard._(
+            id: id,
+            patientName: patientName,
+            membershipNumber: membershipNumber,
+            sex: sex,
+            voteNo: voteNo,
+            dateOfBirth: dateOfBirth,
+            issuedDate: issuedDate,
+            expireDate: expireDate,
+            codeNo: codeNo,
+            isActive: isActive,
+            isNew: isNew,
+            insurance: insurance);
     replace(_$result);
     return _$result;
   }

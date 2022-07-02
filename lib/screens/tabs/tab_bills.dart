@@ -9,6 +9,9 @@ import 'package:mobile/utils/colors.dart';
 import 'package:mobile/widgets/widget_something_happened.dart';
 import 'package:provider/provider.dart';
 
+import '../../utils/util.dart';
+import '../../widgets/widget_not_found.dart';
+
 class TabBills extends StatefulWidget {
   @override
   _TabBillsState createState() => _TabBillsState();
@@ -39,20 +42,28 @@ class _TabBillsState extends State<TabBills> {
               topLeft: const Radius.circular(10.0),
               topRight: const Radius.circular(10.0),
             )),
-        child: _buildBody(context),
+        child: _currentInstanceBuilder(context),
       ));
     });
   }
-
-  FutureBuilder<Response<BuiltList<Bill>>> _buildBody(BuildContext context) {
+  FutureBuilder<int?> _currentInstanceBuilder(BuildContext context){
+    return FutureBuilder<int?>(
+        future: Utils.getPatientId(),
+        builder: (context, snapshot) {
+          if(snapshot.connectionState == ConnectionState.done && snapshot.hasData){
+            return _buildBody(context, snapshot.data!);
+          }
+          return NothingFoundWarning();
+        });
+  }
+  FutureBuilder<Response<BuiltList<Bill>>> _buildBody(BuildContext context, int patientId) {
     return FutureBuilder<Response<BuiltList<Bill>>>(
-      future: Provider.of<PostApiService>(context).getBills(),
+      future: Provider.of<PostApiService>(context).getBills(patientId),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            snapshot.hasData) {
+        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           final BuiltList<Bill>? bills = snapshot.data?.body;
-          selectedValue = bills![0].id!;
-          return _buildBillsList(context, bills);
+          selectedValue = bills!.isNotEmpty ?  bills[0].id! : 0;
+          return bills.isNotEmpty ? _buildBillsList(context, bills) : NothingFoundWarning();
         } else if (snapshot.hasError) {
           return SomethingWrongHasHappened();
         } else {

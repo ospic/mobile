@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -22,16 +23,19 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
 
   @override
   Widget build(BuildContext context) {
-
     ThemeData themeData = Theme.of(context);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width - 70,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width - 70,
         child: ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(themeData.scaffoldBackgroundColor),
+            backgroundColor: MaterialStateProperty.all(
+                themeData.scaffoldBackgroundColor),
             padding: MaterialStateProperty.all(
                 EdgeInsets.symmetric(horizontal: 10.0)),
             shape: MaterialStateProperty.all(
@@ -45,7 +49,15 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
               _isSigningIn = true;
             });
 
-            User? user = await Authentication.signInWithGoogle(context: context);
+            User? user = await Authentication.signInWithGoogle(
+                context: context);
+            final tokenResult = await FirebaseAuth.instance.currentUser;
+            final pattern = RegExp('.{1,608}');
+            user?.getIdToken().then((value) => {
+              print(value),
+              pattern.allMatches(value).forEach((element) => print(element.group(0)))
+
+            });
 
             if (user != null) {
               preferences = await SharedPreferences.getInstance();
@@ -54,15 +66,6 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
               preferences.setBool('ISGOOGLE', true);
 
               print(user);
-              var _googleAuthentication = {
-                "displayName": user.displayName,
-                "email": user.email,
-                "emailVerified": true,
-                "isAnonymous": false,
-                "phoneNumber": null,
-                "photoURL": user.photoURL
-              };
-              print(_googleAuthentication);
               Navigator.pushNamed(context, '/home');
             }
           },
@@ -70,32 +73,38 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
             child: _isSigningIn
                 ? CircularProgressIndicator(
-                    color: colorPrimary,
-                    strokeWidth: 2,
-                  )
+              color: colorPrimary,
+              strokeWidth: 2,
+            )
                 : Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image(
-                        image: AssetImage("assets/images/google_logo.png"),
-                        height: 25.0,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          'button.continue_with_google'.tr(),
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      )
-                    ],
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image(
+                  image: AssetImage("assets/images/google_logo.png"),
+                  height: 25.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    'button.continue_with_google'.tr(),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
+                )
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+
+  void printWrapped(String text) {
+    final pattern = RegExp('.{1, 800}');
+    pattern.allMatches(text).forEach((element) => print(element.group(0)));
   }
 }

@@ -6,9 +6,12 @@ import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/utils/Constants.dart';
 import 'package:mobile/utils/colors.dart';
+import 'package:mobile/utils/index.dart';
 import 'package:mobile/widgets/widget_not_found.dart';
 import 'package:mobile/widgets/widget_something_happened.dart';
 import 'package:provider/provider.dart';
+
+import '../../utils/sharedpreference.dart';
 
 class TabInsurances extends StatefulWidget {
   TabInsurances();
@@ -30,14 +33,24 @@ class _InsurancesTabState extends State<TabInsurances> {
             topLeft: const Radius.circular(20.0),
             topRight: const Radius.circular(20.0),
           )),
-      child: _buildBody(context),
+      child: _currentInstanceBuilder(context),
     ));
   }
 
-  FutureBuilder<Response<BuiltList<InsuranceCard>>> _buildBody(
-      BuildContext context) {
+  FutureBuilder<int?> _currentInstanceBuilder(BuildContext context){
+    return FutureBuilder<int?>(
+        future: Utils.getPatientId(),
+        builder: (context, snapshot) {
+          if(snapshot.connectionState == ConnectionState.done && snapshot.hasData){
+            return _buildBody(context, snapshot.data!);
+          }
+          return NothingFoundWarning();
+        });
+  }
+
+  FutureBuilder<Response<BuiltList<InsuranceCard>>> _buildBody(BuildContext context, int patientId) {
     return FutureBuilder<Response<BuiltList<InsuranceCard>>>(
-      future: Provider.of<PostApiService>(context).getInsuranceCards(),
+      future: Provider.of<PostApiService>(context).getInsuranceCards(patientId),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           final BuiltList<InsuranceCard>? cards = snapshot.data?.body;
@@ -93,10 +106,10 @@ class _InsurancesTabState extends State<TabInsurances> {
                         height: 50.0,
                         width: 50.0,
                         color: cs[index].isActive! ? Constants.clr_blue : Colors.black12,
-                        child:  Center(child: Icon(cs[index].isActive! ? Icons.lock_open_outlined :Icons.lock_outline, color: Colors.white,),)
+                        child:  Center(child: Icon(cs[index].isActive! ? Icons.add_card_sharp :Icons.credit_card_off_outlined, color: Colors.white,),)
                       ),
                     ),
-                    title: Text(cs[index].insurance.name!, style: _theme.textTheme.headline2,),
+                    title: Text(cs[index].insurance!, style: _theme.textTheme.headline2,),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

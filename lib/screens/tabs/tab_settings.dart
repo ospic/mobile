@@ -1,18 +1,15 @@
 import 'package:chopper/chopper.dart';
 import 'package:easy_localization/src/public_ext.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/routes.dart';
-import 'package:mobile/utils/Constants.dart';
-import 'package:mobile/utils/colors.dart';
 import 'package:mobile/utils/index.dart';
-import 'package:mobile/utils/sharedpreference.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
+import 'package:built_collection/built_collection.dart';
 
-import '../screen_message.dart';
+import '../../widgets/widget_something_happened.dart';
 
 class TabSettings extends StatefulWidget {
 
@@ -26,6 +23,7 @@ class _TabSettingsState extends State<TabSettings> {
   final cPassword = TextEditingController();
   final rePassword = TextEditingController();
   final newPassword = TextEditingController();
+  var _value;
   late ThemeData _theme;
 
   bool value = false;
@@ -83,42 +81,79 @@ class _TabSettingsState extends State<TabSettings> {
     Application.setLanguage(context, Locale(locale.substring(0, locale.length - 1).toLowerCase()));
   }
 
+  FutureBuilder<Response<BuiltList<Tenant>>> _buildBody(
+      BuildContext context) {
+    return FutureBuilder<Response<BuiltList<Tenant>>>(
+      future: Provider.of<PostApiService>(context).fetchUserTenants(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+          final BuiltList<Tenant>? tenants = snapshot.data?.body;
+          return Container(
+              padding: EdgeInsets.all( 10.0),
+              child: DropdownButtonFormField(
+                value: _value,
+                selectedItemBuilder: (BuildContext context) {
+                  return tenants!.map<Widget>((Tenant tenant) {
+                    return Text('${tenant.name}-${tenant.organization}', style: _theme.textTheme.headline3,);
+                  }).toList();
+                },
+                items: tenants!.map((Tenant tenant) {
+                  return DropdownMenuItem<int>(
+                    child: Text('${tenant.name}-${tenant.organization}', style: _theme.textTheme.headline3,),
+                    value: tenant.patientId,
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  _value = int.parse(value.toString());
+                  _updatePatientId(_value);
+                },
+                validator: (value) {
+                  if (value == null) {
+                    return 'warning.field_required'.tr();
+                  }
+                  return null;
+                },
+                hint: Text('selection.hospital'.tr()),
+                style: TextStyle(color: colorPrimary, fontSize: 16, fontWeight: FontWeight.normal),
+                icon: Icon(Icons.keyboard_arrow_down),
+                isExpanded: true,
+                isDense: true,
+                decoration: InputDecoration(
+                    labelStyle: TextStyle(color: Colors.blue),
+                    errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
+                    hintText: 'Choose your current hospital',
+                    prefixIcon: Icon(Icons.list_alt, size: 18.0,),
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: Utils.roundedInputBorder(),
+                    isDense: true
+                ),
+              ));
+        } else if(snapshot.hasError){
+          return SomethingWrongHasHappened();
+        }  else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
+    );
+  }
+  
   Future<void> _showLinkChangesDialog() async{
-    url.text = await _baseUrl() == null? "NO VALUE" :   await _baseUrl();
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
           contentPadding: EdgeInsets.fromLTRB(10.0, 0,0,0),
-          title: Text('Update application endpoints'),
+          title: Text('Switch to another hospital'),
           content: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                SizedBox(height: 20.0,),
-
-                TextField(
-                  controller: url,
-                  decoration: InputDecoration(
-                    labelText: 'End point URL',
-                  ),
-
-                )
-              ],
-            ),
+            child: _buildBody(context),
           ),
           actions: <Widget>[
             ElevatedButton(
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.resolveWith((states) => colorPrimary)),
-              child: Text('Save'),
-              onPressed: () async{
-                await _updateUrl(url.text.toString());
-              },
-            ),
-            ElevatedButton(
-              child: Text('IGNORE'),
+              child: Text('Okay'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -130,7 +165,6 @@ class _TabSettingsState extends State<TabSettings> {
   }
 
   Future<void> _showPasswordChangeDialog() async{
-    url.text = await _baseUrl() == null? "NO VALUE" :   await _baseUrl();
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -202,16 +236,18 @@ class _TabSettingsState extends State<TabSettings> {
                 SettingsTile(
                   title: 'Language',
                   subtitle: 'English',
-                  leading: Icon(Icons.language),
+                  leading: Icon(Icons.translate),
+                  trailing: Icon(Icons.chevron_right),
                   onPressed: (BuildContext context) {
                     _showLanguageChangeDialog();
 
                   },
                 ),
                 SettingsTile(
-                  title: 'Update end point',
-                  subtitle: 'Update application server endpoint',
-                  leading: Icon(Icons.link),
+                  title: 'Clinic',
+                  subtitle: 'Mosul',
+                  leading: Icon(Icons.local_hospital_rounded),
+                    trailing: Icon(Icons.chevron_right),
                   onPressed: (BuildContext context){
                     _showLinkChangesDialog();
                   }
@@ -233,17 +269,19 @@ class _TabSettingsState extends State<TabSettings> {
                 ),
 
                 SettingsTile(
-                    title: 'Update password',
-                    subtitle: 'Change your current password',
+                    title: 'Security',
+                    subtitle: 'Password',
                     leading: Icon(Icons.lock_outline),
+                    trailing: Icon(Icons.chevron_right),
                     onPressed: (BuildContext context){
                       _showPasswordChangeDialog();
                     }
                 ),
                 SettingsTile(
                     title: 'Logout',
-                    subtitle: 'Click to log out. This will require you re-login',
+                    subtitle: 'Exit',
                     leading: Icon(Icons.settings_power_rounded,color: Colors.redAccent,),
+                    trailing: Icon(Icons.chevron_right),
                     onPressed: (BuildContext context){
                       _logout();
                     }
@@ -258,13 +296,11 @@ class _TabSettingsState extends State<TabSettings> {
     SharedPreference sp = new SharedPreference();
     sp.clearSF();
   }
-  Future<String> _baseUrl() async{
+
+
+  Future<void> _updatePatientId(int patientId) async{
     SharedPreference sp = new SharedPreference();
-   return sp.getStringValuesSF(enumKey.BASE_URL.toString());
-  }
-  Future<void> _updateUrl(String baseUrl) async{
-    SharedPreference sp = new SharedPreference();
-    sp.setStringToSF(enumKey.BASE_URL.toString(), baseUrl);
+    sp.setIntToSF(enumKey.PATIENT_ID.toString(), patientId);
     Navigator.of(context).pop();
   }
 
