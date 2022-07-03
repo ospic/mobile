@@ -57,6 +57,13 @@ class _$ReportSerializer implements StructuredSerializer<Report> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.entity;
+    if (value != null) {
+      result
+        ..add('entity')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -95,6 +102,10 @@ class _$ReportSerializer implements StructuredSerializer<Report> {
           result.size = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'entity':
+          result.entity = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
       }
     }
 
@@ -115,6 +126,8 @@ class _$Report extends Report {
   final String? type;
   @override
   final String? size;
+  @override
+  final String? entity;
 
   factory _$Report([void Function(ReportBuilder)? updates]) =>
       (new ReportBuilder()..update(updates))._build();
@@ -125,7 +138,8 @@ class _$Report extends Report {
       this.url,
       this.location,
       this.type,
-      this.size})
+      this.size,
+      this.entity})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'Report', 'id');
   }
@@ -146,17 +160,20 @@ class _$Report extends Report {
         url == other.url &&
         location == other.location &&
         type == other.type &&
-        size == other.size;
+        size == other.size &&
+        entity == other.entity;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc($jc(0, id.hashCode), name.hashCode), url.hashCode),
-                location.hashCode),
-            type.hashCode),
-        size.hashCode));
+            $jc(
+                $jc($jc($jc($jc(0, id.hashCode), name.hashCode), url.hashCode),
+                    location.hashCode),
+                type.hashCode),
+            size.hashCode),
+        entity.hashCode));
   }
 
   @override
@@ -167,7 +184,8 @@ class _$Report extends Report {
           ..add('url', url)
           ..add('location', location)
           ..add('type', type)
-          ..add('size', size))
+          ..add('size', size)
+          ..add('entity', entity))
         .toString();
   }
 }
@@ -199,6 +217,10 @@ class ReportBuilder implements Builder<Report, ReportBuilder> {
   String? get size => _$this._size;
   set size(String? size) => _$this._size = size;
 
+  String? _entity;
+  String? get entity => _$this._entity;
+  set entity(String? entity) => _$this._entity = entity;
+
   ReportBuilder();
 
   ReportBuilder get _$this {
@@ -210,6 +232,7 @@ class ReportBuilder implements Builder<Report, ReportBuilder> {
       _location = $v.location;
       _type = $v.type;
       _size = $v.size;
+      _entity = $v.entity;
       _$v = null;
     }
     return this;
@@ -237,7 +260,8 @@ class ReportBuilder implements Builder<Report, ReportBuilder> {
             url: url,
             location: location,
             type: type,
-            size: size);
+            size: size,
+            entity: entity);
     replace(_$result);
     return _$result;
   }
