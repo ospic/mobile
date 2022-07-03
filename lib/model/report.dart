@@ -8,6 +8,7 @@ abstract class Report implements Built<Report, ReportBuilder>{
   String ? get location;
   String ? get type;
   String ? get size;
+  String ? get entity;
   
 
   Report._();

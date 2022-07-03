@@ -27,10 +27,13 @@ FutureBuilder<Response<BuiltList<Diagnosis>>> _buildBody(BuildContext context, i
   return FutureBuilder<Response<BuiltList<Diagnosis>>>(
     future: Provider.of<PostApiService>(context).getConsultationDiagnoses(id),
     builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.done) {
+      if (snapshot.connectionState == ConnectionState.done &&  snapshot.data!.statusCode == 200) {
         final BuiltList<Diagnosis>? diagnoses = snapshot.data?.body;
         return diagnoses!.length > 0 ?   _buildConsultationWidget(context,  diagnoses) : NothingFoundWarning( );
-      } else {
+      } else if(snapshot.data!.statusCode != 200){
+        return SomethingWrongHasHappened();
+      }
+      else {
         return Center(
           child: CircularProgressIndicator(),
         );
