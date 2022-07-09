@@ -30,7 +30,7 @@ const RESOURCES = {
 "assets/assets/images/placeholder.gif": "baeaf0c7f02777839e58eed62cc714c4",
 "assets/assets/images/google_logo.png": "b75aecaf9e70a9b1760497e33bcd6db1",
 "assets/assets/locales/sw.json": "9e624e1ecc944b383813522af7e6db45",
-"assets/assets/locales/en.json": "b96143ed32d99f1faf632afab155d1e9",
+"assets/assets/locales/en.json": "09b8620fd965968111fcaa5ca2a68697",
 "assets/shaders/ink_sparkle.frag": "23537f743ddf5e6ff1269be337892bc7",
 "assets/packages/material_design_icons_flutter/lib/fonts/materialdesignicons-webfont.ttf": "174c02fc4609e8fc4389f5d21f16a296",
 "assets/packages/progress_dialog/assets/double_ring_loading_io.gif": "e5b006904226dc824fdb6b8027f7d930",
@@ -40,7 +40,7 @@ const RESOURCES = {
 "assets/packages/easy_localization/i18n/en-US.json": "5f5fda8715e8bf5116f77f469c5cf493",
 "assets/packages/file_icon/fonts/seti.ttf": "2b67c27356467781d7786c59ca58b34f",
 "assets/NOTICES": "52bb697c5b6c752120f493b85ad99a62",
-"main.dart.js": "50b24bf81b973c18555d9a8f5bd1826c"
+"main.dart.js": "e97945fe64b2583496d3c5c208009c8a"
 };
 
 // The application shell files that are downloaded before a service worker can
