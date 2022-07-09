@@ -5,7 +5,9 @@ enum enumKey {
   IS_LOGGED_IN,
   BASE_64_EncodedAuthenticationKey,
   USER_NAME,
-  PATIENT_ID
+  PATIENT_ID,
+  IS_PASSWORD,
+  IS_GOOGLE
 }
 
 class SharedPreference {

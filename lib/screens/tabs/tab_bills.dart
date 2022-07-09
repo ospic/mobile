@@ -32,12 +32,12 @@ class _TabBillsState extends State<TabBills> {
         isLargeScreen = false;
       }
       return Container(
-          color: _theme.appBarTheme.backgroundColor,
+          color: _theme.primaryColor,
           child: Container(
         padding: EdgeInsets.symmetric(vertical: 5.0),
         margin: EdgeInsets.symmetric(horizontal: 3.0),
         decoration: new BoxDecoration(
-            color: _theme.appBarTheme.backgroundColor,
+            color: _theme.scaffoldBackgroundColor,
             borderRadius: new BorderRadius.only(
               topLeft: const Radius.circular(10.0),
               topRight: const Radius.circular(10.0),

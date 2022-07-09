@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:mobile/utils/Constants.dart';
+
 import 'package:mobile/utils/colors.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:chopper/chopper.dart';
@@ -35,12 +35,11 @@ class TabHome extends StatefulWidget {
         if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
           final Patient? patient = snapshot.data?.body;
           return ListTile(
-            title: Text('message.hi'.tr(args: ['${patient!.name}']), style: _theme.textTheme.headline1,),
+            title: Text('message.hi'.tr(args: ['${patient!.name}']), style: TextStyle(color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold),),
             subtitle: Text(
                 'message.list_of_consultations'.tr(),
                 style: _theme.textTheme.headline3),
-            trailing: GestureDetector(
-              child: ClipRRect(
+            trailing: ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Container(
                       decoration: BoxDecoration(
@@ -50,11 +49,8 @@ class TabHome extends StatefulWidget {
                       Image.asset('assets/images/icon.png', height: 50.0,
                         width: 50.0,
                         fit: BoxFit.fitWidth,) :
-                      Image.network(UrlEndpoints.IMAGE_BASE_URL + "patients/${patient.id}/images"))),
-              onTap: () {
-                Navigator.pushNamed(context, '/profile');
-              },
-            ),
+                      Image.network(UrlEndpoints.IMAGE_BASE_URL + "patients/${patient.id}/images"))
+              )
           );
         } else if(snapshot.hasError || snapshot.data?.statusCode == 504){
           return Center(child: Text('Oops! Error has occurred. Try again after few minutes'),);
@@ -140,7 +136,7 @@ class TabHome extends StatefulWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(padding: EdgeInsets.only(left:15.0, bottom:5.0, top: 20.0),
-                child: Text('title.consultations'.tr(args: ['${cs.length}']),style: _theme.textTheme.headline2,),),
+                child: Text('title.consultations'.tr(args: ['${cs.length}']),style: _theme.textTheme.headline3,),),
 
               Flexible(
                   child: Container(
@@ -153,15 +149,32 @@ class TabHome extends StatefulWidget {
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return ListTile(
-                            leading:  ClipRRect(
-                              borderRadius: BorderRadius.circular(5.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: colorAccent,
-                                ),
-                                child: Icon(MdiIcons.drupal, color: cs[index].isActive! ? Constants.clr_blue: null,), height: 40.0, width: 40.0,),
+                            leading:  Container(
+                              height: 50.0,
+                              width: 50.0,
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5.0),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: colorAccent,
+                                        ),
+                                        child: Icon(MdiIcons.drupal, color: cs[index].isActive! ? blue: null,), height: 40.0, width: 40.0,),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: cs[index].isActive!,
+                                      child:   Align(
+                                      alignment: Alignment.bottomLeft,
+                                      child: Icon(Icons.local_hotel, color: colorTwo,size: 18.0,)
+                                  ))
+                                ],
+                              ),
                             ),
-                            title: Text(cs[index].fromDate!,style: _theme.textTheme.headline4,),
+                            title: Text(cs[index].fromDate!,style: _theme.textTheme.bodyText1,),
                             subtitle: Text(cs[index].patientName!),
                             trailing: Icon(MdiIcons.chevronRight),
                             onTap: (){
@@ -176,7 +189,7 @@ class TabHome extends StatefulWidget {
                         separatorBuilder: (context, index){
                           return  Container(
                               padding:  EdgeInsets.only(top: 1.0, bottom: 1.0),
-                              color: Constants.clr_light_blue, height: 1);
+                              color: Colors.white, height: 1);
                         },
                       ),
 

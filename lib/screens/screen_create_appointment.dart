@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
-import 'package:mobile/utils/Constants.dart';
 import 'package:group_button/group_button.dart';
 import 'package:provider/provider.dart';
 
@@ -37,9 +36,9 @@ class ScreenCreateAppointment extends StatelessWidget {
               height: 70.0,
               margin: EdgeInsets.all(0.0),
               decoration: BoxDecoration(
-                  color: Constants.clr_blue,
+                  color: Colors.white,
                   border: Border.all(
-                    color: Constants.clr_blue,
+                    color: Colors.white,
                   ),
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(_borderRadius),
@@ -47,7 +46,7 @@ class ScreenCreateAppointment extends StatelessWidget {
               child: ListTile(
                 leading: CircleAvatar(
                   backgroundColor: Colors.white,
-                  child: Icon(Icons.ac_unit, color: Constants.clr_blue,),
+                  child: Icon(Icons.ac_unit, color: Colors.white,),
                 ),
                 title: Text(
                   'World Tour', style: TextStyle(color: Colors.white,),),
@@ -121,7 +120,7 @@ class ScreenCreateAppointment extends StatelessWidget {
                           selectedTextStyle: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 16,
-                            color: Constants.clr_blue,
+                            color: Colors.white,
                           ),
                           unselectedTextStyle: TextStyle(
                             fontWeight: FontWeight.w600,
@@ -143,8 +142,7 @@ class ScreenCreateAppointment extends StatelessWidget {
                                 .size
                                 .width / 3 - 20,
                             decoration: BoxDecoration(
-                                border: Border.all(color: Constants
-                                    .clr_light_grey,),
+                                border: Border.all(color: Colors.grey,),
                                 color: Colors.grey[100],
                                 borderRadius: BorderRadius.all(Radius.circular(
                                     10.0))),
@@ -164,8 +162,7 @@ class ScreenCreateAppointment extends StatelessWidget {
                                 .size
                                 .width / 3 - 20,
                             decoration: BoxDecoration(
-                                border: Border.all(color: Constants
-                                    .clr_light_grey,),
+                                border: Border.all(color: Colors.grey,),
                                 color: Colors.grey[100],
                                 borderRadius: BorderRadius.all(Radius.circular(
                                     10.0))),
@@ -185,8 +182,7 @@ class ScreenCreateAppointment extends StatelessWidget {
                                 .size
                                 .width / 3 - 20,
                             decoration: BoxDecoration(
-                                border: Border.all(color: Constants
-                                    .clr_light_grey,),
+                                border: Border.all(color: Colors.grey,),
                                 color: Colors.grey[100],
                                 borderRadius: BorderRadius.all(Radius.circular(
                                     10.0))),
@@ -206,8 +202,7 @@ class ScreenCreateAppointment extends StatelessWidget {
                                 .size
                                 .width / 3 - 20,
                             decoration: BoxDecoration(
-                                border: Border.all(color: Constants
-                                    .clr_light_grey,),
+                                border: Border.all(color: Colors.grey,),
                                 color: Colors.grey[100],
                                 borderRadius: BorderRadius.all(Radius.circular(
                                     10.0))),
@@ -231,7 +226,7 @@ class ScreenCreateAppointment extends StatelessWidget {
           child: ElevatedButton(
             style: ButtonStyle(
               elevation: MaterialStateProperty.all(0.0),
-                backgroundColor: MaterialStateProperty.all(Constants.clr_blue),
+                backgroundColor: MaterialStateProperty.all(Colors.white),
               shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25.0))))
             ),
               

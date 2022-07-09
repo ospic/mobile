@@ -1,10 +1,11 @@
 import 'package:chopper/chopper.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/index.dart';
-import 'package:mobile/utils/Constants.dart';
+
 import 'package:mobile/utils/colors.dart';
 import 'package:mobile/utils/index.dart';
 import 'package:mobile/widgets/widget_not_found.dart';
@@ -77,7 +78,7 @@ class _InsurancesTabState extends State<TabInsurances> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(padding: EdgeInsets.only(top: 20.0, left: 20.0, bottom: 15.0),
-          child: Text('Insurance Cards', style: _theme.textTheme.headline2),),
+          child: Text('title.insurancecards'.tr(), style: _theme.textTheme.headline3),),
         Expanded(
           child: ListView.separated(
             itemCount: cs.length,
@@ -100,16 +101,17 @@ class _InsurancesTabState extends State<TabInsurances> {
                   child:
                   ListTile(
                     tileColor: _theme.appBarTheme.foregroundColor,
+                    contentPadding: EdgeInsets.symmetric(vertical: 8.0),
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),//or 15.0
                       child: Container(
                         height: 50.0,
                         width: 50.0,
-                        color: cs[index].isActive! ? Constants.clr_blue : Colors.black12,
+                        color: cs[index].isActive! ? blue : Colors.black12,
                         child:  Center(child: Icon(cs[index].isActive! ? Icons.add_card_sharp :Icons.credit_card_off_outlined, color: Colors.white,),)
                       ),
                     ),
-                    title: Text(cs[index].insurance!, style: _theme.textTheme.headline2,),
+                    title: Text(cs[index].insurance!, style: _theme.textTheme.headline3,),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

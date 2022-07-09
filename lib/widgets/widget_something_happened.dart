@@ -12,7 +12,7 @@ class SomethingWrongHasHappened extends StatelessWidget {
         children: [
           Icon(MdiIcons.cloudQuestion, size:42.0,color: Colors.redAccent),
           SizedBox(height: 10,),
-          Text('Oops! \n Something wrong has happened. \n Please try again later  ', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.normal, fontSize: 19.0, color: Colors.redAccent),)
+          Text('Oops! \n Something wrong has happened. \n Please try again later  ', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14.0, color: Colors.deepOrange[300]),)
         ],
       ),
     );

@@ -69,10 +69,10 @@ Widget _buildConsultationWidget(BuildContext context, BuiltList<Admission> admis
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(height: 10.0,),
-                  Text(" Date:\t"+admissions[index].startDate!, style: _theme.textTheme.headline4),
-                  Text(" To: \t"+admissions[index].endDate!, style: _theme.textTheme.headline4),
-                  Text(" On ward: "+admissions[index].wardName!, style: _theme.textTheme.headline4),
-                  Text(" Bed No.:"+admissions[index].bedId.toString(), style: _theme.textTheme.headline4)
+                  Text(" Date:\t"+admissions[index].startDate!, style: _theme.textTheme.bodyText1),
+                  Text(" To: \t"+admissions[index].endDate!, style: _theme.textTheme.bodyText1),
+                  Text(" On ward: "+admissions[index].wardName!, style: _theme.textTheme.bodyText1),
+                  Text(" Bed No.:"+admissions[index].bedId.toString(), style: _theme.textTheme.bodyText1)
                 ],
               ),
               onTap:() => Navigator.push(

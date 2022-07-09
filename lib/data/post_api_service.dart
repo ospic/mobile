@@ -96,7 +96,7 @@ abstract class PostApiService extends ChopperService {
   @Put(path: '/appointments/{id}', optionalBody: true)
   Future<Response<AppointmentInfo>> updateAppointmentById(@Path('id') int id, @Body() AppointmentRequest body);
 
-  @Put(path: '/token', optionalBody: true)
+  @Put(path: '/auth/token', optionalBody: true)
   Future<Response<AppointmentInfo>> updateFcmToken(@Body()  TokenUpdate body);
 
 
@@ -143,7 +143,8 @@ Future<Request> _addQuery(Request req) async {
 
   final _params = Map<String, dynamic>.from(req.parameters);
   final _headers = new Map<String, String>.from(req.parameters);
-  if(req.url != '/login') {
+  print(req.url);
+  if(req.url != '/auth/signin') {
     _headers['Authorization'] = 'Bearer $n';
   }
 

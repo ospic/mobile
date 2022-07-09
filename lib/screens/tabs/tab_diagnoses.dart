@@ -2,7 +2,7 @@ import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/diagnosis.dart';
-import 'package:mobile/utils/Constants.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/widgets/index.dart';
@@ -17,7 +17,7 @@ class DiagnosesTab extends StatelessWidget {
     _theme = Theme.of(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: _theme.appBarTheme.backgroundColor,
+        backgroundColor: _theme.scaffoldBackgroundColor,
         body: _buildBody(context, consultationId)
     );
   }
@@ -45,7 +45,7 @@ FutureBuilder<Response<BuiltList<Diagnosis>>> _buildBody(BuildContext context, i
 Widget _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> diagnoses){
   final colors = [ Colors.blue, Colors.green, Colors.yellow, Colors.red, Colors.indigo];
   return Container(
-    color: _theme.appBarTheme.foregroundColor,
+    color: _theme.scaffoldBackgroundColor,
     child: ListView.builder(
         itemCount: diagnoses.length,
         scrollDirection: Axis.vertical,
@@ -71,7 +71,7 @@ Widget _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> diagn
               ),
               child:Card(
                 elevation: 2,
-                shadowColor: Constants.clr_blue,
+                shadowColor: Colors.white,
                 color: _theme.appBarTheme.foregroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4), // if you need this
@@ -86,7 +86,7 @@ Widget _buildConsultationWidget(BuildContext context, BuiltList<Diagnosis> diagn
                     contentPadding: EdgeInsets.all(8.0),
                     title: Padding(padding: EdgeInsets.only(bottom: 10.0, ),
                       child: Text(diagnoses[index].date!, style: _theme.textTheme.headline2),),
-                    subtitle: Text(diagnoses[index].symptoms!, style: _theme.textTheme.headline4,),
+                    subtitle: Text(diagnoses[index].symptoms!, style: _theme.textTheme.bodyText1,),
                   ),
                 ),
               ),

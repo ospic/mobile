@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/appointment.dart';
-import 'package:mobile/utils/Constants.dart';
-import 'package:mobile/utils/colors.dart';
 import 'package:mobile/widgets/widget_something_happened.dart';
 import 'package:provider/provider.dart';
 
@@ -61,7 +59,7 @@ class _ScreenViewAppointmentState extends State<ScreenViewAppointment>{
             floating: true,
             pinned: false,
             automaticallyImplyLeading: true,
-            backgroundColor: appointment?.appointment.status !='CANCELLED' ? _theme.appBarTheme.backgroundColor :Constants.clr_red,
+            backgroundColor: appointment?.appointment.status !='CANCELLED' ? _theme.appBarTheme.backgroundColor :Colors.red,
             foregroundColor: Colors.white,
             title: Text('Appointment request',style: _theme.textTheme.headline4,),
             elevation: 0.0,
@@ -89,19 +87,19 @@ class _ScreenViewAppointmentState extends State<ScreenViewAppointment>{
             Visibility(
                 visible: appointment.appointment.status == 'WAITING',
                 child: ElevatedButton(
-                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Constants.clr_light_blue),
+                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),
                   padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: verticalPadding, horizontal: horizontalPadding)),
                   elevation: MaterialStateProperty.all(0.0),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.all( Radius.circular(radiusCircle))))),
               onPressed: () async {
                     _requestReschedulingOfAppointment(context, appointment.appointment.id);
               },
-              child: Text('UN-SCHEDULE', style: TextStyle(color: Constants.clr_blue)),
+              child: Text('UN-SCHEDULE', style: TextStyle(color: Colors.white)),
             )),
             Visibility(
                 visible: appointment.appointment.status == 'WAITING',
                 child: ElevatedButton(
-                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Constants.clr_blue),
+                  style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),
                       padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: verticalPadding, horizontal: horizontalPadding)),
                       elevation: MaterialStateProperty.all(0.0),
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.all( Radius.circular(radiusCircle))))),
@@ -111,7 +109,7 @@ class _ScreenViewAppointmentState extends State<ScreenViewAppointment>{
             Visibility(
               visible: appointment.appointment.status == 'CANCELLED' || appointment.appointment.status == 'REJECTED',
               child: ElevatedButton(
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Constants.clr_red),
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red),
                   padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: verticalPadding, horizontal:  horizontalPadding)),
                   elevation: MaterialStateProperty.all(0.0),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.all( Radius.circular(radiusCircle))))),
@@ -142,7 +140,7 @@ class _ScreenViewAppointmentState extends State<ScreenViewAppointment>{
             ListTile(
               leading: CircleAvatar(
                 radius: 20.0,
-                backgroundColor: appointment!.staff.isActive! ? Constants.clr_blue : Colors.green[100],
+                backgroundColor: appointment!.staff.isActive! ? Colors.white : Colors.green[100],
                 child: appointment.staff.isActive! ? Icon(Icons.ac_unit, color: Colors.white,) :
                 Text(appointment.staff.username!, style: _theme.textTheme.headline3,
                 ),

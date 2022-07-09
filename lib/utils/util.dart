@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/utils/sharedpreference.dart';
 
-import 'Constants.dart';
+
 import 'colors.dart';
 
 
@@ -55,7 +55,7 @@ class Utils {
             onPressed: () => Navigator.pop(context),
             child: Text(
               "Cancel",
-              style: TextStyle(color: Constants.clr_blue),
+              style: TextStyle(color: Colors.white),
             ))
       ],
     );
@@ -75,6 +75,20 @@ class Utils {
   static Future<int?> getPatientId() async{
     SharedPreference sp = new SharedPreference();
     return sp.getIntValuesSF(enumKey.PATIENT_ID.toString());
+  }
+  static RoundedRectangleBorder cardShapeRound() {
+    return RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0));
+  }
+  static ButtonStyle coloredButtonStyle(Color color) {
+    return ButtonStyle(
+        padding:
+        MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 15.0)),
+        minimumSize: MaterialStateProperty.all(Size(double.infinity, 30)),
+        backgroundColor: MaterialStateProperty.all(color),
+        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(7.5)),
+            side: BorderSide(color: color))),
+        elevation: MaterialStateProperty.all(0.0));
   }
 
 

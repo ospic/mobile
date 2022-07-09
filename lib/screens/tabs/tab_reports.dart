@@ -5,7 +5,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/model/report.dart';
 import 'package:mobile/screens/index.dart';
-import 'package:mobile/utils/Constants.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/widgets/widget_not_found.dart';
@@ -20,7 +20,7 @@ class ReportsTab extends StatelessWidget {
     _theme = Theme.of(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: _theme.appBarTheme.backgroundColor,
+        backgroundColor: _theme.scaffoldBackgroundColor,
         body: _buildBody(context, consultationId)
     );
   }
@@ -46,7 +46,7 @@ FutureBuilder<Response<BuiltList<Report>>> _buildBody(BuildContext context, int 
 
 Widget _buildConsultationWidget(BuildContext context, BuiltList<Report> reports){
   return  Container(
-      color: _theme.appBarTheme.foregroundColor,
+      color: _theme.scaffoldBackgroundColor,
       child:  ListView.builder(
       itemCount: reports.length,
       scrollDirection: Axis.vertical,
@@ -56,14 +56,13 @@ Widget _buildConsultationWidget(BuildContext context, BuiltList<Report> reports)
         return  Container(
             margin: EdgeInsets.only(top: 2.0, bottom: 2.0, left: 1.0),
             padding: EdgeInsets.only(top: 3.0, bottom: 4.0),
-          color: _theme.appBarTheme.foregroundColor,
             constraints: BoxConstraints(
               minHeight: 70,
             ),
             child: ListTile(
               trailing: FileIcon(reports[index].name!, size: 35.0,),
               title: Text(reports[index].name!, style: _theme.textTheme.headline2),
-              subtitle: Text(reports[index].location!, style: _theme.textTheme.headline4,),
+              subtitle: Text(reports[index].location!, style: _theme.textTheme.bodyText1,),
               onTap:() => Navigator.push(
                   context,
                   MaterialPageRoute(

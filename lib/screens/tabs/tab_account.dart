@@ -1,56 +1,66 @@
 import 'package:chopper/chopper.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/widgets/index.dart';
 import 'package:mobile/widgets/widget_something_happened.dart';
 import 'package:provider/provider.dart';
 import 'dart:developer';
 
-import '../utils/sharedpreference.dart';
+import '../../utils/sharedpreference.dart';
+import '../../utils/util.dart';
 
-
-class ProfileScreen extends StatelessWidget {
+class TabUserAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ThemeData _theme = Theme.of(context);
+
     return Scaffold(
-      body: _buildBody(context),
+      backgroundColor:  _theme.appBarTheme.backgroundColor,
+      body: _currentInstanceBuilder(context),
       floatingActionButton: new Builder(builder: (BuildContext context) {
         return new FloatingActionButton(
             tooltip: 'Increment',
             child: Icon(
-              Icons.edit,
+              Icons.settings_outlined,
+              color: Colors.white,
             ),
-            backgroundColor: green1.withOpacity(0.9),
+            backgroundColor:  _theme.appBarTheme.backgroundColor,
             onPressed: () {
-              final snackBar = SnackBar(
-                backgroundColor: gray3,
-                content: Text('Do you want to edit ?'),
-                action: SnackBarAction(
-                  label: 'Yes',
-                  onPressed: () {
-                    // Navigator.pushNamed(context, '/addgroup');
-                  },
-                ),
-              );
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              Navigator.pushNamed(context, '/settings');
             });
       }),
     );
   }
 
-  FutureBuilder<Response<Patient>> _buildBody(BuildContext context) {
+  FutureBuilder<int?> _currentInstanceBuilder(BuildContext context) {
+    return FutureBuilder<int?>(
+        future: Utils.getPatientId(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done &&
+              snapshot.hasData) {
+            return _buildBody(context, snapshot.data!);
+          }
+          return NothingFoundWarning();
+        });
+  }
+
+  FutureBuilder<Response<Patient>> _buildBody(
+      BuildContext context, int patientId) {
     return FutureBuilder<Response<Patient>>(
-      future: Provider.of<PostApiService>(context).getPatients(36),
+      future: Provider.of<PostApiService>(context).getPatients(patientId),
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.hasData) {
           log(snapshot.toString());
           final Patient? posts = snapshot.data!.body;
           return _buildPosts(context, posts);
-        } else if(snapshot.hasError){
+        } else if (snapshot.hasError) {
           return SomethingWrongHasHappened();
-        }  else {
+        } else {
           return Center(
             child: CircularProgressIndicator(),
           );
@@ -64,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
         .client
         .baseUrl
         .replaceAll('/self', '');
-    final ContactsInformation contactsInformation = user!.contactsInformation!;
+    final ContactsInformation? contactsInformation = user?.contactsInformation;
     final String city =
         contactsInformation == null ? '' : contactsInformation.city!;
     final String state =
@@ -73,23 +83,31 @@ class ProfileScreen extends StatelessWidget {
     return ListView(
       children: <Widget>[
         Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              padding: const EdgeInsets.fromLTRB(0, 25, 0, 10),
               child: Stack(
                 children: <Widget>[
                   CircleAvatar(
                     radius: 50,
+                    backgroundColor: colorPrimaryDark,
                     child: ClipOval(
-                      child: Image.network(
-                        user.patientPhoto == null
-                            ? 'https://picsum.photos/200/300?grayscale'
-                            : baseUrl + user.patientPhoto!,
-                        height: 100,
-                        width: 100,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                        child: FadeInImage.assetNetwork(
+                      image: '${user?.patientPhoto}',
+                      placeholder: 'assets/images/placeholder.gif',
+                      fit: BoxFit.cover,
+                      height: 70.0,
+                      width: 70.0,
+                      imageErrorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          'assets/images/user_icon.png',
+                          fit: BoxFit.cover,
+                          height: 70.0,
+                          width: 70.0,
+                        );
+                      },
+                    )),
                   ),
                   Positioned(
                       bottom: 1,
@@ -98,11 +116,11 @@ class ProfileScreen extends StatelessWidget {
                         height: 40,
                         width: 40,
                         child: Icon(
-                          Icons.add_a_photo,
-                          color: Colors.white,
+                          Icons.add_a_photo_outlined,
+                          color: Colors.white,size: 20.0,
                         ),
                         decoration: BoxDecoration(
-                            color: Colors.deepOrange,
+                            color: blue,
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20))),
                       ))
@@ -113,13 +131,14 @@ class ProfileScreen extends StatelessWidget {
         ),
         Expanded(
             child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
-                  colors: [Colors.black54, Color.fromRGBO(0, 41, 102, 1)])),
+                  colors: [Colors.black54, colorPrimary])),
           child: Column(
             children: <Widget>[
               Padding(
@@ -127,11 +146,11 @@ class ProfileScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       ListTile(
-                        title: Text("Full name",
+                        title: Text("title.fullname".tr(),
                             style: TextStyle(
                                 color: Colors.white70,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(user.name!,
+                        subtitle: Text('${user?.name}',
                             style: TextStyle(color: Colors.white70)),
                       ),
                       const Divider(
@@ -141,15 +160,12 @@ class ProfileScreen extends StatelessWidget {
                         endIndent: 2,
                       ),
                       ListTile(
-                        title: Text("Age",
+                        title: Text("title.age".tr(),
                             style: TextStyle(
                                 color: Colors.white70,
                                 fontWeight: FontWeight.bold)),
                         subtitle: Text(
-                            user.age.toString() +
-                                " years [ " +
-                                user.gender! +
-                                " ]",
+                            "${user?.age} years [ " + '${user?.gender}' + " ]",
                             style: TextStyle(color: Colors.white70)),
                       ),
                       const Divider(
@@ -159,12 +175,12 @@ class ProfileScreen extends StatelessWidget {
                         endIndent: 2,
                       ),
                       ListTile(
-                        title: Text("Home address",
+                        title: Text("title.address".tr(),
                             style: TextStyle(
                                 color: Colors.white70,
                                 fontWeight: FontWeight.bold)),
                         subtitle: Text(
-                            user.address! + "," + city + " , " + state,
+                            " ${user?.address}," + city + " , " + state,
                             style: TextStyle(color: Colors.white70)),
                       ),
                       const Divider(
@@ -174,11 +190,11 @@ class ProfileScreen extends StatelessWidget {
                         endIndent: 2,
                       ),
                       ListTile(
-                        title: Text("Phone number",
+                        title: Text("title.phonenumber".tr(),
                             style: TextStyle(
                                 color: Colors.white70,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(user.phone!,
+                        subtitle: Text('${user?.phone}',
                             style: TextStyle(color: Colors.white70)),
                       ),
                       const Divider(
@@ -188,11 +204,11 @@ class ProfileScreen extends StatelessWidget {
                         endIndent: 2,
                       ),
                       ListTile(
-                        title: Text("Email address",
+                        title: Text("title.email".tr(),
                             style: TextStyle(
                                 color: Colors.white70,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(user.emailAddress!,
+                        subtitle: Text('${user?.emailAddress}',
                             style: TextStyle(color: Colors.white70)),
                       ),
                       const Divider(
@@ -202,11 +218,11 @@ class ProfileScreen extends StatelessWidget {
                         endIndent: 2,
                       ),
                       ListTile(
-                        title: Text("Blood group",
+                        title: Text("title.bloodgroup".tr(),
                             style: TextStyle(
                                 color: Colors.white70,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(user.bloodGroup!,
+                        subtitle: Text('${user?.bloodGroup}',
                             style: TextStyle(color: Colors.white70)),
                       ),
                       const Divider(
@@ -216,33 +232,19 @@ class ProfileScreen extends StatelessWidget {
                         endIndent: 2,
                       ),
                       ListTile(
-                        title: Text("Last BP",
+                        title: Text("title.lastbp".tr(),
                             style: TextStyle(
                                 color: Colors.white70,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(user.bloodPressure!,
+                        subtitle: Text('${user?.bloodPressure}',
                             style: TextStyle(color: Colors.white70)),
                       ),
                       ListTile(
-                        title: Text("Allergies",
+                        title: Text("title.allergies".tr(),
                             style: TextStyle(
                                 color: Colors.white70,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(user.allergies!,
-                            style: TextStyle(color: Colors.white70)),
-                      ),
-                      const Divider(
-                        height: 2,
-                        thickness: 2,
-                        indent: 2,
-                        endIndent: 2,
-                      ),
-                      ListTile(
-                        title: Text("Last time height",
-                            style: TextStyle(
-                                color: Colors.white70,
-                                fontWeight: FontWeight.bold)),
-                        subtitle: Text(user.height!,
+                        subtitle: Text('${user?.allergies}',
                             style: TextStyle(color: Colors.white70)),
                       ),
                       const Divider(
@@ -252,11 +254,25 @@ class ProfileScreen extends StatelessWidget {
                         endIndent: 2,
                       ),
                       ListTile(
-                        title: Text("Last time weight",
+                        title: Text("title.height".tr(),
                             style: TextStyle(
                                 color: Colors.white70,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(user.weight!,
+                        subtitle: Text('${user?.height}',
+                            style: TextStyle(color: Colors.white70)),
+                      ),
+                      const Divider(
+                        height: 2,
+                        thickness: 2,
+                        indent: 2,
+                        endIndent: 2,
+                      ),
+                      ListTile(
+                        title: Text("title.weight".tr(),
+                            style: TextStyle(
+                                color: Colors.white70,
+                                fontWeight: FontWeight.bold)),
+                        subtitle: Text('${user?.weight}',
                             style: TextStyle(color: Colors.white70)),
                       ),
                       const Divider(
@@ -270,7 +286,7 @@ class ProfileScreen extends StatelessWidget {
                             style: TextStyle(
                                 color: Colors.white70,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(user.lastModifiedDate!,
+                        subtitle: Text('${user?.lastModifiedDate}',
                             style: TextStyle(color: Colors.white70)),
                       ),
                       const Divider(

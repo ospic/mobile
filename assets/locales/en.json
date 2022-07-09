@@ -6,13 +6,35 @@
      "hi": "Hi {}",
      "list_of_consultations": "Here is a list of consultations \n you may need to check..."
    },
-  "title": {
-    "consultations": "Consultations ({})",
-    "change_language": "Change language"
-  },
   "selection": {
     "hospital": "Select Hospital"
   },
+  "title": {
+    "consultations": "Consultations ({})",
+    "change_language": "Change language",
+    "appointments":"Appointments's",
+    "settings": "Settings",
+    "bills":"Bill's",
+    "insurances":"Insurances",
+    "account":"Account",
+    "fullname": "Full Name",
+    "age": "Age",
+    "phonenumber": "Phone No.",
+    "email": "Email address",
+    "bloodgroup": "Blood group",
+    "lastbp": "Last blood pressure",
+    "allergies": "Allergies",
+    "height": "Height",
+    "weight": "Weight",
+    "lastmodified": "Last modified",
+    "address": "Address",
+    "insurancecards": "Insurance Cards",
+    "visitdate": "Visist Date: {}"
+  },
+  "tooltip": {
+    "newappointment": "Create new appointment"
+  },
+
   "warning": {
     "field_required": "Field is required"
   }

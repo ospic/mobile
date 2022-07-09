@@ -2,16 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:mobile/data/post_api_service.dart';
-import 'package:mobile/screens/screen_profile.dart';
+import 'package:mobile/screens/tabs/tab_account.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/utils/ThemeClass.dart';
+import 'package:mobile/utils/theme_class.dart';
 import 'package:mobile/utils/navigation_service.dart';
 import 'package:provider/provider.dart';
 import 'package:logging/logging.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 
@@ -58,12 +56,10 @@ class Application extends StatefulWidget{
 
 class _ApplicationState extends State<Application>{
    ThemeMode _themeMode = ThemeMode.system;
-  //ThemeMode _themeMode = ThemeMode.light;
   final routes = <String, WidgetBuilder>{
       '/home': (BuildContext context) => HomeScreen(),
       '/login': (BuildContext context) => LoginScreen(),
-      '/profile': (BuildContext context) => ProfileScreen(),
-      '/help': (BuildContext context) => HelpScreen(),
+      '/settings': (BuildContext context) => ScreenSettings(),
       '/contacts': (BuildContext context) => ContactsScreen(),
       '/consultations':(BuildContext context) => HomeScreen(),
 
@@ -78,7 +74,6 @@ class _ApplicationState extends State<Application>{
     
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return Provider(
       create:(_) => PostApiService.create() ,
       dispose: (_, PostApiService service) => service.client.dispose(),
@@ -92,7 +87,7 @@ class _ApplicationState extends State<Application>{
             themeMode: _themeMode,
             debugShowCheckedModeBanner: false,
             routes: routes,
-            title: '',
+            title: 'Ospic',
             home: SplashScreen(),
           )
 

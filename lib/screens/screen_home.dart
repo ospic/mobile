@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:mobile/screens/index.dart';
-import 'package:mobile/utils/Constants.dart';
+
 import 'package:mobile/utils/sharedpreference.dart';
 import 'package:mobile/widgets/index.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +13,7 @@ import 'package:built_collection/built_collection.dart';
 import '../data/post_api_service.dart';
 import '../model/m_tenant.dart';
 import '../utils/util.dart';
-final List<String> _titles = ['', 'Appointment\'s','Bill\'s','Insurances','Settings'];
+final List<String> _titles = ['', 'title.appointments','title.bills','title.insurancecards','title.account'];
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -27,7 +27,7 @@ class _NewHomeScreenState extends State<HomeScreen> {
     AppointmentsTab(),
     TabBills(),
     TabInsurances(),
-    TabSettings()
+    TabUserAccount()
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -53,15 +53,15 @@ class _NewHomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     ThemeData _theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Constants.clr_light_blue,
+      backgroundColor: _theme.scaffoldBackgroundColor,
 
       appBar: AppBar(
         elevation: 0,
         backgroundColor: _theme.appBarTheme.backgroundColor,
         bottomOpacity: 2,
         automaticallyImplyLeading: false,
-        title: Text(_titles[_selectedIndex], style: _theme.textTheme.headline4,),
-        actions: [Padding(padding: EdgeInsets.only(right: 10.0, top: 10.0), child: Text('${dateFormatter(DateTime.now())}',style: _theme.textTheme.headline4,),)],
+        title: Padding(padding: EdgeInsets.only(right: 10.0, bottom: 13.0),child: Text(_titles[_selectedIndex].tr(), style: _theme.appBarTheme.titleTextStyle,)),
+        actions: [Padding(padding: EdgeInsets.only(right: 10.0, top: 10.0), child: Text('${dateFormatter(DateTime.now())}',style: _theme.appBarTheme.titleTextStyle,),)],
       ),
 
       body: Container(
@@ -71,7 +71,7 @@ class _NewHomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: _theme.bottomNavigationBarTheme.unselectedItemColor,
         selectedItemColor: _theme.bottomNavigationBarTheme.selectedItemColor,
-        backgroundColor: _theme.appBarTheme.backgroundColor,
+        backgroundColor: _theme.bottomNavigationBarTheme.backgroundColor,
         selectedIconTheme: _theme.bottomNavigationBarTheme.selectedIconTheme,
         unselectedIconTheme: _theme.bottomNavigationBarTheme.unselectedIconTheme,
         showUnselectedLabels: false,
@@ -79,24 +79,25 @@ class _NewHomeScreenState extends State<HomeScreen> {
         elevation: 0,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
+            backgroundColor: Color.fromRGBO(47,68,84, 1),
             icon: Icon(Icons.home),
             label: 'Consultations',
           ),
           BottomNavigationBarItem(
-            icon: Icon(MdiIcons.calendarMonthOutline),
+            icon: Icon(Icons.timer_sharp),
             label: 'Schedules',
           ),
           BottomNavigationBarItem(
-            icon: Icon(MdiIcons.calendarBlankOutline),
+            icon: Icon(Icons.payment),
             label: 'Bills',
           ),
           BottomNavigationBarItem(
-            icon: Icon(MdiIcons.stickerPlusOutline),
+            icon: Icon(Icons.medical_services),
             label: 'Insurances',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Icon(Icons.account_circle),
+            label: 'Account',
           ),
         ],
         currentIndex: _selectedIndex,
@@ -113,20 +114,20 @@ class _NewHomeScreenState extends State<HomeScreen> {
           },
           mini: false,
           child: const Icon(Icons.power_settings_new),
-          backgroundColor: Colors.red,
+          backgroundColor: _theme.primaryColor,
           foregroundColor: Colors.white,
         )),
           Visibility(
               visible: _selectedIndex ==1  ,
               child:FloatingActionButton(
-                tooltip: 'Create new appointment',
+                tooltip: 'tooltip.newappointment'.tr(),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => ScreenCreateAppointment()));
                 },
                 mini: false,
                 child: const Icon(Icons.add_outlined),
-                backgroundColor: Constants.clr_light_blue,
-                foregroundColor: Constants.clr_blue,
+                backgroundColor: _theme.primaryColor,
+                foregroundColor: Colors.white,
               ))
         ],
       ),
@@ -154,7 +155,7 @@ class _NewHomeScreenState extends State<HomeScreen> {
             final BuiltList<Tenant>? tenants = snapshot.data?.body;
             if(tenants!.isNotEmpty){
               SharedPreference sp = new SharedPreference();
-              sp.setIntToSF(enumKey.PATIENT_ID.name, tenants.first.patientId!);
+              sp.setIntToSF(enumKey.PATIENT_ID.toString(), tenants.first.patientId!);
               return _children[_selectedIndex];
             }
           }

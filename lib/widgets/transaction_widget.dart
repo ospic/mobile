@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:mobile/model/transaction.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:mobile/model/index.dart';
@@ -15,7 +16,7 @@ class TransactionWidget extends StatefulWidget {
 }
 
 class _TransactionWidgetState extends State<TransactionWidget> {
-
+  final formatCurrency = new NumberFormat.simpleCurrency();
   @override
   Widget build(BuildContext context) {
     ThemeData _theme = Theme.of(context);
@@ -31,10 +32,10 @@ class _TransactionWidgetState extends State<TransactionWidget> {
           leading: Icon(transaction.medicalServiceName != null? Icons.medical_services_outlined :MdiIcons.pill, color: colorPrimary,),
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text(transaction.amount.toString() +" "+ transaction.currencyCode!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),)],
+            children: [Text('${formatCurrency.format(transaction.amount)}' +" "+ transaction.currencyCode!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),)],
           ),
           title:  Text((transaction.medicalServiceName == null?  'Medicine: ${transaction.medicineName.toString()}':'Service: ${transaction.medicalServiceName.toString()}')),
-          subtitle:     Text(transaction.transactionDate!,style: _theme.textTheme.headline4),
+          subtitle:     Text(transaction.transactionDate!,style: _theme.textTheme.bodyText1),
           onTap:() => Navigator.push(
               context,
               MaterialPageRoute(

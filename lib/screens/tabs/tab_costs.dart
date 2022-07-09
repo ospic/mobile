@@ -15,7 +15,7 @@ class ServiceAndCostsTab extends StatelessWidget {
     _theme = Theme.of(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: _theme.appBarTheme.backgroundColor,
+        backgroundColor: _theme.scaffoldBackgroundColor,
         body: _buildBody(context, consultationId)
     );
   }
@@ -42,7 +42,6 @@ FutureBuilder<Response<TransactionResponse>> _buildBody(BuildContext context, in
 Widget _buildConsultationWidget(BuildContext context, TransactionResponse response){
   final BuiltList<Transaction> transactions = response.transactions;
   return Container(
-      color: _theme.appBarTheme.foregroundColor,
       child:  ListView.separated(
     itemCount: transactions.length,
     scrollDirection: Axis.vertical,

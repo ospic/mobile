@@ -2,7 +2,6 @@ import 'package:chopper/chopper.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
 import 'package:mobile/screens/index.dart';
-import 'package:mobile/utils/Constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/widgets/widget_something_happened.dart';
@@ -79,7 +78,7 @@ class ScreenViewConsultation extends StatelessWidget {
                 title: Text('Consultation: ${consultation == null
                     ? consultationId
                     : consultation.fromdate}',
-                  style: _theme.textTheme.headline3,),
+                  style: _theme.appBarTheme.titleTextStyle,),
                 floating: true,
                 pinned: true,
                 expandedHeight: 160.0,
@@ -87,6 +86,7 @@ class ScreenViewConsultation extends StatelessWidget {
                 bottom: TabBar(
                   isScrollable: true,
                   indicatorSize: TabBarIndicatorSize.tab,
+                  indicatorColor: Colors.blue,
                   unselectedLabelColor: _theme.tabBarTheme.unselectedLabelColor,
                   labelColor: _theme.tabBarTheme.labelColor,
                   tabs: _tabs.map((String name) => Tab(text: name)).toList(),

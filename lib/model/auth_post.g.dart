@@ -33,12 +33,6 @@ class _$AuthPostSerializer implements StructuredSerializer<AuthPost> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.tenantId;
-    if (value != null) {
-      result
-        ..add('tenantId')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
-    }
     return result;
   }
 
@@ -61,10 +55,6 @@ class _$AuthPostSerializer implements StructuredSerializer<AuthPost> {
           result.password = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'tenantId':
-          result.tenantId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
-          break;
       }
     }
 
@@ -77,13 +67,11 @@ class _$AuthPost extends AuthPost {
   final String? username;
   @override
   final String? password;
-  @override
-  final int? tenantId;
 
   factory _$AuthPost([void Function(AuthPostBuilder)? updates]) =>
       (new AuthPostBuilder()..update(updates))._build();
 
-  _$AuthPost._({this.username, this.password, this.tenantId}) : super._();
+  _$AuthPost._({this.username, this.password}) : super._();
 
   @override
   AuthPost rebuild(void Function(AuthPostBuilder) updates) =>
@@ -97,22 +85,19 @@ class _$AuthPost extends AuthPost {
     if (identical(other, this)) return true;
     return other is AuthPost &&
         username == other.username &&
-        password == other.password &&
-        tenantId == other.tenantId;
+        password == other.password;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc(0, username.hashCode), password.hashCode), tenantId.hashCode));
+    return $jf($jc($jc(0, username.hashCode), password.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'AuthPost')
           ..add('username', username)
-          ..add('password', password)
-          ..add('tenantId', tenantId))
+          ..add('password', password))
         .toString();
   }
 }
@@ -128,10 +113,6 @@ class AuthPostBuilder implements Builder<AuthPost, AuthPostBuilder> {
   String? get password => _$this._password;
   set password(String? password) => _$this._password = password;
 
-  int? _tenantId;
-  int? get tenantId => _$this._tenantId;
-  set tenantId(int? tenantId) => _$this._tenantId = tenantId;
-
   AuthPostBuilder();
 
   AuthPostBuilder get _$this {
@@ -139,7 +120,6 @@ class AuthPostBuilder implements Builder<AuthPost, AuthPostBuilder> {
     if ($v != null) {
       _username = $v.username;
       _password = $v.password;
-      _tenantId = $v.tenantId;
       _$v = null;
     }
     return this;
@@ -160,9 +140,8 @@ class AuthPostBuilder implements Builder<AuthPost, AuthPostBuilder> {
   AuthPost build() => _build();
 
   _$AuthPost _build() {
-    final _$result = _$v ??
-        new _$AuthPost._(
-            username: username, password: password, tenantId: tenantId);
+    final _$result =
+        _$v ?? new _$AuthPost._(username: username, password: password);
     replace(_$result);
     return _$result;
   }

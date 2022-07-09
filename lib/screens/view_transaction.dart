@@ -1,7 +1,5 @@
-import 'dart:io';
 
 import 'package:chopper/chopper.dart';
-import 'package:flutter/foundation.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/transaction.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,12 +18,12 @@ class ViewTransaction extends StatelessWidget {
   Widget build(BuildContext context) {
     final PreferredSizeWidget appBar = AppBar(
         elevation: 0.0,
-        iconTheme: IconThemeData(color: Constants.clr_blue),
+        iconTheme: IconThemeData(color: Colors.white),
         title: Text(
           "Transaction " ,
-          style: TextStyle(fontFamily: 'Batmfa', color: Constants.clr_blue),
+          style: TextStyle(fontFamily: 'Batmfa', color: Colors.white),
         ),
-        backgroundColor: Constants.clr_light_blue);
+        backgroundColor: Colors.white);
 
     return Scaffold(
         appBar: appBar,
@@ -57,7 +55,7 @@ FutureBuilder<Response<Transaction>> _buildBody(
 Widget _buildViewTransaction(BuildContext context, Transaction? transaction) {
   final _borderRadius = 10.0;
   return Card(
-    shadowColor: Constants.clr_blue,
+    shadowColor: Colors.white,
     margin: EdgeInsets.all(5.0),
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(_borderRadius)),
@@ -70,9 +68,9 @@ Widget _buildViewTransaction(BuildContext context, Transaction? transaction) {
           height: 70.0,
           margin: EdgeInsets.all(0.0),
           decoration: BoxDecoration(
-              color: Constants.clr_blue,
+              color: Colors.white,
               border: Border.all(
-                color: Constants.clr_blue,
+                color: Colors.white,
               ),
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(_borderRadius),
@@ -82,7 +80,7 @@ Widget _buildViewTransaction(BuildContext context, Transaction? transaction) {
               backgroundColor: Colors.white,
               child: Icon(
                 Icons.ac_unit,
-                color: Constants.clr_blue,
+                color: Colors.white,
               ),
             ),
             title: Text(

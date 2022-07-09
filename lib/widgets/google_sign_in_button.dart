@@ -1,16 +1,11 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:mobile/utils/index.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../utils/Authentication.dart';
+import 'Authentication.dart';
 
 class GoogleSignInButton extends StatefulWidget {
   @override
@@ -19,7 +14,7 @@ class GoogleSignInButton extends StatefulWidget {
 
 class _GoogleSignInButtonState extends State<GoogleSignInButton> {
   bool _isSigningIn = false;
-  late SharedPreferences preferences;
+  late SharedPreference preferences;
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +44,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
               _isSigningIn = true;
             });
 
-            User? user = await Authentication.signInWithGoogle(
-                context: context);
-            final tokenResult = await FirebaseAuth.instance.currentUser;
+            User? user = await Authentication.signInWithGoogle(context: context);
             final pattern = RegExp('.{1,608}');
             user?.getIdToken().then((value) => {
               print(value),
@@ -60,10 +53,10 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
             });
 
             if (user != null) {
-              preferences = await SharedPreferences.getInstance();
-              preferences.setBool('ISAUTHENICATED', true);
-              preferences.setBool('ISPASS', false);
-              preferences.setBool('ISGOOGLE', true);
+              preferences = new SharedPreference();
+              preferences.setBooleanToSF(enumKey.IS_LOGGED_IN.toString(), true);
+              preferences.setBooleanToSF(enumKey.IS_PASSWORD.toString(), false);
+              preferences.setBooleanToSF(enumKey.IS_GOOGLE.toString(), true);
 
               print(user);
               Navigator.pushNamed(context, '/home');

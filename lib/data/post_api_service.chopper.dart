@@ -203,7 +203,7 @@ class _$PostApiService extends PostApiService {
 
   @override
   Future<Response<AppointmentInfo>> updateFcmToken(TokenUpdate body) {
-    final $url = '/token';
+    final $url = '/auth/token';
     final $body = body;
     final $request = Request('PUT', $url, client.baseUrl, body: $body);
     return client.send<AppointmentInfo, AppointmentInfo>($request);

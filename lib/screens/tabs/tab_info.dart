@@ -19,7 +19,7 @@ class InfoTab extends StatelessWidget {
     _theme = Theme.of(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: _theme.appBarTheme.backgroundColor,
+        backgroundColor: _theme.scaffoldBackgroundColor,
         body: _buildBody(context, admissionId));
   }
 

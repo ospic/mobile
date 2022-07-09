@@ -4,6 +4,7 @@ export 'screen_help.dart';
 export 'screen_contacts.dart';
 export 'screen_login.dart';
 export 'screen_create_appointment.dart';
+export 'scr_settings.dart';
 
 
 
@@ -25,4 +26,5 @@ export 'tabs/tab_reports.dart';
 export 'tabs/tab_admissions.dart';
 export 'tabs/tab_costs.dart';
 export 'tabs/tab_info.dart';
-export 'tabs/tab_settings.dart';
+export 'tabs/tab_account.dart';
+

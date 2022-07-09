@@ -6,13 +6,11 @@ part 'auth_post.g.dart';
  abstract class AuthPost  implements Built<AuthPost, AuthPostBuilder>  {
   String ? get username;
   String ? get  password;
-  int ? get tenantId;
   AuthPost._();
   factory AuthPost([updates(AuthPostBuilder b)]) = _$AuthPost;
   factory AuthPost.from(String username, String password) => new _$AuthPost._(
    username: username,
-   password: password,
-   tenantId:   200,
+   password: password
   );
 
   static Serializer<AuthPost> get serializer => _$authPostSerializer;

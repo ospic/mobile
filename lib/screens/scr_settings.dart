@@ -9,15 +9,15 @@ import 'package:provider/provider.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:built_collection/built_collection.dart';
 
-import '../../widgets/widget_something_happened.dart';
+import '../widgets/widget_something_happened.dart';
 
-class TabSettings extends StatefulWidget {
+class ScreenSettings extends StatefulWidget {
 
   @override
   _TabSettingsState createState()=> _TabSettingsState();
 }
 
-class _TabSettingsState extends State<TabSettings> {
+class _TabSettingsState extends State<ScreenSettings> {
 
   final url = TextEditingController();
   final cPassword = TextEditingController();
@@ -99,7 +99,7 @@ class _TabSettingsState extends State<TabSettings> {
                 },
                 items: tenants!.map((Tenant tenant) {
                   return DropdownMenuItem<int>(
-                    child: Text('${tenant.name}-${tenant.organization}', style: _theme.textTheme.headline3,),
+                    child: Text('${tenant.name}(${tenant.organization})', style: _theme.textTheme.headline3,),
                     value: tenant.patientId,
                   );
                 }).toList(),
@@ -226,8 +226,14 @@ class _TabSettingsState extends State<TabSettings> {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: _theme.appBarTheme.backgroundColor,
-        body: SettingsList(
+        appBar: AppBar(
           backgroundColor: _theme.appBarTheme.backgroundColor,
+          iconTheme: _theme.appBarTheme.iconTheme,
+          title: Text('title.settings'.tr()),
+          elevation: _theme.appBarTheme.elevation,
+        ),
+        body: SettingsList(
+          backgroundColor: _theme.scaffoldBackgroundColor,
           sections: [
             SettingsSection(
               title: 'Common',
@@ -236,7 +242,9 @@ class _TabSettingsState extends State<TabSettings> {
                 SettingsTile(
                   title: 'Language',
                   subtitle: 'English',
-                  leading: Icon(Icons.translate),
+                  titleTextStyle: _theme.textTheme.headline3,
+                  subtitleTextStyle: _theme.textTheme.headline4,
+                  leading: Icon(Icons.translate, color: blue,),
                   trailing: Icon(Icons.chevron_right),
                   onPressed: (BuildContext context) {
                     _showLanguageChangeDialog();
@@ -246,7 +254,9 @@ class _TabSettingsState extends State<TabSettings> {
                 SettingsTile(
                   title: 'Clinic',
                   subtitle: 'Mosul',
-                  leading: Icon(Icons.local_hospital_rounded),
+                    titleTextStyle: _theme.textTheme.headline3,
+                    subtitleTextStyle: _theme.textTheme.headline4,
+                  leading: Icon(Icons.local_hospital_rounded, color: blue,),
                     trailing: Icon(Icons.chevron_right),
                   onPressed: (BuildContext context){
                     _showLinkChangesDialog();
@@ -261,7 +271,8 @@ class _TabSettingsState extends State<TabSettings> {
 
                 SettingsTile.switchTile(
                   title: 'Use fingerprint',
-                  leading: Icon(Icons.fingerprint),
+                  titleTextStyle: _theme.textTheme.headline3,
+                  leading: Icon(Icons.fingerprint, color: blue,),
                   switchValue: value,
                   onToggle: (bool value) {
                     _onFingerPrintSetting(value);
@@ -270,8 +281,10 @@ class _TabSettingsState extends State<TabSettings> {
 
                 SettingsTile(
                     title: 'Security',
-                    subtitle: 'Password',
-                    leading: Icon(Icons.lock_outline),
+                    subtitle: 'Update password',
+                    titleTextStyle: _theme.textTheme.headline3,
+                    subtitleTextStyle: _theme.textTheme.headline4,
+                    leading: Icon(Icons.lock_outline, color: blue,),
                     trailing: Icon(Icons.chevron_right),
                     onPressed: (BuildContext context){
                       _showPasswordChangeDialog();
@@ -280,6 +293,8 @@ class _TabSettingsState extends State<TabSettings> {
                 SettingsTile(
                     title: 'Logout',
                     subtitle: 'Exit',
+                    titleTextStyle: _theme.textTheme.headline3,
+                    subtitleTextStyle: _theme.textTheme.headline4,
                     leading: Icon(Icons.settings_power_rounded,color: Colors.redAccent,),
                     trailing: Icon(Icons.chevron_right),
                     onPressed: (BuildContext context){

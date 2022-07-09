@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:mobile/screens/index.dart';
 import 'package:mobile/screens/view_consultation.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/utils/Constants.dart';
+
 import 'package:mobile/utils/colors.dart';
 import 'package:mobile/widgets/index.dart';
 import 'package:provider/provider.dart';
@@ -37,12 +37,12 @@ class _AppointmentsTabState extends State<AppointmentsTab> {
             isLargeScreen = false;
           }
           return Container(
-            color: _theme.appBarTheme.backgroundColor,
+            color: _theme.primaryColor,
             child: Container(
               padding: EdgeInsets.symmetric(vertical: 5.0),
               margin: EdgeInsets.symmetric(horizontal: 3.0),
               decoration: new BoxDecoration(
-                  color: _theme.appBarTheme.backgroundColor,
+                  color: _theme.scaffoldBackgroundColor,
                   borderRadius: new BorderRadius.only(
                     topLeft: const Radius.circular(10.0),
                     topRight: const Radius.circular(10.0),

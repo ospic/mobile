@@ -1,9 +1,10 @@
 import 'package:chopper/chopper.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mobile/data/post_api_service.dart';
 import 'package:mobile/model/index.dart';
-import 'package:mobile/utils/Constants.dart';
+
 import 'package:mobile/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +18,15 @@ class ViewAdmissionScreen extends StatelessWidget {
   ViewAdmissionScreen(this.admissionId);
 
   Widget build(BuildContext context) {
+    ThemeData _theme = Theme.of(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        backgroundColor: _theme.scaffoldBackgroundColor,
         appBar: AppBar(
-          backgroundColor: Constants.clr_light_blue,
+          backgroundColor: _theme.appBarTheme.backgroundColor,
           elevation: 0.0,
-          title: Text('Admission ' + admissionId.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: Constants.clr_blue),),
-          iconTheme: IconThemeData(color: Constants.clr_blue),
+          title: Text('Admission ' + admissionId.toString(), style: _theme.appBarTheme.titleTextStyle,),
+          iconTheme: _theme.appBarTheme.iconTheme,
         ),
         body: _buildBody(context, admissionId));
   }
@@ -181,6 +184,7 @@ FutureBuilder<Response<BuiltList<Visit>>> _buildAdmissionVisitsBody(BuildContext
 }
 
 ListView _buildConsultationVisitsWidget(BuildContext context, BuiltList<Visit> visits) {
+  ThemeData _theme = Theme.of(context);
   final colors = [
     Colors.blue,
     Colors.green,
@@ -204,18 +208,23 @@ ListView _buildConsultationVisitsWidget(BuildContext context, BuiltList<Visit> v
               padding: const EdgeInsets.all(8),
               iconStyle: IconStyle(iconData: Icons.circle, color: Colors.white),
               color: colors[index % colors.length]),
-          endChild: Container(
+          endChild:Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0)
+            ),
+            child: Container(
             margin: EdgeInsets.only(top: 2.0, bottom: 2.0, left: 1.0),
             padding: EdgeInsets.only(top: 3.0, bottom: 4.0),
-            color: Constants.clr_light_blue,
+            color: Colors.transparent,
             constraints: BoxConstraints(
               minHeight: 90,
             ),
-            child: ListTile(
-              title: Text(visits[index].date.toString(), style: TextStyle(color: Constants.clr_blue, fontWeight: FontWeight.bold)),
-              subtitle: Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
-                child: Text(visits[index].symptoms.toString(),style: TextStyle(color: Colors.black)),
+            child:  ListTile(
+                title: Text('title.visitdate'.tr(args: [visits[index].date.toString()]), style: _theme.textTheme.headline4),
+                subtitle: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text(visits[index].symptoms.toString(),style: TextStyle(color: Colors.black)),
+                ),
               ),
             ),
           ),
